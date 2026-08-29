@@ -2,7 +2,9 @@ import { useCallback, useState } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useFocusEffect } from 'expo-router';
+import { AlertTriangle, Target, TrendingUp, WifiOff } from 'lucide-react-native';
 import { apiService, ErreurApi } from '@/services/api';
+import { couleurs } from '@/constants/theme';
 import { lireProgression, sauvegarderProgression } from '@/services/cache';
 import Chargement from '@/components/Chargement';
 import MessageErreur from '@/components/MessageErreur';
@@ -63,9 +65,10 @@ export default function Progression() {
         <Text className="text-brand-green-dark text-xl font-bold">Ta progression</Text>
 
         {horsLigne ? (
-          <View className="rounded-xl border border-brand-gold/40 bg-brand-gold-soft p-3">
-            <Text className="text-brand-green-dark text-sm">
-              📡 Hors connexion : données enregistrées lors de ta dernière session.
+          <View className="flex-row items-center gap-2 rounded-xl border border-brand-gold/40 bg-brand-gold-soft p-3">
+            <WifiOff size={18} color={couleurs.greenDark} />
+            <Text className="text-brand-green-dark flex-1 text-sm">
+              Hors connexion : données enregistrées lors de ta dernière session.
             </Text>
           </View>
         ) : null}
@@ -103,9 +106,12 @@ export default function Progression() {
 
             {recommandation ? (
               <View className="gap-3 rounded-xl border border-brand-wrong-text/30 bg-brand-wrong-bg p-4">
-                <Text className="text-brand-wrong-text text-xs font-bold uppercase">
-                  ⚠️ À revoir en priorité
-                </Text>
+                <View className="flex-row items-center gap-2">
+                  <AlertTriangle size={16} color={couleurs.wrongText} />
+                  <Text className="text-brand-wrong-text text-xs font-bold uppercase">
+                    À revoir en priorité
+                  </Text>
+                </View>
                 <Text className="text-brand-ink text-sm">
                   Ton score est encore faible en{' '}
                   <Text className="font-bold">{recommandation.libelle}</Text> (
@@ -129,7 +135,10 @@ export default function Progression() {
             ) : null}
 
             <View className="gap-3">
-              <Text className="text-brand-green-dark font-bold">🎯 Maîtrise par thème</Text>
+              <View className="flex-row items-center gap-2">
+                <Target size={17} color={couleurs.green} />
+                <Text className="text-brand-green-dark font-bold">Maîtrise par thème</Text>
+              </View>
 
               {progression.parTheme.map((t) => {
                 const bon = t.scoreMaitrise >= 50;
@@ -173,7 +182,7 @@ export default function Progression() {
 
               {progression.parTheme.length === 0 ? (
                 <View className="items-center gap-3 rounded-xl border border-dashed border-brand-lines bg-white py-8">
-                  <Text className="text-3xl">📈</Text>
+                  <TrendingUp size={32} color={couleurs.lines} />
                   <Text className="text-brand-ink/70 text-center text-sm">
                     Fais ton premier exercice pour voir ta progression !
                   </Text>

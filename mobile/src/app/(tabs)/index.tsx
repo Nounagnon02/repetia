@@ -2,7 +2,10 @@ import { useCallback, useState } from 'react';
 import { View, Text, ScrollView, RefreshControl } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useFocusEffect } from 'expo-router';
+import { Activity, BookOpen, GraduationCap, MessageCircle, WifiOff } from 'lucide-react-native';
 import { apiService, ErreurApi } from '@/services/api';
+import Logo from '@/components/Logo';
+import { couleurs } from '@/constants/theme';
 import { lireThemes, sauvegarderThemes, lireProgression, sauvegarderProgression } from '@/services/cache';
 import Chargement from '@/components/Chargement';
 import MessageErreur from '@/components/MessageErreur';
@@ -96,10 +99,9 @@ export default function Accueil() {
         }
       >
         <View className="flex-row items-center justify-between">
-          <Text className="text-brand-green-dark text-2xl font-bold">
-            Répét<Text className="text-brand-gold">IA</Text>
-          </Text>
-          <View className="rounded-full bg-brand-gold-soft px-3 py-1.5">
+          <Logo taille={30} />
+          <View className="flex-row items-center gap-1.5 rounded-full bg-brand-gold-soft px-3 py-1.5">
+            <GraduationCap size={14} color={couleurs.greenDark} />
             <Text className="text-brand-green-dark text-xs font-bold">BEPC · Maths</Text>
           </View>
         </View>
@@ -111,9 +113,10 @@ export default function Accueil() {
         </View>
 
         {horsLigne ? (
-          <View className="rounded-xl border border-brand-gold/40 bg-brand-gold-soft p-3">
-            <Text className="text-brand-green-dark text-sm">
-              📡 Tu es hors connexion. Voici tes derniers thèmes enregistrés.
+          <View className="flex-row items-center gap-2 rounded-xl border border-brand-gold/40 bg-brand-gold-soft p-3">
+            <WifiOff size={18} color={couleurs.greenDark} />
+            <Text className="text-brand-green-dark flex-1 text-sm">
+              Tu es hors connexion. Voici tes derniers thèmes enregistrés.
             </Text>
           </View>
         ) : null}
@@ -135,7 +138,10 @@ export default function Accueil() {
           <>
             {progression && progression.global.faits > 0 ? (
               <View className="rounded-xl border border-brand-lines bg-white p-4">
-                <Text className="text-brand-green-dark font-bold">Ta série du jour</Text>
+                <View className="flex-row items-center gap-2">
+                  <Activity size={16} color={couleurs.gold} />
+                  <Text className="text-brand-green-dark font-bold">Ta série du jour</Text>
+                </View>
                 <Text className="text-brand-ink mt-1 text-sm">
                   {progression.global.faits} exercice{progression.global.faits > 1 ? 's' : ''} ·{' '}
                   {progression.global.reussis} réussi{progression.global.reussis > 1 ? 's' : ''} ·{' '}
@@ -146,7 +152,10 @@ export default function Accueil() {
             ) : null}
 
             <View>
-              <Text className="text-brand-green-dark mb-3 font-bold">Thème</Text>
+              <View className="mb-3 flex-row items-center gap-2">
+                <BookOpen size={17} color={couleurs.green} />
+                <Text className="text-brand-green-dark font-bold">Thème</Text>
+              </View>
               <View className="flex-row flex-wrap gap-2" accessibilityRole="radiogroup">
                 {themes.map((t) => (
                   <Puce
@@ -180,13 +189,13 @@ export default function Accueil() {
             <View className="mt-2 gap-3">
               <Bouton
                 titre="Commencer l'entraînement"
-                icone="📘"
+                Icone={BookOpen}
                 onPress={commencer}
                 desactive={!themeChoisi}
               />
               <Bouton
                 titre="Poser une question au répétiteur"
-                icone="💬"
+                Icone={MessageCircle}
                 variante="secondaire"
                 onPress={() => router.push('/chat')}
               />

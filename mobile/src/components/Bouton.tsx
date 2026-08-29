@@ -1,4 +1,5 @@
 import { Pressable, Text, ActivityIndicator, View } from 'react-native';
+import type { LucideIcon } from 'lucide-react-native';
 import { couleurs } from '@/constants/theme';
 
 type Variante = 'primaire' | 'secondaire' | 'dore';
@@ -9,25 +10,25 @@ interface Props {
   variante?: Variante;
   desactive?: boolean;
   chargement?: boolean;
-  icone?: string;
+  /** Icône Lucide affichée à gauche du libellé. */
+  Icone?: LucideIcon;
   accessibilityLabel?: string;
   className?: string;
 }
 
-const STYLES: Record<Variante, { conteneur: string; texte: string; spinner: string }> = {
-  primaire: { conteneur: 'bg-brand-green', texte: 'text-white', spinner: '#ffffff' },
+const STYLES: Record<Variante, { conteneur: string; texte: string; contenu: string }> = {
+  primaire: { conteneur: 'bg-brand-green', texte: 'text-white', contenu: '#ffffff' },
   secondaire: {
     conteneur: 'bg-white border border-brand-lines',
     texte: 'text-brand-green-dark',
-    spinner: couleurs.green,
+    contenu: couleurs.greenDark,
   },
-  dore: { conteneur: 'bg-brand-gold', texte: 'text-white', spinner: '#ffffff' },
+  dore: { conteneur: 'bg-brand-gold', texte: 'text-white', contenu: '#ffffff' },
 };
 
 /**
  * Bouton tactile avec retour visuel à la pression.
- * `Pressable` donne l'opacité réduite pendant l'appui, ce qu'attend un
- * utilisateur Android.
+ * `Pressable` réduit l'opacité pendant l'appui, ce qu'attend un utilisateur Android.
  */
 export default function Bouton({
   titre,
@@ -35,7 +36,7 @@ export default function Bouton({
   variante = 'primaire',
   desactive = false,
   chargement = false,
-  icone,
+  Icone,
   accessibilityLabel,
   className = '',
 }: Props) {
@@ -53,10 +54,10 @@ export default function Bouton({
       className={`flex-row items-center justify-center gap-2 rounded-xl px-4 py-4 ${style.conteneur} ${className}`}
     >
       {chargement ? (
-        <ActivityIndicator color={style.spinner} />
+        <ActivityIndicator color={style.contenu} />
       ) : (
         <View className="flex-row items-center gap-2">
-          {icone ? <Text className="text-base">{icone}</Text> : null}
+          {Icone ? <Icone size={19} color={style.contenu} /> : null}
           <Text className={`text-base font-bold ${style.texte}`}>{titre}</Text>
         </View>
       )}

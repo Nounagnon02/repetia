@@ -1,8 +1,8 @@
 import { Tabs } from 'expo-router';
-import { Text } from 'react-native';
+import { Home, MessageCircle, TrendingUp } from 'lucide-react-native';
 import { couleurs } from '@/constants/theme';
 
-/** Onglets du bas : Accueil, Chat et Progression. */
+/** Onglets du bas : Accueil, Répétiteur et Progression. */
 export default function TabsLayout() {
   return (
     <Tabs
@@ -13,38 +13,34 @@ export default function TabsLayout() {
         tabBarStyle: {
           backgroundColor: couleurs.blanc,
           borderTopColor: couleurs.lines,
-          height: 62,
-          paddingBottom: 8,
-          paddingTop: 6,
+          height: 72,
+          paddingTop: 8,
+          paddingBottom: 12,
         },
-        tabBarLabelStyle: { fontSize: 12, fontWeight: '600' },
+        // `lineHeight` explicite : sans lui la boîte de ligne tombe à 11 px pour
+        // un texte de 12 px, et les jambages de « Progression » sont rognés.
+        tabBarLabelStyle: { fontSize: 12, lineHeight: 16, fontWeight: '600', marginTop: 2 },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
           title: 'Accueil',
-          tabBarIcon: ({ focused }) => (
-            <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.6 }}>🏠</Text>
-          ),
+          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="chat"
         options={{
           title: 'Répétiteur',
-          tabBarIcon: ({ focused }) => (
-            <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.6 }}>💬</Text>
-          ),
+          tabBarIcon: ({ color, size }) => <MessageCircle size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="progression"
         options={{
           title: 'Progression',
-          tabBarIcon: ({ focused }) => (
-            <Text style={{ fontSize: 20, opacity: focused ? 1 : 0.6 }}>📈</Text>
-          ),
+          tabBarIcon: ({ color, size }) => <TrendingUp size={size} color={color} />,
         }}
       />
     </Tabs>

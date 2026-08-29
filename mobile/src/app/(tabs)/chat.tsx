@@ -11,7 +11,9 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
+import { Send } from 'lucide-react-native';
 import { apiService, ErreurApi } from '@/services/api';
+import LogoMark from '@/components/LogoMark';
 import MessageErreur from '@/components/MessageErreur';
 import TexteFormate from '@/components/TexteFormate';
 import { couleurs } from '@/constants/theme';
@@ -93,7 +95,7 @@ export default function Chat() {
       >
         <View className="flex-row items-center gap-3 border-b border-brand-lines bg-white px-4 py-3">
           <View className="h-9 w-9 items-center justify-center rounded-full bg-brand-green">
-            <Text className="font-bold text-white">R</Text>
+            <LogoMark taille={16} teinte={couleurs.goldSoft} evide={couleurs.green} />
           </View>
           <Text className="text-brand-green-dark text-base font-bold">RépétIA</Text>
         </View>
@@ -173,7 +175,7 @@ export default function Chat() {
             })}
             className="h-[46px] w-[46px] items-center justify-center rounded-xl bg-brand-green"
           >
-            <Text className="text-lg text-white">➤</Text>
+            <Send size={19} color={couleurs.blanc} />
           </Pressable>
         </View>
       </KeyboardAvoidingView>
