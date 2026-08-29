@@ -84,7 +84,7 @@ export default function Chat() {
 
   return (
     <div className="flex flex-1 flex-col">
-      <EnTete titre="RépétIA — Répétiteur" />
+      <EnTete titre="RépétIA" avecMarque />
 
       <div
         className="flex flex-1 flex-col gap-4 overflow-y-auto pt-2 pb-28"
