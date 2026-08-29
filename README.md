@@ -172,7 +172,7 @@ Depuis la racine du dépôt :
 Une seule commande couvre les trois projets :
 
 ```bash
-npm test        # backend (51) + web (11) + mobile (57) = 119 tests
+npm test        # backend (51) + web (11) + mobile (61) = 123 tests
 ```
 
 - **Backend** (Jest + Supertest) — le service LLM est mocké : ni réseau, ni clé
@@ -347,7 +347,7 @@ mécanique que le web. Aucun compte, aucune donnée personnelle.
 ### Tester
 
 ```bash
-cd mobile && npm test          # 57 tests, aucun appel réseau
+cd mobile && npm test          # 61 tests, aucun appel réseau
 npm run typecheck              # tsc --noEmit
 ```
 

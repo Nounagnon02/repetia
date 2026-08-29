@@ -3,6 +3,7 @@ import TexteFormate from '@/components/TexteFormate';
 import MessageErreur from '@/components/MessageErreur';
 import Chargement from '@/components/Chargement';
 import Bouton from '@/components/Bouton';
+import SelecteurDifficulte from '@/components/SelecteurDifficulte';
 
 describe('TexteFormate', () => {
   it('rend le Markdown léger produit par le modèle', async () => {
@@ -72,5 +73,40 @@ describe('Bouton', () => {
     await render(<Bouton titre="Corriger ma réponse" onPress={jest.fn()} chargement />);
 
     expect(screen.queryByText('Corriger ma réponse')).toBeNull();
+  });
+});
+
+describe('SelecteurDifficulte', () => {
+  it('propose les trois niveaux sur une seule ligne chacun', async () => {
+    await render(<SelecteurDifficulte valeur="moyen" onChange={jest.fn()} />);
+
+    for (const libelle of ['Facile', 'Moyen', 'Examen']) {
+      expect(screen.getByLabelText(libelle)).toBeOnTheScreen();
+    }
+    // « Type Examen » passait à la ligne et déséquilibrait la rangée.
+    expect(screen.queryByText('Type Examen')).toBeNull();
+    expect(screen.getByText('Examen').props.numberOfLines).toBe(1);
+  });
+
+  it('marque le niveau courant comme sélectionné', async () => {
+    await render(<SelecteurDifficulte valeur="examen" onChange={jest.fn()} />);
+
+    expect(screen.getByLabelText('Examen').props.accessibilityState.selected).toBe(true);
+    expect(screen.getByLabelText('Facile').props.accessibilityState.selected).toBe(false);
+  });
+
+  it('annonce la progression du niveau aux lecteurs d\'écran', async () => {
+    await render(<SelecteurDifficulte valeur="moyen" onChange={jest.fn()} />);
+
+    expect(screen.getByLabelText('Facile').props.accessibilityHint).toBe('Niveau 1 sur 3');
+    expect(screen.getByLabelText('Examen').props.accessibilityHint).toBe('Niveau 3 sur 3');
+  });
+
+  it('remonte le niveau choisi', async () => {
+    const onChange = jest.fn();
+    await render(<SelecteurDifficulte valeur="moyen" onChange={onChange} />);
+
+    await fireEvent.press(screen.getByLabelText('Facile'));
+    expect(onChange).toHaveBeenCalledWith('facile');
   });
 });

@@ -55,7 +55,7 @@ npm run dev         # backend (3000) + frontend web (5173)
 npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (112 tests : 51 back + 11 web + 50 mobile)
+npm test            # toute la suite (123 tests : 51 back + 11 web + 61 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 
@@ -139,8 +139,8 @@ src/
     (tabs)/chat.tsx        Chat répétiteur (F5)
     (tabs)/progression.tsx Progression + recommandation (F6, F7)
     entrainement.tsx       Écran empilé (F2, F3, F4)
-  components/              Bouton, Puce, Chargement, MessageErreur,
-                           TexteFormate, EnTeteEcran, Logo
+  components/              Bouton, Puce, SelecteurDifficulte, Chargement,
+                           MessageErreur, TexteFormate, EnTeteEcran, Logo
     LogoMark.tsx           ← GÉNÉRÉ, ne pas éditer à la main
   services/
     api.ts                 Client axios + ErreurApi + détection de l'URL

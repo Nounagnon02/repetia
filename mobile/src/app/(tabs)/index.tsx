@@ -11,13 +11,8 @@ import Chargement from '@/components/Chargement';
 import MessageErreur from '@/components/MessageErreur';
 import Bouton from '@/components/Bouton';
 import Puce from '@/components/Puce';
+import SelecteurDifficulte from '@/components/SelecteurDifficulte';
 import type { Difficulte, Progression, Theme } from '@/types';
-
-const DIFFICULTES: { valeur: Difficulte; libelle: string }[] = [
-  { valeur: 'facile', libelle: 'Facile' },
-  { valeur: 'moyen', libelle: 'Moyen' },
-  { valeur: 'examen', libelle: 'Type Examen' },
-];
 
 export default function Accueil() {
   const [themes, setThemes] = useState<Theme[]>([]);
@@ -170,20 +165,7 @@ export default function Accueil() {
 
             <View>
               <Text className="text-brand-green-dark mb-3 font-bold">Difficulté</Text>
-              <View
-                className="flex-row gap-2 rounded-xl border border-brand-lines bg-white p-1"
-                accessibilityRole="radiogroup"
-              >
-                {DIFFICULTES.map((d) => (
-                  <Puce
-                    key={d.valeur}
-                    libelle={d.libelle}
-                    actif={difficulte === d.valeur}
-                    onPress={() => setDifficulte(d.valeur)}
-                    className="flex-1 items-center"
-                  />
-                ))}
-              </View>
+              <SelecteurDifficulte valeur={difficulte} onChange={setDifficulte} />
             </View>
 
             <View className="mt-2 gap-3">
