@@ -576,6 +576,14 @@ Les réécritures monopage sont déjà configurées
 ([`vercel.json`](frontend/vercel.json) et [`public/_redirects`](frontend/public/_redirects)),
 sans quoi un rechargement sur `/progression` renverrait une 404.
 
+### Instance en ligne
+
+| | URL |
+|---|---|
+| Application | **https://repetia.vercel.app** |
+| API | **https://repetia-api.onrender.com** |
+| Santé | https://repetia-api.onrender.com/health |
+
 ### Après le premier déploiement
 
 ```bash

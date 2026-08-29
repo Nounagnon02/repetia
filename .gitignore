@@ -20,6 +20,9 @@ backend/prisma/schema.postgres.prisma
 *.sqlite
 *.sqlite3
 
+# Liaison locale Vercel (contient les identifiants de projet)
+.vercel/
+
 # Logs
 logs/
 *.log

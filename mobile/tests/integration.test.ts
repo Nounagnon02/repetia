@@ -12,14 +12,19 @@
  * requêtes, intercepteur, traduction des erreurs — est couvert par
  * `tests/api.test.ts` avec un adaptateur simulé.
  *
- * Les requêtes passent par le module `http` de Node : en environnement de test
+ * Les requêtes passent par les modules `http`/`https` de Node : en environnement de test
  * React Native, ni `fetch` ni l'adaptateur XHR d'axios ne sont fonctionnels.
  */
-import { request } from 'node:http';
+import { request as requeteHttp } from 'node:http';
+import { request as requeteHttps } from 'node:https';
 import type { Difficulte } from '@/types';
 
 const URL_API = process.env.REPETIA_API_URL;
 const decrire = URL_API ? describe : describe.skip;
+
+// Un backend gratuit se réveille en ~30 s après une mise en veille, et un
+// appel au LLM prend une dizaine de secondes : il faut de la marge.
+jest.setTimeout(120_000);
 
 interface Reponse<T> {
   statut: number;
@@ -31,10 +36,10 @@ function appeler<T>(chemin: string, options: { methode?: string; corps?: unknown
   const charge = options.corps ? JSON.stringify(options.corps) : undefined;
 
   return new Promise((resoudre, rejeter) => {
-    const req = request(
+    const req = (cible.protocol === 'https:' ? requeteHttps : requeteHttp)(
       {
         hostname: cible.hostname,
-        port: cible.port,
+        port: cible.port || (cible.protocol === 'https:' ? 443 : 80),
         path: `${cible.pathname}${cible.search}`,
         method: options.methode ?? 'GET',
         headers: {
