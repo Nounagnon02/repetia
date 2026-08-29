@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512" role="img" aria-label="RépétIA">
+<rect width="512" height="512" rx="112.64" fill="#0f5f52"/>
+<g transform="translate(69.23 102.45) scale(0.7382)"><path d="M 150 203.2 L 244 268 L 338 203.2 L 338 340 Q 244 370 150 340 Z" fill="#f6e9c7"/><path d="M 244 88 L 440 178 L 244 268 L 48 178 Z" fill="#f6e9c7"/><path d="M 244 268 L 150 203.2 L 150 223.2 L 244 288 L 338 223.2 L 338 203.2 Z" fill="#0f5f52"/><path d="M 428 46 C 428 84, 440 96, 478 96 C 440 96, 428 108, 428 146 C 428 108, 416 96, 378 96 C 416 96, 428 84, 428 46 Z" fill="#d99a1f"/></g>
+</svg>

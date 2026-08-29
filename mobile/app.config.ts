@@ -21,8 +21,10 @@ const config: ExpoConfig = {
   android: {
     package: 'bj.repetia.mobile',
     adaptiveIcon: {
+      // Premier plan transparent + fond vert : le masque du système (cercle,
+      // squircle…) rogne les bords, le symbole est cadré pour y résister.
+      foregroundImage: './assets/images/adaptive-icon.png',
       backgroundColor: '#0f5f52',
-      foregroundImage: './assets/images/android-icon-foreground.png',
     },
   },
   ios: {
@@ -34,7 +36,13 @@ const config: ExpoConfig = {
     'expo-router',
     [
       'expo-splash-screen',
-      { backgroundColor: '#0f5f52', image: './assets/images/splash-icon.png', imageWidth: 96 },
+      {
+        // Mot-symbole centré sur le fond papier de la marque.
+        image: './assets/images/splash-icon.png',
+        imageWidth: 260,
+        resizeMode: 'contain',
+        backgroundColor: '#fbf7ee',
+      },
     ],
   ],
   experiments: { typedRoutes: true },
