@@ -153,9 +153,9 @@ describe('Parcours clé : générer → répondre → correction (F2, F3, F4)', 
     await fireEvent.press(screen.getByLabelText('Corriger ma réponse'));
 
     // F4 — verdict + explication pas à pas
-    expect(await screen.findByText('✅ Bien joué !')).toBeOnTheScreen();
+    expect(await screen.findByText('Bien joué !')).toBeOnTheScreen();
     expect(screen.getByText("Bravo, c'est juste !")).toBeOnTheScreen();
-    expect(screen.getByText('📘 Explication pas à pas')).toBeOnTheScreen();
+    expect(screen.getByText('Explication pas à pas')).toBeOnTheScreen();
     expect(mock.soumettreTentative).toHaveBeenCalledWith('exo-1', 'x = 4');
 
     // Le Markdown du modèle est rendu, pas affiché tel quel
@@ -180,7 +180,7 @@ describe('Parcours clé : générer → répondre → correction (F2, F3, F4)', 
     await fireEvent.changeText(screen.getByLabelText('Ta réponse'), 'x = 9');
     await fireEvent.press(screen.getByLabelText('Corriger ma réponse'));
 
-    expect(await screen.findByText('❌ À revoir')).toBeOnTheScreen();
+    expect(await screen.findByText('À revoir')).toBeOnTheScreen();
     expect(screen.getByText("Ce n'est pas encore ça.")).toBeOnTheScreen();
     expect(screen.getByText('On divise les deux côtés par 2.')).toBeOnTheScreen();
   });
@@ -195,9 +195,9 @@ describe('Parcours clé : générer → répondre → correction (F2, F3, F4)', 
 
     await fireEvent.changeText(screen.getByLabelText('Ta réponse'), 'x = 4');
     await fireEvent.press(screen.getByLabelText('Corriger ma réponse'));
-    await screen.findByText('✅ Bien joué !');
+    await screen.findByText('Bien joué !');
 
-    await fireEvent.press(screen.getByLabelText('Suivant →'));
+    await fireEvent.press(screen.getByLabelText('Suivant'));
 
     expect(await screen.findByText('Deuxième exercice.')).toBeOnTheScreen();
   });
@@ -306,7 +306,7 @@ describe('Écran Progression (F6, F7)', () => {
 
     expect(await screen.findByText('60 %')).toBeOnTheScreen();
     expect(screen.getByText('80 %')).toBeOnTheScreen();
-    expect(screen.getByText('⚠️ À revoir en priorité')).toBeOnTheScreen();
+    expect(screen.getByText('À revoir en priorité')).toBeOnTheScreen();
   });
 
   it('lance un entraînement sur le thème recommandé (F7)', async () => {
