@@ -1,6 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { exerciceDeSecours } from '../data/banque';
+import { normaliserChamps, normaliserTexte } from './texte.service';
 
 /**
  * Modèles essayés dans l'ordre.
@@ -15,7 +16,18 @@ const MODELES = [
   process.env.LLM_MODEL_SECOURS || 'gemini-flash-lite-latest',
 ];
 
-const SYSTEM_PROMPT = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes les mathématiques du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.`;
+const SYSTEM_PROMPT = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes les mathématiques du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
+
+RÈGLE D'ÉCRITURE DES MATHÉMATIQUES — impérative :
+N'utilise JAMAIS de LaTeX. Pas de $, pas de \\sqrt, pas de \\frac, pas de \\times.
+Écris les mathématiques directement avec les symboles que l'élève voit au tableau :
+  racine carrée → √45, √(x + 1)
+  puissances    → x², x³, 10⁵
+  multiplication→ 3 × 5      division → 12 ÷ 4      fraction → 3/4
+  comparaisons  → ≤ ≥ ≠ ≈    angle → ∠ABC = 60°     parallèle → (MN) ∥ (BC)
+N'utilise pas de titres Markdown (# ou ##). Pour insister, entoure de **deux
+astérisques**. Sépare les étapes par des retours à la ligne, pas par des tirets
+de séparation.`;
 
 /** Levée quand le LLM reste injoignable après tous les essais (chat uniquement). */
 export class LlmIndisponibleError extends Error {
@@ -150,7 +162,10 @@ export class LlmService {
 
     const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7);
 
-    if (resultat) return { ...resultat, source: 'ia_genere' };
+    if (resultat) {
+      const propre = normaliserChamps(resultat, ['enonce', 'solution', 'explication']);
+      return { ...propre, source: 'ia_genere' };
+    }
 
     console.warn(`[LLM] Bascule sur la banque de secours (thème="${theme}", difficulté="${difficulte}")`);
     return { ...exerciceDeSecours(theme, difficulte), source: 'banque' };
@@ -169,7 +184,7 @@ export class LlmService {
     const prompt = `Voici un exercice, la solution attendue et la réponse d'un élève. Exercice : ${enonce}. Solution attendue : ${solution}. Réponse de l'élève : ${reponseEleve}. L'élève a-t-il juste (accepte les formes mathématiquement équivalentes, par exemple 0,5 et 1/2) ? Réponds UNIQUEMENT en JSON valide, sans Markdown : {"correct":true/false,"verdict":"phrase courte et encourageante","explication":"la bonne démarche pas à pas, en français simple et en texte brut"}.`;
 
     const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1);
-    if (resultat) return resultat;
+    if (resultat) return normaliserChamps(resultat, ['verdict', 'explication']);
 
     console.warn('[LLM] Correction de repli utilisée.');
     return {
@@ -210,7 +225,7 @@ export class LlmService {
       const modele = MODELES[essai - 1];
       try {
         const texte = await this.appelModele(contents, 0.5, systemInstruction, modele);
-        if (texte.trim()) return texte;
+        if (texte.trim()) return normaliserTexte(texte);
         console.warn(`[LLM] Réponse de chat vide (${modele}, essai ${essai}/${MAX_ESSAIS})`);
       } catch (e: any) {
         derniereErreur = e;

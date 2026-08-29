@@ -105,9 +105,60 @@ export default function LogoMark({
   );
 }
 `;
-  const cible = path.join(racine, 'src/components/LogoMark.tsx');
-  fs.writeFileSync(cible, composant);
-  console.log('\nComposant React → src/components/LogoMark.tsx');
+  fs.writeFileSync(path.join(racine, 'src/components/LogoMark.tsx'), composant);
+  console.log('\nComposants React générés');
+  console.log('  mobile/src/components/LogoMark.tsx');
+
+  // Même géométrie pour le client web : les deux applications doivent porter
+  // exactement le même symbole. Le web utilise du SVG natif, pas react-native-svg.
+  const composantWeb = `/**
+ * Symbole RépétIA — FICHIER GÉNÉRÉ, ne pas modifier à la main.
+ *
+ * Régénérer avec :  cd mobile && node scripts/generer-assets.js
+ * La géométrie vit dans mobile/scripts/logo.js, partagée avec le client mobile
+ * et les icônes d'application : les deux clients ne peuvent pas diverger.
+ */
+interface Props {
+  /** Hauteur du symbole en pixels ; la largeur suit le rapport d'origine. */
+  taille?: number;
+  /** Couleur de la toque. */
+  teinte?: string;
+  /** Couleur de l'encoche — doit être celle du fond pour « creuser » la toque. */
+  evide?: string;
+  /** Couleur de l'étincelle « IA ». */
+  accent?: string;
+  className?: string;
+}
+
+const RAPPORT = ${(BOITE.largeur / BOITE.hauteur).toFixed(4)};
+
+export default function LogoMark({
+  taille = 32,
+  teinte = 'var(--color-brand-green)',
+  evide = 'var(--color-brand-paper)',
+  accent = 'var(--color-brand-gold)',
+  className = '',
+}: Props) {
+  return (
+    <svg
+      width={taille * RAPPORT}
+      height={taille}
+      viewBox="${BOITE.x} ${BOITE.y} ${BOITE.largeur} ${BOITE.hauteur}"
+      role="img"
+      aria-label="Logo RépétIA"
+      className={className}
+    >
+      <path d="${d.calot}" fill={teinte} />
+      <path d="${d.planche}" fill={teinte} />
+      <path d="${d.encoche}" fill={evide} />
+      <path d="${d.etincelle}" fill={accent} />
+    </svg>
+  );
+}
+`;
+  const cibleWeb = path.resolve(racine, '../frontend/src/components/LogoMark.tsx');
+  fs.writeFileSync(cibleWeb, composantWeb);
+  console.log('  frontend/src/components/LogoMark.tsx');
 
   console.log('\nTerminé.');
 })();

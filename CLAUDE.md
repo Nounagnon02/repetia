@@ -55,7 +55,7 @@ npm run dev         # backend (3000) + frontend web (5173)
 npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (123 tests : 51 back + 11 web + 61 mobile)
+npm test            # toute la suite (139 tests : 67 back + 11 web + 61 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 
@@ -276,3 +276,28 @@ puis `npx prisma generate`.
   Surchargez avec `PORT=…` plutôt que de modifier `.env`.
 - Gemini renvoie régulièrement des `503 UNAVAILABLE` transitoires. C'est le
   comportement normal du service, pas un bug : la chaîne de repli existe pour ça.
+
+---
+
+## Écriture des mathématiques
+
+`backend/src/services/texte.service.ts` convertit le LaTeX et le Markdown riche
+que le LLM produit malgré le prompt (`$\sqrt{45}$` → `√45`, `\times` → `×`,
+`### titre` → `**titre**`, `* item` → `• item`).
+
+- La normalisation a lieu **côté serveur**, sur `enonce`, `solution`,
+  `explication`, `verdict` et les réponses du chat : les deux clients en
+  profitent sans code dupliqué.
+- Ne remplacez pas cela par un moteur LaTeX embarqué. La cible, ce sont des
+  téléphones d'entrée de gamme avec des forfaits data limités, et l'écriture
+  Unicode est celle que l'élève voit au tableau.
+- Le prompt système interdit explicitement le LaTeX. Le normaliseur reste
+  nécessaire : un modèle finit toujours par désobéir.
+
+## Identité visuelle partagée
+
+`mobile/scripts/generer-assets.js` génère **trois** artefacts depuis la même
+géométrie (`mobile/scripts/logo.js`) : les PNG d'Expo,
+`mobile/src/components/LogoMark.tsx` et `frontend/src/components/LogoMark.tsx`.
+Le web et le mobile ne peuvent donc pas afficher deux logos différents.
+Ces trois fichiers sont générés — ne les modifiez pas à la main.

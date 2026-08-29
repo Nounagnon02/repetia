@@ -2,15 +2,11 @@ import { useState, useEffect, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, MessageCircle, Activity } from 'lucide-react';
 import { apiService, ErreurApi } from '../services/api';
+import Logo from '../components/Logo';
+import SelecteurDifficulte from '../components/SelecteurDifficulte';
 import Loader from '../components/Loader';
 import MessageErreur from '../components/MessageErreur';
 import type { Theme, Progression, Difficulte } from '../types';
-
-const DIFFICULTES: { valeur: Difficulte; libelle: string }[] = [
-  { valeur: 'facile', libelle: 'Facile' },
-  { valeur: 'moyen', libelle: 'Moyen' },
-  { valeur: 'examen', libelle: 'Type Examen' },
-];
 
 export default function Accueil() {
   const navigate = useNavigate();
@@ -58,9 +54,7 @@ export default function Accueil() {
   return (
     <div className="flex flex-1 flex-col gap-6">
       <header className="flex items-center justify-between py-2">
-        <h1 className="font-serif text-2xl font-bold text-brand-green-dark">
-          Répét<span className="text-brand-gold">IA</span>
-        </h1>
+        <Logo taille={30} />
         <span className="rounded-full bg-brand-gold-soft px-3 py-1 text-xs font-bold text-brand-green-dark">
           BEPC · Maths
         </span>
@@ -128,29 +122,7 @@ export default function Accueil() {
 
             <fieldset>
               <legend className="mb-3 font-bold text-brand-green-dark">Difficulté</legend>
-              <div
-                className="flex gap-2 rounded-xl border border-brand-lines bg-white p-1"
-                role="radiogroup"
-                aria-label="Choix de la difficulté"
-              >
-                {DIFFICULTES.map((d) => {
-                  const actif = difficulte === d.valeur;
-                  return (
-                    <button
-                      key={d.valeur}
-                      type="button"
-                      role="radio"
-                      aria-checked={actif}
-                      onClick={() => setDifficulte(d.valeur)}
-                      className={`flex-1 rounded-lg py-2 text-sm font-medium transition-colors ${
-                        actif ? 'bg-brand-gold-soft text-brand-green-dark' : 'text-gray-600'
-                      }`}
-                    >
-                      {d.libelle}
-                    </button>
-                  );
-                })}
-              </div>
+              <SelecteurDifficulte valeur={difficulte} onChange={setDifficulte} />
             </fieldset>
           </div>
 

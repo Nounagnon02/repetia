@@ -172,7 +172,7 @@ Depuis la racine du dépôt :
 Une seule commande couvre les trois projets :
 
 ```bash
-npm test        # backend (51) + web (11) + mobile (61) = 123 tests
+npm test        # backend (67) + web (11) + mobile (61) = 139 tests
 ```
 
 - **Backend** (Jest + Supertest) — le service LLM est mocké : ni réseau, ni clé
@@ -476,6 +476,17 @@ Le service IA traite ces cas dans cet ordre :
 
 La correction dispose du même filet ; le chat, lui, renvoie une erreur `503`
 explicite plutôt qu'une fausse réponse.
+
+### Écriture des mathématiques
+
+Les modèles écrivent spontanément en LaTeX (`$\sqrt{45}$`, `\times`) et en
+Markdown riche (`### titre`), que l'élève verrait alors tel quel. Embarquer un
+moteur LaTeX coûterait des centaines de kilo-octets sur des téléphones d'entrée
+de gamme, pour un bénéfice nul face à l'écriture qu'un élève lit déjà au
+tableau. Le prompt impose donc l'Unicode — `√45`, `x²`, `3 × 5`, `≤` — et
+`services/texte.service.ts` sert de filet de sécurité : il convertit tout LaTeX
+résiduel avant que la réponse ne quitte le serveur. Les deux clients en
+profitent sans une ligne de code supplémentaire.
 
 ---
 
