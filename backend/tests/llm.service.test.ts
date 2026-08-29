@@ -1,0 +1,256 @@
+/**
+ * Tests du service IA avec le SDK Gemini stubbé.
+ * Objectif : prouver que le parsing est robuste et qu'AUCUNE réponse
+ * inexploitable du modèle ne peut faire planter l'application.
+ */
+const mockGenerateContent = jest.fn();
+
+jest.mock('@google/genai', () => ({
+  GoogleGenAI: jest.fn().mockImplementation(() => ({
+    models: { generateContent: mockGenerateContent },
+  })),
+}));
+
+import { LlmService, LlmIndisponibleError, resetLlmClient } from '../src/services/llm.service';
+import { exerciceDeSecours, tailleBanque, BANQUE } from '../src/data/banque';
+
+const EXERCICE_VALIDE = {
+  enonce: 'Résous : 2x + 3 = 11.',
+  solution: 'x = 4',
+  explication: 'On isole x : 2x = 8 donc x = 4.',
+};
+
+/** Fabrique une réponse du SDK. */
+const reponse = (text: string) => ({ text });
+
+beforeEach(() => {
+  mockGenerateContent.mockReset();
+  process.env.LLM_API_KEY = 'cle-de-test';
+  resetLlmClient();
+  jest.spyOn(console, 'warn').mockImplementation(() => {});
+});
+
+afterEach(() => {
+  jest.restoreAllMocks();
+});
+
+describe('Parsing des réponses du LLM', () => {
+  it('accepte un JSON nu', async () => {
+    mockGenerateContent.mockResolvedValueOnce(reponse(JSON.stringify(EXERCICE_VALIDE)));
+
+    const res = await LlmService.genererExercice('Équations du 1er degré', 'moyen');
+
+    expect(res).toMatchObject(EXERCICE_VALIDE);
+    expect(res.source).toBe('ia_genere');
+    expect(mockGenerateContent).toHaveBeenCalledTimes(1);
+  });
+
+  it('accepte un JSON encadré par des balises Markdown', async () => {
+    mockGenerateContent.mockResolvedValueOnce(
+      reponse('```json\n' + JSON.stringify(EXERCICE_VALIDE) + '\n```'),
+    );
+
+    const res = await LlmService.genererExercice('Équations du 1er degré', 'moyen');
+    expect(res.enonce).toBe(EXERCICE_VALIDE.enonce);
+    expect(res.source).toBe('ia_genere');
+  });
+
+  it('accepte un JSON entouré de texte bavard', async () => {
+    mockGenerateContent.mockResolvedValueOnce(
+      reponse(`Bien sûr ! Voici l'exercice :\n${JSON.stringify(EXERCICE_VALIDE)}\nBon courage !`),
+    );
+
+    const res = await LlmService.genererExercice('Équations du 1er degré', 'moyen');
+    expect(res.solution).toBe('x = 4');
+  });
+
+  it('préserve les accolades présentes à l\'intérieur des chaînes', async () => {
+    const avecAccolades = { ...EXERCICE_VALIDE, enonce: 'Résous {x} + 1 = 3.' };
+    mockGenerateContent.mockResolvedValueOnce(reponse(JSON.stringify(avecAccolades)));
+
+    const res = await LlmService.genererExercice('Équations du 1er degré', 'moyen');
+    expect(res.enonce).toBe('Résous {x} + 1 = 3.');
+  });
+});
+
+describe('Génération : nouvel essai puis banque de secours', () => {
+  it('réessaie une fois puis bascule sur la banque si le JSON est incomplet', async () => {
+    // Piège historique : `{}` est un JSON valide mais inexploitable.
+    mockGenerateContent.mockResolvedValue(reponse('{}'));
+
+    const res = await LlmService.genererExercice('Théorème de Thalès', 'facile');
+
+    expect(mockGenerateContent).toHaveBeenCalledTimes(2);
+    expect(res.source).toBe('banque');
+    expect(res).toMatchObject(exerciceDeSecours('Théorème de Thalès', 'facile'));
+  });
+
+  it('bascule sur la banque quand un champ est vide', async () => {
+    mockGenerateContent.mockResolvedValue(
+      reponse(JSON.stringify({ enonce: 'a', solution: '   ', explication: 'c' })),
+    );
+
+    const res = await LlmService.genererExercice('Racines carrées', 'moyen');
+    expect(res.source).toBe('banque');
+  });
+
+  it('bascule sur la banque si la réponse n\'est pas du JSON', async () => {
+    mockGenerateContent.mockResolvedValue(reponse('Désolé, je ne peux pas faire ça.'));
+
+    const res = await LlmService.genererExercice('Fractions et puissances', 'examen');
+    expect(mockGenerateContent).toHaveBeenCalledTimes(2);
+    expect(res.source).toBe('banque');
+  });
+
+  it('bascule sur la banque si le JSON est tronqué', async () => {
+    mockGenerateContent.mockResolvedValue(reponse('{"enonce":"a","solution":'));
+
+    const res = await LlmService.genererExercice('Théorème de Pythagore', 'moyen');
+    expect(res.source).toBe('banque');
+  });
+
+  it('bascule sur la banque quand le réseau échoue', async () => {
+    mockGenerateContent.mockRejectedValue(new Error('503 UNAVAILABLE'));
+
+    const res = await LlmService.genererExercice('Théorème de Pythagore', 'examen');
+    expect(mockGenerateContent).toHaveBeenCalledTimes(2);
+    expect(res.source).toBe('banque');
+    expect(res.enonce).toContain('AB = 6 cm');
+  });
+
+  it('retient la réponse du second essai quand le premier échoue', async () => {
+    mockGenerateContent
+      .mockRejectedValueOnce(new Error('timeout'))
+      .mockResolvedValueOnce(reponse(JSON.stringify(EXERCICE_VALIDE)));
+
+    const res = await LlmService.genererExercice('Équations du 1er degré', 'moyen');
+    expect(res.source).toBe('ia_genere');
+    expect(res.enonce).toBe(EXERCICE_VALIDE.enonce);
+  });
+
+  it('sert la banque sans appeler le réseau quand LLM_API_KEY est absente', async () => {
+    process.env.LLM_API_KEY = '';
+    resetLlmClient();
+
+    const res = await LlmService.genererExercice('Statistiques (moyenne, effectifs)', 'facile');
+
+    expect(mockGenerateContent).not.toHaveBeenCalled();
+    expect(res.source).toBe('banque');
+    expect(res.enonce).toContain('Koffi');
+  });
+});
+
+describe('Correction', () => {
+  it('valide et renvoie la correction du modèle', async () => {
+    mockGenerateContent.mockResolvedValueOnce(
+      reponse(JSON.stringify({ correct: true, verdict: 'Bravo !', explication: 'Bonne méthode.' })),
+    );
+
+    const res = await LlmService.corrigerExercice('2x+3=11', 'x = 4', 'x = 4');
+    expect(res).toEqual({ correct: true, verdict: 'Bravo !', explication: 'Bonne méthode.' });
+  });
+
+  it('rejette un `correct` non booléen puis utilise la correction de repli', async () => {
+    mockGenerateContent.mockResolvedValue(
+      reponse(JSON.stringify({ correct: 'oui', verdict: 'v', explication: 'e' })),
+    );
+
+    const res = await LlmService.corrigerExercice('2x+3=11', 'x = 4', 'x = 4');
+    expect(mockGenerateContent).toHaveBeenCalledTimes(2);
+    expect(res.correct).toBe(false);
+    // Le repli donne toujours une piste à l'élève.
+    expect(res.explication).toContain('x = 4');
+  });
+
+  it('ne plante pas quand le LLM est injoignable', async () => {
+    mockGenerateContent.mockRejectedValue(new Error('panne'));
+
+    const res = await LlmService.corrigerExercice('2x+3=11', 'x = 4', 'x = 9');
+    expect(res.correct).toBe(false);
+    expect(res.verdict).toBeTruthy();
+    expect(res.explication).toContain('x = 4');
+  });
+});
+
+describe('Chat', () => {
+  it('renvoie la réponse du modèle', async () => {
+    mockGenerateContent.mockResolvedValueOnce(reponse('On soustrait des deux côtés.'));
+
+    const res = await LlmService.chat('Pourquoi ?', []);
+    expect(res).toBe('On soustrait des deux côtés.');
+  });
+
+  it('transmet l\'historique et le contexte de l\'exercice', async () => {
+    mockGenerateContent.mockResolvedValueOnce(reponse('Voici.'));
+
+    await LlmService.chat(
+      'Je bloque',
+      [{ role: 'user', content: 'Salut' }, { role: 'model', content: 'Bonjour' }],
+      'Résous 2x = 8',
+    );
+
+    const appel = mockGenerateContent.mock.calls[0][0];
+    expect(appel.contents).toHaveLength(3);
+    expect(appel.contents[2]).toEqual({ role: 'user', parts: [{ text: 'Je bloque' }] });
+    expect(appel.config.systemInstruction).toContain('Résous 2x = 8');
+  });
+
+  it('lève LlmIndisponibleError après deux échecs (pas de fausse réponse)', async () => {
+    mockGenerateContent.mockRejectedValue(new Error('503 UNAVAILABLE'));
+
+    await expect(LlmService.chat('Salut', [])).rejects.toBeInstanceOf(LlmIndisponibleError);
+    expect(mockGenerateContent).toHaveBeenCalledTimes(2);
+  });
+
+  it('traite une réponse vide comme un échec', async () => {
+    mockGenerateContent.mockResolvedValue(reponse('   '));
+
+    await expect(LlmService.chat('Salut', [])).rejects.toBeInstanceOf(LlmIndisponibleError);
+  });
+
+  it('lève une erreur explicite si LLM_API_KEY est absente', async () => {
+    process.env.LLM_API_KEY = '';
+    resetLlmClient();
+
+    await expect(LlmService.chat('Salut', [])).rejects.toBeInstanceOf(LlmIndisponibleError);
+    expect(mockGenerateContent).not.toHaveBeenCalled();
+  });
+});
+
+describe('Banque de secours', () => {
+  it('couvre les 8 thèmes du seed en 3 difficultés', () => {
+    expect(tailleBanque()).toBe(24);
+    expect(Object.keys(BANQUE)).toHaveLength(8);
+  });
+
+  it('renvoie le bon thème et la bonne difficulté', () => {
+    const thales = exerciceDeSecours('Théorème de Thalès', 'facile');
+    expect(thales.enonce).toContain('parallèle');
+    expect(thales.solution).toBe('MN = 4 cm');
+
+    const pythagore = exerciceDeSecours('Théorème de Pythagore', 'facile');
+    expect(pythagore.solution).toBe('BC = 5 cm');
+  });
+
+  it('a un exercice non vide pour chaque thème et chaque difficulté', () => {
+    for (const parDifficulte of Object.values(BANQUE)) {
+      for (const difficulte of ['facile', 'moyen', 'examen'] as const) {
+        const exo = parDifficulte[difficulte];
+        expect(exo.enonce.trim().length).toBeGreaterThan(10);
+        expect(exo.solution.trim().length).toBeGreaterThan(0);
+        expect(exo.explication.trim().length).toBeGreaterThan(20);
+      }
+    }
+  });
+
+  it('retombe sur un exercice générique pour un thème inconnu', () => {
+    const exo = exerciceDeSecours('Thème qui n\'existe pas', 'moyen');
+    expect(exo.solution).toBe('x = 4');
+  });
+
+  it('normalise une difficulté inattendue vers « moyen »', () => {
+    expect(exerciceDeSecours('Racines carrées', 'inconnue')).toEqual(
+      exerciceDeSecours('Racines carrées', 'moyen'),
+    );
+  });
+});
