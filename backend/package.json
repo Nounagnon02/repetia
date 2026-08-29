@@ -12,7 +12,10 @@
     "seed": "ts-node prisma/seed.ts",
     "seed:prod": "node dist/prisma/seed.js",
     "db:push": "prisma db push",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "schema:prod": "node scripts/schema-postgres.js",
+    "build:prod": "npm run schema:prod && prisma generate --schema=prisma/schema.postgres.prisma && tsc -p tsconfig.build.json",
+    "db:push:prod": "npm run schema:prod && prisma db push --schema=prisma/schema.postgres.prisma --skip-generate"
   },
   "keywords": [],
   "author": "",

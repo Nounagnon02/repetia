@@ -1,19 +1,37 @@
 # Déploiement du backend RépétIA sur Render (https://render.com)
-# LLM_API_KEY doit être saisie dans le tableau de bord Render, jamais ici.
+#
+# LLM_API_KEY se saisit dans le tableau de bord Render, jamais ici.
+# Le schéma est appliqué au build (`db:push:prod`) ; le catalogue — matière et
+# 8 thèmes — s'installe seul au démarrage du serveur.
+
+databases:
+  - name: repetia-db
+    databaseName: repetia
+    plan: free
+
 services:
   - type: web
     name: repetia-api
     runtime: node
+    plan: free
     rootDir: backend
-    buildCommand: npm install && npx prisma generate && npm run build
+    buildCommand: npm install && npm run build:prod && npm run db:push:prod
     startCommand: npm start
     healthCheckPath: /health
     envVars:
       - key: NODE_ENV
         value: production
+      - key: DATABASE_URL
+        fromDatabase:
+          name: repetia-db
+          property: connectionString
+      # À renseigner dans le tableau de bord Render.
       - key: LLM_API_KEY
         sync: false
-      - key: DATABASE_URL
-        sync: false
+      # Origine autorisée du frontend, ex. https://repetia.vercel.app
       - key: CORS_ORIGIN
         sync: false
+      - key: LLM_MODEL
+        value: gemini-3.5-flash
+      - key: LLM_MODEL_SECOURS
+        value: gemini-flash-lite-latest

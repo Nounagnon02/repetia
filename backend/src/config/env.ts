@@ -38,7 +38,8 @@ export const config = {
     .filter(Boolean),
   /** La clé n'est jamais exposée : on n'expose que le fait qu'elle existe. */
   llmConfigure: Boolean(process.env.LLM_API_KEY),
-  llmModel: process.env.LLM_MODEL || 'gemini-2.5-flash',
+  llmModel: process.env.LLM_MODEL || 'gemini-3.5-flash',
+  llmModelSecours: process.env.LLM_MODEL_SECOURS || 'gemini-flash-lite-latest',
 };
 
 export const estTest = config.nodeEnv === 'test';

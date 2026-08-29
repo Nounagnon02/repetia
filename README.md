@@ -539,20 +539,29 @@ seed est idempotent (relançable sans créer de doublon).
 
 ## Déploiement
 
-### Backend — Render / Railway
+### Backend — Render
 
-Un fichier [`render.yaml`](render.yaml) est fourni. Sinon, manuellement :
+[`render.yaml`](render.yaml) provisionne l'API **et** sa base PostgreSQL. Sinon,
+manuellement :
 
 | Réglage | Valeur |
 |---|---|
 | Répertoire racine | `backend` |
-| Build | `npm install && npx prisma generate && npm run build` |
+| Build | `npm install && npm run build:prod && npm run db:push:prod` |
 | Démarrage | `npm start` |
 | Health check | `/health` |
 
-Variables à définir dans le tableau de bord de l'hébergeur (jamais dans le dépôt) :
-`LLM_API_KEY`, `DATABASE_URL`, `NODE_ENV=production`, et
-`CORS_ORIGIN=https://<votre-front>` pour verrouiller les origines.
+`build:prod` dérive le schéma PostgreSQL depuis `schema.prisma` puis compile ;
+`db:push:prod` crée les tables. Le **catalogue s'installe seul au démarrage** :
+aucune commande à lancer après le déploiement, et une base repartie de zéro se
+remplit toute seule.
+
+Seule variable à saisir à la main dans le tableau de bord : **`LLM_API_KEY`**.
+Ajouter ensuite `CORS_ORIGIN=https://<votre-front>` pour verrouiller les origines.
+
+> Le plan gratuit de Render met le service en veille après 15 minutes
+> d'inactivité : la première requête suivante prend ~30 s. C'est sans gravité
+> pour une démo, mais prévenez-en le jury.
 
 ### Frontend — Vercel / Netlify
 

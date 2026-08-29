@@ -7,6 +7,7 @@ import helmet from 'helmet';
 import routes from './routes';
 import { limiteurGlobal } from './middleware/rateLimit.middleware';
 import { prisma } from './db';
+import { assurerCatalogue } from './data/catalogue';
 
 const app = express();
 
@@ -44,6 +45,7 @@ app.get('/health', async (_req, res) => {
     // Booléen uniquement : la clé elle-même n'est jamais exposée.
     llm: config.llmConfigure ? 'configuré' : 'non configuré',
     modele: config.llmModel,
+    modeleSecours: config.llmModelSecours,
   });
 });
 
@@ -64,12 +66,24 @@ app.use((err: any, _req: express.Request, res: express.Response, _next: express.
 });
 
 if (!estTest) {
-  app.listen(config.port, () => {
+  app.listen(config.port, async () => {
     console.log(`RépétIA API démarrée sur le port ${config.port}`);
+
     if (!config.llmConfigure) {
       console.warn(
         '⚠️  LLM_API_KEY absente : les exercices proviendront de la banque de secours.',
       );
+    }
+
+    // Le catalogue est du contenu de référence, sans lequel l'application n'a
+    // rien à proposer. On le garantit au démarrage : plus aucune étape manuelle
+    // après un déploiement, et une base repartie de zéro se remplit seule.
+    // L'opération est idempotente et ne touche pas aux données des élèves.
+    try {
+      const themes = await assurerCatalogue(prisma);
+      console.log(`Catalogue prêt : ${themes} thèmes disponibles.`);
+    } catch (erreur) {
+      console.error('Catalogue indisponible au démarrage :', erreur);
     }
   });
 }

@@ -2,7 +2,18 @@ import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { exerciceDeSecours } from '../data/banque';
 
-const MODEL_NAME = process.env.LLM_MODEL || 'gemini-2.5-flash';
+/**
+ * Modèles essayés dans l'ordre.
+ *
+ * Le quota gratuit de Gemini se compte par modèle et par jour : un modèle
+ * principal peut être épuisé alors qu'un modèle allégé répond encore. On
+ * dégrade donc vers le second AVANT de tomber sur la banque de secours —
+ * l'élève garde une vraie explication de l'IA plutôt qu'un exercice figé.
+ */
+const MODELES = [
+  process.env.LLM_MODEL || 'gemini-3.5-flash',
+  process.env.LLM_MODEL_SECOURS || 'gemini-flash-lite-latest',
+];
 
 const SYSTEM_PROMPT = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes les mathématiques du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.`;
 
@@ -38,8 +49,8 @@ export type ExerciceGenere = z.infer<typeof ExerciceGenereSchema> & {
 };
 export type Correction = z.infer<typeof CorrectionSchema>;
 
-/** Nombre d'appels au LLM avant de renoncer (1 essai + 1 nouvelle tentative). */
-const MAX_ESSAIS = 2;
+/** Un essai par modèle de la chaîne. */
+const MAX_ESSAIS = MODELES.length;
 
 /**
  * Client Gemini créé à la demande (et non à l'import) : le serveur, les tests
@@ -89,9 +100,10 @@ export class LlmService {
     contents: any,
     temperature: number,
     systemInstruction: string,
+    modele: string,
   ): Promise<string> {
     const reponse = await getClient().models.generateContent({
-      model: MODEL_NAME,
+      model: modele,
       contents,
       config: { systemInstruction, temperature },
     });
@@ -109,19 +121,20 @@ export class LlmService {
     temperature: number,
   ): Promise<T | null> {
     for (let essai = 1; essai <= MAX_ESSAIS; essai++) {
+      const modele = MODELES[essai - 1];
       try {
-        const texte = await this.appelModele(prompt, temperature, SYSTEM_PROMPT);
+        const texte = await this.appelModele(prompt, temperature, SYSTEM_PROMPT, modele);
         const brut = this.parseJsonResponse(texte);
         const valide = schema.safeParse(brut);
 
         if (valide.success) return valide.data;
 
         console.warn(
-          `[LLM] Réponse hors schéma (essai ${essai}/${MAX_ESSAIS}) :`,
+          `[LLM] Réponse hors schéma (${modele}, essai ${essai}/${MAX_ESSAIS}) :`,
           valide.error.issues.map((i) => `${i.path.join('.')} ${i.message}`).join(', '),
         );
       } catch (e: any) {
-        console.warn(`[LLM] Échec de l'appel (essai ${essai}/${MAX_ESSAIS}) :`, e?.message || e);
+        console.warn(`[LLM] Échec de l'appel (${modele}, essai ${essai}/${MAX_ESSAIS}) :`, e?.message || e);
       }
     }
     return null;
@@ -194,13 +207,14 @@ export class LlmService {
     let derniereErreur: any = null;
 
     for (let essai = 1; essai <= MAX_ESSAIS; essai++) {
+      const modele = MODELES[essai - 1];
       try {
-        const texte = await this.appelModele(contents, 0.5, systemInstruction);
+        const texte = await this.appelModele(contents, 0.5, systemInstruction, modele);
         if (texte.trim()) return texte;
-        console.warn(`[LLM] Réponse de chat vide (essai ${essai}/${MAX_ESSAIS})`);
+        console.warn(`[LLM] Réponse de chat vide (${modele}, essai ${essai}/${MAX_ESSAIS})`);
       } catch (e: any) {
         derniereErreur = e;
-        console.warn(`[LLM] Échec du chat (essai ${essai}/${MAX_ESSAIS}) :`, e?.message || e);
+        console.warn(`[LLM] Échec du chat (${modele}, essai ${essai}/${MAX_ESSAIS}) :`, e?.message || e);
       }
     }
 

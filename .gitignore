@@ -11,6 +11,9 @@ build/
 .env.*
 !.env.example
 
+# Schéma Prisma de production, dérivé de schema.prisma au build
+backend/prisma/schema.postgres.prisma
+
 # Base de données locale (SQLite)
 *.db
 *.db-journal
