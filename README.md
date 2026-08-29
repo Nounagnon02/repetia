@@ -172,7 +172,7 @@ Depuis la racine du dépôt :
 Une seule commande couvre les trois projets :
 
 ```bash
-npm test        # backend (51) + web (11) + mobile (50) = 112 tests
+npm test        # backend (51) + web (11) + mobile (57) = 119 tests
 ```
 
 - **Backend** (Jest + Supertest) — le service LLM est mocké : ni réseau, ni clé
@@ -237,7 +237,38 @@ par les endpoints de `backend/`.
 
 Expo SDK 57 (workflow managed) · React Native 0.86 · TypeScript · Expo Router
 (navigation par fichiers) · NativeWind (la palette du web, en classes Tailwind)
+· `lucide-react-native` + `react-native-svg` pour les icônes et le logo
 · AsyncStorage · Axios · jest-expo + Testing Library.
+
+### Identité visuelle
+
+Le logo est une **toque de diplômé** (le répétiteur) surmontée d'une **étincelle
+à quatre branches** (l'IA), en crème sur le vert de la marque. Il est
+volontairement géométrique et sans détail fin : il doit rester lisible à 48 px,
+la taille d'une icône d'application.
+
+| Fichier | Usage |
+|---|---|
+| `assets/brand/logo-mark.svg` | Symbole seul, fond transparent |
+| `assets/brand/logo-icon.svg` | Symbole sur carré vert — base de l'icône d'app |
+| `assets/brand/logo-lockup.svg` | Symbole + « Répét**IA** », pour fond clair |
+| `assets/brand/logo-lockup-inverse.svg` | Même chose pour fond vert foncé |
+
+Les PNG attendus par Expo (`icon.png`, `adaptive-icon.png`, `splash-icon.png`,
+`favicon.png`) et le composant React `src/components/LogoMark.tsx` sont
+**générés depuis la même géométrie** :
+
+```bash
+cd mobile && node scripts/generer-assets.js
+```
+
+La géométrie vit dans `scripts/logo.js`. Modifier ce fichier puis relancer le
+script suffit à propager le changement partout — l'icône affichée dans
+l'application ne peut pas diverger de celle du lanceur.
+
+**Icônes d'interface** : `lucide-react-native` (les mêmes dessins que le client
+web, qui utilise `lucide-react`), teintées à la palette. Aucun emoji ne sert
+d'icône fonctionnelle.
 
 ### Écrans
 
@@ -316,7 +347,7 @@ mécanique que le web. Aucun compte, aucune donnée personnelle.
 ### Tester
 
 ```bash
-cd mobile && npm test          # 50 tests, aucun appel réseau
+cd mobile && npm test          # 57 tests, aucun appel réseau
 npm run typecheck              # tsc --noEmit
 ```
 

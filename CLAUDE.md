@@ -140,14 +140,34 @@ src/
     (tabs)/progression.tsx Progression + recommandation (F6, F7)
     entrainement.tsx       Écran empilé (F2, F3, F4)
   components/              Bouton, Puce, Chargement, MessageErreur,
-                           TexteFormate, EnTeteEcran
+                           TexteFormate, EnTeteEcran, Logo
+    LogoMark.tsx           ← GÉNÉRÉ, ne pas éditer à la main
   services/
     api.ts                 Client axios + ErreurApi + détection de l'URL
     identite.ts            UUID anonyme persisté (X-User-Id)
     cache.ts               Cache hors-ligne (thèmes, progression, 10 exercices)
   constants/theme.ts       Palette en constantes (ActivityIndicator, onglets…)
   types/                   Miroir du contrat backend
+assets/brand/              SVG de marque (mark, icon, lockup)
+scripts/logo.js            Géométrie du logo — SOURCE UNIQUE
+scripts/generer-assets.js  Produit les SVG, les PNG Expo et LogoMark.tsx
 ```
+
+### Marque et icônes
+
+- **Ne modifiez jamais `src/components/LogoMark.tsx` ni les PNG d'`assets/images/`
+  à la main.** Ils sont générés depuis `scripts/logo.js` :
+  `node scripts/generer-assets.js`. C'est ce qui garantit que le logo affiché
+  dans l'application et l'icône du lanceur restent identiques.
+- L'**encoche** qui sépare la planche du calot est peinte avec la couleur du
+  FOND, pas avec une couleur fixe : sur un fond vert elle doit être verte, sur
+  du papier elle doit être papier. D'où la prop `evide` de `LogoMark`.
+- L'icône adaptative Android a un premier plan **transparent** ; la couleur vient
+  de `android.adaptiveIcon.backgroundColor`. Le symbole est cadré à 52 % du carré
+  car le masque du système (cercle, squircle…) rogne les bords.
+- **Icônes d'interface : `lucide-react-native` uniquement.** N'ajoutez pas une
+  seconde bibliothèque. Aucun emoji ne doit servir d'icône fonctionnelle ; un
+  emoji n'est toléré que dans un texte conversationnel (« Salut 👋 »).
 
 ### Points d'attention
 
@@ -187,6 +207,15 @@ src/
 - Pour inspecter un bundle exporté, attention : le minifieur échappe les
   caractères non-ASCII en `\uXXXX`, et Hermes stocke les chaînes en UTF-16.
   Un `grep` UTF-8 naïf conclut à tort que les écrans sont absents.
+- `lucide-react-native` est résolu en `.mjs` sous la condition « react-native »,
+  extension que le transformeur de jest-expo ne couvre pas. `jest.config.js`
+  le redirige vers le build CJS via `moduleNameMapper` — pour les tests seulement.
+- `react-native-svg` normalise la prop `fill` en entier ARGB
+  (`{ payload, type }`) : comparer à une chaîne hexadécimale échoue.
+- Pour capturer l'application dans un navigateur, l'ancien mode headless de
+  Chrome n'applique pas `--window-size` à la fenêtre de mise en page et fait
+  croire à un débordement horizontal. Utiliser
+  `Emulation.setDeviceMetricsOverride` via le protocole DevTools.
 
 ---
 
