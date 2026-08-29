@@ -1,9 +1,15 @@
 # RépétIA — Répétiteur particulier IA
 
-Application web **PWA** qui aide les élèves béninois à préparer l'épreuve de
-**mathématiques du BEPC** : elle génère des exercices calés sur le programme,
-corrige les réponses avec une explication pas à pas, répond aux questions dans
-un chat, et suit la progression thème par thème.
+Aide les élèves béninois à préparer l'épreuve de **mathématiques du BEPC** :
+génération d'exercices calés sur le programme, correction avec explication pas
+à pas, chat répétiteur, suivi de progression thème par thème.
+
+Deux clients partagent **le même backend et la même IA** :
+
+| Client | Dossier | Technologie |
+|---|---|---|
+| Web (PWA installable) | `frontend/` | React + Vite + TailwindCSS |
+| **Mobile Android** | `mobile/` | React Native + Expo + NativeWind |
 
 > *Notre problème, ma solution.*
 
@@ -13,6 +19,7 @@ un chat, et suit la progression thème par thème.
 
 - [Fonctionnalités](#fonctionnalités)
 - [Stack technique](#stack-technique)
+- [Application mobile (Android)](#application-mobile-android)
 - [Règle d'architecture](#règle-darchitecture-non-négociable)
 - [Démarrage rapide](#démarrage-rapide)
 - [Variables d'environnement](#variables-denvironnement)
@@ -46,28 +53,31 @@ un chat, et suit la progression thème par thème.
 
 | Couche | Choix |
 |---|---|
-| Frontend | React 19, Vite, TypeScript, TailwindCSS v4, React Router, Axios, `vite-plugin-pwa` |
+| Frontend web | React 19, Vite, TypeScript, TailwindCSS v4, React Router, Axios, `vite-plugin-pwa` |
+| Mobile | React Native 0.86, Expo SDK 57, Expo Router, NativeWind, AsyncStorage, Axios |
 | Backend | Node.js, Express 5, TypeScript, Prisma |
 | Base de données | SQLite en développement, PostgreSQL en production |
 | IA | Google Gemini (`@google/genai`), appelée **uniquement côté serveur** |
 | Validation | Zod (entrées HTTP **et** sorties du LLM) |
 | Sécurité | Helmet, CORS configurable, rate-limiting par élève |
-| Tests | Jest + Supertest (backend), Vitest + Testing Library (frontend) |
+| Tests | Jest + Supertest (backend), Vitest + Testing Library (web), jest-expo + Testing Library (mobile) |
 
 ---
 
 ## Règle d'architecture (non négociable)
 
 ```
-   Élève (PWA React)  ──HTTPS/REST──▶  Backend Express  ──API──▶  Gemini
-                                            │
-                                            ▼
-                                     SQLite / PostgreSQL
+   Élève (PWA React)   ─┐
+                        ├─HTTPS/REST─▶  Backend Express  ──API──▶  Gemini
+   Élève (app Android) ─┘                     │
+                                              ▼
+                                       SQLite / PostgreSQL
 ```
 
-- Le navigateur **n'appelle jamais** le LLM directement.
+- Ni le navigateur ni l'application mobile **n'appellent le LLM directement**.
 - `LLM_API_KEY` vit dans `backend/.env`, lue par le seul processus serveur.
-- Aucun SDK IA n'est installé côté frontend ; la clé n'apparaît dans aucun bundle.
+- Aucun SDK IA n'est installé côté client ; la clé n'apparaît dans aucun bundle,
+  ni web ni mobile.
 - `.env` est git-ignoré à la racine ; seuls les `.env.example` sont versionnés.
 - L'élève est identifié par un **UUID anonyme** (en-tête `X-User-Id`), généré
   au premier lancement et conservé en `localStorage`. Aucun compte, aucune
@@ -76,7 +86,7 @@ un chat, et suit la progression thème par thème.
 Vérification rapide que rien ne fuit :
 
 ```bash
-grep -r "LLM_API_KEY\|GoogleGenAI" frontend/src frontend/dist   # doit ne rien renvoyer
+grep -r "LLM_API_KEY\|GoogleGenAI" frontend/src frontend/dist mobile/src   # ne doit rien renvoyer
 ```
 
 ---
@@ -152,23 +162,28 @@ Depuis la racine du dépôt :
 | `npm run typecheck` | Vérifie les types des deux projets |
 | `npm test` | Lance **toute** la suite de tests |
 | `npm run seed` | (Re)charge la matière et les 8 thèmes — idempotent |
+| `npm run dev:mobile` | Démarre l'application mobile (Expo) |
+| `npm run test:mobile` | Tests de l'application mobile uniquement |
 
 ---
 
 ## Tests
 
-Une seule commande couvre les deux projets :
+Une seule commande couvre les trois projets :
 
 ```bash
-npm test
+npm test        # backend (51) + web (11) + mobile (50) = 112 tests
 ```
 
 - **Backend** (Jest + Supertest) — le service LLM est mocké : ni réseau, ni clé
   API, ni appel facturé. Une base SQLite **dédiée** (`prisma/test.db`) est
   recréée à chaque exécution, donc la suite ne touche jamais `dev.db`.
-- **Frontend** (Vitest + Testing Library) — le service API est mocké ; le
+- **Frontend web** (Vitest + Testing Library) — le service API est mocké ; le
   parcours clé est joué de bout en bout : choisir un thème → générer →
   répondre → lire la correction et l'explication.
+- **Mobile** (jest-expo + Testing Library) — service API mocké, aucun appel
+  réseau : construction des requêtes et en-tête `X-User-Id`, cache hors-ligne,
+  et le même parcours clé en composants natifs.
 
 Ce qui est couvert, entre autres :
 
@@ -209,6 +224,136 @@ Ce qui est couvert, entre autres :
     │   └── types/               # Types partagés
     └── tests/                   # Vitest — parcours clé
 ```
+
+---
+
+## Application mobile (Android)
+
+L'application native vit dans [`mobile/`](mobile/). C'est un **second client**
+du même backend : elle ne contient **aucune clé ni aucun prompt IA**, tout passe
+par les endpoints de `backend/`.
+
+### Stack
+
+Expo SDK 57 (workflow managed) · React Native 0.86 · TypeScript · Expo Router
+(navigation par fichiers) · NativeWind (la palette du web, en classes Tailwind)
+· AsyncStorage · Axios · jest-expo + Testing Library.
+
+### Écrans
+
+| Écran | Accès | Contenu |
+|---|---|---|
+| **Accueil** | onglet | Puces de thème, sélecteur de difficulté, série du jour, boutons d'action |
+| **Entraînement** | empilé depuis l'Accueil | Carte d'énoncé, champ de réponse, correction, explication pas à pas |
+| **Répétiteur** | onglet | Fil de discussion (`FlatList`), saisie, indicateur « RépétIA écrit… » |
+| **Progression** | onglet | Taux global, maîtrise par thème, thème à revoir |
+
+### Lancer l'application en développement
+
+```bash
+# 1. Démarrer le backend (depuis la racine du dépôt)
+npm run dev:backend           # écoute sur le port 3000
+
+# 2. Démarrer l'application mobile
+cd mobile && npx expo start
+```
+
+Scanner ensuite le QR code avec **Expo Go** (Android), ou appuyer sur `a` pour
+lancer un émulateur Android.
+
+### ⚠️ Le piège `localhost`
+
+Depuis un téléphone ou un émulateur, **`localhost` désigne l'appareil lui-même**,
+pas ta machine de développement. L'application gère ce cas toute seule : elle
+déduit l'adresse du backend à partir de l'hôte Metro auquel elle est déjà
+connectée (par exemple `192.168.1.12`), et n'utilise donc jamais `localhost`.
+
+Tu n'as rien à configurer tant que **le téléphone et l'ordinateur sont sur le
+même réseau Wi-Fi**. Sinon, deux solutions :
+
+```bash
+# A. Forcer l'URL de l'API (IP LAN de ta machine, obtenue par `hostname -I`)
+EXPO_PUBLIC_API_BASE_URL=http://192.168.1.12:3000/api npx expo start
+
+# B. Passer par un tunnel (réseaux différents, Wi-Fi public, pare-feu)
+npx expo start --tunnel
+```
+
+Avec `--tunnel`, Metro est joignable mais **pas ton backend local** : il faut
+alors viser un backend déployé.
+
+```bash
+EXPO_PUBLIC_API_BASE_URL=https://repetia-api.onrender.com/api npx expo start --tunnel
+```
+
+Autres variables (voir [`mobile/.env.example`](mobile/.env.example)) :
+
+| Variable | Rôle | Défaut |
+|---|---|---|
+| `EXPO_PUBLIC_API_BASE_URL` | URL complète de l'API, prioritaire | détection auto |
+| `EXPO_PUBLIC_API_PORT` | Port du backend local | `3000` |
+
+Le backend écoute sur toutes les interfaces : aucune configuration CORS n'est
+nécessaire pour le mobile (CORS ne concerne que les navigateurs). Si le
+téléphone ne joint pas le serveur, c'est le **pare-feu** de la machine qu'il
+faut ouvrir sur le port 3000.
+
+### Identifiant anonyme
+
+Au premier lancement, l'application génère un UUID, le conserve dans
+AsyncStorage et l'envoie dans l'en-tête `X-User-Id` de chaque requête — même
+mécanique que le web. Aucun compte, aucune donnée personnelle.
+
+### Hors-ligne
+
+- Les thèmes et la progression sont mis en cache après chaque chargement réussi.
+- Les **10 derniers exercices** travaillés (et leur correction) sont conservés :
+  sans réseau, l'écran d'entraînement réaffiche le dernier avec un bandeau
+  explicite, au lieu d'une page vide.
+- Générer un nouvel exercice et discuter avec le répétiteur exigent une
+  connexion : ce sont des appels au LLM.
+
+### Tester
+
+```bash
+cd mobile && npm test          # 50 tests, aucun appel réseau
+npm run typecheck              # tsc --noEmit
+```
+
+Un test d'**intégration optionnel** vérifie le contrat du vrai backend. Il est
+ignoré par défaut ; pour l'exécuter, démarrer le backend puis :
+
+```bash
+REPETIA_API_URL=http://localhost:3000/api npm test
+```
+
+### Générer un APK installable
+
+Prérequis : un **compte Expo** (gratuit) et l'outil EAS.
+
+```bash
+npm install -g eas-cli
+cd mobile
+eas login
+eas build:configure          # crée/associe le projet EAS (renseigne EAS_PROJECT_ID)
+```
+
+Puis, avant de builder, pointer l'application vers le backend **déployé** en
+modifiant `EXPO_PUBLIC_API_BASE_URL` dans [`mobile/eas.json`](mobile/eas.json) —
+un APK ne peut évidemment pas joindre le `localhost` de ta machine.
+
+```bash
+# APK installable directement sur un téléphone
+eas build -p android --profile preview
+# ou : npm run build:android
+
+# AAB pour le Play Store
+eas build -p android --profile production
+```
+
+EAS renvoie un lien de téléchargement à la fin du build. Pour un build local
+(sans passer par les serveurs Expo) : `eas build -p android --profile preview --local`
+— nécessite le SDK Android et Java installés sur la machine.
 
 ---
 

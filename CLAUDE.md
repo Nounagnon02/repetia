@@ -7,10 +7,13 @@ aux utilisateurs ; ce fichier s'adresse à celui qui **modifie** le code.
 
 ## Le projet en une phrase
 
-PWA de révision des mathématiques du BEPC béninois : génération d'exercices par
-IA, correction expliquée pas à pas, chat répétiteur, suivi de progression.
-Monorepo npm à deux espaces : `backend/` (Express + Prisma) et `frontend/`
-(React + Vite).
+Révision des mathématiques du BEPC béninois : génération d'exercices par IA,
+correction expliquée pas à pas, chat répétiteur, suivi de progression.
+Monorepo npm à trois espaces : `backend/` (Express + Prisma), `frontend/`
+(React + Vite, PWA) et `mobile/` (React Native + Expo, Android).
+
+**`frontend/` et `mobile/` sont deux clients du MÊME backend.** Toute évolution
+du contrat d'API doit être répercutée dans les deux.
 
 ---
 
@@ -18,8 +21,8 @@ Monorepo npm à deux espaces : `backend/` (Express + Prisma) et `frontend/`
 
 1. **Le LLM ne s'appelle que depuis le serveur.**
    `backend/src/services/llm.service.ts` est le seul fichier qui importe
-   `@google/genai`. N'installez jamais de SDK IA dans `frontend/`, et ne faites
-   jamais transiter `LLM_API_KEY` vers le client.
+   `@google/genai`. N'installez jamais de SDK IA dans `frontend/` ni dans
+   `mobile/`, et ne faites jamais transiter `LLM_API_KEY` vers un client.
 
 2. **`/api/exercices/generer` ne renvoie ni `solution` ni `explication`.**
    L'élève ne les découvre qu'après `POST /api/tentatives`. Un test verrouille
@@ -35,7 +38,12 @@ Monorepo npm à deux espaces : `backend/` (Express + Prisma) et `frontend/`
    `deleteMany()` sur la base de développement.
 
 5. **`.env` reste hors du dépôt.** Le `.gitignore` racine couvre `.env`,
-   `*.db`, `node_modules/` et `dist/`. Seuls les `.env.example` sont versionnés.
+   `*.db`, `node_modules/` et `dist/` ; `mobile/.gitignore` ajoute `.expo/`.
+   Seuls les `.env.example` sont versionnés.
+
+6. **Le mobile ne duplique pas la logique métier.** Score de maîtrise, repli sur
+   la banque, validation des entrées : tout vit côté serveur. `mobile/` affiche
+   ce que l'API renvoie, rien de plus.
 
 ---
 
@@ -43,14 +51,16 @@ Monorepo npm à deux espaces : `backend/` (Express + Prisma) et `frontend/`
 
 ```bash
 npm run setup       # install + db push + seed  (première fois)
-npm run dev         # backend (3000) + frontend (5173)
+npm run dev         # backend (3000) + frontend web (5173)
+npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (62 tests)
+npm test            # toute la suite (112 tests : 51 back + 11 web + 50 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 
 Depuis `backend/` : `npm run db:push`, `npm run start`, `npm run seed:prod`.
+Depuis `mobile/` : `npx expo start`, `npm test`, `npm run build:android`.
 
 ---
 
@@ -112,6 +122,71 @@ modification du parsing doit conserver ce garde-fou.
   rester cohérent avec le domaine métier. Suivez le style existant.
 - Chaque bouton icône porte un `aria-label`. Les états de chargement utilisent
   `role="status"`, les erreurs `role="alert"`.
+
+---
+
+## Architecture mobile (`mobile/`)
+
+Expo SDK 57 · React Native 0.86 · Expo Router · NativeWind. **Second client du
+backend, pas une réécriture** : mêmes endpoints, mêmes contrats, même palette.
+
+```
+src/
+  app/                     ← routes Expo Router (racine : src/app, pas app/)
+    _layout.tsx            Stack racine ; importe global.css (NativeWind)
+    (tabs)/_layout.tsx     Onglets : Accueil · Répétiteur · Progression
+    (tabs)/index.tsx       Accueil (F1)
+    (tabs)/chat.tsx        Chat répétiteur (F5)
+    (tabs)/progression.tsx Progression + recommandation (F6, F7)
+    entrainement.tsx       Écran empilé (F2, F3, F4)
+  components/              Bouton, Puce, Chargement, MessageErreur,
+                           TexteFormate, EnTeteEcran
+  services/
+    api.ts                 Client axios + ErreurApi + détection de l'URL
+    identite.ts            UUID anonyme persisté (X-User-Id)
+    cache.ts               Cache hors-ligne (thèmes, progression, 10 exercices)
+  constants/theme.ts       Palette en constantes (ActivityIndicator, onglets…)
+  types/                   Miroir du contrat backend
+```
+
+### Points d'attention
+
+- **`urlApiParDefaut()`** (`services/api.ts`) déduit l'adresse du backend depuis
+  `Constants.expoConfig.hostUri`, l'hôte Metro auquel l'app est déjà connectée.
+  C'est ce qui évite le piège classique : sur un téléphone, `localhost` désigne
+  le téléphone. Ne le remplacez pas par une constante en dur.
+- **NativeWind** exige quatre pièces cohérentes : `babel.config.js`
+  (`jsxImportSource: 'nativewind'` + preset), `metro.config.js`
+  (`withNativeWind` avec `input: './src/global.css'`), `tailwind.config.js`
+  (`presets: [require('nativewind/preset')]`) et `nativewind-env.d.ts`.
+  Retirer l'une des quatre casse silencieusement le style.
+- **Palette** : les couleurs viennent de `tailwind.config.js` et s'utilisent en
+  classes (`bg-brand-green`). `constants/theme.ts` ne sert qu'aux propriétés qui
+  n'acceptent pas de className (`ActivityIndicator`, options d'onglets).
+- **Les routes vivent dans `src/app`**, pas `app/`. Expo Router le détecte seul
+  (« Using src/app as the root directory ») ; ne créez pas de `app/` à la racine.
+
+### Tests mobile
+
+| Fichier | Couvre |
+|---|---|
+| `tests/api.test.ts` | Requêtes, en-tête `X-User-Id`, traduction des erreurs |
+| `tests/cache.test.ts` | Lot d'exercices hors-ligne, bornage, corruption |
+| `tests/composants.test.tsx` | TexteFormate, MessageErreur, Bouton, Chargement |
+| `tests/parcours.test.tsx` | Parcours clé + les 4 écrans, API mockée |
+| `tests/integration.test.ts` | **Optionnel** : contrat du vrai backend |
+
+- **RNTL v14 : `render` et `fireEvent` sont ASYNCHRONES.** Il faut les `await`,
+  sinon `screen` reste vide avec le message trompeur « render function has not
+  been called ».
+- Les variables citées dans un `jest.mock()` doivent être préfixées `mock`
+  (règle de hoisting) — d'où `mockParametresRoute`.
+- `tests/integration.test.ts` passe par le module `http` de Node : en
+  environnement React Native, ni `fetch` ni l'adaptateur XHR d'axios ne
+  fonctionnent sous Jest.
+- Pour inspecter un bundle exporté, attention : le minifieur échappe les
+  caractères non-ASCII en `\uXXXX`, et Hermes stocke les chaînes en UTF-16.
+  Un `grep` UTF-8 naïf conclut à tort que les écrans sont absents.
 
 ---
 
