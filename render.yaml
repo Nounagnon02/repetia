@@ -1,0 +1,19 @@
+# Déploiement du backend RépétIA sur Render (https://render.com)
+# LLM_API_KEY doit être saisie dans le tableau de bord Render, jamais ici.
+services:
+  - type: web
+    name: repetia-api
+    runtime: node
+    rootDir: backend
+    buildCommand: npm install && npx prisma generate && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LLM_API_KEY
+        sync: false
+      - key: DATABASE_URL
+        sync: false
+      - key: CORS_ORIGIN
+        sync: false
