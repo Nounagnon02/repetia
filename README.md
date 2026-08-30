@@ -17,7 +17,7 @@ Deux clients partagent **le même backend et la même IA** :
 
 ## Sommaire
 
-- [Note technique](NOTE_TECHNIQUE.md)
+- [Note technique](NOTE_TECHNIQUE.md) · [version .docx](NOTE_TECHNIQUE.docx)
 - [Fonctionnalités](#fonctionnalités)
 - [Stack technique](#stack-technique)
 - [Application mobile (Android)](#application-mobile-android)

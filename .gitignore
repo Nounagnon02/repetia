@@ -23,6 +23,9 @@ backend/prisma/schema.postgres.prisma
 # Liaison locale Vercel (contient les identifiants de projet)
 .vercel/
 
+# Fichier intermédiaire de génération du .docx
+.note-intermediaire.*
+
 # Logs
 logs/
 *.log

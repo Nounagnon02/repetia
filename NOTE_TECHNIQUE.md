@@ -1,15 +1,15 @@
 # RépétIA — Note technique
 
-**Concours** Afri'Tech Challenge 2026 · **Candidat** Prince Kangbode · **Version** 1.0 · **29 août 2026**
+**Concours** Afri'Tech Challenge 2026 · **Candidat** Prince Kangbode · **Version** 1.0 · **30 août 2026**
 
-| | |
+| Accès | Adresse |
 |---|---|
 | Démonstration | https://repetia.vercel.app |
 | API publique | https://repetia-api.onrender.com/health |
 | Code source | https://github.com/Nounagnon02/repetia |
 | Application Android | Expo — build EAS, APK sur demande |
 
-Un répétiteur particulier propulsé par l'IA pour les mathématiques du BEPC béninois.
+Un répétiteur particulier propulsé par l'IA pour les **six matières écrites du BEPC béninois**.
 Un backend, deux clients : une application web installable et une application Android native.
 
 ---
@@ -33,7 +33,7 @@ pas**, répond aux questions de suivi, et retient les thèmes à retravailler.
 
 | Réf | Fonctionnalité | État |
 |---|---|---|
-| F1 | Sélection du thème (8 thèmes BEPC) et de la difficulté | Livré |
+| F1 | Sélection de la matière (6), du thème (46) et de la difficulté | Livré |
 | F2 | Génération d'un exercice par l'IA, adapté au thème et au niveau | Livré |
 | F3 | Saisie de la réponse et correction, formes équivalentes acceptées | Livré |
 | F4 | Explication pas à pas après chaque tentative | Livré |
@@ -41,9 +41,19 @@ pas**, répond aux questions de suivi, et retient les thèmes à retravailler.
 | F6 | Suivi de progression : taux global et maîtrise par thème | Livré |
 | F7 | Recommandation du thème à revoir en priorité | Livré |
 
-**Les huit thèmes couverts** — Équations du 1er degré · Calcul littéral · Théorème de Thalès ·
-Théorème de Pythagore · Trigonométrie du triangle rectangle · Statistiques · Racines carrées ·
-Fractions et puissances.
+### Les six matières couvertes
+
+| Matière | Thèmes | Exemples |
+|---|---|---|
+| Mathématiques | 8 | Thalès, Pythagore, équations, racines carrées |
+| Physique-Chimie-Technologie | 8 | Loi d'Ohm, forces, réactions chimiques |
+| Sciences de la Vie et de la Terre | 8 | Digestion, génétique, écosystèmes |
+| Français | 7 | Grammaire, conjugaison, figures de style |
+| Anglais | 7 | Tenses, reported speech, comprehension |
+| Histoire-Géographie | 8 | Indépendances, climats et économie du Bénin |
+
+**46 thèmes au total.** Le modèle de données portait matière et niveau dès la première version :
+l'ajout des cinq matières n'a demandé **aucune modification de l'API**.
 
 ## 3. Architecture
 
@@ -119,15 +129,19 @@ avant tout échec visible :
    l'écriture en base par une erreur 500. C'est un incident réel, corrigé.
 3. **Second modèle** — le quota gratuit se compte par modèle et par jour. Quand le principal est
    épuisé, un modèle allégé prend le relais : l'élève garde une vraie explication.
-4. **Banque locale** — 24 exercices rédigés à la main, 8 thèmes × 3 difficultés, servis avec le
-   *bon* thème et le *bon* niveau. Marqués `source: "banque"` en base, ce qui permet de mesurer la
-   fréquence du repli.
+4. **Banque locale** — 42 exercices rédigés à la main. Les 8 thèmes de mathématiques sont couverts
+   au thème près ; chaque autre matière dispose de trois exercices justes et de son niveau. Un élève
+   d'anglais ne reçoit jamais un énoncé de mathématiques. Marqués `source: "banque"` en base, ce qui
+   permet de mesurer la fréquence du repli.
 
 La correction dispose du même filet. Le chat, lui, renvoie une erreur `503` explicite : il n'existe
 pas de repli honnête à une question libre, et faire passer un message d'erreur pour une réponse du
 répétiteur serait pire que d'admettre la panne.
 
 > **Écrire les mathématiques comme au tableau**
+>
+> Les consignes d'écriture symbolique ne s'appliquent qu'aux matières scientifiques : les imposer
+> en anglais ou en français n'aurait aucun sens. Le prompt est donc paramétré par matière.
 >
 > Le modèle produit spontanément du LaTeX — l'élève lisait `$\sqrt{45}$` tel quel. Embarquer un
 > moteur LaTeX aurait coûté plusieurs centaines de kilo-octets sur des téléphones d'entrée de gamme,
@@ -172,7 +186,7 @@ annoncés aux lecteurs d'écran et les erreurs signalées comme telles. Mise en 
 
 ## 7. Qualité
 
-**139 tests automatisés, 0 échec** — backend 67, mobile 61, web 11.
+**140 tests automatisés, 0 échec** — backend 68, mobile 61, web 11.
 
 Une commande unique, `npm test`, couvre les trois espaces. Le service d'IA est systématiquement
 simulé : la suite tourne sans clé, sans réseau et sans coût. Une base de test dédiée est recréée à
@@ -211,14 +225,16 @@ Les dire est plus utile que les taire — elles conditionnent la suite du projet
 |---|---|---|
 | Mise en veille de l'offre gratuite | La première visite après 15 min d'inactivité prend ~30 s | Offre payante, ou tâche de réveil planifiée |
 | Quota du palier gratuit de l'IA | Sous forte affluence, l'application sert la banque locale | Activation de la facturation à l'usage |
-| Une seule matière, un seul niveau | Mathématiques BEPC uniquement | Le modèle de données porte déjà matière et niveau : ajouter une matière est un seed |
+| Un seul niveau | BEPC uniquement, les six matières écrites | Le modèle porte déjà le niveau : ajouter le BAC est un seed |
+| Thèmes non validés officiellement | Découpage établi d'après le programme, à confirmer avec des enseignants | Relecture par des professeurs du secondaire |
 | Pas de migrations de base | Suffisant sans données de production à préserver | Migrations versionnées avant la mise en service réelle |
 | Contenu non validé par des enseignants | La pertinence repose sur le modèle et sur la banque | Relecture par des professeurs de mathématiques du secondaire |
 
 ### Suite envisagée
 
 - Validation des exercices générés par un panel d'enseignants béninois.
-- Extension aux autres matières du BEPC, puis au BAC — l'architecture le prévoit déjà.
+- Extension au BAC — l'architecture le prévoit déjà.
+- Enrichissement de la banque de secours thème par thème sur les cinq nouvelles matières.
 - Mode « examen blanc » chronométré sur sujets d'annales.
 - Explications en langues locales, pour les élèves qui butent d'abord sur le français.
 
