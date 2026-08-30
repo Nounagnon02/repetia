@@ -25,6 +25,8 @@ model Matiere {
   code    String  @unique
   libelle String
   niveau  String
+  // Ordre d'affichage : les mathématiques d'abord, matière historique du produit.
+  ordre   Int     @default(0)
   themes  Theme[]
 }
 

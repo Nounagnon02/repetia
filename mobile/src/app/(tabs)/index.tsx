@@ -12,9 +12,11 @@ import MessageErreur from '@/components/MessageErreur';
 import Bouton from '@/components/Bouton';
 import Puce from '@/components/Puce';
 import SelecteurDifficulte from '@/components/SelecteurDifficulte';
-import type { Difficulte, Progression, Theme } from '@/types';
+import type { Difficulte, Matiere, Progression, Theme } from '@/types';
 
 export default function Accueil() {
+  const [matieres, setMatieres] = useState<Matiere[]>([]);
+  const [matiereChoisie, setMatiereChoisie] = useState('');
   const [themes, setThemes] = useState<Theme[]>([]);
   const [progression, setProgression] = useState<Progression | null>(null);
   const [themeChoisi, setThemeChoisi] = useState('');
@@ -28,14 +30,20 @@ export default function Accueil() {
   const charger = useCallback(async () => {
     setErreur(null);
     try {
-      const matieres = await apiService.getMatieres();
-      if (matieres.length === 0) {
+      const liste = await apiService.getMatieres();
+      if (liste.length === 0) {
         throw new ErreurApi("Aucune matière disponible. La base du serveur n'est pas initialisée.");
       }
+      setMatieres(liste);
 
-      const listeThemes = await apiService.getThemes(matieres[0].id);
+      const matiereActive = liste.some((m) => m.id === matiereChoisie) ? matiereChoisie : liste[0].id;
+      setMatiereChoisie(matiereActive);
+
+      const listeThemes = await apiService.getThemes(matiereActive);
       setThemes(listeThemes);
-      setThemeChoisi((actuel) => actuel || listeThemes[0]?.id || '');
+      setThemeChoisi((actuel) =>
+        listeThemes.some((t) => t.id === actuel) ? actuel : listeThemes[0]?.id || '',
+      );
       void sauvegarderThemes(listeThemes);
 
       const prog = await apiService.getProgression();
@@ -60,7 +68,7 @@ export default function Accueil() {
       setChargement(false);
       setRafraichit(false);
     }
-  }, []);
+  }, [matiereChoisie]);
 
   // Rechargé à chaque retour sur l'onglet : la progression reste à jour
   // après une session d'entraînement.
@@ -145,6 +153,26 @@ export default function Accueil() {
                 </Text>
               </View>
             ) : null}
+
+            <View>
+              <View className="mb-3 flex-row items-center gap-2">
+                <GraduationCap size={17} color={couleurs.gold} />
+                <Text className="text-brand-green-dark font-bold">Matière</Text>
+              </View>
+              <View className="flex-row flex-wrap gap-2" accessibilityRole="radiogroup">
+                {matieres.map((m) => (
+                  <Puce
+                    key={m.id}
+                    libelle={m.libelle}
+                    actif={matiereChoisie === m.id}
+                    onPress={() => {
+                      setMatiereChoisie(m.id);
+                      setThemeChoisi('');
+                    }}
+                  />
+                ))}
+              </View>
+            </View>
 
             <View>
               <View className="mb-3 flex-row items-center gap-2">

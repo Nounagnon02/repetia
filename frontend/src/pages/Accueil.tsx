@@ -6,11 +6,13 @@ import Logo from '../components/Logo';
 import SelecteurDifficulte from '../components/SelecteurDifficulte';
 import Loader from '../components/Loader';
 import MessageErreur from '../components/MessageErreur';
-import type { Theme, Progression, Difficulte } from '../types';
+import type { Matiere, Theme, Progression, Difficulte } from '../types';
 
 export default function Accueil() {
   const navigate = useNavigate();
 
+  const [matieres, setMatieres] = useState<Matiere[]>([]);
+  const [matiereChoisie, setMatiereChoisie] = useState('');
   const [themes, setThemes] = useState<Theme[]>([]);
   const [progression, setProgression] = useState<Progression | null>(null);
   const [themeChoisi, setThemeChoisi] = useState('');
@@ -23,16 +25,24 @@ export default function Accueil() {
     setChargement(true);
     setErreur(null);
     try {
-      const matieres = await apiService.getMatieres();
-      if (matieres.length === 0) {
+      const liste = await apiService.getMatieres();
+      if (liste.length === 0) {
         throw new ErreurApi(
           "Aucune matière n'est disponible. La base de données n'a peut-être pas été initialisée.",
         );
       }
+      setMatieres(liste);
 
-      const listeThemes = await apiService.getThemes(matieres[0].id);
+      const matiereActive = liste.some((m) => m.id === matiereChoisie)
+        ? matiereChoisie
+        : liste[0].id;
+      setMatiereChoisie(matiereActive);
+
+      const listeThemes = await apiService.getThemes(matiereActive);
       setThemes(listeThemes);
-      setThemeChoisi((actuel) => actuel || listeThemes[0]?.id || '');
+      setThemeChoisi((actuel) =>
+        listeThemes.some((t) => t.id === actuel) ? actuel : listeThemes[0]?.id || '',
+      );
 
       setProgression(await apiService.getProgression());
     } catch (e) {
@@ -40,7 +50,7 @@ export default function Accueil() {
     } finally {
       setChargement(false);
     }
-  }, []);
+  }, [matiereChoisie]);
 
   useEffect(() => {
     charger();
@@ -95,6 +105,34 @@ export default function Accueil() {
           )}
 
           <div className="flex flex-col gap-5">
+            <fieldset>
+              <legend className="mb-3 font-bold text-brand-green-dark">Matière</legend>
+              <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Choix de la matière">
+                {matieres.map((m) => {
+                  const actif = matiereChoisie === m.id;
+                  return (
+                    <button
+                      key={m.id}
+                      type="button"
+                      role="radio"
+                      aria-checked={actif}
+                      onClick={() => {
+                        setMatiereChoisie(m.id);
+                        setThemeChoisi('');
+                      }}
+                      className={`rounded-full px-4 py-2 text-sm font-medium transition-colors ${
+                        actif
+                          ? 'bg-brand-gold text-white'
+                          : 'border border-brand-lines bg-white text-brand-ink'
+                      }`}
+                    >
+                      {m.libelle}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
             <fieldset>
               <legend className="mb-3 font-bold text-brand-green-dark">Thème</legend>
               <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Choix du thème">

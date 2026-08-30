@@ -16,18 +16,36 @@ const MODELES = [
   process.env.LLM_MODEL_SECOURS || 'gemini-flash-lite-latest',
 ];
 
-const SYSTEM_PROMPT = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes les mathématiques du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
+/** Matières où l'écriture symbolique compte : maths, physique-chimie. */
+const MATIERES_SCIENTIFIQUES = /math|physique|chimie|technolog/i;
 
-RÈGLE D'ÉCRITURE DES MATHÉMATIQUES — impérative :
+const REGLE_MATHS = `
+
+RÈGLE D'ÉCRITURE DES SYMBOLES — impérative :
 N'utilise JAMAIS de LaTeX. Pas de $, pas de \\sqrt, pas de \\frac, pas de \\times.
-Écris les mathématiques directement avec les symboles que l'élève voit au tableau :
+Écris directement avec les symboles que l'élève voit au tableau :
   racine carrée → √45, √(x + 1)
   puissances    → x², x³, 10⁵
   multiplication→ 3 × 5      division → 12 ÷ 4      fraction → 3/4
-  comparaisons  → ≤ ≥ ≠ ≈    angle → ∠ABC = 60°     parallèle → (MN) ∥ (BC)
+  comparaisons  → ≤ ≥ ≠ ≈    angle → ∠ABC = 60°     parallèle → (MN) ∥ (BC)`;
+
+/**
+ * Persona du répétiteur, adaptée à la matière travaillée.
+ * Les consignes d'écriture symbolique ne s'appliquent qu'aux matières
+ * scientifiques : les imposer en français ou en anglais n'aurait aucun sens.
+ */
+function promptSysteme(matiere: string): string {
+  const base = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes ${matiere} du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
+
 N'utilise pas de titres Markdown (# ou ##). Pour insister, entoure de **deux
 astérisques**. Sépare les étapes par des retours à la ligne, pas par des tirets
 de séparation.`;
+
+  return MATIERES_SCIENTIFIQUES.test(matiere) ? base + REGLE_MATHS : base;
+}
+
+/** Matière par défaut quand l'appelant n'en fournit pas (chat libre). */
+const MATIERE_GENERIQUE = 'les mathématiques';
 
 /** Levée quand le LLM reste injoignable après tous les essais (chat uniquement). */
 export class LlmIndisponibleError extends Error {
@@ -131,11 +149,12 @@ export class LlmService {
     prompt: string,
     schema: z.ZodType<T>,
     temperature: number,
+    systemInstruction: string,
   ): Promise<T | null> {
     for (let essai = 1; essai <= MAX_ESSAIS; essai++) {
       const modele = MODELES[essai - 1];
       try {
-        const texte = await this.appelModele(prompt, temperature, SYSTEM_PROMPT, modele);
+        const texte = await this.appelModele(prompt, temperature, systemInstruction, modele);
         const brut = this.parseJsonResponse(texte);
         const valide = schema.safeParse(brut);
 
@@ -157,18 +176,24 @@ export class LlmService {
    * indisponible ou renvoie une réponse inexploitable, un exercice de la
    * banque de secours (même thème, même difficulté) est renvoyé.
    */
-  static async genererExercice(theme: string, difficulte: string): Promise<ExerciceGenere> {
-    const prompt = `Génère UN exercice de mathématiques de niveau BEPC (3ème, programme béninois) sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut sans Markdown (utilise ² pour les carrés) ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
+  static async genererExercice(
+    theme: string,
+    difficulte: string,
+    matiere: string = MATIERE_GENERIQUE,
+  ): Promise<ExerciceGenere> {
+    const prompt = `Génère UN exercice de ${matiere} de niveau BEPC (3ème, programme béninois) sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
 
-    const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7);
+    const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere));
 
     if (resultat) {
       const propre = normaliserChamps(resultat, ['enonce', 'solution', 'explication']);
       return { ...propre, source: 'ia_genere' };
     }
 
-    console.warn(`[LLM] Bascule sur la banque de secours (thème="${theme}", difficulté="${difficulte}")`);
-    return { ...exerciceDeSecours(theme, difficulte), source: 'banque' };
+    console.warn(
+      `[LLM] Bascule sur la banque de secours (matière="${matiere}", thème="${theme}", difficulté="${difficulte}")`,
+    );
+    return { ...exerciceDeSecours(theme, difficulte, matiere), source: 'banque' };
   }
 
   /**
@@ -180,10 +205,11 @@ export class LlmService {
     enonce: string,
     solution: string,
     reponseEleve: string,
+    matiere: string = MATIERE_GENERIQUE,
   ): Promise<Correction> {
     const prompt = `Voici un exercice, la solution attendue et la réponse d'un élève. Exercice : ${enonce}. Solution attendue : ${solution}. Réponse de l'élève : ${reponseEleve}. L'élève a-t-il juste (accepte les formes mathématiquement équivalentes, par exemple 0,5 et 1/2) ? Réponds UNIQUEMENT en JSON valide, sans Markdown : {"correct":true/false,"verdict":"phrase courte et encourageante","explication":"la bonne démarche pas à pas, en français simple et en texte brut"}.`;
 
-    const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1);
+    const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1, promptSysteme(matiere));
     if (resultat) return normaliserChamps(resultat, ['verdict', 'explication']);
 
     console.warn('[LLM] Correction de repli utilisée.');
@@ -205,8 +231,9 @@ export class LlmService {
     message: string,
     historique: { role: string; content: string }[],
     contexteExercice?: string,
+    matiere: string = MATIERE_GENERIQUE,
   ): Promise<string> {
-    let systemInstruction = SYSTEM_PROMPT;
+    let systemInstruction = promptSysteme(matiere);
     if (contexteExercice) {
       systemInstruction += `\nL'élève travaille sur cet exercice : ${contexteExercice}`;
     }

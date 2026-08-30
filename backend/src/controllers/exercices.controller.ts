@@ -9,11 +9,18 @@ export const genererExercice = async (req: Request, res: Response, next: NextFun
   const { themeId, difficulte } = req.body;
 
   try {
-    const theme = await prisma.theme.findUnique({ where: { id: themeId } });
+    const theme = await prisma.theme.findUnique({
+      where: { id: themeId },
+      include: { matiere: true },
+    });
     if (!theme) return res.status(404).json({ error: 'Thème non trouvé' });
 
     // Ne lève jamais : bascule sur la banque de secours si le LLM échoue.
-    const genere = await LlmService.genererExercice(theme.libelle, difficulte);
+    const genere = await LlmService.genererExercice(
+      theme.libelle,
+      difficulte,
+      theme.matiere.libelle,
+    );
 
     const exercice = await prisma.exercice.create({
       data: {
@@ -44,13 +51,17 @@ export const soumettreTentative = async (req: Request, res: Response, next: Next
   const userId = req.user!.id;
 
   try {
-    const exercice = await prisma.exercice.findUnique({ where: { id: exerciceId } });
+    const exercice = await prisma.exercice.findUnique({
+      where: { id: exerciceId },
+      include: { theme: { include: { matiere: true } } },
+    });
     if (!exercice) return res.status(404).json({ error: 'Exercice non trouvé' });
 
     const correction = await LlmService.corrigerExercice(
       exercice.enonce,
       exercice.solution,
       reponseEleve,
+      exercice.theme.matiere.libelle,
     );
 
     await prisma.tentative.create({

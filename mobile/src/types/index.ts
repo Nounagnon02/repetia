@@ -11,6 +11,7 @@ export interface Matiere {
   code: string;
   libelle: string;
   niveau: string;
+  ordre: number;
 }
 
 export interface Theme {

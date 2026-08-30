@@ -7,12 +7,21 @@ export const chatter = async (req: Request, res: Response, next: NextFunction) =
 
   try {
     let contexteExercice: string | undefined;
+    let matiere: string | undefined;
+
     if (exerciceId) {
-      const exercice = await prisma.exercice.findUnique({ where: { id: exerciceId } });
-      if (exercice) contexteExercice = exercice.enonce;
+      const exercice = await prisma.exercice.findUnique({
+        where: { id: exerciceId },
+        include: { theme: { include: { matiere: true } } },
+      });
+      if (exercice) {
+        contexteExercice = exercice.enonce;
+        // Le répétiteur adopte la posture de la matière travaillée.
+        matiere = exercice.theme.matiere.libelle;
+      }
     }
 
-    const reponse = await LlmService.chat(message, historique, contexteExercice);
+    const reponse = await LlmService.chat(message, historique, contexteExercice, matiere);
     res.json({ reponse });
   } catch (error) {
     // Panne du LLM : on répond 503 pour que l'interface propose « Réessayer »,

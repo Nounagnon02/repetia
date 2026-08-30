@@ -218,9 +218,21 @@ describe('Chat', () => {
 });
 
 describe('Banque de secours', () => {
-  it('couvre les 8 thèmes du seed en 3 difficultés', () => {
-    expect(tailleBanque()).toBe(24);
+  it('couvre les 8 thèmes de mathématiques en 3 difficultés', () => {
     expect(Object.keys(BANQUE)).toHaveLength(8);
+    // 8 thèmes de maths + 5 replis par matière + 1 générique, en 3 difficultés.
+    expect(tailleBanque()).toBe(42);
+  });
+
+  it('sert un exercice de la bonne matière quand le thème est inconnu', () => {
+    const anglais = exerciceDeSecours('Reported speech', 'examen', 'Anglais');
+    expect(anglais.solution).toMatch(/would travel/);
+
+    const pct = exerciceDeSecours('Loi d\'Ohm', 'facile', 'Physique-Chimie-Technologie');
+    expect(pct.solution).toBe('U = 10 V');
+
+    const svt = exerciceDeSecours('Digestion', 'facile', 'Sciences de la Vie et de la Terre');
+    expect(svt.enonce).toMatch(/aliments/);
   });
 
   it('renvoie le bon thème et la bonne difficulté', () => {

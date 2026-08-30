@@ -197,7 +197,153 @@ const BANQUE: Record<string, Record<Difficulte, ExerciceBanque>> = {
   },
 };
 
-/** Exercice utilisé si le thème demandé n'est pas (encore) dans la banque. */
+/**
+ * Repli par matière, servi quand le thème précis n'est pas dans la banque.
+ *
+ * Les 24 exercices de mathématiques ci-dessus couvrent chaque thème ; pour les
+ * autres matières la banque garantit au moins un exercice juste et du bon
+ * niveau, plutôt qu'un énoncé de maths servi à un élève d'anglais.
+ */
+const SECOURS_PAR_MATIERE: { motif: RegExp; exercices: Record<Difficulte, ExerciceBanque> }[] = [
+  {
+    motif: /physique|chimie|technolog|pct/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Un conducteur ohmique de résistance R = 20 Ω est traversé par un courant d\'intensité I = 0,5 A.\nCalcule la tension U à ses bornes.',
+        solution: 'U = 10 V',
+        explication:
+          'On utilise la loi d\'Ohm : U = R × I.\n\n1) On repère les données :\n   R = 20 Ω\n   I = 0,5 A\n2) On applique la formule :\n   U = 20 × 0,5\n3) On calcule :\n   U = 10 V\n\nLa tension aux bornes du conducteur est de 10 volts.',
+      },
+      moyen: {
+        enonce:
+          'Deux résistances R₁ = 30 Ω et R₂ = 20 Ω sont montées EN SÉRIE sous une tension de 10 V.\n1) Calcule la résistance équivalente.\n2) Calcule l\'intensité du courant dans le circuit.',
+        solution: 'Réq = 50 Ω et I = 0,2 A',
+        explication:
+          '1) RÉSISTANCE ÉQUIVALENTE\n   En série, les résistances s\'additionnent :\n   Réq = R₁ + R₂ = 30 + 20 = 50 Ω\n\n2) INTENSITÉ DU COURANT\n   La loi d\'Ohm s\'écrit U = Réq × I, donc I = U ÷ Réq.\n   I = 10 ÷ 50\n   I = 0,2 A\n\nEn série, le courant est le même partout dans le circuit.',
+      },
+      examen: {
+        enonce:
+          'Une lampe porte l\'indication « 6 V − 3 W ».\n1) Calcule l\'intensité nominale du courant qui la traverse.\n2) Déduis-en sa résistance.',
+        solution: 'I = 0,5 A et R = 12 Ω',
+        explication:
+          'Les indications d\'une lampe donnent sa tension nominale (6 V) et sa puissance nominale (3 W).\n\n1) INTENSITÉ\n   La puissance s\'écrit P = U × I, donc I = P ÷ U.\n   I = 3 ÷ 6\n   I = 0,5 A\n\n2) RÉSISTANCE\n   Loi d\'Ohm : U = R × I, donc R = U ÷ I.\n   R = 6 ÷ 0,5\n   R = 12 Ω',
+      },
+    },
+  },
+  {
+    motif: /sciences de la vie|svt|biolog/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Cite les trois grands groupes d\'aliments et donne le rôle de chacun dans l\'organisme.',
+        solution:
+          'Aliments bâtisseurs, aliments énergétiques et aliments protecteurs.',
+        explication:
+          'Un repas équilibré associe trois familles d\'aliments.\n\n1) LES ALIMENTS BÂTISSEURS\n   Riches en protides : poisson, viande, œufs, haricot, soja.\n   Ils construisent et réparent le corps — c\'est la croissance.\n\n2) LES ALIMENTS ÉNERGÉTIQUES\n   Riches en glucides et lipides : igname, maïs, riz, gari, huile.\n   Ils fournissent l\'énergie pour bouger et travailler.\n\n3) LES ALIMENTS PROTECTEURS\n   Riches en vitamines et sels minéraux : fruits et légumes.\n   Ils défendent l\'organisme contre les maladies.',
+      },
+      moyen: {
+        enonce:
+          'Décris le trajet de l\'air depuis les narines jusqu\'aux alvéoles pulmonaires, en nommant dans l\'ordre les organes traversés.',
+        solution:
+          'Narines → fosses nasales → pharynx → larynx → trachée → bronches → bronchioles → alvéoles pulmonaires.',
+        explication:
+          'L\'air suit un chemin précis dans l\'appareil respiratoire.\n\n1) Il entre par les NARINES.\n2) Il traverse les FOSSES NASALES, où il est réchauffé, humidifié et filtré.\n3) Il passe dans le PHARYNX, carrefour commun à l\'air et aux aliments.\n4) Puis dans le LARYNX, qui contient les cordes vocales.\n5) Il descend par la TRACHÉE, tube maintenu ouvert par des anneaux de cartilage.\n6) La trachée se divise en deux BRONCHES, une par poumon.\n7) Les bronches se ramifient en BRONCHIOLES de plus en plus fines.\n8) Elles aboutissent aux ALVÉOLES PULMONAIRES, petits sacs où se font les échanges gazeux : le dioxygène passe dans le sang, le dioxyde de carbone en sort.',
+      },
+      examen: {
+        enonce:
+          'Un couple aux yeux marron a un enfant aux yeux bleus.\nSachant que le caractère « yeux marron » est dominant et « yeux bleus » récessif, explique ce résultat et donne les génotypes des parents.',
+        solution:
+          'Les deux parents sont hétérozygotes (M//b) ; l\'enfant est homozygote récessif (b//b).',
+        explication:
+          '1) LES SYMBOLES\n   M = allèle « yeux marron », dominant.\n   b = allèle « yeux bleus », récessif.\n\n2) LE GÉNOTYPE DE L\'ENFANT\n   Un caractère récessif ne s\'exprime que si les DEUX allèles sont récessifs.\n   L\'enfant a donc pour génotype b//b.\n\n3) D\'OÙ VIENNENT SES ALLÈLES ?\n   Il reçoit un allèle de chaque parent. Chaque parent lui a donc transmis un b.\n\n4) LE GÉNOTYPE DES PARENTS\n   Les parents ont les yeux marron : ils possèdent au moins un M.\n   Comme ils portent aussi un b, ils sont tous deux M//b, dits hétérozygotes.\n\n5) CONCLUSION\n   M//b × M//b peut donner un enfant b//b. Le caractère récessif « saute » une génération : c\'est pourquoi il réapparaît chez l\'enfant.',
+      },
+    },
+  },
+  {
+    motif: /fran(ç|c)ais/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Dans la phrase « Le professeur explique la leçon aux élèves », donne la nature et la fonction du groupe « aux élèves ».',
+        solution:
+          'Nature : groupe nominal prépositionnel. Fonction : complément d\'objet indirect (COI).',
+        explication:
+          '1) LA NATURE\n   « aux élèves » est formé de la préposition « à » (contractée en « aux ») et du nom « élèves ».\n   C\'est donc un groupe nominal prépositionnel.\n\n2) LA FONCTION\n   On pose la question au verbe : le professeur explique la leçon À QUI ?\n   Réponse : aux élèves.\n   Le complément répond à « à qui ? » et se rattache au verbe par une préposition : c\'est un complément d\'objet indirect.\n\n3) POUR NE PAS CONFONDRE\n   « la leçon » répond à « quoi ? » sans préposition : c\'est le COD.',
+      },
+      moyen: {
+        enonce:
+          'Conjugue le verbe « prendre » à la 3ᵉ personne du pluriel, à l\'imparfait puis au passé simple de l\'indicatif.\nEmploie ensuite chaque forme dans une phrase.',
+        solution: 'Imparfait : ils prenaient. Passé simple : ils prirent.',
+        explication:
+          '1) L\'IMPARFAIT\n   Radical du présent à la 1ʳᵉ personne du pluriel : nous pren-ons → radical « pren- ».\n   Terminaison de la 3ᵉ personne du pluriel : -aient.\n   → ils prenaient.\n\n2) LE PASSÉ SIMPLE\n   « Prendre » est un verbe du 3ᵉ groupe en -is au passé simple.\n   → ils prirent.\n\n3) EMPLOI\n   Imparfait — action qui dure ou se répète :\n   « Chaque matin, ils prenaient le taxi-moto pour aller à l\'école. »\n   Passé simple — action brève et achevée :\n   « Ils prirent leur cahier et sortirent de la classe. »',
+      },
+      examen: {
+        enonce:
+          'Identifie la figure de style dans « Cette femme est une lionne », puis explique en quoi elle diffère de « Cette femme est comme une lionne ».',
+        solution:
+          'La première est une métaphore, la seconde une comparaison.',
+        explication:
+          '1) LA COMPARAISON\n   « Cette femme est COMME une lionne. »\n   Elle rapproche deux éléments à l\'aide d\'un outil de comparaison : comme, tel, semblable à, pareil à…\n   Les deux termes restent distincts : on voit la femme ET la lionne.\n\n2) LA MÉTAPHORE\n   « Cette femme EST une lionne. »\n   Le rapprochement se fait SANS outil de comparaison. L\'image est directe : la femme et la lionne se confondent.\n\n3) L\'EFFET\n   La métaphore est plus forte et plus condensée. Elle ne dit pas que la femme ressemble à une lionne : elle affirme qu\'elle en est une, avec son courage et sa force.',
+      },
+    },
+  },
+  {
+    motif: /anglais|english/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Complete with the correct form of the verb:\n« She ______ (to go) to school every day. »',
+        solution: 'She goes to school every day.',
+        explication:
+          'La phrase décrit une habitude : on emploie le PRESENT SIMPLE.\n\n1) LE SUJET\n   « She » est la 3ᵉ personne du singulier (he, she, it).\n\n2) LA RÈGLE\n   Au present simple, le verbe prend un -s à la 3ᵉ personne du singulier.\n\n3) LE CAS PARTICULIER\n   Les verbes terminés par -o prennent -es : go → goes.\n   (De même : do → does, watch → watches.)\n\n4) RÉPONSE\n   She goes to school every day.\n\nRepère utile : « every day » signale une habitude, donc le present simple.',
+      },
+      moyen: {
+        enonce: 'Put the following sentence into the PAST SIMPLE:\n« They buy some rice at the market. »',
+        solution: 'They bought some rice at the market.',
+        explication:
+          '1) ON REPÈRE LE VERBE\n   Le verbe est « buy ».\n\n2) RÉGULIER OU IRRÉGULIER ?\n   « Buy » est un verbe IRRÉGULIER : son prétérit ne se forme pas avec -ed.\n   buy → bought → bought\n\n3) ON APPLIQUE\n   Au past simple, la forme est la même à toutes les personnes.\n   They bought some rice at the market.\n\n4) ATTENTION\n   À la forme négative ou interrogative, on utilise « did » et le verbe revient à sa base :\n   They did not buy… / Did they buy… ?',
+      },
+      examen: {
+        enonce:
+          'Turn the following into REPORTED SPEECH:\nHe said: « I will travel to Cotonou tomorrow. »',
+        solution: 'He said (that) he would travel to Cotonou the next day.',
+        explication:
+          'Le discours rapporté impose trois transformations.\n\n1) LE PRONOM\n   « I » renvoie à « He » → il devient « he ».\n\n2) LE TEMPS (concordance des temps)\n   Le verbe introducteur « said » est au passé, donc le temps recule d\'un cran :\n   will → would\n   (De même : is → was, has → had, went → had gone.)\n\n3) LES MARQUEURS DE TEMPS\n   tomorrow → the next day / the following day\n   (De même : today → that day, yesterday → the day before.)\n\n4) RÉSULTAT\n   He said (that) he would travel to Cotonou the next day.\n   Le mot « that » est facultatif.',
+      },
+    },
+  },
+  {
+    motif: /histoire|g(é|e)ographie/i,
+    exercices: {
+      facile: {
+        enonce: 'Cite trois conséquences de la traite négrière pour l\'Afrique.',
+        solution:
+          'Dépeuplement, désorganisation des sociétés africaines et retard économique.',
+        explication:
+          '1) UN DÉPEUPLEMENT MASSIF\n   Des millions d\'Africains, souvent les plus jeunes et les plus valides, ont été déportés. L\'Afrique a perdu ses forces vives.\n\n2) LA DÉSORGANISATION DES SOCIÉTÉS\n   Les razzias et les guerres pour capturer des captifs ont dressé les royaumes les uns contre les autres et détruit des villages entiers.\n\n3) UN RETARD ÉCONOMIQUE\n   L\'artisanat local a reculé devant les produits européens échangés contre les captifs, et l\'agriculture a manqué de bras.\n\nAu Bénin, Ouidah fut l\'un des principaux ports de départ : la Route des esclaves en garde la mémoire.',
+      },
+      moyen: {
+        enonce:
+          'En quelle année le Dahomey accède-t-il à l\'indépendance ?\nQuel nom le pays prend-il ensuite, et en quelle année ?',
+        solution:
+          'Indépendance le 1er août 1960 ; le pays devient la République populaire du Bénin en 1975.',
+        explication:
+          '1) L\'INDÉPENDANCE\n   Le Dahomey accède à l\'indépendance le 1er août 1960, dans le mouvement des indépendances africaines qui touche cette année-là dix-sept pays du continent.\n   Le 1er août reste la fête nationale du Bénin.\n\n2) LE CHANGEMENT DE NOM\n   En 1975, sous le régime de Mathieu Kérékou, le pays prend le nom de République populaire du Bénin.\n   Ce nom fait référence à l\'ancien royaume du Bénin et marque une volonté de rupture avec l\'héritage colonial.\n\n3) À RETENIR\n   1960 : indépendance.\n   1975 : le Dahomey devient le Bénin.',
+      },
+      examen: {
+        enonce:
+          'Décris les zones climatiques du Bénin du sud au nord et montre leur influence sur les activités agricoles.',
+        solution:
+          'Un climat subéquatorial au sud, un climat de transition au centre, un climat soudanien au nord — chacun commandant des cultures différentes.',
+        explication:
+          '1) LE SUD — CLIMAT SUBÉQUATORIAL\n   Quatre saisons : deux saisons des pluies et deux saisons sèches.\n   Pluies abondantes et bien réparties.\n   Cultures : palmier à huile, maïs, manioc, cultures maraîchères.\n\n2) LE CENTRE — CLIMAT DE TRANSITION\n   Le régime passe progressivement de quatre à deux saisons.\n   Cultures : igname, maïs, anacardier.\n\n3) LE NORD — CLIMAT SOUDANIEN\n   Deux saisons seulement : une saison des pluies et une longue saison sèche, marquée par l\'harmattan.\n   Cultures : coton, sorgho, mil, arachide, et élevage extensif.\n\n4) CONCLUSION\n   Les pluies diminuent du sud vers le nord. C\'est cette différence qui explique la spécialisation agricole du pays : cultures vivrières et palmier au sud, coton et élevage au nord.',
+      },
+    },
+  },
+];
+
+/** Dernier recours, toutes matières confondues. */
 const SECOURS_GENERIQUE: Record<Difficulte, ExerciceBanque> = {
   facile: {
     enonce: 'Calcule la valeur de A = 3x - 5 pour x = 2.',
@@ -226,18 +372,29 @@ function normaliserDifficulte(difficulte: string): Difficulte {
 }
 
 /**
- * Renvoie un exercice de secours pour un thème et une difficulté donnés.
+ * Renvoie un exercice de secours, du meilleur niveau de précision disponible :
+ * le thème exact, sinon la matière, sinon un exercice générique.
  * Ne lève jamais d'exception : il y a toujours un exercice à servir.
  */
-export function exerciceDeSecours(theme: string, difficulte: string): ExerciceBanque {
+export function exerciceDeSecours(
+  theme: string,
+  difficulte: string,
+  matiere = '',
+): ExerciceBanque {
   const d = normaliserDifficulte(difficulte);
+
   const parTheme = BANQUE[theme];
-  return parTheme ? parTheme[d] : SECOURS_GENERIQUE[d];
+  if (parTheme) return parTheme[d];
+
+  const parMatiere = SECOURS_PAR_MATIERE.find((m) => m.motif.test(matiere) || m.motif.test(theme));
+  if (parMatiere) return parMatiere.exercices[d];
+
+  return SECOURS_GENERIQUE[d];
 }
 
 /** Nombre d'exercices disponibles dans la banque (utile pour les tests). */
 export function tailleBanque(): number {
-  return Object.keys(BANQUE).length * 3;
+  return (Object.keys(BANQUE).length + SECOURS_PAR_MATIERE.length + 1) * 3;
 }
 
-export { BANQUE };
+export { BANQUE, SECOURS_PAR_MATIERE };

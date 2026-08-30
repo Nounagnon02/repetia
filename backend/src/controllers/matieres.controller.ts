@@ -8,8 +8,8 @@ export const getMatieres = async (req: Request, res: Response, next: NextFunctio
   try {
     const matieres = await prisma.matiere.findMany({
       where: niveau ? { niveau } : undefined,
-      select: { id: true, code: true, libelle: true, niveau: true },
-      orderBy: { libelle: 'asc' },
+      select: { id: true, code: true, libelle: true, niveau: true, ordre: true },
+      orderBy: [{ ordre: 'asc' }, { libelle: 'asc' }],
     });
     res.json(matieres);
   } catch (error) {

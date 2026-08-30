@@ -1,13 +1,17 @@
 import '../src/config/env';
 import { PrismaClient } from '@prisma/client';
-import { assurerCatalogue, MATIERE } from '../src/data/catalogue';
+import { assurerCatalogue, CATALOGUE } from '../src/data/catalogue';
 
 const prisma = new PrismaClient();
 
 async function main() {
   console.log('Seed : initialisation des données RépétIA…');
   const total = await assurerCatalogue(prisma);
-  console.log(`Seed terminé : matière « ${MATIERE.libelle} » (${MATIERE.niveau}), ${total} thèmes.`);
+
+  for (const m of CATALOGUE) {
+    console.log(`  ${m.libelle.padEnd(34)} ${m.themes.length} thèmes`);
+  }
+  console.log(`Seed terminé : ${CATALOGUE.length} matières, ${total} thèmes.`);
 }
 
 main()
