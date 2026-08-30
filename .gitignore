@@ -26,6 +26,9 @@ backend/prisma/schema.postgres.prisma
 # Fichier intermédiaire de génération du .docx
 .note-intermediaire.*
 
+# Verrous LibreOffice
+.~lock.*#
+
 # Logs
 logs/
 *.log
