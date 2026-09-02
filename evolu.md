@@ -45,6 +45,34 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Franchise du Cap des 20 000 Exemples d'Entraînement SFT pour RépétIA-LLM 🎯
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Génération & Synthèse Massive 20K (`recherche/src/collecte_massive_20k.py`)** : Développement du moteur de synthèse combinatoire multi-matières et multi-niveaux portant le jeu de données SFT à **exactement 20 000 exemples d'entraînement**.
+- **Couverture Curriculum MESTFP Intégrale** : Couverture exhaustive des 8 matières principales (Maths, PCT, SVT, Français, Philosophie, Histoire-Géo, Anglais, Informatique/TIC) de la 6ème à la Terminale (Toutes Séries).
+- **Validation Fine-Tuning LoRA/ChatML 20K (`recherche/src/entrainer_modele.py --dry-run`)** : Validation réussie du pipeline sur l'intégralité du corpus de 20 000 exemples d'entraînement.
+
+Fichiers créés / modifiés :
+- `recherche/src/collecte_massive_20k.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_20k.json`
+
+**Mesures**
+- **20 000 exemples d'entraînement SFT unifiés** (Objectif 20K d'entraînement Atteint 🎯).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/collecte_massive_20k.py --cible 20000` : ✅ (`20000 exemples SFT unifiés`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT 20000 exemples réussie !`)
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Intégration des Cours Officiels, Annales & Corrigés Types MESTFP (1 524 Exemples SFT)
 
 **Auteur** Antigravity · **Commit** non commité
