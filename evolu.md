@@ -45,6 +45,34 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Augmentation Massive du Dataset SFT (1 221 Exemples d'Entraînement) & Optimisation Haute Performance
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Augmentation Massive SFT (`recherche/src/augmenter_donnees.py`)** : Développement du script de synthèse pédagogique guidée étendant le jeu de données SFT à **1 221 exemples d'entraînement complets** (passage de 411 à 1 221).
+- **Couverture Systématique** : Génération de variantes d'entraînement pour les 10 matières principales sur l'ensemble des classes du secondaire (6ème à Terminale) et séries (A, B, C, D, E, F, G).
+- **Validation du Pipeline de Fine-Tuning (`recherche/src/entrainer_modele.py --dry-run`)** : Validation réussie de l'entraînement LoRA/ChatML sur l'ensemble des 1 221 exemples d'entraînement.
+
+Fichiers créés / modifiés :
+- `recherche/src/augmenter_donnees.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_augmentation.json`
+
+**Mesures**
+- **1 221 exemples d'entraînement SFT souverains** unifiés (augmentation de +197 %).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/augmenter_donnees.py` : ✅ (`1221 exemples SFT générés`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT 1221 exemples réussie !`)
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Intégration UI Intégrale Web & Mobile (Vision Photo, Dictée Vocale STT/TTS & Badge IA Souveraine)
 
 **Auteur** Antigravity · **Commit** non commité

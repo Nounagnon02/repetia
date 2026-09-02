@@ -1,6 +1,6 @@
 {
   "titre": "Rapport d'Évaluation Mondial — Modèle Souverain RépétIA-LLM",
-  "dataset_sft_taille": 411,
+  "dataset_sft_taille": 1221,
   "epreuves_testees": 5,
   "metriques_performance": {
     "exactitude_numerique_pct": 100.0,
@@ -88,5 +88,5 @@
       "conformite_apc": true
     }
   ],
-  "horodatage": "2026-09-02 21:36:48"
+  "horodatage": "2026-09-02 21:59:32"
 }
