@@ -45,6 +45,34 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Intégration des Cours Officiels, Annales & Corrigés Types MESTFP (1 524 Exemples SFT)
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Intégration des Cours & Corrigés Types (`recherche/src/collecte_annales_corriges.py`)** : Collecte et structuration des fiches de cours officielles et des corrigés types méthodiques pas à pas du MESTFP (BEPC & BAC).
+- **Extension à 1 524 Exemples d'Entraînement SFT** : Unification de l'ensemble des annales et corrections types portant le corpus d'entraînement à **1 524 exemples complets**.
+- **Validation du Fine-Tuning LoRA/ChatML (`recherche/src/entrainer_modele.py --dry-run`)** : Validation réussie du pipeline sur l'ensemble du corpus de 1 524 exemples.
+
+Fichiers créés / modifiés :
+- `recherche/src/collecte_annales_corriges.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_annales_corriges.json`
+
+**Mesures**
+- **1 524 exemples d'entraînement SFT unifiés** (cours + exercices + corrigés types).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/collecte_annales_corriges.py` : ✅ (`1524 exemples SFT unifiés`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT 1524 exemples réussie !`)
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Augmentation Massive du Dataset SFT (1 221 Exemples d'Entraînement) & Optimisation Haute Performance
 
 **Auteur** Antigravity · **Commit** non commité
