@@ -416,6 +416,35 @@ const SECOURS_PAR_MATIERE: { motif: RegExp; exercices: Record<Difficulte, Exerci
       },
     },
   },
+  {
+    motif: /philo|philosophie/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Explique la distinction entre « conscience spontanée » et « conscience réfléchie ».',
+        solution:
+          'La conscience spontanée accompagne nos actes immédiats ; la conscience réfléchie est le retour de la pensée sur elle-même.',
+        explication:
+          '1) LA CONSCIENCE SPONTANÉE (OU IMMÉDIATE)\n   C\'est la simple présence à soi et au monde quand on agit (ex: marcher, écouter). L\'esprit est tourné vers l\'objet.\n\n2) LA CONSCIENCE RÉFLÉCHIE\n   C\'est la capacité de l\'esprit à se prendre lui-même comme objet de pensée (ex: « Je sais que je suis en train d\'écouter »). Socrates résume cela par « Connais-toi toi-même ».\n\n3) L\'ENJEU\n   C\'est la conscience réfléchie qui fonde la responsabilité morale et la liberté humaine.',
+      },
+      moyen: {
+        enonce:
+          'En quoi consiste le doute méthodique selon René Descartes ?',
+        solution:
+          'C\'est une démarche volontaire consistant à suspendre son jugement sur tout ce qui n\'est pas absolument certain afin de trouver une vérité indubitable.',
+        explication:
+          '1) POURQUOI DOUTER ?\n   Descartes constate que nos sens nous trompent parfois et que nos opinions contiennent des erreurs.\n\n2) LES CARACTÉRISTIQUES DU DOUTE CARTÉSIEN\n   - Il est MÉTHODIQUE : ce n\'est pas un scepticisme passif, mais un outil pour trouver la vérité.\n   - Il est HYPERBOLIQUE : on traite le simplement douteux comme faux.\n\n3) LE RÉSULTAT\n   Au bout du doute surgit une certitude inébranlable : « Je pense, donc je suis » (Cogito ergo sum). Même si je doute, il faut que j\'existe pour douter.',
+      },
+      examen: {
+        enonce:
+          'Dégage l\'enjeu philosophique de cette citation de Jean-Paul Sartre : « L\'homme est condamné à être libre. »',
+        solution:
+          'L\'homme n\'a pas d\'essence prédéfinie (l\'existence précède l\'essence) ; il est entièrement responsable de ses choix et de ses actes.',
+        explication:
+          '1) L\'EXISTENTIALISME SARTRIEN\n   Contrairement à un objet (ex: un couteau créé pour couper), l\'homme existe d\'abord, se définit par ses actes ensuite.\n\n2) POURQUOI « CONDAMNÉ » ?\n   Parce que l\'homme n\'a pas choisi d\'exister, et pourtant, une fois venu au monde, il est contraint d\'effectuer des choix. Refuser de choisir est encore un choix.\n\n3) LA RESPONSABILITÉ ET L\'ANGOISSE\n   Si aucun dieu ni aucun destin ne dicte notre conduite, nous sommes entièrement responsables de ce que nous sommes. La liberté n\'est pas un privilège confortable, mais une lourde charge.',
+      },
+    },
+  },
 ];
 
 /** Dernier recours, toutes matières confondues. */

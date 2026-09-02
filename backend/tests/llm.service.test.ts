@@ -220,8 +220,8 @@ describe('Chat', () => {
 describe('Banque de secours', () => {
   it('couvre les 8 thèmes de mathématiques en 3 difficultés', () => {
     expect(Object.keys(BANQUE)).toHaveLength(8);
-    // 8 thèmes de maths + 8 replis par matière + 1 générique, en 3 difficultés.
-    expect(tailleBanque()).toBe(51);
+    // 8 thèmes de maths + 9 replis par matière + 1 générique, en 3 difficultés.
+    expect(tailleBanque()).toBe(54);
   });
 
   it('sert un exercice de la bonne matière quand le thème est inconnu', () => {

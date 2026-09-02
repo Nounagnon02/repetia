@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
-import { LlmService, LlmIndisponibleError } from '../services/llm.service';
+import { LlmIndisponibleError } from '../services/llm.service';
+import { OrchestratorService } from '../services/orchestrator.service';
 import { prisma } from '../db';
 
 export const chatter = async (req: Request, res: Response, next: NextFunction) => {
@@ -8,6 +9,7 @@ export const chatter = async (req: Request, res: Response, next: NextFunction) =
   try {
     let contexteExercice: string | undefined;
     let matiere: string | undefined;
+    let niveau: string | undefined;
 
     if (exerciceId) {
       const exercice = await prisma.exercice.findUnique({
@@ -18,10 +20,11 @@ export const chatter = async (req: Request, res: Response, next: NextFunction) =
         contexteExercice = exercice.enonce;
         // Le répétiteur adopte la posture de la matière travaillée.
         matiere = exercice.theme.matiere.libelle;
+        niveau = exercice.theme.matiere.niveau;
       }
     }
 
-    const reponse = await LlmService.chat(message, historique, contexteExercice, matiere);
+    const reponse = await OrchestratorService.chat(message, historique, contexteExercice, matiere, niveau);
     res.json({ reponse });
   } catch (error) {
     // Panne du LLM : on répond 503 pour que l'interface propose « Réessayer »,

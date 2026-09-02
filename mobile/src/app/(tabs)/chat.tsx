@@ -22,7 +22,7 @@ import type { MessageChat } from '@/types';
 const ACCUEIL: MessageChat = {
   role: 'model',
   content:
-    "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur les maths du BEPC.",
+    "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur ton cours ou tes exercices (BEPC ou BAC).",
 };
 
 export default function Chat() {
