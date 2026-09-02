@@ -15,7 +15,7 @@ tâche où l'appel au LLM serait disproportionné.
 | Notebook | Objet |
 |---|---|
 | `notebooks/01-banc-evaluation-llm.ipynb` | Banc d'évaluation de l'intégration : conformité au contrat, effet des consignes de prompt, latence, comparaison de deux modèles |
-| `notebooks/02-classifieur-theme.ipynb` | *(en cours)* Classifieur de thème BEPC entraîné sur le corpus, comparé à plusieurs approches |
+| `notebooks/02-classifieur-matiere.ipynb` | Classifieur de matière entraîné par nos soins : quatre approches comparées, généralisation du synthétique vers 318 passages d'annales réelles, analyse des erreurs |
 
 ## Reproduire les résultats
 
@@ -38,11 +38,40 @@ python recherche/src/collecte.py --tache chat --limite 20
 # 4. Exécuter les notebooks
 cd recherche/notebooks
 ../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 01-banc-evaluation-llm.ipynb
+../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 02-classifieur-matiere.ipynb
 ```
+
+Les deux notebooks sont **générés** par un script, pour rester reproductibles :
+`src/construire_notebook_01.py` et `src/construire_notebook_02.py`. Modifiez le
+script, pas le `.ipynb`.
 
 Les notebooks s'exécutent **sans clé d'API** : ils lisent les données déjà
 collectées dans `donnees/brutes/`. La clé n'est requise que pour enrichir la
 collecte.
+
+## Résultats principaux du notebook 02
+
+Entraînement sur 87 énoncés (générés + banque de secours), évaluation sur
+**318 passages d'annales réelles** océrisés — deux sources indépendantes.
+
+| Approche | F1 macro (VC 5 plis) | F1 macro (annales réelles) |
+|---|---|---|
+| Référence (classe majoritaire) | 0,051 | 0,049 |
+| Bayes naïf (mots) | 0,505 | 0,288 |
+| Régression logistique (mots) | 0,764 | 0,460 |
+| **SVM linéaire (caractères)** | 0,709 | **0,493** |
+
+Les n-grammes de caractères l'emportent sur données réelles tout en présentant
+le plus faible écart de généralisation : ils résistent mieux au bruit de l'OCR.
+Le classifieur décide en **0,17 ms**, contre 2,2 s pour l'appel LLM le plus
+rapide — environ 13 000 fois plus vite, sans consommer de quota.
+
+**Le modèle n'est pas prêt pour la production**, et le notebook le dit : la
+classe SVT se comporte en réceptacle (34 % des prédictions pour 1,9 % du jeu de
+test). Une ablation montre que la cause n'est pas la pondération des classes
+mais la longueur des textes d'entraînement — symptôme d'un corpus trop maigre.
+La courbe d'apprentissage ne plafonne pas : il manque des données, pas un
+meilleur modèle.
 
 ## Plan d'expérience
 
