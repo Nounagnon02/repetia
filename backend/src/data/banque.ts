@@ -261,7 +261,7 @@ const SECOURS_PAR_MATIERE: { motif: RegExp; exercices: Record<Difficulte, Exerci
     },
   },
   {
-    motif: /fran(ç|c)ais/i,
+    motif: /communication|fran(ç|c)ais/i,
     exercices: {
       facile: {
         enonce:
@@ -285,6 +285,81 @@ const SECOURS_PAR_MATIERE: { motif: RegExp; exercices: Record<Difficulte, Exerci
           'La première est une métaphore, la seconde une comparaison.',
         explication:
           '1) LA COMPARAISON\n   « Cette femme est COMME une lionne. »\n   Elle rapproche deux éléments à l\'aide d\'un outil de comparaison : comme, tel, semblable à, pareil à…\n   Les deux termes restent distincts : on voit la femme ET la lionne.\n\n2) LA MÉTAPHORE\n   « Cette femme EST une lionne. »\n   Le rapprochement se fait SANS outil de comparaison. L\'image est directe : la femme et la lionne se confondent.\n\n3) L\'EFFET\n   La métaphore est plus forte et plus condensée. Elle ne dit pas que la femme ressemble à une lionne : elle affirme qu\'elle en est une, avec son courage et sa force.',
+      },
+    },
+  },
+  {
+    motif: /lecture/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Lis ce court extrait :\n« Le soleil se couchait sur Ouidah. Kofi rangeait ses filets, la pêche avait été maigre. Demain, se disait-il, la mer serait plus généreuse. »\n1) Où se passe la scène ?\n2) Quel sentiment anime Kofi à la fin ?',
+        solution: '1) À Ouidah, au bord de la mer. 2) L\'espoir.',
+        explication:
+          '1) LE LIEU\n   Le texte nomme explicitement « Ouidah », et parle de filets et de pêche : la scène se déroule au bord de la mer, à Ouidah.\n\n2) LE SENTIMENT\n   La dernière phrase est la clé : « Demain, la mer serait plus généreuse ».\n   Malgré une mauvaise journée, Kofi se projette vers un lendemain meilleur.\n   C\'est de l\'espoir — on pourrait aussi dire de la confiance.\n\nMÉTHODE : pour trouver un sentiment, cherche ce que le personnage PENSE ou DIT, pas seulement ce qu\'il fait.',
+      },
+      moyen: {
+        enonce:
+          'Dans la phrase « La nuit tombait comme un lourd manteau sur le village », relève la figure de style, nomme-la et explique l\'effet produit.',
+        solution: 'Une comparaison : la nuit est comparée à un lourd manteau.',
+        explication:
+          '1) ON REPÈRE L\'OUTIL\n   Le mot « comme » relie deux éléments : c\'est un outil de comparaison.\n\n2) ON NOMME LES DEUX TERMES\n   Le comparé : la nuit.\n   Le comparant : un lourd manteau.\n   Le point commun : quelque chose qui recouvre, qui pèse.\n\n3) LA FIGURE\n   C\'est une COMPARAISON. Sans « comme », on aurait une métaphore.\n\n4) L\'EFFET\n   Le manteau est lourd : la nuit ne tombe pas doucement, elle pèse. L\'image rend l\'atmosphère oppressante et prépare peut-être un événement grave.',
+      },
+      examen: {
+        enonce:
+          'Un texte argumentatif défend l\'idée que « l\'école doit rester gratuite ».\n1) Qu\'appelle-t-on la thèse d\'un texte argumentatif ?\n2) Distingue un argument d\'un exemple, en en proposant un de chaque pour cette thèse.',
+        solution:
+          'La thèse est l\'opinion défendue. L\'argument la justifie, l\'exemple l\'illustre concrètement.',
+        explication:
+          '1) LA THÈSE\n   C\'est l\'opinion que l\'auteur veut faire admettre. Ici : « l\'école doit rester gratuite ».\n\n2) L\'ARGUMENT\n   C\'est une RAISON générale qui soutient la thèse.\n   Exemple d\'argument : « La gratuité garantit que le niveau de revenu des parents ne décide pas de l\'avenir de l\'enfant. »\n\n3) L\'EXEMPLE\n   C\'est un FAIT PRÉCIS qui rend l\'argument concret.\n   Exemple : « Dans un village du nord du Bénin, la suppression des frais d\'inscription a fait revenir des dizaines d\'enfants à l\'école. »\n\n4) À RETENIR\n   L\'argument explique POURQUOI. L\'exemple montre QUE c\'est vrai.\n   Un texte solide enchaîne toujours les deux.',
+      },
+    },
+  },
+  {
+    motif: /espagnol|español/i,
+    exercices: {
+      facile: {
+        enonce: 'Completa con el verbo « ser » o « estar » :\n« Mi hermana ______ profesora y ahora ______ en Cotonú. »',
+        solution: 'Mi hermana ES profesora y ahora ESTÁ en Cotonú.',
+        explication:
+          'Les deux verbes se traduisent par « être », mais ne s\'emploient pas dans les mêmes cas.\n\n1) SER — ce qui définit, ce qui dure\n   La profession, la nationalité, le caractère.\n   « Mi hermana ES profesora » : son métier la définit.\n\n2) ESTAR — l\'état et le lieu\n   Où l\'on se trouve, comment on se sent, une situation passagère.\n   « ESTÁ en Cotonú » : c\'est une localisation.\n\n3) MOYEN MNÉMOTECHNIQUE\n   Pour le LIEU, toujours ESTAR — même pour une ville, même définitivement.',
+      },
+      moyen: {
+        enonce: 'Pon la frase en pretérito indefinido :\n« Nosotros comemos arroz en el mercado. »',
+        solution: 'Nosotros comimos arroz en el mercado.',
+        explication:
+          '1) LE TEMPS DEMANDÉ\n   Le pretérito indefinido exprime une action passée, achevée, à un moment précis.\n\n2) LE VERBE\n   « Comer » est un verbe régulier en -ER.\n\n3) LES TERMINAISONS en -ER/-IR\n   yo comí · tú comiste · él comió\n   nosotros comIMOS · vosotros comisteis · ellos comieron\n\n4) RÉSULTAT\n   Nosotros comimos arroz en el mercado.\n\nATTENTION : à la 1ʳᵉ personne du pluriel, la forme « comimos » est identique au présent pour les verbes en -IR, mais pas en -ER. Le contexte tranche.',
+      },
+      examen: {
+        enonce:
+          'Traduce al español y justifica el pronombre elegido :\n« Je le lui donne. » (le livre / à mon frère)',
+        solution: 'Se lo doy.',
+        explication:
+          '1) LES DEUX PRONOMS\n   COD : « le livre » → LO (masculin singulier).\n   COI : « à mon frère » → LE.\n\n2) L\'ORDRE EN ESPAGNOL\n   Le COI précède toujours le COD : LE + LO.\n\n3) LA RÈGLE PARTICULIÈRE\n   « Le lo » est interdit en espagnol. Quand deux pronoms de 3ᵉ personne se suivent, le COI LE (ou LES) devient SE.\n   LE + LO → SE LO\n\n4) RÉSULTAT\n   « Se lo doy. »\n\nC\'est une règle purement phonétique : l\'espagnol évite la suite « le lo », difficile à prononcer.',
+      },
+    },
+  },
+  {
+    motif: /allemand|deutsch/i,
+    exercices: {
+      facile: {
+        enonce: 'Ergänze mit dem richtigen Artikel im Akkusativ :\n« Ich sehe ______ Lehrer. » (der Lehrer)',
+        solution: 'Ich sehe DEN Lehrer.',
+        explication:
+          '1) LE CAS DEMANDÉ\n   Le verbe « sehen » (voir) appelle un complément d\'objet direct : c\'est l\'ACCUSATIF.\n\n2) LA DÉCLINAISON\n   Au masculin, l\'article change entre le nominatif et l\'accusatif :\n   nominatif : DER Lehrer\n   accusatif : DEN Lehrer\n\n3) À RETENIR\n   Seul le MASCULIN change à l\'accusatif.\n   die → die (féminin) · das → das (neutre) · die → die (pluriel)\n\n4) RÉSULTAT\n   Ich sehe den Lehrer.',
+      },
+      moyen: {
+        enonce: 'Setze den Satz ins Perfekt :\n« Ich kaufe Reis auf dem Markt. »',
+        solution: 'Ich habe Reis auf dem Markt gekauft.',
+        explication:
+          'Le parfait est le passé le plus employé à l\'oral et dans les textes courants.\n\n1) LA STRUCTURE\n   auxiliaire (haben ou sein) + participe passé rejeté EN FIN de phrase.\n\n2) L\'AUXILIAIRE\n   « Kaufen » est un verbe d\'action sans déplacement : il prend HABEN.\n   (Les verbes de mouvement ou de changement d\'état prennent SEIN : gehen, kommen, werden.)\n\n3) LE PARTICIPE PASSÉ\n   Verbe faible régulier : ge- + radical + -t\n   kaufen → GEKAUFT\n\n4) RÉSULTAT\n   Ich HABE Reis auf dem Markt GEKAUFT.\n   Remarque la place du participe : tout à la fin.',
+      },
+      examen: {
+        enonce:
+          'Erkläre den Unterschied und ergänze :\n« Ich gehe ______ Schule. » / « Ich bin ______ Schule. » (die Schule)',
+        solution: 'Ich gehe IN DIE Schule (accusatif). Ich bin IN DER Schule (datif).',
+        explication:
+          'C\'est la règle des prépositions mixtes (Wechselpräpositionen) : in, an, auf, unter, über…\n\n1) LA QUESTION À SE POSER\n   WOHIN ? (vers où ?) → mouvement → ACCUSATIF\n   WO ? (où ?) → position → DATIF\n\n2) PREMIER CAS — mouvement\n   « Ich gehe » : je me déplace vers l\'école.\n   die Schule → IN DIE Schule (accusatif).\n\n3) SECOND CAS — position\n   « Ich bin » : je suis déjà à l\'intérieur, sans déplacement.\n   die Schule → IN DER Schule (datif féminin).\n\n4) À RETENIR\n   Le même mot « in » change de cas selon qu\'il y a déplacement ou non. C\'est le verbe qui donne l\'indice.',
       },
     },
   },

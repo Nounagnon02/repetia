@@ -220,8 +220,8 @@ describe('Chat', () => {
 describe('Banque de secours', () => {
   it('couvre les 8 thèmes de mathématiques en 3 difficultés', () => {
     expect(Object.keys(BANQUE)).toHaveLength(8);
-    // 8 thèmes de maths + 5 replis par matière + 1 générique, en 3 difficultés.
-    expect(tailleBanque()).toBe(42);
+    // 8 thèmes de maths + 8 replis par matière + 1 générique, en 3 difficultés.
+    expect(tailleBanque()).toBe(51);
   });
 
   it('sert un exercice de la bonne matière quand le thème est inconnu', () => {
@@ -233,6 +233,10 @@ describe('Banque de secours', () => {
 
     const svt = exerciceDeSecours('Digestion', 'facile', 'Sciences de la Vie et de la Terre');
     expect(svt.enonce).toMatch(/aliments/);
+
+    // Les deux épreuves de langue du BEPC béninois ont chacune leur repli.
+    expect(exerciceDeSecours('Ser y estar', 'facile', 'Espagnol').solution).toMatch(/ES profesora/);
+    expect(exerciceDeSecours('Deklination', 'facile', 'Allemand').solution).toMatch(/DEN Lehrer/);
   });
 
   it('renvoie le bon thème et la bonne difficulté', () => {

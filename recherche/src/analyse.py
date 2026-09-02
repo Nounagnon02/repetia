@@ -142,3 +142,37 @@ def appliquer_style() -> None:
         "savefig.bbox": "tight",
         "savefig.dpi": 150,
     })
+
+
+# ---------------------------------------------------------------------------
+# Corpus pour la classification
+# ---------------------------------------------------------------------------
+
+def construire_corpus() -> pd.DataFrame:
+    """
+    Assemble le corpus étiqueté à partir des deux sources, en conservant
+    l'origine de chaque exemple.
+
+    La distinction est essentielle : la banque est RÉDIGÉE À LA MAIN, le reste
+    est GÉNÉRÉ par un modèle. Elle permet l'expérience décisive du notebook 02 —
+    entraîner sur le synthétique et évaluer sur l'humain, pour mesurer la
+    généralisation au lieu de se contenter de la déplorer.
+    """
+    banque = charger_banque()
+    banque = banque.assign(
+        texte=banque["enonce"].astype(str).str.strip(),
+        origine="humaine",
+    )[["texte", "matiere", "theme", "difficulte", "origine"]]
+
+    collecte = charger_collecte()
+    generes = collecte[collecte["conforme"]].copy()
+    generes = generes.assign(
+        texte=generes["enonce"].astype(str).str.strip(),
+        origine="generee",
+    )[["texte", "matiere", "theme", "difficulte", "origine", "modele", "variante"]]
+
+    corpus = pd.concat([banque, generes], ignore_index=True)
+    corpus = corpus[corpus["texte"].str.len() > 20].reset_index(drop=True)
+    corpus["theme"] = corpus["theme"].fillna("").replace("", pd.NA)
+    corpus["n_mots"] = corpus["texte"].str.split().str.len()
+    return corpus

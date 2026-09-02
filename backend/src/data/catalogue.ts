@@ -63,17 +63,33 @@ export const CATALOGUE: MatiereCatalogue[] = [
     ],
   },
   {
-    code: 'FRANCAIS_BEPC',
-    libelle: 'Français',
+    // Le BEPC béninois n'évalue pas « le français » en bloc : il distingue
+    // deux épreuves écrites, Lecture et Communication écrite.
+    code: 'LECTURE_BEPC',
+    libelle: 'Lecture',
+    niveau: 'BEPC',
+    themes: [
+      'Compréhension d’un texte narratif',
+      'Compréhension d’un texte argumentatif',
+      'Repérage des idées et de la structure',
+      'Vocabulaire en contexte',
+      'Figures de style',
+      'Poésie et versification',
+      'Lecture d’image et de document',
+    ],
+  },
+  {
+    code: 'COMMUNICATION_BEPC',
+    libelle: 'Communication écrite',
     niveau: 'BEPC',
     themes: [
       'Grammaire (nature et fonction)',
       'Conjugaison et temps verbaux',
       'Orthographe et accords',
-      'Vocabulaire et sens des mots',
-      'Compréhension de texte',
-      'Figures de style',
-      'Rédaction et argumentation',
+      'Rédaction narrative',
+      'Rédaction argumentative',
+      'Résumé et compte rendu',
+      'Lettre et écrits fonctionnels',
     ],
   },
   {
@@ -88,6 +104,34 @@ export const CATALOGUE: MatiereCatalogue[] = [
       'Reading comprehension',
       'Direct and reported speech',
       'Writing (letter, narrative)',
+    ],
+  },
+  {
+    code: 'ESPAGNOL_BEPC',
+    libelle: 'Espagnol',
+    niveau: 'BEPC',
+    themes: [
+      'Presente de indicativo',
+      'Pretérito indefinido e imperfecto',
+      'Ser y estar',
+      'Vocabulario de la vida diaria',
+      'Comprensión de texto',
+      'Expresión escrita',
+      'Pronombres y preposiciones',
+    ],
+  },
+  {
+    code: 'ALLEMAND_BEPC',
+    libelle: 'Allemand',
+    niveau: 'BEPC',
+    themes: [
+      'Präsens und starke Verben',
+      'Perfekt und Präteritum',
+      'Deklination und Fälle',
+      'Wortschatz des Alltags',
+      'Textverständnis',
+      'Schriftlicher Ausdruck',
+      'Präpositionen und Satzbau',
     ],
   },
   {
@@ -139,5 +183,40 @@ export async function assurerCatalogue(prisma: PrismaClient): Promise<number> {
     }
   }
 
+  await retirerMatieresObsoletes(prisma);
   return prisma.theme.count();
+}
+
+/**
+ * Retire les matières qui ne figurent plus au catalogue.
+ *
+ * Le découpage a évolué : « Français » a été remplacé par les deux épreuves
+ * réellement distinguées au BEPC béninois, Lecture et Communication écrite.
+ * Sans ce nettoyage, l'ancienne matière resterait affichée aux élèves.
+ *
+ * La suppression est PRUDENTE : une matière dont un élève a déjà travaillé un
+ * thème est conservée, pour ne jamais détruire de progression. Elle devra alors
+ * être traitée à la main, avec une migration.
+ */
+async function retirerMatieresObsoletes(prisma: PrismaClient): Promise<void> {
+  const codesValides = CATALOGUE.map((m) => m.code);
+  const obsoletes = await prisma.matiere.findMany({
+    where: { code: { notIn: codesValides } },
+    include: { themes: { include: { _count: { select: { exercices: true, progressions: true } } } } },
+  });
+
+  for (const matiere of obsoletes) {
+    const utilisee = matiere.themes.some(
+      (t) => t._count.exercices > 0 || t._count.progressions > 0,
+    );
+    if (utilisee) {
+      console.warn(
+        `Matière obsolète « ${matiere.libelle} » conservée : des données d'élèves y sont rattachées.`,
+      );
+      continue;
+    }
+    await prisma.theme.deleteMany({ where: { matiereId: matiere.id } });
+    await prisma.matiere.delete({ where: { id: matiere.id } });
+    console.log(`Matière obsolète retirée : ${matiere.libelle}`);
+  }
 }

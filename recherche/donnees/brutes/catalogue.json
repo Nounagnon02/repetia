@@ -45,17 +45,31 @@
     ]
   },
   {
-    "code": "FRANCAIS_BEPC",
-    "libelle": "Français",
+    "code": "LECTURE_BEPC",
+    "libelle": "Lecture",
+    "niveau": "BEPC",
+    "themes": [
+      "Compréhension d’un texte narratif",
+      "Compréhension d’un texte argumentatif",
+      "Repérage des idées et de la structure",
+      "Vocabulaire en contexte",
+      "Figures de style",
+      "Poésie et versification",
+      "Lecture d’image et de document"
+    ]
+  },
+  {
+    "code": "COMMUNICATION_BEPC",
+    "libelle": "Communication écrite",
     "niveau": "BEPC",
     "themes": [
       "Grammaire (nature et fonction)",
       "Conjugaison et temps verbaux",
       "Orthographe et accords",
-      "Vocabulaire et sens des mots",
-      "Compréhension de texte",
-      "Figures de style",
-      "Rédaction et argumentation"
+      "Rédaction narrative",
+      "Rédaction argumentative",
+      "Résumé et compte rendu",
+      "Lettre et écrits fonctionnels"
     ]
   },
   {
@@ -70,6 +84,34 @@
       "Reading comprehension",
       "Direct and reported speech",
       "Writing (letter, narrative)"
+    ]
+  },
+  {
+    "code": "ESPAGNOL_BEPC",
+    "libelle": "Espagnol",
+    "niveau": "BEPC",
+    "themes": [
+      "Presente de indicativo",
+      "Pretérito indefinido e imperfecto",
+      "Ser y estar",
+      "Vocabulario de la vida diaria",
+      "Comprensión de texto",
+      "Expresión escrita",
+      "Pronombres y preposiciones"
+    ]
+  },
+  {
+    "code": "ALLEMAND_BEPC",
+    "libelle": "Allemand",
+    "niveau": "BEPC",
+    "themes": [
+      "Präsens und starke Verben",
+      "Perfekt und Präteritum",
+      "Deklination und Fälle",
+      "Wortschatz des Alltags",
+      "Textverständnis",
+      "Schriftlicher Ausdruck",
+      "Präpositionen und Satzbau"
     ]
   },
   {
