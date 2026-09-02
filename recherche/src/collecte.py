@@ -425,7 +425,9 @@ def main() -> None:
     total, faits = len(plan_complet()), len(deja_collecte())
     if args.plan:
         print(f"Plan d'expérience : {total} combinaisons")
-        print(f"  {len(json.loads(CATALOGUE.read_text())) } matières · 46 thèmes · "
+        catalogue = json.loads(CATALOGUE.read_text())
+        nb_themes = sum(len(m.get("themes", [])) for m in catalogue)
+        print(f"  {len(catalogue)} matières · {nb_themes} thèmes · "
               f"{len(DIFFICULTES)} difficultés · {len(MODELES)} modèles · {len(VARIANTES)} variantes")
         print(f"Déjà collecté : {faits} ({faits / total:.1%})")
         return

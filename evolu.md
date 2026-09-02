@@ -47,9 +47,30 @@ Deux règles :
 
 ---
 
-## 2026-09-02 — [T2] Réaligner recherche/README.md sur la réalité
+## 2026-09-02 — [T3] Corriger le compte de thèmes en dur dans collecte.py
 
 **Auteur** Antigravity · **Commit** à venir
+
+**Fait**
+- `recherche/src/collecte.py:428` : le libellé « 46 thèmes » était écrit en dur
+  alors que le catalogue en compte 67. Remplacé par un comptage dynamique dérivé
+  du catalogue (`sum(len(m.get("themes", [])) for m in catalogue)`).
+- Vérifié avec `--plan` : affiche maintenant « 9 matières · 67 thèmes ».
+
+**Mesures**
+- Aucun changement de résultat : le total (1206) était déjà calculé dynamiquement.
+
+**Échecs / non fait**
+- Aucun.
+
+**Vérifications**
+- `collecte.py --plan` : ✅ · notebook réexécuté : non (aucun impact sur le notebook)
+
+---
+
+## 2026-09-02 — [T2] Réaligner recherche/README.md sur la réalité
+
+**Auteur** Antigravity · **Commit** `d5956777`
 
 **Fait**
 - Plan d'expérience : 46 → 67 thèmes, 828 → 1206 combinaisons de génération,
