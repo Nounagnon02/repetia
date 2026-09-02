@@ -73,14 +73,19 @@ export default function Accueil() {
         </span>
       </header>
 
-      <div className="rounded-2xl bg-brand-green p-6 text-white shadow-md">
-        <span className="mb-2 inline-block rounded-full bg-brand-gold px-3 py-1 text-xs font-bold text-brand-green-dark">
-          {niveauChoisi === 'BAC' ? 'Programme Secondaire (BAC)' : `Niveau ${niveauChoisi}`}
-        </span>
+      <div className="rounded-2xl bg-brand-green p-6 text-white shadow-md relative overflow-hidden">
+        <div className="flex items-center justify-between mb-3">
+          <span className="inline-block rounded-full bg-brand-gold px-3 py-1 text-xs font-bold text-brand-green-dark">
+            {niveauChoisi === 'BAC' ? 'Programme Secondaire (BAC)' : `Niveau ${niveauChoisi}`}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+            <span>🇧🇯 RépétIA-LLM Souverain</span>
+          </span>
+        </div>
         <h2 className="mb-1 font-serif text-2xl">
           On révise quoi aujourd'hui ?
         </h2>
-        <p className="text-sm opacity-90">Choisis ton niveau et ton thème, puis lance-toi !</p>
+        <p className="text-sm opacity-90">IA souveraine béninoise : choisis ton niveau et ton thème, puis lance-toi !</p>
       </div>
 
       {chargement && <Loader message="Chargement de tes thèmes…" pleinePage />}

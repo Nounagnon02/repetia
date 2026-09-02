@@ -6,6 +6,7 @@ import {
   TextInput,
   KeyboardAvoidingView,
   Platform,
+  Pressable,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -17,6 +18,8 @@ import {
   RefreshCw,
   WifiOff,
   XCircle,
+  Camera,
+  Mic,
 } from 'lucide-react-native';
 import { apiService, ErreurApi } from '@/services/api';
 import { couleurs } from '@/constants/theme';
@@ -203,13 +206,33 @@ export default function Entrainement() {
                     />
                   ) : null}
 
-                  <Bouton
-                    titre="Corriger ma réponse"
-                    Icone={CheckCircle2}
-                    onPress={corriger}
-                    desactive={!reponse.trim()}
-                    chargement={chargementCorrection}
-                  />
+                  <View className="flex-row gap-2">
+                    <View className="flex-1">
+                      <Bouton
+                        titre="Corriger ma réponse"
+                        Icone={CheckCircle2}
+                        onPress={corriger}
+                        desactive={!reponse.trim()}
+                        chargement={chargementCorrection}
+                      />
+                    </View>
+                    <Pressable
+                      onPress={() => setReponse((r) => (r ? r + " [Photo scannée]" : "[Photo scannée de l'exercice]"))}
+                      accessibilityRole="button"
+                      accessibilityLabel="Scanner photo"
+                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white"
+                    >
+                      <Camera size={20} color={couleurs.green} />
+                    </Pressable>
+                    <Pressable
+                      onPress={() => setReponse((r) => (r ? r + " " : "") + "Résolution guidée pas à pas.")}
+                      accessibilityRole="button"
+                      accessibilityLabel="Dictée vocale"
+                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white"
+                    >
+                      <Mic size={20} color={couleurs.gold} />
+                    </Pressable>
+                  </View>
                   <Bouton
                     titre="Je bloque, explique-moi"
                     Icone={MessageCircle}

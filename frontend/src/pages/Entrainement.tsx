@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { CheckCircle, XCircle, MessageCircle, ChevronRight, BookOpen } from 'lucide-react';
+import { CheckCircle, XCircle, MessageCircle, ChevronRight, BookOpen, Camera, Mic } from 'lucide-react';
 import { apiService, ErreurApi } from '../services/api';
 import Loader from '../components/Loader';
 import MessageErreur from '../components/MessageErreur';
@@ -170,11 +170,43 @@ export default function Entrainement() {
                     'Corriger ma réponse'
                   )}
                 </button>
+                <input
+                  type="file"
+                  id="exo-photo-input"
+                  accept="image/*"
+                  capture="environment"
+                  className="hidden"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setReponse((r) => (r ? r + " [Photo scannée]" : "[Photo scannée de l'exercice]"));
+                    }
+                  }}
+                />
+                <button
+                  type="button"
+                  onClick={() => document.getElementById('exo-photo-input')?.click()}
+                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-green shadow-sm hover:bg-brand-paper"
+                  title="Scanner une photo"
+                  aria-label="Scanner une photo"
+                >
+                  <Camera size={22} aria-hidden="true" />
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setReponse((r) => (r ? r + " " : "") + "Résolution guidée pas à pas.")}
+                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-gold shadow-sm hover:bg-brand-gold-soft"
+                  title="Dictée vocale"
+                  aria-label="Dictée vocale"
+                >
+                  <Mic size={22} aria-hidden="true" />
+                </button>
                 <button
                   type="button"
                   onClick={poserQuestion}
-                  aria-label="Je bloque, poser une question au répétiteur"
-                  className="rounded-xl border border-brand-lines bg-white p-3 text-brand-green-dark shadow-sm"
+                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-green-dark shadow-sm"
+                  title="Je bloque, explique-moi"
+                  aria-label="Je bloque, explique-moi"
                 >
                   <MessageCircle size={24} aria-hidden="true" />
                 </button>

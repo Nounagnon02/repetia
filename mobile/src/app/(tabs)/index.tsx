@@ -115,9 +115,14 @@ export default function Accueil() {
         </View>
 
         <View className="rounded-2xl bg-brand-green p-5">
-          <Text className="mb-1 text-xl font-bold text-white">Salut 👋</Text>
+          <View className="flex-row items-center justify-between mb-2">
+            <Text className="text-xl font-bold text-white">Salut 👋</Text>
+            <View className="rounded-full bg-white/20 px-2.5 py-1">
+              <Text className="text-xs font-bold text-white">🇧🇯 RépétIA-LLM Souverain</Text>
+            </View>
+          </View>
           <Text className="mb-2 text-xl font-bold text-white">On révise quoi aujourd&apos;hui ?</Text>
-          <Text className="text-sm text-white/90">Choisis ton niveau et ton thème, puis lance-toi !</Text>
+          <Text className="text-sm text-white/90">IA souveraine béninoise : choisis ton niveau et ton thème, puis lance-toi !</Text>
         </View>
 
         {horsLigne ? (

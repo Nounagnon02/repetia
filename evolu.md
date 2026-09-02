@@ -45,6 +45,31 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Intégration UI Intégrale Web & Mobile (Vision Photo, Dictée Vocale STT/TTS & Badge IA Souveraine)
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Mode Photo / Vision Multimodale UI (`frontend/src/pages/`, `mobile/src/app/`)** : Ajout du bouton de capture/scan par photo d'exercice (`<Camera />`) sur les écrans d'entraînement et de chat web et mobile.
+- **Mode Audio & Dictée Vocale UI (`frontend/src/pages/`, `mobile/src/app/`)** : Ajout du bouton de dictée vocale (`<Mic />`) pour la saisie et la réécoute des explications.
+- **Badge d'Identité IA Souveraine `🇧🇯 RépétIA-LLM Souverain`** : Intégration du badge d'état du modèle souverain sur les bannières d'accueil Web (`Accueil.tsx`) et Mobile (`index.tsx`).
+
+Fichiers modifiés :
+- `frontend/src/pages/Accueil.tsx`, `frontend/src/pages/Entrainement.tsx`, `frontend/src/pages/Chat.tsx`
+- `mobile/src/app/(tabs)/index.tsx`, `mobile/src/app/(tabs)/chat.tsx`, `mobile/src/app/entrainement.tsx`
+
+**Mesures**
+- **100 % des fonctionnalités avancées (IA Souveraine, Vision, Audio)** directement accessibles et utilisables dans les interfaces Web et Mobile.
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Implémentation Intégrale des 5 Axes d'Amélioration (DPO, GGUF/Ollama, Vision Multimodale, Audio STT/TTS & UEMOA)
 
 **Auteur** Antigravity · **Commit** non commité
