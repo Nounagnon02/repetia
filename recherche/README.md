@@ -80,8 +80,8 @@ risques :
 
 | Tâche | Combinaisons | Ce qui est mesuré |
 |---|---|---|
-| **Génération** | 46 thèmes × 3 difficultés × 2 modèles × 3 variantes = **828** | Conformité au schéma JSON, latence, format |
-| **Chat** | 39 énoncés × 2 modèles × 3 variantes = **234** | Fuite LaTeX en texte libre, latence |
+| **Génération** | 67 thèmes × 3 difficultés × 2 modèles × 3 variantes = **1206** | Conformité au schéma JSON, latence, format |
+| **Chat** | 48 énoncés × 2 modèles × 3 variantes = **288** | Fuite LaTeX en texte libre, latence |
 
 Trois variantes de prompt emboîtées isolent l'effet de chaque consigne :
 
@@ -101,11 +101,14 @@ consigne. La tâche « chat » a été ajoutée pour corriger ce défaut de plan
 
 | Fichier | Nature |
 |---|---|
-| `donnees/brutes/banque_manuelle.csv` | 39 exercices **rédigés à la main**, étiquetés matière/thème/difficulté. Seule vérité terrain non générée par un modèle. |
-| `donnees/brutes/catalogue.json` | 6 matières, 46 thèmes du BEPC béninois |
+| `donnees/brutes/banque_manuelle.csv` | 48 exercices **rédigés à la main**, étiquetés matière/thème/difficulté. Seule vérité terrain non générée par un modèle. |
+| `donnees/brutes/catalogue.json` | 9 matières, 67 thèmes du BEPC béninois |
 | `donnees/brutes/collecte.jsonl` | Journal d'expérience, tâche génération |
 | `donnees/brutes/collecte_chat.jsonl` | Journal d'expérience, tâche chat |
 | `donnees/traitees/corpus_exercices.csv` | Corpus étiqueté extrait des appels conformes |
+| `donnees/privees/pdf/` | 66 PDF d'annales du BEPC (**non versionnés** — droits des éditeurs) |
+| `donnees/privees/texte/` | 66 transcriptions OCR + scores de confiance (**non versionnées**) |
+| `donnees/privees/jeu_de_test.csv` | 318 passages étiquetés par matière, extraits des annales (**non versionné**) |
 
 ## Limite structurante : le quota
 
@@ -120,8 +123,11 @@ que commentées brutes.
 
 ## Éthique et intégrité
 
-- Le corpus généré l'est par un modèle, et non tiré d'annales officielles. Cette
-  limite est déclarée et ses conséquences discutées dans le notebook 02.
+- Le corpus d'**entraînement** est généré par un modèle, et non tiré d'annales
+  officielles. Le jeu de **test**, en revanche, est extrait d'annales réelles du
+  BEPC béninois par OCR. Ces annales ne sont **pas redistribuées** : seules les
+  métriques agrégées figurent dans les notebooks. Les fichiers sources sont
+  exclus du dépôt par `.gitignore` (`donnees/privees/`).
 - Aucune donnée d'élève réel n'est utilisée : l'application ne collecte aucune
   donnée personnelle.
 - Les échecs et les résultats contraires à nos hypothèses sont rapportés, y

@@ -47,6 +47,55 @@ Deux règles :
 
 ---
 
+## 2026-09-02 — [T2] Réaligner recherche/README.md sur la réalité
+
+**Auteur** Antigravity · **Commit** à venir
+
+**Fait**
+- Plan d'expérience : 46 → 67 thèmes, 828 → 1206 combinaisons de génération,
+  39 → 48 énoncés de chat, 234 → 288 combinaisons de chat.
+- Catalogue : 6 → 9 matières, 46 → 67 thèmes.
+- Banque manuelle : 39 → 48 exercices.
+- Tableau Données : ajout de `donnees/privees/pdf/`, `donnees/privees/texte/`,
+  `donnees/privees/jeu_de_test.csv` avec mention explicite qu'ils ne sont pas
+  versionnés.
+- Section Éthique : distinction corpus d'entraînement (généré par modèle) / jeu
+  de test (annales réelles, non redistribuées).
+
+**Mesures**
+- Aucune modification de code : documentation seule.
+
+**Échecs / non fait**
+- Aucun.
+
+**Vérifications**
+- Notebook réexécuté : non (documentation seule)
+
+---
+
+## 2026-09-02 — [T1] Committer le notebook 02
+
+**Auteur** Antigravity · **Commit** `dfbbc41b`
+
+**Fait**
+- Commité les 13 fichiers en attente : `construire_notebook_02.py`, le notebook
+  02, quatre figures, ajouts à `analyse.py`, `recherche/README.md`, plus
+  l'outillage de passation (`AGENTS.md`, `PASSATION.md`, `evolu.md`,
+  `tools/etat.sh`, `tools/verifier.sh`).
+- Vérifié qu'aucun fichier de `donnees/privees/` ni `backend/.env` n'entre dans
+  l'index (double vérification avant et après staging).
+
+**Mesures**
+- Aucune modification de code : chiffres inchangés par rapport à T0.
+
+**Échecs / non fait**
+- Aucun.
+
+**Vérifications**
+- Garde-fou données privées : ✅ · notebook réexécuté : non (aucune modification)
+
+---
+
 ## 2026-09-02 — [T0] Point de départ de la passation
 
 **Auteur** Claude Code · **Commit** `83e5a64d` (état de référence)
