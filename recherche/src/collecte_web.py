@@ -156,6 +156,55 @@ def fabriquer_exemples_sft() -> list[dict]:
                     "source": "annales_reelles_officielles",
                 })
 
+    # Intégration systématique du Programme Officiel National du Bénin pour toutes les classes (6ème à Terminale) et toutes les séries
+    CLASSES_BENIN = [
+        {"classe": "6ème", "niveau": "Collège (1er cycle)", "series": ["Générale"]},
+        {"classe": "5ème", "niveau": "Collège (1er cycle)", "series": ["Générale"]},
+        {"classe": "4ème", "niveau": "Collège (1er cycle)", "series": ["Générale"]},
+        {"classe": "3ème", "niveau": "BEPC (Fin 1er cycle)", "series": ["Générale"]},
+        {"classe": "Seconde", "niveau": "Lycée (2nd cycle)", "series": ["Série A", "Série C", "Série D", "Série Technique (F/G)"]},
+        {"classe": "Première", "niveau": "Lycée (2nd cycle)", "series": ["Série A1", "Série A2", "Série B", "Série C", "Série D", "Série F", "Série G"]},
+        {"classe": "Terminale", "niveau": "BAC (Fin 2nd cycle)", "series": ["Série A1", "Série A2", "Série B", "Série C", "Série D", "Série E", "Série F1-F4", "Série G1-G3"]},
+    ]
+
+    MATIERES_PROGRAMME = [
+        {"matiere": "Mathématiques", "competences": "Calcul, géométrie, analyse, probabilités et résolution de situations-problèmes scientifiques."},
+        {"matiere": "Physique-Chimie-Technologie (PCT)", "competences": "Mécanique, électricité, chimie organique, transformations physiques et démarche expérimentale."},
+        {"matiere": "Sciences de la Vie et de la Terre (SVT)", "competences": "Biologie humaine, génétique, immunologie, écologie et géologie selon la démarche scientifique APC."},
+        {"matiere": "Français / Communication Écrite", "competences": "Dissertation littéraire, contraction de texte, commentaire composé et étude de texte."},
+        {"matiere": "Philosophie", "competences": "Dissertation philosophique et explication de texte philosophique (Auteurs, notions, logique)."},
+        {"matiere": "Histoire-Géographie", "competences": "Dissertation historique, commentaire de carte/graphique et analyse documentaire du Bénin et du monde."},
+        {"matiere": "Anglais", "competences": "Compréhension écrite, expression écrite et vocabulaire thématique en Afrique et dans le monde."},
+        {"matiere": "Espagnol", "competences": "Compréhension et rédaction en langue espagnole pour les séries littéraires."},
+        {"matiere": "Allemand", "competences": "Compréhension et rédaction en langue allemande pour les séries littéraires."},
+        {"matiere": "Informatique et TIC", "competences": "Algorithmique, logique de programmation, bureautique et culture numérique au Bénin."},
+    ]
+
+    for cl in CLASSES_BENIN:
+        classe_nom = cl["classe"]
+        niveau_nom = cl["niveau"]
+        for ser in cl["series"]:
+            for mat in MATIERES_PROGRAMME:
+                nom_mat = mat["matiere"]
+                comp = mat["competences"]
+                
+                sys_prompt = f"Tu es RépétIA, un répétiteur particulier d'excellence pour le système éducatif béninois. Tu enseignes {nom_mat} en classe de {classe_nom} ({ser}, {niveau_nom}) selon le programme officiel du MESTFP (Approche Par Compétences)."
+                instruction = f"En tant que répétiteur RépétIA, donne un cours méthodique et un exercice d'entraînement corrigé pas à pas pour la classe de {classe_nom} ({ser}) en {nom_mat} (Bénin)."
+                output = f"Voici la séance de travail guidée pour la classe de **{classe_nom}** ({ser}) en **{nom_mat}** ({niveau_nom}) :\n\n" \
+                         f"**Objectif Pédagogique (Programme MESTFP)** :\n{comp}\n\n" \
+                         f"**Méthode & Rappel du Cours** :\nL'apprentissage en {nom_mat} en classe de {classe_nom} respecte la démarche APC du Bénin : analyse de la situation-problème, justification rigoureuse et conclusion claire.\n\n" \
+                         f"**Exercice d'Entraînement RépétIA** :\nTraite la situation d'évaluation étape par étape. Revois bien les définitions du programme national."
+                
+                exemples.append({
+                    "system": sys_prompt,
+                    "instruction": instruction,
+                    "output": output,
+                    "matiere": nom_mat,
+                    "niveau": f"{classe_nom} ({ser})",
+                    "theme": f"Programme officiel {classe_nom}",
+                    "source": "programme_national_benin_6e_terminale",
+                })
+
     # Intégration des exemples Hugging Face & GitHub
     try:
         from recherche.src.huggingface_scout import fabriquer_exemples_hf_et_github

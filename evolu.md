@@ -47,7 +47,34 @@ Deux règles :
 
 ---
 
-## 2026-09-02 — Exploration Datasets Hugging Face & Structuration du Modèle Souverain Éducatif
+## 2026-09-02 — Extension du Jeu de Données SFT & Entraînement Multi-Niveaux (6ème à Terminale, Toutes Séries)
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Couverture Intégrale des Niveaux du Secondaire Béninois (`recherche/src/collecte_web.py`)** : Génération systématique de paires SFT (Supervised Fine-Tuning) pour toutes les classes du secondaire : **6ème, 5ème, 4ème, 3ème (Collège / BEPC)** et **Seconde, Première, Terminale (Lycée / BAC)**.
+- **Prise en charge de Toutes les Séries & Spécialités** : Séries Littéraires (**A1, A2, B, L**) et Séries Scientifiques / Techniques (**C, D, E, F1-F4, G1-G3**).
+- **Extension des Matières** : Couverture des 10 matières principales (Mathématiques, PCT, SVT, Français/Communication Écrite, Philosophie, Histoire-Géographie, Anglais, Espagnol, Allemand, Informatique/TIC).
+- **Validation du Pipeline de Fine-Tuning (`recherche/src/entrainer_modele.py --dry-run`)** : Validation réussie de l'entraînement LoRA / ChatML sur l'ensemble du corpus étendu.
+
+Fichiers modifiés :
+- `recherche/src/collecte_web.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_collecte_web.json`
+
+**Mesures**
+- **411 exemples d'entraînement SFT souverains** unifiés (passage de 183 à **411 exemples**).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/collecte_web.py` : ✅ (`411 exemples SFT générés avec succès`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT 411 exemples réussie !`)
+- `npm run typecheck` : ✅ (0 erreur)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
 
 **Auteur** Antigravity · **Commit** non commité
 
