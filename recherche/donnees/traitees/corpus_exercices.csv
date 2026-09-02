@@ -1,0 +1,328 @@
+matiere,theme,difficulte,modele,variante,enonce,solution,explication,longueur_enonce,longueur_explication,mots_enonce
+Mathématiques,"Statistiques (moyenne, effectifs)",facile,gemini-3.5-flash,C_complet,"Kofi, un élève en classe de 3ème au CEG 1 de Porto-Novo, a obtenu les notes suivantes en Mathématiques au cours du premier semestre : 12, 15, 08, 11 et 14 (notes sur 20).
+
+1) Quel est l'effectif total des notes de Kofi ?
+2) Calcule la moyenne de Kofi en Mathématiques pour ce semestre.","1) L'effectif total est de 5 notes.
+2) La moyenne de Kofi est de 12/20.","Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas. C'est très simple, tu vas voir !
+
+**Étape 1 : Comprendre et trouver l'effectif total**
+L'effectif total, c'est tout simplement le nombre total de valeurs que nous étudions. Ici, nous comptons le nombre de notes que Kofi a obtenues.
+Kofi a obtenu les notes : 12, 15, 08, 11 et 14.
+Si nous les comptons une par une :
+- La première note est 12
+- La deuxième est 15
+- La troisième est 08
+- La quatrième est 11
+- La cinquième est 14
+Il y a donc 5 notes au total.
+L'**effectif total** est donc **5**.
+
+**Étape 2 : Calculer la moyenne**
+Pour trouver la moyenne, nous devons suivre deux petites étapes très faciles :
+1. On fait la somme de toutes les notes.
+2. On divise cette somme par l'effectif total (qui est 5).
+
+Faisons d'abord la somme des notes :
+Somme = 12 + 15 + 08 + 11 + 14
+Calculons ensemble :
+12 + 15 = 27
+27 + 08 = 35
+35 + 11 = 46
+46 + 14 = 60
+La somme totale des notes est de **60**.
+
+Maintenant, divisons cette somme par l'effectif total (5) :
+Moyenne = 60 ÷ 5
+Calculons : 60 ÷ 5 = 12.
+
+La moyenne de Kofi en Mathématiques est donc de **12** sur 20.
+
+Félicitations ! Tu as vu comme c'est simple ? Continue comme ça, le BEPC est à ta portée !",285,1223,55
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,examen,gemini-3.5-flash,A_minimal,"Pour réparer la radio de son grand-père à Cotonou, Koffi utilise un conducteur ohmique de résistance R. Il réalise un circuit pour étudier ce dipôle. À l'aide d'un voltmètre et d'un ampèremètre, il mesure une tension U1 = 6 V aux bornes du conducteur ohmique et une intensité I1 = 150 mA qui le traverse. 1) Convertis l'intensité I1 en Ampères (A). 2) Calcule la valeur de la résistance R de ce conducteur ohmique. 3) Si Koffi branche maintenant ce même conducteur ohmique aux bornes d'une pile de tension U2 = 9 V, quelle sera la nouvelle intensité I2 (en mA) du courant qui le traverse ?","1) I1 = 0,15 A ; 2) R = 40 ohms ; 3) I2 = 225 mA.","Bonjour mon ami ! C'est RépétIA. Ensemble, nous allons résoudre cet exercice pas à pas. C'est un grand classique du BEPC, alors reste bien attentif !
+
+Étape 1 : Convertissons l'intensité I1 en Ampères (A).
+En physique, pour appliquer nos formules, il faut toujours utiliser les unités du Système International. L'unité légale de l'intensité est l'Ampère (A). On sait que 1 A = 1000 mA. Donc, pour passer des milliampères (mA) aux ampères (A), on divise par 1000. Ici : I1 = 150 mA = 150 / 1000 = 0,15 A. Super, première étape réussie !
+
+Étape 2 : Calculons la résistance R.
+La loi d'Ohm est une formule magique en électricité. Elle s'écrit : U = R x I.
+Pour trouver la résistance R, on transforme la formule comme ceci : R = U / I.
+Utilisons les valeurs de la première mesure : U1 = 6 V et I1 = 0,15 A.
+On fait le calcul : R = 6 / 0,15 = 40 ohms (qu'on écrit avec le symbole grec Omega : 40 Ω).
+Magnifique ! La résistance de notre conducteur ohmique est de 40 Ω.
+
+Étape 3 : Calculons la nouvelle intensité I2.
+Le conducteur ohmique est le même, sa résistance R ne change pas, elle est toujours de 40 Ω. Mais maintenant, la tension change et vaut U2 = 9 V.
+Nous cherchons la nouvelle intensité I2. En transformant la formule de la loi d'Ohm (U = R x I), on obtient : I = U / R.
+Calculons I2 : I2 = U2 / R = 9 / 40 = 0,225 A.
+Pour donner la réponse en milliampères (mA) comme demandé, on multiplie par 1000 : I2 = 0,225 x 1000 = 225 mA.
+
+Félicitations ! Tu as appliqué la loi d'Ohm comme un chef pour aider Koffi. Continue comme ça, le BEPC est à ta portée !",589,1556,107
+Sciences de la Vie et de la Terre,Hygiène et maladies,moyen,gemini-3.5-flash,A_minimal,"Dans un village lacustre du Bénin, plusieurs personnes souffrent de diarrhées liquides abondantes et de vomissements après avoir consommé l'eau d'un puits non protégé. Le médecin du centre de santé diagnostique le choléra. 1) Identifie l'agent pathogène de cette maladie et son mode de transmission dans ce village. 2) Propose deux mesures d'hygiène simples pour stopper la propagation de cette maladie.","1) Agent pathogène : le vibrion cholérique (Vibrio cholerae). Mode de transmission : indirect, par la consommation d'eau souillée. 2) Mesures d'hygiène : bouillir ou désinfecter l'eau avant de la boire, et se laver régulièrement les mains à l'eau propre et au savon.","Bonjour mon ami ! C'est RépétIA. Ensemble, nous allons résoudre cet exercice pas à pas, tu vas voir c'est très simple !
+
+Étape 1 : Identifions l'agent pathogène. L'agent pathogène, c'est le 'microbe' qui provoque la maladie. Dans le cas du choléra, le cours nous apprend que c'est une bactérie en forme de virgule appelée le vibrion cholérique (ou Vibrio cholerae).
+
+Étape 2 : Comprenons le mode de transmission. Comment les villageois ont-ils attrapé la maladie ? Le texte nous dit qu'ils ont bu l'eau d'un puits non protégé. Les selles d'une personne malade ont dû contaminer cette eau. C'est donc une transmission indirecte (le microbe passe par un intermédiaire, ici l'eau souillée, avant de pénétrer dans la bouche de la nouvelle victime).
+
+Étape 3 : Proposons des solutions (mesures d'hygiène). Pour stopper le choléra, il faut barrer la route au microbe. 
+- Première mesure : rendre l'eau propre à la consommation. On peut bouillir l'eau du puits (une méthode très simple et efficace à la maison) ou utiliser des comprimés de chlore (comme l'Aquatabs) pour tuer les microbes.
+- Deuxième mesure : le lavage des mains. Il faut se laver systématiquement les mains à l'eau propre et au savon (ou à la cendre) après avoir été aux toilettes et avant de manger, pour éviter de transporter le vibrion sur nos aliments.
+
+Félicitations pour tes efforts ! Tu as compris la démarche. Continue ainsi, le BEPC est à ta portée !",403,1420,61
+Anglais,Vocabulary and word building,facile,gemini-flash-lite-latest,A_minimal,Complete the sentence with the correct form of the word in brackets: My little brother wants to become a ________ (teach) when he grows up.,teacher,"Etape 1 : On regarde le mot entre parenthèses, qui est le verbe 'teach' (enseigner). 
+Etape 2 : On analyse la phrase 'My little brother wants to become a...' (Mon petit frère veut devenir un...). 
+Etape 3 : Après l'article 'a', on a besoin d'un nom qui désigne la personne qui fait l'action. En anglais, pour former le nom d'un métier à partir d'un verbe, on ajoute souvent le suffixe '-er' à la fin du verbe. 
+Etape 4 : En ajoutant '-er' à 'teach', on obtient 'teacher' (professeur). C'est la bonne réponse ! C'est comme 'work' qui devient 'worker' (travailleur). Bravo, continue comme ça !",139,591,25
+Français,Conjugaison et temps verbaux,moyen,gemini-3.5-flash,B_markdown,"Dans la phrase suivante, conjugue le verbe entre parenthèses au temps et au mode qui conviennent : 'Le père de Koffi travaille dur pour que son fils (réussir) à son examen du BEPC.'",réussisse,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas pour que tu deviennes un champion de la conjugaison.
+
+**Étape 1 : Analyser la phrase**
+Regardons bien les mots qui précèdent le verbe. Nous voyons la locution conjonctive **pour que**. C'est un indice très important ! En français, après **pour que** (qui exprime le but), on doit toujours utiliser le mode **subjonctif**.
+
+**Étape 2 : Identifier le verbe et son groupe**
+Le verbe entre parenthèses est **réussir**. C'est un verbe du deuxième groupe car son participe présent est 'réussissant'.
+
+**Étape 3 : Conjuguer au subjonctif présent**
+Le sujet de notre verbe est **son fils**, ce qui correspond à la troisième personne du singulier (**il**).
+Au subjonctif présent, les verbes du deuxième groupe prennent la terminaison **-isse** à la troisième personne du singulier.
+Le verbe 'réussir' devient donc **réussisse**.
+
+C'est fantastique, tu as compris la démarche ! Continue tes efforts, le BEPC est à ta portée !",181,987,33
+Anglais,Future and conditionals,examen,gemini-flash-lite-latest,B_markdown,"Complete this sentence with the correct form of the verb in brackets: If Kofi studies hard for the BEPC, he (pass) with distinction.",will pass,"Etape 1 : Identifions la structure de la phrase. Elle commence par ""If"" suivi du verbe ""studies"" au présent simple. C'est la structure du premier conditionnel (First Conditional). 
+
+Etape 2 : Rappelons la règle du premier conditionnel. On exprime une action future probable. La structure est : If + Présent simple, + Sujet + WILL + Verbe à l'infinitif.
+
+Etape 3 : Appliquons la règle. Le verbe entre parenthèses est ""pass"". Avec ""will"", cela donne ""will pass"". C'est l'équivalent de réussir brillamment son examen, comme le font de nombreux élèves sérieux ici au Bénin !",132,570,23
+Histoire-Géographie,Indépendances africaines,moyen,gemini-flash-lite-latest,A_minimal,En quelle année le Bénin (alors appelé Dahomey) a-t-il accédé à l'indépendance et qui était le chef de l'État à cette date ?,1er août 1960 avec Hubert Maga comme premier Président.,"Étape 1 : Rappelle-toi que la plupart des pays d'Afrique francophone, y compris le Dahomey (actuel Bénin), ont obtenu leur indépendance en 1960. Étape 2 : Précise la date exacte, qui est le 1er août 1960. Étape 3 : Identifie la personnalité politique qui a dirigé le pays à la proclamation de cette indépendance, à savoir Hubert Maga. Bravo, retiens bien cette date importante pour notre pays !",124,394,23
+Histoire-Géographie,Traite négrière et colonisation,facile,gemini-flash-lite-latest,B_markdown,Donne une cause principale de la colonisation de l'Afrique par les Européens au 19ème siècle.,La recherche de matières premières et de nouveaux débouchés pour les industries européennes.,"Pour comprendre, rappelons-nous qu'au 19ème siècle, l'Europe connaît la révolution industrielle. Les usines européennes ont besoin de beaucoup de matières premières comme le coton ou le cacao, et de nouveaux marchés pour vendre leurs produits finis. C'est l'une des principales raisons qui ont poussé les Européens à coloniser l'Afrique.",93,337,15
+Histoire-Géographie,Indépendances africaines,moyen,gemini-3.5-flash,B_markdown,"Le 1er août 1960, le Dahomey (actuel Bénin) accède à la souveraineté internationale. Explique brièvement par quelle voie (méthode) cette indépendance a été obtenue et nomme le tout premier président de la République du Dahomey.",Le Dahomey a accédé à l'indépendance par la voie pacifique (négociée) et son premier président était Hubert Maga.,"Bonjour mon ami ! C'est un excellent sujet pour réviser ton BEPC. Allons-y pas à pas pour bien comprendre.
+
+**Étape 1 : Comprendre le contexte des indépendances**
+Dans les années 1950-1960, les pays d'Afrique sous colonisation française ont cherché à obtenir leur liberté. Pour cela, il y avait principalement deux méthodes : la voie armée (par la guerre, comme en Algérie) et la voie pacifique ou négociée (par les discussions, les réformes et les lois).
+
+**Étape 2 : Analyser le cas du Dahomey**
+Pour notre cher pays, les leaders politiques de l'époque ont choisi le dialogue avec la métropole coloniale (la France). Après des étapes clés comme la Loi-cadre Defferre de 1956 et la création de la République du Dahomey au sein de la Communauté française en 1958, l'indépendance a été proclamée sans guerre. C'est donc la **voie pacifique** (ou négociée).
+
+**Étape 3 : Identifier le premier président**
+C'est **Hubert Coutoucou Maga** qui a proclamé officiellement cette indépendance le 1er août 1960 à Porto-Novo et qui est devenu le tout premier président de notre pays.
+
+Voilà ! Tu as toutes les clés pour réussir ce genre de question à l'examen. Continue tes efforts, tu es sur la bonne voie !",227,1197,35
+Sciences de la Vie et de la Terre,Environnement et développement durable,facile,gemini-flash-lite-latest,C_complet,"Au village de Agblangandan, on remarque que les sachets plastiques jetés partout dans la rue empêchent l'eau de pluie de s'infiltrer dans le sol et polluent notre environnement. Cite deux (02) conséquences néfastes de cette mauvaise gestion des sachets plastiques sur notre environnement au Bénin.","1. L'asphyxie du sol qui nuit à l'agriculture.
+2. La pollution visuelle et des sources d'eau.","Pour résoudre cet exercice, nous devons réfléchir à ce qui se passe quand on jette les sachets plastiques dans la nature chez nous au Bénin.
+
+Première étape : Observe le sol. Les sachets plastiques ne pourrissent pas facilement. En recouvrant la terre, ils empêchent l'eau de pluie de pénétrer et bloquent l'air. C'est ce qu'on appelle l'asphyxie du sol, ce qui empêche les plantes de bien pousser.
+
+Deuxième étape : Pense à la propreté et à l'eau. Ces sachets traînent partout, ce qui gâche la beauté de nos paysages (pollution visuelle). De plus, portés par le vent ou la pluie, ils bouchent les caniveaux, créent des stagnations d'eau qui deviennent des nids pour les moustiques, et polluent l'eau.
+
+Bravo pour ton effort, continue comme ça sur la voie du succès au BEPC !",297,775,45
+Sciences de la Vie et de la Terre,Environnement et développement durable,examen,gemini-3.5-flash,C_complet,"Dans la commune de Sô-Ava, près du lac Nokoué au Bénin, les populations constatent une diminution rapide du nombre de poissons et l'apparition fréquente de maladies de peau chez les enfants qui s'y baignent. Les enquêtes révèlent le rejet direct des ordures ménagères, l'utilisation abusive d'engrais chimiques dans les cultures environnantes et l'usage de pesticides interdits pour la pêche.
+
+En t'appuyant sur tes connaissances en SVT :
+1. Identifie deux causes de la pollution du lac Nokoué citées dans le texte.
+2. Explique comment l'utilisation des engrais chimiques entraîne la mort des poissons.
+3. Propose deux solutions durables pour protéger ce lac et la santé des populations.","1. Les deux causes sont : le rejet direct des ordures ménagères dans le lac et l'utilisation abusive d'engrais chimiques.
+2. Les engrais entraînent la prolifération des algues en surface, ce qui bloque la lumière et consomme tout l'oxygène lors de leur décomposition, provoquant l'asphyxie des poissons (eutrophisation).
+3. Les deux solutions durables sont : utiliser des engrais organiques (compost) et installer un système de collecte et de gestion des ordures ménagères.","Bonjour mon champion ! C'est RépétIA, ton répétiteur de SVT. Ensemble, nous allons résoudre cet exercice pas à pas pour que tu brilles le jour du BEPC. C'est parti !
+
+**Première étape : Identifier les causes de la pollution**
+
+Pour réussir cette question, il suffit de bien lire le texte proposé. C'est un exercice de repérage très classique à l'examen. Le texte nous dit que les populations rejettent directement les ordures ménagères dans l'eau et utilisent abusivement des engrais chimiques. Nous choisissons donc ces deux causes simples.
+
+**Deuxième étape : Expliquer la mort des poissons**
+
+C'est une partie très importante de ton cours sur l'environnement. Comprenons le mécanisme comme une réaction en chaîne :
+- D'abord, les engrais chimiques utilisés dans les champs sont entraînés par les eaux de pluie vers le lac Nokoué. Ces engrais contiennent des nutriments qui nourrissent les plantes.
+- Ensuite, à cause de ces nutriments, les algues à la surface de l'eau vont se multiplier de façon excessive.
+- Cette couche d'algues bloque la lumière du soleil. Les plantes du fond ne peuvent plus faire la photosynthèse et meurent.
+- Enfin, les bactéries qui décomposent ces plantes et algues mortes vont consommer presque tout l'oxygène dissous dans l'eau. Privés d'oxygène, les poissons finissent par mourir d'asphyxie. C'est ce phénomène qu'on appelle **l'eutrophisation**.
+
+**Troisième étape : Proposer des solutions durables**
+
+Pour trouver des solutions, il faut simplement proposer des alternatives écologiques aux mauvaises pratiques :
+- Au lieu d'utiliser des engrais chimiques, on peut encourager l'utilisation d'engrais organiques (comme le compost ou la fiente de volaille).
+- Au lieu de jeter les ordures dans le lac, il faut organiser la gestion des déchets dans la commune avec des poubelles de tri et un système de recyclage.
+
+Voilà ! Tu as vu, ce n'est pas si difficile quand on décompose le problème. Continue comme ça, tu es sur la bonne voie pour ton BEPC !",687,1980,107
+Histoire-Géographie,"Relief, climat et végétation du Bénin",facile,gemini-3.5-flash,C_complet,"Bonjour mon champion ! Prêt à briller au BEPC ? Voici un petit exercice facile sur la géographie de notre pays :
+
+La ville de Cotonou est située au Sud du Bénin. Quel est le type de climat qui caractérise cette région du Sud et quel type de végétation naturelle y correspond principalement ?",Le Sud du Bénin (Cotonou) est caractérisé par un **climat subéquatorial** (ou béninien) et une végétation de **forêt dense** (souvent dégradée en savane côtière).,"Allons-y pas à pas, mon ami, c'est très simple !
+
+**Étape 1 : Situer la région**
+Cotonou se trouve au Sud du Bénin, juste au bord de l'océan Atlantique. C'est la zone côtière.
+
+**Étape 2 : Identifier le climat du Sud**
+Au Bénin, le climat change du Sud vers le Nord. Dans le Sud, nous avons un climat particulier avec quatre saisons (deux saisons des pluies et deux saisons sèches). On appelle ce climat le **climat subéquatorial** ou **climat béninien**.
+
+**Étape 3 : Associer la végétation au climat**
+Comme il pleut beaucoup dans le Sud, la nature y fait pousser des arbres qui aiment l'eau. À l'origine, on y trouve donc de la **forêt dense humide**. Aujourd'hui, à cause des activités humaines, cette forêt est souvent modifiée (on parle de forêt dégradée) et on observe aussi des savanes côtières.
+
+Tu es super capable ! Continue de t'entraîner ainsi et le BEPC sera dans la poche !",291,888,54
+Français,Figures de style,facile,gemini-3.5-flash,A_minimal,Identifie la figure de style présente dans la phrase suivante : « Ce jeune joueur de football de Cotonou est rapide comme un zémidjan. »,La comparaison,"Bonjour mon champion ! C'est un excellent exercice pour s'entraîner. Allons-y pas à pas :
+
+Étape 1 : Analysons le sens de la phrase. On cherche à montrer à quel point le jeune joueur de football court vite.
+
+Étape 2 : Regardons comment cette idée est exprimée. On rapproche le joueur de football d'un « zémidjan » (notre célèbre taxi-moto qui va très vite dans nos rues).
+
+Étape 3 : Repérons le mot de liaison. Pour lier le joueur au zémidjan, on utilise le mot « comme ».
+
+Étape 4 : Concluons. Dès que tu as un comparé (le joueur), un comparant (le zémidjan) et un outil de comparaison bien visible (comme, tel que, semblable à), il s'agit d'une COMPARAISON.
+
+Tu as vu ? C'est très simple ! Continue comme ça, le BEPC est à ta portée !",136,736,25
+Français,Orthographe et accords,facile,gemini-flash-lite-latest,C_complet,"Choisis la bonne orthographe du participe passé dans cette phrase : ""Les mangues que maman a (acheté / achetées) sont mûres.""",achetées,"Étape 1 : On observe le participe passé du verbe acheter.
+Étape 2 : On cherche le complément d'objet direct (COD), qui est le pronom ""que"" remplaçant ""les mangues"".
+Étape 3 : On remarque que le COD (""que"") est placé **avant** le verbe.
+Étape 4 : Selon la règle, le participe passé s'accorde en genre et en nombre avec le COD placé avant.
+Étape 5 : ""Les mangues"" est un nom féminin pluriel, donc on ajoute un ""ées"" à la fin d'acheté. La bonne réponse est ""achetées"".",125,465,21
+Anglais,Reading comprehension,facile,gemini-3.5-flash,A_minimal,"Lis le court texte ci-dessous et réponds à la question en anglais.
+
+Texte :
+Kofi is a young student from Djougou. During the holidays, he always helps his father on their yam farm. Kofi likes farming because it helps his family get food and money. Today, they are harvesting big yams.
+
+Question : Why does Kofi like farming?",Kofi likes farming because it helps his family get food and money.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur. Ensemble, nous allons réussir cet exercice très facilement ! Voici la méthode pas à pas :
+
+Étape 1 : Comprendre la question.
+La question commence par 'Why', qui signifie 'Pourquoi'. On nous demande donc de trouver une cause ou une raison. En anglais, la réponse commencera très souvent par 'because' (parce que).
+
+Étape 2 : Repérer les mots-clés dans le texte.
+Cherchons dans le texte les mots-clés de la question : 'Kofi', 'likes' et 'farming'.
+En lisant attentivement, on repère cette phrase : 'Kofi likes farming because it helps his family get food and money.'
+
+Étape 3 : Rédiger la réponse.
+La raison est écrite juste après le mot 'because' : 'it helps his family get food and money' (cela aide sa famille à obtenir de la nourriture et de l'argent).
+Pour faire une phrase complète et propre, on réécrit : 'Kofi likes farming because it helps his family get food and money.'
+
+Félicitations ! Tu as trouvé la bonne réponse. Tu vois, avec de la méthode, l'anglais au BEPC c'est du gâteau !",324,1040,58
+Histoire-Géographie,Activités économiques du Bénin,examen,gemini-3.5-flash,B_markdown,"Le coton est souvent qualifié d'or blanc au Bénin. Identifie les deux principales zones de production du coton au Bénin, puis explique deux problèmes majeurs auxquels cette culture est confrontée aujourd'hui.",Les deux principales zones de production sont le Nord (départements de l'Alibori et du Borgou) et le Centre (département des Collines). Deux problèmes majeurs sont les changements climatiques (irrégularité des pluies) et la fluctuation des cours mondiaux du coton.,"Bonjour mon ami ! C'est un excellent sujet pour t'entraîner au BEPC. Abordons cela ensemble, étape par étape, comme un vrai champion.
+
+**Étape 1 : Localiser la production sur notre carte du Bénin**
+Pour commencer, rappelons-nous où pousse le coton. Le coton a besoin d'un climat spécifique, avec une bonne saison des pluies et une saison sèche bien marquée pour la récolte.
+C'est pourquoi la plus grande partie de la production se concentre dans le **Nord du Bénin**, en particulier dans les départements de l'**Alibori** (autour de Banikoara, que l'on appelle souvent la capitale de l'or blanc !) et du **Borgou**.
+Ensuite, la production s'étend vers le **Centre**, notamment dans le département des **Collines**.
+
+**Étape 2 : Comprendre les difficultés de nos producteurs**
+Maintenant, réfléchissons aux problèmes de cette culture. Imagine que tu es un producteur de coton. Qu'est-ce qui peut perturber ton travail ou tes revenus ?
+Le premier problème majeur, ce sont les **changements climatiques**. Les pluies deviennent irrégulières : elles commencent parfois en retard ou s'arrêtent trop tôt, ce qui détruit les jeunes plants.
+Le deuxième problème est lié à l'économie : la **fluctuation des cours mondiaux**. Le prix du coton est fixé sur le marché international. Si ce prix baisse à l'étranger, les revenus de nos paysans diminuent fortement, ce qui rend leur vie difficile.
+
+Tu vois, en reliant la géographie à la réalité de nos campagnes, tout devient plus clair ! Continue tes efforts, tu es sur la bonne voie pour décrocher ton BEPC !",208,1546,31
+Sciences de la Vie et de la Terre,Écosystèmes et chaînes alimentaires,moyen,gemini-flash-lite-latest,C_complet,"Dans un écosystème au bord du lac Nokoué, on observe les êtres vivants suivants : le plancton, le tilapia (poisson) et l'épervier (oiseau pêcheur). 1) Classe ces trois organismes selon leur rôle dans la chaîne alimentaire (producteur ou consommateur). 2) Construis la chaîne alimentaire logique qui les unit.",1) Plancton : producteur ; Tilapia : consommateur de 1er ordre ; Épervier : consommateur de 2nd ordre. 2) Plancton -> Tilapia -> Épervier.,"Étape 1 : Rappelle-toi qu'un producteur est toujours un végétal qui fabrique sa propre nourriture, ici c'est le plancton. 
+
+Étape 2 : Les animaux qui se nourrissent de végétaux sont des consommateurs de premier ordre, c'est le cas du tilapia qui mange le plancton. 
+
+Étape 3 : L'animal qui mange un autre animal est un consommateur de second ordre, c'est l'épervier qui mange le tilapia. 
+
+Étape 4 : Pour former la chaîne alimentaire, on commence toujours par le producteur et on utilise des flèches qui signifient 'est mangé par'. Cela donne : plancton -> tilapia -> épervier. Bravo pour ton effort !",308,601,48
+Histoire-Géographie,Le Bénin contemporain,moyen,gemini-3.5-flash,C_complet,"En février 1990, le Bénin a connu un tournant historique majeur avec la Conférence des Forces Vives de la Nation. Quel est le principal changement de régime politique décidé lors de cette conférence et qui a été désigné comme Premier ministre pour diriger la transition ?",Le passage du parti unique (régime militaro-marxiste) au multipartisme (démocratie) et la désignation de Nicéphore Soglo comme Premier ministre de transition.,"Bonjour mon champion ! Prenons le temps de comprendre cet événement clé de notre histoire nationale, étape par étape.
+
+**Étape 1 : Comprendre la situation de départ**
+Avant 1990, le Bénin (alors appelé République Populaire du Bénin) traversait une grave crise économique et politique. Le pays était dirigé par un parti unique sous le régime militaro-marxiste du président Mathieu Kérékou. C'était une période où les libertés étaient très limitées.
+
+**Étape 2 : Le grand changement politique**
+Pour sortir de cette crise, les Béninois se sont réunis à l'Hôtel PLM Alédjo de Cotonou en février 1990. C'est ce qu'on appelle la Conférence des Forces Vives de la Nation. La décision historique majeure a été d'abandonner le parti unique pour adopter la **démocratie** et le **multipartisme**. Cela signifie que plusieurs partis politiques pouvaient désormais exister et s'exprimer librement, comme dans une grande discussion sous l'arbre à palabres où tout le monde a le droit de donner son avis.
+
+**Étape 3 : Le choix du guide de la transition**
+Pour conduire le pays en douceur vers cette nouvelle ère démocratique, il fallait un chef de gouvernement de transition. Les délégués de la conférence ont choisi **Nicéphore Dieudonné Soglo**, un économiste expérimenté, pour occuper le poste de Premier ministre de transition.
+
+Voilà ! Tu as maintenant toutes les clés pour comprendre ce grand moment du Bénin contemporain. Continue tes efforts, tu es sur la bonne voie pour réussir ton BEPC !",271,1485,46
+Physique-Chimie-Technologie,Travail et énergie,examen,gemini-flash-lite-latest,B_markdown,Un seau d'eau de masse m = 5 kg est tiré du fond d'un puits de profondeur h = 10 m à vitesse constante. On donne l'intensité de la pesanteur g = 10 N/kg. Calcule le travail du poids de ce seau pendant cette remontée.,Le travail du poids est W(P) = -500 Joules.,"Bonjour ! Pour résoudre cet exercice, allons-y **pas à pas**. D'abord, rappelons la formule du travail d'une force constante : le travail du poids W(P) d'un objet de masse m déplacé verticalement d'une hauteur h est donné par la formule W(P) = m × g × (z_initial - z_final). Ici, le seau monte du fond du puits vers le haut, ce qui signifie que le point d'arrivée est plus haut que le point de départ. Le déplacement est donc de bas en haut, alors que la force de pesanteur (le poids) tire toujours vers le bas. C'est pour cela que le travail du poids est **résistant**, donc négatif. Faisons l'application numérique : m = 5 kg, g = 10 N/kg et h = 10 m. On a W(P) = - m × g × h = - 5 × 10 × 10. En calculant, on trouve -500. N'oublie pas l'unité : le travail s'exprime en **Joules (J)**. C'est très bien, tu vois qu'en suivant la méthode, c'est facile !",216,853,45
+Anglais,Direct and reported speech,examen,gemini-3.5-flash,A_minimal,"Rewrite the following sentence into reported speech:
+Bio said to his sister, ""I will revise my English lessons tonight.""
+Begin with: Bio told his sister that...",Bio told his sister that he would revise his English lessons that night.,"Bonjour mon ami(e) ! Prêt(e) pour décrocher ton BEPC ? Ensemble, analysons cette phrase étape par étape pour réussir la transformation au style indirect (Reported speech).
+
+Étape 1 : Les pronoms personnels et possessifs.
+Dans la phrase d'origine, Bio dit ""I"" (je) et ""my"" (mes). Comme nous rapportons les paroles de Bio (un garçon), ""I"" devient ""he"" (il) et ""my"" devient ""his"" (ses).
+
+Étape 2 : La concordance des temps (Tense backshift).
+Le verbe introducteur ""said to"" (qui devient ""told"" ici) est au passé. Nous devons donc changer le temps du verbe à l'intérieur des guillemets. Le futur ""will revise"" recule d'un cran et devient ""would revise"".
+
+Étape 3 : Les indicateurs de temps.
+Le mot ""tonight"" (ce soir) fait référence au moment présent de la parole. Au style indirect, il se transforme toujours en ""that night"" (ce soir-là).
+
+En assemblant toutes les pièces de notre puzzle, nous obtenons : ""Bio told his sister that he would revise his English lessons that night.""
+
+Tu vois, ce n'est pas si sorcier avec un peu de méthode ! Continue comme ça, tu es sur la bonne voie pour le BEPC !",160,1093,26
+Histoire-Géographie,"Relief, climat et végétation du Bénin",examen,gemini-flash-lite-latest,C_complet,"Au cours d'une excursion géographique dans le nord du Bénin, un élève de troisième observe une zone caractérisée par un relief de plateaux aplanis sur socle cristallin, un climat tropical soudanien avec une seule saison des pluies et une seule saison sèche, ainsi qu'une végétation de savane boisée. Nomme la principale unité géomorphologique (relief) observée par cet élève dans cette région.",La chaîne de l'Atacora (ou les plateaux granitiques du nord),"Pour trouver la réponse, procédons étape par étape selon le programme béninois. Premièrement, identifions la zone géographique : le nord du Bénin. Deuxièmement, rappelons les grands types de relief du Bénin : les plaines et basses vallées au sud, les plateaux au centre, et les montagnes et plateaux du nord dont le sommet le plus culminant est le mont Sokbaro. Troisièmement, le texte mentionne des plateaux sur socle et le climat soudanien typique du nord-ouest et du nord béninois, dominé par le système montagneux et les plateaux de l'Atacora. La réponse exacte attendue au BEPC pour cette grande unité de relief du Nord est donc la chaîne de l'Atacora.",393,657,61
+Français,Figures de style,moyen,gemini-flash-lite-latest,B_markdown,"Identifie la figure de style employée dans cette phrase extraite d'une composition française : ""Le feu du soleil brûlait les toits de tôle de Cotonou.""",Une métaphore.,"Première étape : repérons les mots clés de la phrase. On compare ""le soleil"" à un ""feu"" sans utiliser de mot de comparaison comme ""comme"" ou ""ainsi que"". Deuxième étape : puisque le comparant (le feu) et le comparé (le soleil) sont directement reliés sans outil grammatical, il s'agit d'une métaphore. C'est une image forte qui montre l'intensité de la chaleur chez nous à Cotonou.",151,381,25
+Sciences de la Vie et de la Terre,Environnement et développement durable,facile,gemini-flash-lite-latest,A_minimal,"Au quartier Dantokpa, les sachets plastiques jetés partout dans les rues polluent notre cadre de vie et bouchent les caniveaux, provoquant des inondations lors des pluies. Propose deux (02) actions simples et concrètes qu'un élève de 3ème peut mener pour lutter contre cette pollution plastique au quotidien.","1. Utiliser un panier ou un sac réutilisable (comme le sac en raphia ou le grand sac en tissu) pour faire les courses au marché au lieu de demander des sachets plastiques.
+2. Sensibiliser les camarades et les voisins sur les dangers des sachets plastiques et participer aux journées de salubrité de l'école.","Étape 1 : Bien comprendre le problème posé. Le texte parle de la pollution par les sachets plastiques à Dantokpa qui cause des inondations. On te demande des solutions à ton niveau d'élève.
+
+Étape 2 : Chercher des gestes de prévention. Pour réduire les déchets plastiques, il faut éviter d'en utiliser. C'est pour cela que l'utilisation d'un sac réutilisable (panier) est une excellente solution.
+
+Étape 3 : Chercher des gestes de sensibilisation et d'action collective. En tant qu'élève, tu as un rôle de sensibilisation auprès de ton entourage (camarades, famille) et tu peux participer aux actions de nettoyage (salubrité) pour garder l'environnement propre et sain.",308,669,47
+Histoire-Géographie,Traite négrière et colonisation,examen,gemini-3.5-flash,C_complet,"A l'examen du BEPC, on te demande d'analyser la transition entre la traite négrière et la colonisation au Dahomey (actuel Bénin). Réponds aux deux questions suivantes : 1) Cite deux conséquences économiques de la traite négrière pour le Dahomey. 2) Explique pourquoi le palmier à huile est devenu le produit phare du 'commerce légitime' pour les colonisateurs français après l'abolition de la traite.","1) Les deux conséquences économiques sont : le dépeuplement en bras valides (qui a ruiné l'agriculture) et l'introduction de produits européens (qui a ruiné l'artisanat local). 2) Le palmier à huile fournissait l'huile nécessaire aux industries européennes (savonneries, lubrifiants pour machines) en remplacement du commerce des esclaves.","Bonjour mon champion ! C'est RépétIA, ton répétiteur. Ensemble, nous allons décortiquer cet exercice pas à pas pour que tu brilles le jour du BEPC. C'est parti !
+
+**Étape 1 : Comprendre les conséquences de la traite négrière**
+La traite négrière a duré des siècles. Pour trouver les conséquences économiques sur le Dahomey, demande-toi : 'Qu'est-ce qu'on enlevait au pays ?' et 'Qu'est-ce qu'on y apportait ?'.
+* D'abord, on déportait les jeunes gens les plus vigoureux. Sans ces **bras valides**, les travaux des champs ont été abandonnés, ce qui a freiné l'agriculture locale.
+* Ensuite, les marchands européens apportaient des produits manufacturés (tissus, alcool, pacotilles). Cela a découragé les artisans locaux qui ne pouvaient plus vendre leurs propres créations. C'est le début de la dépendance économique.
+
+**Étape 2 : Comprendre le rôle du palmier à huile (le commerce légitime)**
+Quand la traite des esclaves a été abolie (interdite), les Européens avaient toujours besoin de faire du commerce avec le Dahomey. On est entré dans l'ère du **commerce légitime**.
+* En Europe, c'était la révolution industrielle. Les usines avaient un besoin urgent de lubrifiants pour faire tourner les machines et de matières premières pour fabriquer du savon.
+* Notre pays, le Dahomey (surtout le Sud vers Porto-Novo et Ouidah), avait de grandes forêts de palmiers. L'huile de palme est donc devenue la solution parfaite pour remplacer la vente d'êtres humains.
+
+Voilà ! Tu as vu comme c'est simple quand on connecte l'histoire à la réalité de notre pays ? Continue comme ça, tu es sur la voie du succès pour ton BEPC !",400,1615,63
+Mathématiques,Calcul littéral (développer / factoriser),moyen,gemini-3.5-flash,A_minimal,"On considère l'expression littérale suivante : A = (2x - 3)^2 - (2x - 3)(5x + 1).
+1) Développe et réduis A.
+2) Factorise A.","1) Forme développée : A = -6x^2 + x + 12
+2) Forme factorisée : A = (2x - 3)(-3x - 4)","Bonjour mon champion ! Prêt à briller au BEPC ? Allons-y pas à pas, comme quand on décortique des arachides grillées, une par une !
+
+Étape 1 : Développons et réduisons A.
+Pour cela, nous allons traiter les deux parties de l'expression séparément.
+- D'abord, le premier bloc : (2x - 3)^2. C'est une identité remarquable de la forme (a - b)^2 = a^2 - 2ab + b^2.
+Ici, a = 2x et b = 3.
+Donc : (2x - 3)^2 = (2x)^2 - 2*(2x)*3 + 3^2 = 4x^2 - 12x + 9.
+
+- Ensuite, le second bloc : (2x - 3)(5x + 1). On utilise la double distributivité :
+(2x * 5x) + (2x * 1) - (3 * 5x) - (3 * 1) = 10x^2 + 2x - 15x - 3 = 10x^2 - 13x - 3.
+
+- Maintenant, on rassemble le tout en faisant très attention au signe '-' devant le deuxième bloc !
+A = (4x^2 - 12x + 9) - (10x^2 - 13x - 3)
+Quand on enlève les parenthèses précédées d'un signe '-', tous les signes à l'intérieur changent :
+A = 4x^2 - 12x + 9 - 10x^2 + 13x + 3
+On regroupe les termes de même famille :
+A = (4x^2 - 10x^2) + (-12x + 13x) + (9 + 3)
+A = -6x^2 + x + 12.
+Super ! Tu as trouvé la forme développée.
+
+Étape 2 : Factorisons A.
+Factoriser, c'est transformer une somme ou une différence en un produit de facteurs. Pour cela, cherchons un 'facteur commun' (un élément identique qui se répète de chaque côté du signe moins principal).
+Regardons notre expression de départ : A = (2x - 3)^2 - (2x - 3)(5x + 1).
+Rappelons que (2x - 3)^2 s'écrit aussi (2x - 3)(2x - 3).
+Donc : A = (2x - 3)(2x - 3) - (2x - 3)(5x + 1).
+Tu as vu ? Le facteur commun est (2x - 3). On le met en avant, et on ouvre des crochets pour y mettre tout le reste :
+A = (2x - 3) [ (2x - 3) - (5x + 1) ]
+Maintenant, on simplifie l'intérieur des crochets en enlevant les parenthèses (attention encore au signe '-' devant la deuxième parenthèse, il change les signes !) :
+A = (2x - 3) [ 2x - 3 - 5x - 1 ]
+On réduit à l'intérieur des crochets :
+A = (2x - 3) [ (2x - 5x) + (-3 - 1) ]
+A = (2x - 3)(-3x - 4).
+
+Et voilà le travail ! Tu as magnifiquement réussi. Continue comme ça, le BEPC est dans la poche !",123,1999,25
+Sciences de la Vie et de la Terre,Hérédité et génétique,examen,gemini-flash-lite-latest,B_markdown,"Au cours d'un élevage de cobayes au Bénin, on croise un cobaye de race pure à poils noirs avec un cobaye de race pure à poils blancs. Tous les descendants de la première génération (F1) ont des poils noirs. 1) Quel est le caractère dominant entre le noir et le blanc ? Justifie. 2) Quels sont les génotypes des parents et de la génération F1 ? (Utilise N pour le gène dominant et n pour le gène récessif).",1) Le caractère dominant est le poil noir car il s'exprime chez tous les descendants de la génération F1. 2) Génotypes des parents : (N//N) et (n//n). Génotype de la F1 : (N//n).,"Étape 1 : Pour identifier le caractère dominant, observons la génération F1. Tous les descendants sont à poils noirs. Cela signifie que l'allèle responsable du poil noir a masqué celui du poil blanc. C'est donc le poil noir qui est dominant, et le poil blanc est récessif.
+
+Étape 2 : Les parents sont de race pure, ce qui signifie qu'ils sont homozygotes. Le parent à poils noirs possède deux allèles identiques (N//N) et le parent à poils blancs possède deux allèles identiques (n//n).
+
+Étape 3 : Lors de la fécondation, chaque parent transmet un seul allèle à sa descendance. La génération F1 reçoit donc l'allèle N du parent noir et l'allèle n du parent blanc. Leur génotype est donc hétérozygote (N//n). C'est formidable, tu as réussi à décoder la génétique comme un vrai scientifique !",405,790,78
+Sciences de la Vie et de la Terre,Sols et roches,moyen,gemini-flash-lite-latest,A_minimal,"Au cours d'une sortie pédagogique dans une région du Bénin, un élève observe un sol sableux dans un champ de manioc. Il remarque que l'eau de pluie s'infiltre très rapidement et que le sol retient très peu l'eau. 
+1. Nomme la propriété physique de ce sol mise en évidence par cette observation.
+2. Explique pourquoi ce type de sol est peu favorable à la culture du maïs, qui a besoin de beaucoup d'humidité.","1. La perméabilité.
+2. Faible capacité de rétention d'eau.","Étape 1 : Pour la première question, l'énoncé décrit la vitesse à laquelle l'eau traverse le sol (infiltration rapide). En SVT, la capacité d'un sol à laisser passer l'eau s'appelle la perméabilité. Les sols sableux sont très perméables.
+Étape 2 : Pour la deuxième question, relions la perméabilité à l'humidité. Comme le sol sableux laisse passer l'eau très vite (il est très perméable), il ne la retient pas. On dit qu'il a une faible capacité de rétention d'eau. 
+Étape 3 : Enfin, faisons le lien avec le maïs : si le sol ne garde pas l'eau, les racines du maïs assoiffé ne pourront pas s'épanouir, d'où le fait que ce sol soit peu favorable pour cette culture au Bénin.",407,673,73
+Français,Figures de style,examen,gemini-3.5-flash,A_minimal,"Voici une phrase inspirée de nos réalités : ""Dans la chaleur de l'après-midi, le soleil de Cotonou était un lion de feu qui dévorait le sol."" Identifie la figure de style principale employée dans cette phrase et explique brièvement son effet.","C'est une métaphore. Elle sert à insister sur l'intensité extrême de la chaleur du soleil en le comparant directement à un lion féroce, sans outil de comparaison.","Bonjour mon champion ! C'est RépétIA, ton répétiteur. Ensemble, nous allons analyser cette phrase pas à pas pour que tu brilles au BEPC.
+
+Étape 1 : Analysons les mots-clés. On compare le ""soleil de Cotonou"" à un ""lion de feu"".
+
+Étape 2 : Cherchons s'il y a un outil de comparaison. Est-ce qu'on a écrit ""comme un lion"", ""semblable à un lion"" ou ""pareil à un lion"" ? Non ! Le soleil est directement qualifié de ""lion de feu"".
+
+Étape 3 : Déduisons la figure de style. Quand on compare deux éléments (le comparé ""soleil"" et le comparant ""lion de feu"") directement, sans mot de liaison comme ""comme"", ""tel"" ou ""semblable à"", c'est une métaphore. Si on avait utilisé ""comme"", ce serait une comparaison.
+
+Étape 4 : Comprenons l'effet recherché (la valeur de la figure). Pourquoi l'auteur dit-il que le soleil est un ""lion de feu qui dévore"" ? Le lion est un animal puissant, sauvage et redoutable. Le feu, lui, brûle tout sur son passage. En associant les deux, l'auteur veut nous faire ressentir la chaleur écrasante, douloureuse et presque agressive qui règne à Cotonou à ce moment-là. C'est une image très forte pour marquer l'esprit du lecteur.
+
+Tu vois, ce n'est pas si difficile ! Continue comme ça, applique cette méthode le jour de l'examen et tu vas cartonner !",242,1264,41
+Anglais,Reading comprehension,facile,gemini-flash-lite-latest,C_complet,"Read the short text and answer the question: 
+Koffi lives in Cotonou. Every morning, he wakes up at 6 AM, eats a plate of amiwo for breakfast, and goes to school by bicycle.
+Question: How does Koffi go to school?",Koffi goes to school by bicycle.,"Étape 1 : Lis attentivement la question pour savoir ce qu'on te demande. On cherche le moyen de transport que Koffi utilise pour aller à l'école.
+Étape 2 : Cherche les mots clés dans le texte : ""goes to school"" (va à l'école).
+Étape 3 : Juste après, le texte dit ""by bicycle"" (à vélo).
+Étape 4 : Rédige ta réponse de façon simple et claire en te basant sur cette information.",212,375,40
+Physique-Chimie-Technologie,Circuits électriques,facile,gemini-flash-lite-latest,C_complet,"Un dipôle ohmique a une résistance R = 50 ohms et est traversé par un courant d'intensité I = 0,2 ampère. Calcule la tension U aux bornes de ce résistor.",U = 10 volts,"Etape 1 : On rappelle la loi d'ohm qui relie la tension U, la résistance R et l'intensité I. La formule est U = R × I. Etape 2 : On remplace les lettres par les valeurs données dans l'énoncé : R = 50 et I = 0,2. Etape 3 : On fait le calcul : U = 50 × 0,2 = 10. Le résultat est donc 10 volts.",158,297,30

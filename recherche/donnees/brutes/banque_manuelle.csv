@@ -1,0 +1,448 @@
+matiere,theme,difficulte,origine,enonce,solution,explication
+"Mathématiques","Équations du 1er degré","facile","banque_manuelle","Résous l'équation : x + 7 = 12.","x = 5","On veut isoler x, c'est-à-dire le laisser seul d'un côté du signe =.
+
+1) On part de : x + 7 = 12
+2) On retire 7 des deux côtés (ce qu'on fait d'un côté, on le fait de l'autre) :
+   x + 7 - 7 = 12 - 7
+3) On simplifie : x = 5
+
+Vérification : 5 + 7 = 12. C'est bien vrai, donc x = 5."
+"Mathématiques","Équations du 1er degré","moyen","banque_manuelle","Résous l'équation : 3x - 5 = 16.","x = 7","1) On part de : 3x - 5 = 16
+2) On ajoute 5 des deux côtés :
+   3x - 5 + 5 = 16 + 5
+   3x = 21
+3) On divise les deux côtés par 3 :
+   x = 21 ÷ 3
+   x = 7
+
+Vérification : 3 × 7 - 5 = 21 - 5 = 16. C'est juste."
+"Mathématiques","Équations du 1er degré","examen","banque_manuelle","Résous l'équation : 5(x - 2) = 2x + 11.","x = 7","1) On développe le membre de gauche :
+   5(x - 2) = 5x - 10
+   L'équation devient : 5x - 10 = 2x + 11
+2) On regroupe les x à gauche : on retire 2x des deux côtés
+   5x - 2x - 10 = 11
+   3x - 10 = 11
+3) On ajoute 10 des deux côtés :
+   3x = 21
+4) On divise par 3 :
+   x = 7
+
+Vérification : 5(7 - 2) = 5 × 5 = 25 et 2 × 7 + 11 = 14 + 11 = 25. Les deux membres sont égaux."
+"Mathématiques","Calcul littéral (développer / factoriser)","facile","banque_manuelle","Développe l'expression : A = 3(x + 4).","A = 3x + 12","Développer, c'est enlever les parenthèses en multipliant le facteur devant par CHAQUE terme à l'intérieur.
+
+1) A = 3(x + 4)
+2) On multiplie 3 par x, puis 3 par 4 :
+   A = 3 × x + 3 × 4
+3) On calcule : A = 3x + 12"
+"Mathématiques","Calcul littéral (développer / factoriser)","moyen","banque_manuelle","Développe et réduis : B = (x + 3)(x - 5).","B = x² - 2x - 15","On utilise la double distributivité : chaque terme de la première parenthèse multiplie chaque terme de la seconde.
+
+1) B = x × x + x × (-5) + 3 × x + 3 × (-5)
+2) B = x² - 5x + 3x - 15
+3) On réduit les termes semblables (-5x et +3x) :
+   -5x + 3x = -2x
+4) B = x² - 2x - 15"
+"Mathématiques","Calcul littéral (développer / factoriser)","examen","banque_manuelle","Factorise l'expression : C = x² - 9.","C = (x - 3)(x + 3)","On reconnaît une identité remarquable : a² - b² = (a - b)(a + b).
+
+1) C = x² - 9
+2) On écrit 9 comme un carré : 9 = 3²
+   Donc C = x² - 3²
+3) Ici a = x et b = 3, donc :
+   C = (x - 3)(x + 3)
+
+Vérification en développant : (x - 3)(x + 3) = x² + 3x - 3x - 9 = x² - 9."
+"Mathématiques","Théorème de Thalès","facile","banque_manuelle","Dans un triangle ABC, M est un point de [AB] et N un point de [AC] tels que (MN) est parallèle à (BC).
+On donne AM = 3 cm, AB = 9 cm et BC = 12 cm.
+Calcule MN.","MN = 4 cm","Comme (MN) est parallèle à (BC), le théorème de Thalès donne :
+   AM/AB = AN/AC = MN/BC
+
+1) On utilise AM/AB = MN/BC
+2) On remplace : 3/9 = MN/12
+3) On simplifie 3/9 = 1/3
+4) Donc MN/12 = 1/3, ce qui donne MN = 12 ÷ 3
+5) MN = 4 cm"
+"Mathématiques","Théorème de Thalès","moyen","banque_manuelle","Dans un triangle ABC, M ∈ [AB] et N ∈ [AC] avec (MN) parallèle à (BC).
+On donne AM = 4 cm, AB = 10 cm et AN = 6 cm.
+Calcule AC.","AC = 15 cm","Le théorème de Thalès donne : AM/AB = AN/AC
+
+1) On remplace : 4/10 = 6/AC
+2) On fait le produit en croix : 4 × AC = 10 × 6
+3) 4 × AC = 60
+4) AC = 60 ÷ 4
+5) AC = 15 cm"
+"Mathématiques","Théorème de Thalès","examen","banque_manuelle","Dans un triangle ABC, M ∈ [AB] et N ∈ [AC] avec (MN) parallèle à (BC).
+On donne AM = 2,5 cm, MB = 3,5 cm et MN = 4,5 cm.
+Calcule BC.","BC = 10,8 cm","1) On calcule d'abord AB. M est sur [AB] donc :
+   AB = AM + MB = 2,5 + 3,5 = 6 cm
+2) Le théorème de Thalès donne : AM/AB = MN/BC
+3) On remplace : 2,5/6 = 4,5/BC
+4) Produit en croix : 2,5 × BC = 6 × 4,5 = 27
+5) BC = 27 ÷ 2,5
+6) BC = 10,8 cm"
+"Mathématiques","Théorème de Pythagore","facile","banque_manuelle","ABC est un triangle rectangle en A.
+On donne AB = 3 cm et AC = 4 cm.
+Calcule la longueur BC.","BC = 5 cm","Le triangle est rectangle en A, donc [BC] est l'hypoténuse (le côté opposé à l'angle droit).
+Le théorème de Pythagore dit : BC² = AB² + AC²
+
+1) BC² = 3² + 4²
+2) BC² = 9 + 16
+3) BC² = 25
+4) BC = √25 = 5 cm"
+"Mathématiques","Théorème de Pythagore","moyen","banque_manuelle","ABC est un triangle rectangle en A.
+On donne BC = 13 cm et AB = 5 cm.
+Calcule AC.","AC = 12 cm","Le triangle est rectangle en A, donc l'hypoténuse est [BC].
+Pythagore : BC² = AB² + AC²
+
+1) On remplace : 13² = 5² + AC²
+2) 169 = 25 + AC²
+3) On isole AC² : AC² = 169 - 25
+4) AC² = 144
+5) AC = √144 = 12 cm
+
+Attention : ici on cherche un côté de l'angle droit, donc on SOUSTRAIT."
+"Mathématiques","Théorème de Pythagore","examen","banque_manuelle","Un triangle ABC a pour dimensions AB = 6 cm, AC = 8 cm et BC = 10 cm.
+Ce triangle est-il rectangle ? Si oui, précise en quel sommet.","Oui, il est rectangle en A.","On utilise la réciproque du théorème de Pythagore.
+
+1) On repère le plus grand côté : BC = 10 cm. S'il y a un angle droit, il est opposé à ce côté, donc en A.
+2) On calcule séparément les deux membres :
+   BC² = 10² = 100
+   AB² + AC² = 6² + 8² = 36 + 64 = 100
+3) On compare : BC² = AB² + AC² (100 = 100)
+4) D'après la réciproque du théorème de Pythagore, le triangle ABC est rectangle en A."
+"Mathématiques","Trigonométrie (triangle rectangle)","facile","banque_manuelle","ABC est un triangle rectangle en A.
+On donne AB = 4 cm et BC = 8 cm.
+Calcule cos(ABC), puis déduis la mesure de l'angle ABC.","cos(ABC) = 0,5 donc l'angle ABC mesure 60°.","Dans le triangle rectangle en A, pour l'angle en B :
+   - le côté adjacent est [AB]
+   - l'hypoténuse est [BC]
+
+1) Formule : cos(angle) = adjacent / hypoténuse
+2) cos(ABC) = AB/BC = 4/8
+3) cos(ABC) = 0,5
+4) On cherche l'angle dont le cosinus vaut 0,5 : c'est 60°.
+   (À la calculatrice : touche cos⁻¹ ou Arccos de 0,5.)
+
+Moyen mnémotechnique : SOH-CAH-TOA — Cosinus = Adjacent/Hypoténuse."
+"Mathématiques","Trigonométrie (triangle rectangle)","moyen","banque_manuelle","ABC est un triangle rectangle en A.
+L'angle ABC mesure 30° et BC = 10 cm.
+Calcule AC.","AC = 5 cm","Pour l'angle en B dans le triangle rectangle en A :
+   - le côté opposé est [AC]
+   - l'hypoténuse est [BC]
+
+1) On utilise le sinus : sin(angle) = opposé / hypoténuse
+2) sin(30°) = AC/BC
+3) On sait que sin(30°) = 0,5
+4) Donc 0,5 = AC/10
+5) AC = 0,5 × 10 = 5 cm"
+"Mathématiques","Trigonométrie (triangle rectangle)","examen","banque_manuelle","ABC est un triangle rectangle en A.
+On donne AB = 6 cm et AC = 8 cm.
+Calcule tan(ABC), puis donne la mesure de l'angle ABC arrondie au degré.","tan(ABC) ≈ 1,33 donc l'angle ABC ≈ 53°.","Pour l'angle en B dans le triangle rectangle en A :
+   - le côté opposé est [AC] = 8 cm
+   - le côté adjacent est [AB] = 6 cm
+
+1) Formule : tan(angle) = opposé / adjacent
+2) tan(ABC) = AC/AB = 8/6
+3) tan(ABC) ≈ 1,33
+4) À la calculatrice, on utilise tan⁻¹ (Arctan) :
+   ABC = tan⁻¹(1,33) ≈ 53,1°
+5) Arrondi au degré : ABC ≈ 53°"
+"Mathématiques","Statistiques (moyenne, effectifs)","facile","banque_manuelle","Voici les notes de Koffi en mathématiques : 8 ; 12 ; 14 ; 10 ; 16.
+Calcule sa moyenne.","La moyenne est 12.","La moyenne = somme des valeurs ÷ nombre de valeurs.
+
+1) On additionne toutes les notes :
+   8 + 12 + 14 + 10 + 16 = 60
+2) On compte le nombre de notes : il y en a 5
+3) On divise : 60 ÷ 5 = 12
+
+La moyenne de Koffi est 12."
+"Mathématiques","Statistiques (moyenne, effectifs)","moyen","banque_manuelle","Dans une classe, les notes se répartissent ainsi :
+   - note 5 : 2 élèves
+   - note 10 : 3 élèves
+   - note 15 : 5 élèves
+Calcule la note moyenne de la classe.","La moyenne est 11,5.","Quand chaque valeur a un effectif, on calcule une moyenne pondérée.
+
+1) On multiplie chaque note par son effectif :
+   5 × 2 = 10
+   10 × 3 = 30
+   15 × 5 = 75
+2) On additionne ces produits :
+   10 + 30 + 75 = 115
+3) On additionne les effectifs :
+   2 + 3 + 5 = 10 élèves
+4) On divise : 115 ÷ 10 = 11,5
+
+La moyenne de la classe est 11,5."
+"Mathématiques","Statistiques (moyenne, effectifs)","examen","banque_manuelle","Le tableau donne le nombre de frères et sœurs des élèves d'une classe :
+   valeur 2 : 5 élèves
+   valeur 4 : 10 élèves
+   valeur 6 : 3 élèves
+   valeur 8 : 2 élèves
+1) Calcule la moyenne.
+2) Donne l'étendue de cette série.","Moyenne = 4,2 ; étendue = 6.","1) MOYENNE (pondérée par les effectifs)
+   On multiplie chaque valeur par son effectif :
+      2 × 5 = 10
+      4 × 10 = 40
+      6 × 3 = 18
+      8 × 2 = 16
+   Somme des produits : 10 + 40 + 18 + 16 = 84
+   Effectif total : 5 + 10 + 3 + 2 = 20 élèves
+   Moyenne = 84 ÷ 20 = 4,2
+
+2) ÉTENDUE
+   L'étendue = plus grande valeur - plus petite valeur
+   Étendue = 8 - 2 = 6"
+"Mathématiques","Racines carrées","facile","banque_manuelle","Calcule : A = √49 + √16.","A = 11","La racine carrée d'un nombre, c'est le nombre positif dont le carré donne ce nombre.
+
+1) √49 = 7  (car 7 × 7 = 49)
+2) √16 = 4  (car 4 × 4 = 16)
+3) A = 7 + 4 = 11
+
+Attention : on ne peut PAS écrire √49 + √16 = √65. La racine d'une somme n'est pas la somme des racines."
+"Mathématiques","Racines carrées","moyen","banque_manuelle","Écris √50 sous la forme a√2, où a est un nombre entier.","√50 = 5√2","On cherche à faire apparaître un carré parfait dans 50.
+
+1) On décompose 50 : 50 = 25 × 2
+2) On sait que 25 est un carré parfait (25 = 5²)
+3) On utilise la règle : √(a × b) = √a × √b
+   √50 = √(25 × 2) = √25 × √2
+4) √25 = 5, donc :
+   √50 = 5√2"
+"Mathématiques","Racines carrées","examen","banque_manuelle","Calcule et écris le plus simplement possible : A = √18 + √8 - √2.","A = 4√2","On simplifie d'abord chaque racine pour faire apparaître √2 partout.
+
+1) √18 = √(9 × 2) = √9 × √2 = 3√2
+2) √8 = √(4 × 2) = √4 × √2 = 2√2
+3) √2 reste √2
+
+4) On remplace dans A :
+   A = 3√2 + 2√2 - √2
+5) On additionne les coefficients, comme avec des « x » :
+   3 + 2 - 1 = 4
+6) A = 4√2"
+"Mathématiques","Fractions et puissances","facile","banque_manuelle","Calcule : A = 1/2 + 1/3.","A = 5/6","Pour additionner deux fractions, il faut le MÊME dénominateur.
+
+1) On cherche un dénominateur commun à 2 et 3 : c'est 6
+2) On convertit chaque fraction :
+   1/2 = 3/6  (on multiplie en haut et en bas par 3)
+   1/3 = 2/6  (on multiplie en haut et en bas par 2)
+3) On additionne les numérateurs :
+   A = 3/6 + 2/6 = 5/6
+
+5/6 ne se simplifie pas : c'est le résultat final."
+"Mathématiques","Fractions et puissances","moyen","banque_manuelle","Calcule et donne le résultat sous forme d'un nombre entier : B = 2³ × 2⁴.","B = 128","Règle des puissances : quand on multiplie deux puissances du MÊME nombre, on additionne les exposants.
+   aⁿ × aᵐ = aⁿ⁺ᵐ
+
+1) B = 2³ × 2⁴ = 2³⁺⁴
+2) B = 2⁷
+3) On calcule 2⁷ :
+   2 × 2 = 4, × 2 = 8, × 2 = 16, × 2 = 32, × 2 = 64, × 2 = 128
+4) B = 128"
+"Mathématiques","Fractions et puissances","examen","banque_manuelle","Calcule C = (2/3) ÷ (4/9) et donne le résultat sous forme de fraction irréductible.","C = 3/2","Diviser par une fraction, c'est multiplier par son inverse.
+
+1) L'inverse de 4/9 est 9/4
+2) C = (2/3) × (9/4)
+3) On multiplie les numérateurs entre eux et les dénominateurs entre eux :
+   C = (2 × 9)/(3 × 4) = 18/12
+4) On simplifie : 18 et 12 sont tous les deux divisibles par 6
+   18 ÷ 6 = 3 et 12 ÷ 6 = 2
+5) C = 3/2
+
+On peut aussi simplifier avant de multiplier, c'est plus rapide."
+"Physique-Chimie-Technologie","","facile","banque_manuelle_matiere","Un conducteur ohmique de résistance R = 20 Ω est traversé par un courant d'intensité I = 0,5 A.
+Calcule la tension U à ses bornes.","U = 10 V","On utilise la loi d'Ohm : U = R × I.
+
+1) On repère les données :
+   R = 20 Ω
+   I = 0,5 A
+2) On applique la formule :
+   U = 20 × 0,5
+3) On calcule :
+   U = 10 V
+
+La tension aux bornes du conducteur est de 10 volts."
+"Physique-Chimie-Technologie","","moyen","banque_manuelle_matiere","Deux résistances R₁ = 30 Ω et R₂ = 20 Ω sont montées EN SÉRIE sous une tension de 10 V.
+1) Calcule la résistance équivalente.
+2) Calcule l'intensité du courant dans le circuit.","Réq = 50 Ω et I = 0,2 A","1) RÉSISTANCE ÉQUIVALENTE
+   En série, les résistances s'additionnent :
+   Réq = R₁ + R₂ = 30 + 20 = 50 Ω
+
+2) INTENSITÉ DU COURANT
+   La loi d'Ohm s'écrit U = Réq × I, donc I = U ÷ Réq.
+   I = 10 ÷ 50
+   I = 0,2 A
+
+En série, le courant est le même partout dans le circuit."
+"Physique-Chimie-Technologie","","examen","banque_manuelle_matiere","Une lampe porte l'indication « 6 V − 3 W ».
+1) Calcule l'intensité nominale du courant qui la traverse.
+2) Déduis-en sa résistance.","I = 0,5 A et R = 12 Ω","Les indications d'une lampe donnent sa tension nominale (6 V) et sa puissance nominale (3 W).
+
+1) INTENSITÉ
+   La puissance s'écrit P = U × I, donc I = P ÷ U.
+   I = 3 ÷ 6
+   I = 0,5 A
+
+2) RÉSISTANCE
+   Loi d'Ohm : U = R × I, donc R = U ÷ I.
+   R = 6 ÷ 0,5
+   R = 12 Ω"
+"Sciences de la Vie et de la Terre","","facile","banque_manuelle_matiere","Cite les trois grands groupes d'aliments et donne le rôle de chacun dans l'organisme.","Aliments bâtisseurs, aliments énergétiques et aliments protecteurs.","Un repas équilibré associe trois familles d'aliments.
+
+1) LES ALIMENTS BÂTISSEURS
+   Riches en protides : poisson, viande, œufs, haricot, soja.
+   Ils construisent et réparent le corps — c'est la croissance.
+
+2) LES ALIMENTS ÉNERGÉTIQUES
+   Riches en glucides et lipides : igname, maïs, riz, gari, huile.
+   Ils fournissent l'énergie pour bouger et travailler.
+
+3) LES ALIMENTS PROTECTEURS
+   Riches en vitamines et sels minéraux : fruits et légumes.
+   Ils défendent l'organisme contre les maladies."
+"Sciences de la Vie et de la Terre","","moyen","banque_manuelle_matiere","Décris le trajet de l'air depuis les narines jusqu'aux alvéoles pulmonaires, en nommant dans l'ordre les organes traversés.","Narines → fosses nasales → pharynx → larynx → trachée → bronches → bronchioles → alvéoles pulmonaires.","L'air suit un chemin précis dans l'appareil respiratoire.
+
+1) Il entre par les NARINES.
+2) Il traverse les FOSSES NASALES, où il est réchauffé, humidifié et filtré.
+3) Il passe dans le PHARYNX, carrefour commun à l'air et aux aliments.
+4) Puis dans le LARYNX, qui contient les cordes vocales.
+5) Il descend par la TRACHÉE, tube maintenu ouvert par des anneaux de cartilage.
+6) La trachée se divise en deux BRONCHES, une par poumon.
+7) Les bronches se ramifient en BRONCHIOLES de plus en plus fines.
+8) Elles aboutissent aux ALVÉOLES PULMONAIRES, petits sacs où se font les échanges gazeux : le dioxygène passe dans le sang, le dioxyde de carbone en sort."
+"Sciences de la Vie et de la Terre","","examen","banque_manuelle_matiere","Un couple aux yeux marron a un enfant aux yeux bleus.
+Sachant que le caractère « yeux marron » est dominant et « yeux bleus » récessif, explique ce résultat et donne les génotypes des parents.","Les deux parents sont hétérozygotes (M//b) ; l'enfant est homozygote récessif (b//b).","1) LES SYMBOLES
+   M = allèle « yeux marron », dominant.
+   b = allèle « yeux bleus », récessif.
+
+2) LE GÉNOTYPE DE L'ENFANT
+   Un caractère récessif ne s'exprime que si les DEUX allèles sont récessifs.
+   L'enfant a donc pour génotype b//b.
+
+3) D'OÙ VIENNENT SES ALLÈLES ?
+   Il reçoit un allèle de chaque parent. Chaque parent lui a donc transmis un b.
+
+4) LE GÉNOTYPE DES PARENTS
+   Les parents ont les yeux marron : ils possèdent au moins un M.
+   Comme ils portent aussi un b, ils sont tous deux M//b, dits hétérozygotes.
+
+5) CONCLUSION
+   M//b × M//b peut donner un enfant b//b. Le caractère récessif « saute » une génération : c'est pourquoi il réapparaît chez l'enfant."
+"Français","","facile","banque_manuelle_matiere","Dans la phrase « Le professeur explique la leçon aux élèves », donne la nature et la fonction du groupe « aux élèves ».","Nature : groupe nominal prépositionnel. Fonction : complément d'objet indirect (COI).","1) LA NATURE
+   « aux élèves » est formé de la préposition « à » (contractée en « aux ») et du nom « élèves ».
+   C'est donc un groupe nominal prépositionnel.
+
+2) LA FONCTION
+   On pose la question au verbe : le professeur explique la leçon À QUI ?
+   Réponse : aux élèves.
+   Le complément répond à « à qui ? » et se rattache au verbe par une préposition : c'est un complément d'objet indirect.
+
+3) POUR NE PAS CONFONDRE
+   « la leçon » répond à « quoi ? » sans préposition : c'est le COD."
+"Français","","moyen","banque_manuelle_matiere","Conjugue le verbe « prendre » à la 3ᵉ personne du pluriel, à l'imparfait puis au passé simple de l'indicatif.
+Emploie ensuite chaque forme dans une phrase.","Imparfait : ils prenaient. Passé simple : ils prirent.","1) L'IMPARFAIT
+   Radical du présent à la 1ʳᵉ personne du pluriel : nous pren-ons → radical « pren- ».
+   Terminaison de la 3ᵉ personne du pluriel : -aient.
+   → ils prenaient.
+
+2) LE PASSÉ SIMPLE
+   « Prendre » est un verbe du 3ᵉ groupe en -is au passé simple.
+   → ils prirent.
+
+3) EMPLOI
+   Imparfait — action qui dure ou se répète :
+   « Chaque matin, ils prenaient le taxi-moto pour aller à l'école. »
+   Passé simple — action brève et achevée :
+   « Ils prirent leur cahier et sortirent de la classe. »"
+"Français","","examen","banque_manuelle_matiere","Identifie la figure de style dans « Cette femme est une lionne », puis explique en quoi elle diffère de « Cette femme est comme une lionne ».","La première est une métaphore, la seconde une comparaison.","1) LA COMPARAISON
+   « Cette femme est COMME une lionne. »
+   Elle rapproche deux éléments à l'aide d'un outil de comparaison : comme, tel, semblable à, pareil à…
+   Les deux termes restent distincts : on voit la femme ET la lionne.
+
+2) LA MÉTAPHORE
+   « Cette femme EST une lionne. »
+   Le rapprochement se fait SANS outil de comparaison. L'image est directe : la femme et la lionne se confondent.
+
+3) L'EFFET
+   La métaphore est plus forte et plus condensée. Elle ne dit pas que la femme ressemble à une lionne : elle affirme qu'elle en est une, avec son courage et sa force."
+"Anglais","","facile","banque_manuelle_matiere","Complete with the correct form of the verb:
+« She ______ (to go) to school every day. »","She goes to school every day.","La phrase décrit une habitude : on emploie le PRESENT SIMPLE.
+
+1) LE SUJET
+   « She » est la 3ᵉ personne du singulier (he, she, it).
+
+2) LA RÈGLE
+   Au present simple, le verbe prend un -s à la 3ᵉ personne du singulier.
+
+3) LE CAS PARTICULIER
+   Les verbes terminés par -o prennent -es : go → goes.
+   (De même : do → does, watch → watches.)
+
+4) RÉPONSE
+   She goes to school every day.
+
+Repère utile : « every day » signale une habitude, donc le present simple."
+"Anglais","","moyen","banque_manuelle_matiere","Put the following sentence into the PAST SIMPLE:
+« They buy some rice at the market. »","They bought some rice at the market.","1) ON REPÈRE LE VERBE
+   Le verbe est « buy ».
+
+2) RÉGULIER OU IRRÉGULIER ?
+   « Buy » est un verbe IRRÉGULIER : son prétérit ne se forme pas avec -ed.
+   buy → bought → bought
+
+3) ON APPLIQUE
+   Au past simple, la forme est la même à toutes les personnes.
+   They bought some rice at the market.
+
+4) ATTENTION
+   À la forme négative ou interrogative, on utilise « did » et le verbe revient à sa base :
+   They did not buy… / Did they buy… ?"
+"Anglais","","examen","banque_manuelle_matiere","Turn the following into REPORTED SPEECH:
+He said: « I will travel to Cotonou tomorrow. »","He said (that) he would travel to Cotonou the next day.","Le discours rapporté impose trois transformations.
+
+1) LE PRONOM
+   « I » renvoie à « He » → il devient « he ».
+
+2) LE TEMPS (concordance des temps)
+   Le verbe introducteur « said » est au passé, donc le temps recule d'un cran :
+   will → would
+   (De même : is → was, has → had, went → had gone.)
+
+3) LES MARQUEURS DE TEMPS
+   tomorrow → the next day / the following day
+   (De même : today → that day, yesterday → the day before.)
+
+4) RÉSULTAT
+   He said (that) he would travel to Cotonou the next day.
+   Le mot « that » est facultatif."
+"Histoire-Géographie","","facile","banque_manuelle_matiere","Cite trois conséquences de la traite négrière pour l'Afrique.","Dépeuplement, désorganisation des sociétés africaines et retard économique.","1) UN DÉPEUPLEMENT MASSIF
+   Des millions d'Africains, souvent les plus jeunes et les plus valides, ont été déportés. L'Afrique a perdu ses forces vives.
+
+2) LA DÉSORGANISATION DES SOCIÉTÉS
+   Les razzias et les guerres pour capturer des captifs ont dressé les royaumes les uns contre les autres et détruit des villages entiers.
+
+3) UN RETARD ÉCONOMIQUE
+   L'artisanat local a reculé devant les produits européens échangés contre les captifs, et l'agriculture a manqué de bras.
+
+Au Bénin, Ouidah fut l'un des principaux ports de départ : la Route des esclaves en garde la mémoire."
+"Histoire-Géographie","","moyen","banque_manuelle_matiere","En quelle année le Dahomey accède-t-il à l'indépendance ?
+Quel nom le pays prend-il ensuite, et en quelle année ?","Indépendance le 1er août 1960 ; le pays devient la République populaire du Bénin en 1975.","1) L'INDÉPENDANCE
+   Le Dahomey accède à l'indépendance le 1er août 1960, dans le mouvement des indépendances africaines qui touche cette année-là dix-sept pays du continent.
+   Le 1er août reste la fête nationale du Bénin.
+
+2) LE CHANGEMENT DE NOM
+   En 1975, sous le régime de Mathieu Kérékou, le pays prend le nom de République populaire du Bénin.
+   Ce nom fait référence à l'ancien royaume du Bénin et marque une volonté de rupture avec l'héritage colonial.
+
+3) À RETENIR
+   1960 : indépendance.
+   1975 : le Dahomey devient le Bénin."
+"Histoire-Géographie","","examen","banque_manuelle_matiere","Décris les zones climatiques du Bénin du sud au nord et montre leur influence sur les activités agricoles.","Un climat subéquatorial au sud, un climat de transition au centre, un climat soudanien au nord — chacun commandant des cultures différentes.","1) LE SUD — CLIMAT SUBÉQUATORIAL
+   Quatre saisons : deux saisons des pluies et deux saisons sèches.
+   Pluies abondantes et bien réparties.
+   Cultures : palmier à huile, maïs, manioc, cultures maraîchères.
+
+2) LE CENTRE — CLIMAT DE TRANSITION
+   Le régime passe progressivement de quatre à deux saisons.
+   Cultures : igname, maïs, anacardier.
+
+3) LE NORD — CLIMAT SOUDANIEN
+   Deux saisons seulement : une saison des pluies et une longue saison sèche, marquée par l'harmattan.
+   Cultures : coton, sorgho, mil, arachide, et élevage extensif.
+
+4) CONCLUSION
+   Les pluies diminuent du sud vers le nord. C'est cette différence qui explique la spécialisation agricole du pays : cultures vivrières et palmier au sud, coton et élevage au nord."

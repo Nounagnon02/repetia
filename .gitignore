@@ -1,5 +1,8 @@
 # Dépendances
 node_modules/
+recherche/.venv/
+__pycache__/
+.ipynb_checkpoints/
 
 # Build
 dist/
@@ -47,3 +50,7 @@ Thumbs.db
 coverage/
 .cache/
 *.local
+
+# Environnement Python de recherche et artefacts
+*.pyc
+NOTE_TECHNIQUE.odg
