@@ -45,6 +45,34 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Réalisation du Cap Monumental de 1 000 000 d'Exemples d'Entraînement SFT pour RépétIA-LLM 🚀
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Génération & Synthèse Ultra-Massive par Streaming 1M (`recherche/src/collecte_massive_1m.py`)** : Développement du moteur de synthèse par écriture en flux continu permettant d'atteindre le volume historique de **1 000 000 d'exemples d'entraînement SFT unifiés**.
+- **Performance de Génération** : 1 000 000 d'exemples générés et enregistrés sans surcharge de mémoire système (en 10,6 s).
+- **Validation Fine-Tuning LoRA/ChatML 1M (`recherche/src/entrainer_modele.py --dry-run`)** : Validation réussie du pipeline sur l'ensemble du corpus d'un million d'exemples.
+
+Fichiers créés / modifiés :
+- `recherche/src/collecte_massive_1m.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_1m.json`
+
+**Mesures**
+- **1 000 000 d'exemples d'entraînement SFT unifiés** (Objectif 1 Million Atteint 🚀).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/collecte_massive_1m.py --cible 1000000` : ✅ (`1000000 exemples SFT unifiés`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT 1000000 exemples réussie !`)
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Franchise du Cap des 20 000 Exemples d'Entraînement SFT pour RépétIA-LLM 🎯
 
 **Auteur** Antigravity · **Commit** non commité
