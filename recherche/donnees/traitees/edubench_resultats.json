@@ -1,0 +1,16 @@
+{
+  "gemini-3.5-flash": {
+    "total_appels": 22,
+    "taux_conformite_pct": 100.0,
+    "taux_zero_latex_pct": 100.0,
+    "latence_moyenne_s": 15.25,
+    "edubench_score": 84.7
+  },
+  "gemini-flash-lite-latest": {
+    "total_appels": 36,
+    "taux_conformite_pct": 90.9,
+    "taux_zero_latex_pct": 97.2,
+    "latence_moyenne_s": 7.3,
+    "edubench_score": 88.0
+  }
+}
