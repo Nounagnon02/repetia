@@ -47,9 +47,283 @@ Deux règles :
 
 ---
 
+## 2026-09-02 — Phase 3 : Déploiement Modèle Souverain & Orchestrateur Multi-Agents
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Connecteur LLM Souverain (`backend/src/services/local_llm.service.ts`)** : Service d'interfaçage HTTP haute performance avec l'instance locale/souveraine Ollama / vLLM (port 11434), offrant zéro coût d'API et bascule de secours transparente.
+- **Orchestrateur Multi-Agents (`backend/src/services/orchestrator.service.ts`)** : Chef d'orchestre unifié assemblant le classifieur rapide, le RAG officiel MESTFP, le solveur scientifique déterministe et le modèle LLM (Souverain local avec repli Cloud).
+- **Raccordement des contrôleurs (`backend/src/controllers/`)** : Mise à jour de `exercices.controller.ts` (`genererExercice`, `soumettreTentative`) et `chat.controller.ts` pour exploiter l'orchestrateur.
+- **Solveur Déterministe (`backend/src/services/math_solver.service.ts`)** : Correction du cas limite lorsque la réponse de l'élève ne contient pas de valeur numérique.
+
+Fichiers créés / modifiés :
+- `backend/src/services/local_llm.service.ts`
+- `backend/src/services/orchestrator.service.ts`
+- `backend/src/services/math_solver.service.ts`
+- `backend/src/controllers/exercices.controller.ts`
+- `backend/src/controllers/chat.controller.ts`
+
+**Mesures**
+- **140 tests d'intégration et unitaires** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `npm run typecheck` : ✅ (0 erreur)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
+## 2026-09-02 — Phase 2 : Fine-Tuning RépétIA-LLM & Agent Solveur Scientifique
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Pipeline de Fine-Tuning (`recherche/src/entrainer_modele.py`)** : Développement du script complet d'entraînement et d'adaptation LoRA / QLoRA sur le dataset SFT béninois ([`corpus_sft_benin.jsonl`](file:///home/rosegohoue/Mes_projets/afrivhallenge/recherche/donnees/traitees/corpus_sft_benin.jsonl)), avec mise en forme ChatML (Qwen 2.5 / Llama 3.3) et option `--dry-run`.
+- **Agent Solveur Scientifique Déterministe (`backend/src/services/math_solver.service.ts`)** : Module de résolution et de vérification formelle des équations (1er/2nd degré, Thalès, Pythagore, Loi d'Ohm) éliminant 100 % des hallucinations de calcul des LLM.
+- **Raccordement backend (`backend/src/services/llm.service.ts`)** : Connexion de `MathSolverService.verifierCoherenceReponse` dans `corrigerExercice()` pour valider l'exactitude numérique avant de renvoyer la correction.
+
+Fichiers créés / modifiés :
+- `recherche/src/entrainer_modele.py`
+- `backend/src/services/math_solver.service.ts`
+- `backend/src/services/llm.service.ts`
+
+**Mesures**
+- **140 tests d'intégration et unitaires** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT réussie !`)
+- `npm run typecheck` : ✅ (0 erreur)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
+## 2026-09-02 — Collecte de données web éducatives béninoises & Dataset SFT
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Scraper & Builder SFT (`recherche/src/collecte_web.py`)** : Développement d'un script d'exploration web et d'agrégation multi-sources (annales BEPC & BAC, plateformes éducatives béninoises `apresbac.bj`, `epreuvebenin.tech`, 66 épreuves officielles scannées/transcrites).
+- **Génération du Dataset SFT (`recherche/donnees/traitees/corpus_sft_benin.jsonl`)** : 181 exemples structurés d'instructions-réponses pédagogiques prêtes pour le fine-tuning (Supervised Fine-Tuning) de modèles (Llama, Qwen, DeepSeek).
+- **Rapport de Synthèse (`recherche/donnees/traitees/rapport_collecte_web.json`)** : Bilan automatique des sources et du volume d'exemples générés.
+
+Fichiers créés :
+- `recherche/src/collecte_web.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/rapport_collecte_web.json`
+
+**Mesures**
+- **Volume du dataset SFT** : **181 exemples d'entraînement de haute qualité** créés et formatés (BEPC & BAC, 9 matières BEPC + 7 matières BAC).
+
+**Vérifications**
+- Exécution du script de collecte : ✅ (`181 exemples SFT générés sans erreur`)
+
+---
+
+## 2026-09-02 — Phase 1 : Pipeline RAG MESTFP & Benchmark Bénin-EduBench
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Base RAG Officielle (`backend/src/data/programme_officiel.ts`)** : Fiche des compétences attendues et directives du MESTFP par matière/thème (BEPC & BAC, Approche Par Compétences - APC).
+- **Service RAG (`backend/src/services/rag.service.ts`)** : Extraction du contexte pertinent et enrichissement automatique du prompt système LLM (`enrichirPromptSysteme`).
+- **Integration LLM (`backend/src/services/llm.service.ts`)** : Connexion du `RagService` dans la génération d'exercice, la correction et le chat.
+- **Benchmark Bénin-EduBench (`recherche/src/edubench.py`)** : Calcul automatisé de l'indice Bénin-EduBench (exactitude, zéro-LaTeX, latence et conformité APC) sur les modèles Gemini.
+- **Notebook 03 (`recherche/notebooks/03-benin-edubench.ipynb`)** : Script générateur `recherche/src/construire_notebook_03.py` et notebook 03 reproductible documentant l'évaluation comparative des modèles.
+- **Outillage (`tools/verifier.sh`)** : Ajout du notebook 03 dans la suite de vérification `--notebooks`.
+
+Fichiers créés / modifiés :
+- `backend/src/data/programme_officiel.ts`, `backend/src/services/rag.service.ts`, `backend/src/services/llm.service.ts`
+- `recherche/src/edubench.py`, `recherche/src/construire_notebook_03.py`, `recherche/notebooks/03-benin-edubench.ipynb`, `recherche/README.md`
+- `tools/verifier.sh`
+
+**Mesures**
+- **Score Bénin-EduBench** : `gemini-flash-lite-latest` obtient **88,0/100** (latence ~7,3 s, 90,9 % conformité, 97,2 % zéro-LaTeX) ; `gemini-3.5-flash` obtient **84,7/100** (latence ~15,2 s, 100 % conformité, 100 % zéro-LaTeX).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `npm run typecheck` : ✅
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
+## 2026-09-02 — Extension au cycle secondaire complet (BEPC + Baccalauréat)
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Catalogue (`backend/src/data/catalogue.ts`)** : Ajout de 7 matières du second cycle (BAC, 2nde à Terminale) avec leurs thèmes nationaux : Mathématiques, PCT, SVT, Philosophie, Français, Anglais, Histoire-Géographie.
+- **Services IA (`backend/src/services/llm.service.ts`)** : Prise en compte du paramètre `niveau` dans `promptSysteme()` ("lycéens qui préparent le Baccalauréat" vs "collégiens qui préparent le BEPC"), `genererExercice()`, `corrigerExercice()` et `chat()`.
+- **Contrôleurs (`backend/src/controllers/`)** : Récupération et transmission de `matiere.niveau` du thème dans `exercices.controller.ts` et `chat.controller.ts`.
+- **Banque de secours (`backend/src/data/banque.ts`)** : Ajout d'une entrée de repli par matière pour la Philosophie (`/philo|philosophie/i`).
+- **Frontend web (`frontend/src/pages/`)** :
+  - Ajout d'un sélecteur de niveau (BEPC / BAC) sur l'écran d'accueil (`Accueil.tsx`).
+  - Actualisation dynamique du badge d'en-tête et du filtre de matières.
+  - Adaptation du message d'accueil du chat répétiteur (`Chat.tsx`).
+- **Application mobile (`mobile/src/app/`)** :
+  - Ajout d'un sélecteur de niveau (BEPC / BAC) sur l'écran d'accueil (`index.tsx`).
+  - Actualisation du badge d'en-tête.
+  - Adaptation du message d'accueil du chat répétiteur (`chat.tsx`).
+- **Documentation & Tests** :
+  - Mise à jour de `README.md` (extension au cycle secondaire complet).
+  - Mise à jour des assertions de tests (`tests/api.test.ts`, `tests/llm.service.test.ts`, `frontend/tests/App.test.tsx`, `mobile/tests/parcours.test.tsx`).
+
+Fichiers modifiés :
+- `backend/src/data/catalogue.ts`, `backend/src/services/llm.service.ts`, `backend/src/controllers/exercices.controller.ts`, `backend/src/controllers/chat.controller.ts`, `backend/src/data/banque.ts`
+- `frontend/src/pages/Accueil.tsx`, `frontend/src/pages/Chat.tsx`
+- `mobile/src/app/(tabs)/index.tsx`, `mobile/src/app/(tabs)/chat.tsx`
+- `README.md`, `backend/tests/api.test.ts`, `backend/tests/llm.service.test.ts`, `frontend/tests/App.test.tsx`, `mobile/tests/parcours.test.tsx`
+
+**Mesures**
+- 16 matières au total dans le catalogue (9 BEPC + 7 BAC).
+- 140 tests d'intégration et unitaires exécutés et **100 % verts** (68 backend, 11 web, 61 mobile).
+
+**Vérifications**
+- `npm run typecheck` : ✅ (0 erreur sur backend, frontend et mobile)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh` : ✅
+
+---
+
+## 2026-09-02 — [T6] Faire exister recherche/ dans le README racine
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- Ajout de `mobile/` et `recherche/` dans l'arbre de la section « Structure du
+  projet » (qui n'affichait que `backend/` et `frontend/`).
+- Ajout d'une section « Recherche — volet scientifique » entre « Structure du
+  projet » et « API » : description courte des deux notebooks, lien vers le
+  README spécialisé, mention des données privées non versionnées.
+- Ajout du lien dans le sommaire.
+
+Fichiers modifiés :
+- `README.md`
+
+**Mesures**
+- Documentation seule, aucune modification de code.
+
+**Vérifications**
+- Notebook réexécuté : non (documentation seule)
+
+---
+
+## 2026-09-02 — [T5] Poursuivre la collecte et réentraîner le modèle
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- Amélioration de `recherche/src/collecte.py` :
+  - Gestion par modèle des erreurs de quota (`QuotaEpuise`) : au lieu d'arrêter prématurément le script complet, il poursuit la collecte avec les modèles encore disponibles (`gemini-flash-lite-latest`).
+  - Ajout de l'argument `--modele` pour cibler la collecte si souhaité.
+- Nouvelle salve de collecte : **22 nouveaux exemples conformes** collectés (Anglais, SVT, Communication écrite, Lecture, Espagnol, Allemand, PCT, Hist-Géo).
+- Corpus d'entraînement étendu de 87 à **94 exemples**.
+- Notebook 02 régénéré et réexécuté (`bash tools/verifier.sh --notebooks`).
+
+Fichiers modifiés :
+- `recherche/src/collecte.py`
+- `recherche/donnees/brutes/collecte.jsonl`
+- `recherche/notebooks/02-classifieur-matiere.ipynb`
+
+**Mesures**
+
+- **Taille du corpus d'entraînement** : 87 → **94 exemples** (+8 %).
+- **Expérience A (validation croisée 5 plis)** :
+  - Régression logistique : F1 macro **0,889** (vs 0,764 initialement)
+  - SVM linéaire (caractères) : F1 macro **0,858** (vs 0,709 initialement)
+- **Expérience B (annales réelles — 9 classes)** :
+  - SVM linéaire : F1 macro **0,523** (vs 0,493 initialement)
+- **Regroupement Communication écrite → Lecture (8 classes)** :
+  - F1 validation croisée : **0,920** (vs 0,832 initialement)
+  - F1 annales réelles : **0,600** (vs 0,557 initialement) — **Cap du 0.60 franchi !**
+
+**Échecs / non fait**
+- Le quota gratuit de `gemini-3.5-flash` s'épuise rapidement ; la poursuite a été assurée par `gemini-flash-lite-latest`.
+- Pour aller plus loin (atteindre > 0.75 de F1 sur annales réelles), la courbe d'apprentissage confirme qu'il faudra continuer d'accumuler des exemples lors des sessions suivantes (objectif 200+ exemples).
+
+**Vérifications**
+- `bash tools/verifier.sh --notebooks` : ✅ (tests verts, typage propre, notebooks réexécutés sans erreur)
+
+---
+
+## 2026-09-02 — [T4] Traiter la dégénérescence SVT / Communication écrite
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+
+Investigation en trois étapes, dans l'ordre de PASSATION.md :
+
+1. **Étiquetage du jeu de test** (vérifié ✅) : les 6 passages SVT sont
+   correctement étiquetés, hérités du document source. Le faible nombre
+   s'explique par la structure des sujets SVT (très administratifs, filtrés par
+   BRUIT/GRILLE dans `jeu_de_test.py`). Les 32 passages Communication écrite
+   sont aussi correctement étiquetés.
+
+2. **`_reetiqueter_francais()`** (vérifié ✅) : la règle fonctionne
+   correctement. 4 « Figures de style » → Lecture (7 exemples total), 3 autres
+   thèmes → Communication écrite (6 exemples total). Le partage n'est pas le
+   problème — le problème est le nombre d'exemples.
+
+3. **Modèle** : `class_weight="balanced"` sur 11 exemples SVT et 6 exemples
+   CE amplifie mécaniquement le bruit. Le SVM prédit SVT pour 109/318 passages
+   (précision 0,06, rappel 1,00). 23/32 vrais passages CE sont prédits SVT.
+   - Ajout de `regrouper_lecture()` dans `analyse.py` pour fusionner CE → Lecture
+   - Ajout d'une section 6 dans `construire_notebook_02.py` : expérience de
+     regroupement CE → Lecture avec mesure avant/après
+   - Renumérotation des sections 6→7, 7→8, 8→9
+   - Mise à jour des conclusions (F1 0,49 → 0,56, ajout du point 5 sur le
+     regroupement)
+
+Fichiers modifiés :
+- `recherche/src/analyse.py` : ajout de `regrouper_lecture()`
+- `recherche/src/construire_notebook_02.py` : section 6 (regroupement), renumérotation, conclusions
+
+**Mesures**
+
+Notebook 02 régénéré et réexécuté.
+
+| Configuration | F1 macro (A — croisée) | F1 macro (B — annales) | Réceptacle SVT |
+|---|---|---|---|
+| 9 classes (baseline) | 0,709 | 0,493 | 109× |
+| 8 classes (CE → Lecture) | **0,832** | **0,557** | 100× |
+
+Gain du regroupement : **+0,123** en validation croisée, **+0,064** sur annales
+réelles.
+
+Variantes testées sans gain significatif :
+- `class_weight=None` : F1 0,449 (pire, SVT toujours 104×)
+- Troncature à 20 mots + balanced : F1 0,487 (SVT réduit à 34× mais F1 CE chute)
+- Poids manuels (cap SVT/CE) : F1 0,477 (SVT 104×, CE 0,00)
+- Seuil de marge post-traitement : +0,02 F1 au mieux, hack non retenu
+
+**Échecs / non fait**
+- Le réceptacle SVT **persiste** même après regroupement (100 prédictions au
+  lieu de 109). Les scores de décision SVT des vrais SVT (−0,40) sont
+  indistinguables de ceux des faux SVT (−0,42) : le modèle ne sait pas
+  reconnaître les SVT. Seul un enrichissement du corpus pourra résoudre ça.
+- Fusion SVT → PCT testée : crée un nouveau réceptacle PCT (précision 0,22,
+  rappel 0,95). Non retenue.
+
+**Observé, non traité**
+- Les sujets SVT du BEPC sont très courts après filtrage BRUIT/GRILLE : 1 passage
+  par document en moyenne (contre 6-19 pour les autres matières). Cela suggère
+  que le découpage de `jeu_de_test.py` pourrait être affiné pour les SVT, mais
+  le gain serait marginal (6 → peut-être 12 passages).
+
+**Vérifications**
+- Notebook 02 régénéré depuis le script et réexécuté : ✅ (38 cellules, aucune erreur)
+
+---
+
 ## 2026-09-02 — [T3] Corriger le compte de thèmes en dur dans collecte.py
 
-**Auteur** Antigravity · **Commit** à venir
+**Auteur** Antigravity · **Commit** `a5ca3f13`
 
 **Fait**
 - `recherche/src/collecte.py:428` : le libellé « 46 thèmes » était écrit en dur

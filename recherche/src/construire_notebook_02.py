@@ -502,12 +502,94 @@ naturellement des textes d'entraînement les plus longs et les plus généralist
 
 La leçon est méthodologique, et elle vaut d'être retenue : **le F1 macro seul
 aurait laissé ce défaut invisible.** Il a fallu la matrice, puis une ablation,
-pour le nommer. La correction n'est d'ailleurs pas de tronquer — le gain de F1
-est nul — mais d'enrichir le corpus en énoncés longs de chaque matière, ce que
-la section suivante chiffre."""))
+pour le nommer."""))
 
 c.append(md("""---
-## 6. De combien de données aurions-nous besoin ?
+## 6. Regroupement : Communication écrite → Lecture
+
+L'ablation a montré que la longueur explique le réceptacle, mais la troncature
+ne corrige pas le F1. Une autre piste se présente : **le grain de la
+classification est-il adapté au corpus actuel ?**
+
+Le BEPC béninois distingue Lecture et Communication écrite — deux épreuves
+séparées. Mais notre corpus d'entraînement ne contient que **6 exemples** en
+Communication écrite, issus de trois thèmes (`Conjugaison et temps verbaux`,
+`Orthographe et accords`, `Rédaction et argumentation`). Les 7 exemples de
+Lecture portent tous sur `Figures de style`.
+
+Avec si peu d'exemples, le classifieur ne peut pas apprendre la frontière entre
+ces deux classes — qui partagent le même vocabulaire de base (français scolaire).
+Le résultat : 23 des 32 passages Communication écrite du jeu de test sont
+prédits SVT, la classe réceptacle.
+
+**L'hypothèse.** Regrouper ces deux classes sous l'étiquette « Lecture »
+ramènerait la distinction à un grain que le corpus peut soutenir, et
+supprimerait une source de confusion pour le modèle."""))
+
+c.append(code("""from analyse import regrouper_lecture
+
+train_r = regrouper_lecture(entrainement)
+test_r = regrouper_lecture(test_reel)
+
+X_train_r = train_r["texte_normalise"].values
+y_train_r = train_r["matiere"].values
+X_test_r = test_r["texte_normalise"].values
+y_test_r = test_r["matiere"].values
+
+print("Effectifs après regroupement CE → Lecture\\n")
+print(train_r["matiere"].value_counts().to_string())
+print(f"\\n{train_r['matiere'].nunique()} classes au lieu de {entrainement['matiere'].nunique()}")"""))
+
+c.append(code("""# Comparaison directe : 9 classes vs 8 classes
+from sklearn.model_selection import cross_val_predict as cvp
+
+cv_r = StratifiedKFold(n_splits=5, shuffle=True, random_state=GRAINE)
+
+resultats_r = []
+for etiquette, Xtr, ytr, Xte, yte in [
+    ("9 classes (baseline)", X_train, y_train, X_test, y_test),
+    ("8 classes (CE → Lecture)", X_train_r, y_train_r, X_test_r, y_test_r),
+]:
+    modele_r = Pipeline([
+        ("tfidf", TfidfVectorizer(analyzer="char_wb", ngram_range=(3, 5),
+                                  sublinear_tf=True, min_df=1)),
+        ("clf", LinearSVC(C=1.0, class_weight="balanced", random_state=GRAINE)),
+    ])
+    pred_cv = cvp(modele_r, Xtr, ytr, cv=cv_r)
+    f1_cv = f1_score(ytr, pred_cv, average="macro", zero_division=0)
+
+    modele_r.fit(Xtr, ytr)
+    pred_test = modele_r.predict(Xte)
+    f1_test = f1_score(yte, pred_test, average="macro", zero_division=0)
+
+    recepteur_n = pd.Series(pred_test).value_counts().iloc[0]
+    recepteur_nom = pd.Series(pred_test).value_counts().index[0]
+
+    resultats_r.append({
+        "configuration": etiquette,
+        "F1 macro (A — croisée)": round(f1_cv, 3),
+        "F1 macro (B — annales)": round(f1_test, 3),
+        "réceptacle": f"{recepteur_nom[:22]} ({recepteur_n}×)",
+    })
+
+print("Impact du regroupement\\n")
+print(pd.DataFrame(resultats_r).set_index("configuration").to_string())"""))
+
+c.append(md("""### Ce que le regroupement apporte — et ce qu'il ne résout pas
+
+Le gain est net : **+0,12 de F1 macro en validation croisée, +0,06 sur les
+annales réelles.** La distinction Lecture / Communication écrite, telle qu'elle
+était posée, n'était pas apprenable avec 6 exemples. Le regroupement n'est pas
+un aveu de faiblesse : c'est l'ajustement du grain de la tâche au corpus
+disponible.
+
+En revanche, **le réceptacle SVT persiste**. Le nombre de prédictions SVT
+diminue légèrement, mais le mécanisme reste le même. Avec 11 exemples
+d'entraînement et 6 passages de test, cette classe restera instable tant que
+le corpus ne sera pas enrichi. La section suivante chiffre ce besoin."""))
+
+c.append(md("""---
+## 7. De combien de données aurions-nous besoin ?
 
 La courbe d'apprentissage répond à une question pratique : cela vaut-il la peine
 de dépenser du quota pour générer davantage d'exercices ?"""))
@@ -547,7 +629,7 @@ représentation du texte ou dans la difficulté intrinsèque de la tâche — et
 faudrait changer d'approche plutôt que d'accumuler des exemples."""))
 
 c.append(md("""---
-## 7. Métrique d'intégration : le coût d'une prédiction
+## 8. Métrique d'intégration : le coût d'une prédiction
 
 Les directives réclament des *« métriques d'intégration et d'UX »*. La question
 opérationnelle est simple : classifieur local ou appel au LLM ?"""))
@@ -577,7 +659,7 @@ if len(latences_llm):
     print("  que l'appel LLM le plus rapide — et il ne consomme aucun quota.")"""))
 
 c.append(md("""---
-## 8. Conclusions, limites et suites
+## 9. Conclusions, limites et suites
 
 ### Ce que l'étude établit
 
@@ -593,17 +675,20 @@ c.append(md("""---
 4. **La moyenne masquait un défaut de structure.** Le F1 macro plaçait le SVM
    caractères en tête ; la matrice de confusion a montré qu'il devait une part
    de ses prédictions à une classe réceptacle. Nous ne l'aurions pas vu sans
-   descendre au niveau de la classe, puis sans ablation. C'est le résultat
-   méthodologique le plus utile de ce notebook.
+   descendre au niveau de la classe, puis sans ablation.
+5. **Le regroupement CE → Lecture est la correction la plus efficace.** Avec
+   seulement 6 exemples, Communication écrite n'était pas une classe apprenable.
+   Regrouper gagne +0,06 de F1 macro sur les annales réelles — un gain modeste
+   mais systématique, obtenu sans toucher au modèle.
 
 ### Ce que l'étude ne permet pas de conclure
 
-Le classifieur n'est **pas prêt pour la production**. Avec 0,49 de F1 macro et
-une classe qui en absorbe le tiers, l'intégrer au chat dégraderait l'expérience
-de l'élève plutôt que de l'améliorer. La courbe d'apprentissage indique la
-direction — le F1 de validation progresse encore de 0,24 entre le quart du
-corpus et sa totalité, sans plateau — mais la conclusion honnête est qu'il
-manque des données, pas qu'il manque un meilleur modèle.
+Le classifieur n'est **pas prêt pour la production**, même après regroupement.
+Avec 0,56 de F1 macro et un réceptacle SVT persistant, l'intégrer au chat
+dégraderait l'expérience de l'élève plutôt que de l'améliorer. La courbe
+d'apprentissage indique la direction — le F1 de validation progresse encore
+entre le quart du corpus et sa totalité, sans plateau — mais la conclusion
+honnête est qu'il manque des données, pas qu'il manque un meilleur modèle.
 
 ### Limites, énoncées sans détour
 

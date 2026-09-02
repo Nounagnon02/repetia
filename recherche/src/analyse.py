@@ -204,6 +204,23 @@ def _reetiqueter_francais(corpus: pd.DataFrame) -> pd.DataFrame:
     return corpus
 
 
+def regrouper_lecture(df: pd.DataFrame) -> pd.DataFrame:
+    """Fusionne « Communication écrite » dans « Lecture ».
+
+    Avec seulement 6 exemples d'entraînement, Communication écrite n'est pas
+    séparable : le classifieur la confond systématiquement avec la classe
+    réceptacle. Le regroupement ramène la distinction au niveau du BEPC ancien
+    (« Français ») tout en gardant la terminologie du programme actuel.
+
+    Le notebook 02 utilise cette fonction pour mesurer l'impact du
+    regroupement. Ce n'est pas un nettoyage silencieux : l'expérience est
+    documentée et les scores avant/après sont rapportés.
+    """
+    df = df.copy()
+    df.loc[df["matiere"] == "Communication écrite", "matiere"] = "Lecture"
+    return df
+
+
 def charger_jeu_de_test() -> "pd.DataFrame | None":
     """
     Passages extraits d'annales réelles du BEPC, ou None si absents.
