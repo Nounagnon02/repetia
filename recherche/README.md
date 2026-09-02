@@ -16,6 +16,7 @@ tâche où l'appel au LLM serait disproportionné.
 |---|---|
 | `notebooks/01-banc-evaluation-llm.ipynb` | Banc d'évaluation de l'intégration : conformité au contrat, effet des consignes de prompt, latence, comparaison de deux modèles |
 | `notebooks/02-classifieur-matiere.ipynb` | Classifieur de matière entraîné par nos soins : quatre approches comparées, généralisation du synthétique vers 318 passages d'annales réelles, analyse des erreurs |
+| `notebooks/03-benin-edubench.ipynb` | Banc de test standardisé Bénin-EduBench : évaluation comparative des LLM sur le curriculum et les critères APC du Bénin |
 
 ## Reproduire les résultats
 
@@ -29,20 +30,22 @@ npm run build --prefix backend        # produit backend/dist
 node recherche/src/exporter_catalogue.js
 node recherche/src/extraire_banque.js
 
-# 3. Collecte expérimentale (nécessite LLM_API_KEY)
+# 3. Collecte expérimentale & Benchmark (nécessite LLM_API_KEY)
 set -a && . backend/.env && set +a
 python recherche/src/collecte.py --plan                 # état du plan
 python recherche/src/collecte.py --limite 20            # tâche « génération »
 python recherche/src/collecte.py --tache chat --limite 20
+python recherche/src/edubench.py                         # calcule le score Bénin-EduBench
 
 # 4. Exécuter les notebooks
 cd recherche/notebooks
 ../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 01-banc-evaluation-llm.ipynb
 ../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 02-classifieur-matiere.ipynb
+../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 03-benin-edubench.ipynb
 ```
 
-Les deux notebooks sont **générés** par un script, pour rester reproductibles :
-`src/construire_notebook_01.py` et `src/construire_notebook_02.py`. Modifiez le
+Les notebooks sont **générés** par des scripts pour rester reproductibles :
+`src/construire_notebook_01.py`, `src/construire_notebook_02.py` et `src/construire_notebook_03.py`.
 script, pas le `.ipynb`.
 
 Les notebooks s'exécutent **sans clé d'API** : ils lisent les données déjà
