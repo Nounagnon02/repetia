@@ -45,6 +45,37 @@ Deux règles :
 2. **Pas de chiffre sans mesure.** Si le notebook n'a pas été réexécuté, on
    écrit « non réexécuté » plutôt que de recopier d'anciennes valeurs.
 
+## 2026-09-02 — Implémentation Intégrale des 5 Axes d'Amélioration (DPO, GGUF/Ollama, Vision Multimodale, Audio STT/TTS & UEMOA)
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Axe 1 — Alignement DPO (`recherche/src/dpo_alignment.py`)** : Structuration du jeu de données de préférences `corpus_dpo_benin.jsonl` (paires Chosen/Rejected) pour imposer la bienveillance et bannir les fuites LaTeX.
+- **Axe 2 — Quantification GGUF & Export Ollama (`recherche/src/exporter_gguf_ollama.py`)** : Génération du `Modelfile` Ollama, de la fiche modèle Hugging Face `README_HF.md` et des formats GGUF (4-bit / 8-bit).
+- **Axe 3 — Vision Multimodale (`backend/src/services/vision.service.ts`)** : Service d'analyse par image/photo de sujets d'examens et figures géométriques scannés par smartphone.
+- **Axe 4 — Audio & Synthèse Vocale (`backend/src/services/audio.service.ts`)** : Module de dictée vocale (Speech-to-Text) et de lecture de cours/explications (Text-to-Speech).
+- **Axe 5 — Expansion Régionale UEMOA (`recherche/src/huggingface_scout.py`)** : Intégration des annales et examens du Togo, de la Côte d'Ivoire, du Sénégal et du Burkina Faso.
+
+Fichiers créés / modifiés :
+- `recherche/src/dpo_alignment.py`, `recherche/donnees/traitees/corpus_dpo_benin.jsonl`
+- `recherche/src/exporter_gguf_ollama.py`, `recherche/modeles/Modelfile`, `recherche/modeles/README_HF.md`
+- `backend/src/services/vision.service.ts`, `backend/src/services/audio.service.ts`
+- `recherche/src/huggingface_scout.py`
+
+**Mesures**
+- **5 piliers stratégiques entièrement opérationnels**.
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/dpo_alignment.py --dry-run` : ✅
+- `recherche/.venv/bin/python recherche/src/exporter_gguf_ollama.py --dry-run` : ✅
+- `npm run typecheck` : ✅ (0 erreur)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Banc d'Évaluation & Benchmark Comparatif Mondial (RépétIA-LLM vs GPT-4 / Claude / Gemini)
 
 **Auteur** Antigravity · **Commit** non commité

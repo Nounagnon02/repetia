@@ -42,8 +42,20 @@ DATASETS_HF_CIBLES = [
     {
         "repo_id": "electricsheepafrica/africa-cote-d-ivoire-examens-du-bac-du-bepc-et-du-cepe-de-2007-a-2010-en-sessio-e86bebeb",
         "type": "examens_afrique_bepc_bac",
-        "description": "Annales et statistiques d'examens BEPC et BAC en Afrique francophone",
-        "categorie": "examens_afrique",
+        "description": "Annales et statistiques d'examens BEPC et BAC en Côte d'Ivoire et zone UEMOA",
+        "categorie": "examens_afrique_uemoa",
+    },
+    {
+        "repo_id": "electricsheepafrica/africa-togo-education-indicators",
+        "type": "examens_togo_uemoa",
+        "description": "Indicateurs et annales éducatives du Togo (BEPC & BAC)",
+        "categorie": "examens_uemoa",
+    },
+    {
+        "repo_id": "electricsheepafrica/africa-senegal-education-indicators",
+        "type": "examens_senegal_uemoa",
+        "description": "Examens et révisions de l'enseignement secondaire au Sénégal",
+        "categorie": "examens_uemoa",
     },
     {
         "repo_id": "yssf-io/service-public",
