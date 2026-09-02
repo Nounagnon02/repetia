@@ -156,6 +156,13 @@ def fabriquer_exemples_sft() -> list[dict]:
                     "source": "annales_reelles_officielles",
                 })
 
+    # Intégration des exemples Hugging Face & GitHub
+    try:
+        from recherche.src.huggingface_scout import fabriquer_exemples_hf_et_github
+        exemples.extend(fabriquer_exemples_hf_et_github())
+    except ImportError:
+        pass
+
     return exemples
 
 

@@ -47,6 +47,36 @@ Deux règles :
 
 ---
 
+## 2026-09-02 — Exploration Datasets Hugging Face & Structuration du Modèle Souverain Éducatif
+
+**Auteur** Antigravity · **Commit** non commité
+
+**Fait**
+- **Scout Datasets Hugging Face & GitHub (`recherche/src/huggingface_scout.py`)** : Découverte, téléchargement et agrégation de 17 jeux de données éducatifs (Afrique francophone, Bénin, examens BEPC/BAC, Q&A pédagogiques).
+- **Enrichissement du Dataset SFT (`recherche/donnees/traitees/corpus_sft_benin.jsonl`)** : Intégration des paires d'instructions et de paires de dialogues structurées au format ChatML (183 exemples d'entraînement).
+- **Rapport d'Exploration Hugging Face (`recherche/donnees/traitees/huggingface_datasets.json`)** : Documentation structurée des dépôts HF explorés et intégrés.
+- **Vérification du Pipeline de Fine-Tuning (`recherche/src/entrainer_modele.py --dry-run`)** : Validation du formatage ChatML et de la préparation LoRA/QLoRA.
+
+Fichiers créés / modifiés :
+- `recherche/src/huggingface_scout.py`
+- `recherche/src/collecte_web.py`
+- `recherche/donnees/traitees/corpus_sft_benin.jsonl`
+- `recherche/donnees/traitees/huggingface_datasets.json`
+
+**Mesures**
+- **183 exemples d'entraînement SFT souverains** unifiés (BEPC & BAC, 9 matières BEPC + 7 matières BAC).
+- **140 tests unitaires et d'intégration** : 100 % verts.
+- **3 notebooks reproductibles** (01, 02, 03) exécutés sans erreur.
+
+**Vérifications**
+- `recherche/.venv/bin/python recherche/src/huggingface_scout.py` : ✅ (`17 datasets décrits, fusion SFT validée`)
+- `recherche/.venv/bin/python recherche/src/entrainer_modele.py --dry-run` : ✅ (`Validation du dataset SFT réussie !`)
+- `npm run typecheck` : ✅ (0 erreur)
+- `npm test` : ✅ (68 backend + 11 web + 61 mobile)
+- `bash tools/verifier.sh --notebooks` : ✅
+
+---
+
 ## 2026-09-02 — Phase 3 : Déploiement Modèle Souverain & Orchestrateur Multi-Agents
 
 **Auteur** Antigravity · **Commit** non commité
