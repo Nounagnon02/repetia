@@ -326,3 +326,205 @@ Question: How does Koffi go to school?",Koffi goes to school by bicycle.,"Étape
 Étape 3 : Juste après, le texte dit ""by bicycle"" (à vélo).
 Étape 4 : Rédige ta réponse de façon simple et claire en te basant sur cette information.",212,375,40
 Physique-Chimie-Technologie,Circuits électriques,facile,gemini-flash-lite-latest,C_complet,"Un dipôle ohmique a une résistance R = 50 ohms et est traversé par un courant d'intensité I = 0,2 ampère. Calcule la tension U aux bornes de ce résistor.",U = 10 volts,"Etape 1 : On rappelle la loi d'ohm qui relie la tension U, la résistance R et l'intensité I. La formule est U = R × I. Etape 2 : On remplace les lettres par les valeurs données dans l'énoncé : R = 50 et I = 0,2. Etape 3 : On fait le calcul : U = 50 × 0,2 = 10. Le résultat est donc 10 volts.",158,297,30
+Physique-Chimie-Technologie,"Atomes, molécules et ions",facile,gemini-3.5-flash,A_minimal,"Pour préparer la sauce gombo, maman utilise du sel de cuisine qui contient du sodium. L'atome de sodium est représenté par le symbole Na et possède un numéro atomique Z = 11. Détermine le nombre de protons et le nombre d'électrons présents dans cet atome de sodium.",L'atome de sodium possède 11 protons et 11 électrons.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur de PCT. Ensemble, nous allons résoudre cet exercice très facile, tu vas voir !\n\nÉtape 1 : Comprenons ce que signifie le numéro atomique Z.\nEn chimie, le numéro atomique, noté Z, représente toujours le nombre de protons (charges positives) présents dans le noyau de l'atome. Ici, l'énoncé nous dit que Z = 11. Donc, l'atome de sodium possède exactement 11 protons.\n\nÉtape 2 : Trouvons le nombre d'électrons.\nUn atome est toujours électriquement neutre. Cela signifie qu'il possède autant de charges positives (les protons) que de charges négatives (les électrons) pour que le total soit égal à zéro.\nComme notre atome de sodium a 11 protons, il doit obligatoirement avoir 11 électrons pour rester neutre.\n\nVoilà, c'est aussi simple que cela ! Tu as très bien travaillé, continue comme ça pour décrocher ton BEPC !",265,869,47
+Français,Rédaction et argumentation,examen,gemini-flash-lite-latest,C_complet,"Sujet (BEPC Bénin) : ""Certains pensent que l'utilisation excessive des téléphones portables nuit aux relations familiales, tandis que d'autres estiment qu'elle les facilite. Rédige un paragraphe argumentatif d'une dizaine de lignes prenant position pour la première idée, en t'appuyant sur un exemple précis de la vie quotidienne au Bénin.""","Enoncé d'une thèse claire, introduction d'un connecteur logique, développement avec l'exemple des repas de famille où chacun est sur son écran, et conclusion partielle montrant l'isolement malgré la proximité physique.","Etape 1 : On commence par affirmer clairement sa position (la thèse) : le téléphone nuit aux relations familiales. Par exemple, on peut dire que les écrans détruisent la communication sous le même toit. 
+
+Etape 2 : On introduit un argument avec un connecteur comme ""En effet"" ou ""D'abord"". On explique que l'attention est détournée vers les réseaux sociaux au détriment des échanges réels. 
+
+Etape 3 : On illustre avec un exemple concret et proche de nous au Bénin, comme le moment du repas du soir à la maison, où chacun mange les yeux rivés sur son smartphone au lieu de discuter de sa journée. 
+
+Etape 4 : On termine par une phrase bilan qui montre la conséquence : la famille vit sous le même toit mais les cœurs sont éloignés.",340,731,49
+Physique-Chimie-Technologie,Réactions chimiques,facile,gemini-3.5-flash,B_markdown,"Pour préparer le repas de midi, une maman utilise du charbon de bois (constitué essentiellement de carbone) dans un foyer. Lors de la combustion complète de 12 g de carbone dans le dioxygène, il se forme du dioxyde de carbone. 1. Écris l'équation-bilan de cette réaction chimique. 2. Calcule la masse de dioxygène nécessaire pour brûler complètement ces 12 g de carbone, sachant qu'il se forme 44 g de dioxyde de carbone.",1. L'équation-bilan est : C + O2 -> CO2. 2. La masse de dioxygène nécessaire est de 32 g.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur. Ensemble, nous allons résoudre cet exercice pas à pas, tu vas voir que c'est très simple !
+
+**Étape 1 : Écrire l'équation-bilan de la réaction**
+Dans nos maisons au Bénin, quand on allume le charbon pour cuisiner, le carbone (noté **C**) réagit avec le dioxygène de l'air (noté **O2**) pour former du gaz dioxyde de carbone (noté **CO2**).
+Les réactifs (ceux qui réagissent) sont placés à gauche de la flèche, et le produit (ce qui est formé) est placé à droite.
+L'équation s'écrit donc : **C + O2 -> CO2**.
+Elle est déjà équilibrée car nous avons exactement un atome de carbone et deux atomes d'oxygène de chaque côté. C'est super !
+
+**Étape 2 : Appliquer la loi de conservation de la masse**
+En chimie, la masse totale des réactifs qui disparaissent est toujours égale à la masse totale des produits qui se forment. C'est la loi de conservation de la masse.
+Ici, la masse de carbone consommée plus la masse de dioxygène consommée est égale à la masse de dioxyde de carbone formée.
+On peut écrire la formule : **m(C) + m(O2) = m(CO2)**.
+
+**Étape 3 : Calculer la masse de dioxygène**
+Remplaçons maintenant les lettres par les valeurs données dans notre énoncé :
+La masse de carbone **m(C)** = 12 g.
+La masse de dioxyde de carbone **m(CO2)** = 44 g.
+Notre formule devient : **12 + m(O2) = 44**.
+Pour trouver la masse de dioxygène **m(O2)**, il suffit de faire une simple soustraction :
+**m(O2) = 44 - 12**
+**m(O2) = 32 g**.
+
+La masse de dioxygène nécessaire est donc de **32 g**. Excellent travail ! Tu as parfaitement compris comment appliquer la loi de conservation de la masse. Continue comme ça, le BEPC est à ta portée !",421,1673,72
+Anglais,Future and conditionals,examen,gemini-3.5-flash,C_complet,"Complete the following sentence with the correct form of the verbs in brackets: If Yao (to study) hard, he (to pass) his BEPC exam next June.",studies / will pass,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice type du BEPC. C'est très simple, tu vas voir !
+
+**Étape 1 : Analyser la phrase**
+La phrase commence par **If** (si) et parle d'un événement futur : l'examen du BEPC en juin. Nous sommes face au **Conditional Type 1** (le conditionnel de type 1), qui exprime une action future très probable si la condition est remplie.
+
+**Étape 2 : Appliquer la règle du Conditional Type 1**
+La règle d'or à retenir par cœur pour ton examen est :
+**If + Present Simple, Future Simple (will + base verbale)**.
+
+**Étape 3 : Conjuguer le premier verbe (to study)**
+Le verbe après 'If' doit être au Present Simple. Le sujet est 'Yao' (ce qui équivaut au pronom de la 3ème personne du singulier 'he').
+Au présent simple, avec 'he', le verbe 'study' subit une petite transformation : comme il se termine par une consonne suivie de 'y', le 'y' devient 'i' et on ajoute 'es'.
+On obtient donc : **studies**.
+
+**Étape 4 : Conjuguer le second verbe (to pass)**
+Le second verbe exprime le résultat dans le futur. On utilise donc le Future Simple.
+Pour former le futur en anglais, c'est un jeu d'enfant : on met simplement l'auxiliaire **will** devant le verbe sans le modifier.
+On obtient donc : **will pass**.
+
+**En conclusion :**
+La phrase complète est : 'If Yao studies hard, he will pass his BEPC exam next June.'
+Si Yao étudie bien (comme toi en ce moment !), il réussira son examen. Tu as vu ? Ce n'est pas si sorcier ! Continue comme ça, tu es sur la bonne voie pour décrocher ton BEPC !",141,1527,26
+Français,Figures de style,moyen,gemini-3.5-flash,B_markdown,Identifie et explique la figure de style présente dans la phrase suivante : « Le marché Dantokpa est une fourmilière géante. »,C'est une métaphore.,"Bonjour mon ami ! Ensemble, nous allons analyser cette phrase pour trouver la figure de style. C'est un excellent exercice pour ton BEPC !
+
+**Étape 1 : Observons la phrase**
+Dans la phrase « Le marché Dantokpa est une fourmilière géante », on compare deux choses. D'un côté, nous avons le marché Dantokpa (le comparé) et de l'autre, une fourmilière géante (le comparant). Tu sais bien comment Dantokpa est animé, avec des milliers de personnes qui bougent dans tous les sens, comme des petites fourmis !
+
+**Étape 2 : Cherchons l'outil de comparaison**
+Regarde bien la phrase. Est-ce qu'il y a un mot de comparaison comme « comme », « semblable à » ou « ressemble à » ? Non, il n'y en a pas ! On dit directement que le marché **est** une fourmilière.
+
+**Étape 3 : Identifions la figure de style**
+Quand on compare deux éléments directement, sans utiliser de mot de liaison, on fait une **métaphore**. Si on avait écrit « Le marché est comme une fourmilière », cela aurait été une comparaison. Mais ici, c'est une métaphore.
+
+**Étape 4 : Comprenons le sens**
+Cette métaphore sert à insister sur la grande foule, l'agitation et l'activité intense du marché Dantokpa. Les acheteurs et vendeurs s'y déplacent en grand nombre, tout comme des fourmis s'activent dans leur nid.
+
+Tu as vu ? C'est très simple quand on va pas à pas ! Continue comme ça, tu vas briller au BEPC !",126,1367,22
+Physique-Chimie-Technologie,Circuits électriques,moyen,gemini-3.5-flash,B_markdown,"Pour éclairer sa chambre d'étude à Cotonou, Kemi utilise une batterie de tension U = 12 V. Il réalise un circuit en série comportant deux petites lampes assimilables à des conducteurs ohmiques de résistances respectives R1 = 4 ohms et R2 = 8 ohms.
+
+1) Calcule la résistance équivalente Req de l'association.
+2) Détermine l'intensité I du courant électrique qui traverse le circuit.","1) Req = 12 ohms
+2) I = 1 A","Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas. Tu vas voir, c'est très simple !
+
+**Étape 1 : Calcul de la résistance équivalente Req**
+
+Dans un circuit en série, les appareils sont branchés les uns à la suite des autres. C'est comme si le courant devait traverser deux obstacles l'un après l'autre sur la route de Dantokpa. Pour trouver la résistance totale (dite équivalente), il suffit d'additionner les résistances individuelles.
+
+La formule est : **Req = R1 + R2**
+
+En remplaçant par les valeurs de l'énoncé :
+Req = 4 + 8
+**Req = 12 ohms**
+
+Super ! Passons à la deuxième partie.
+
+**Étape 2 : Détermination de l'intensité I du courant**
+
+Pour trouver l'intensité, nous allons appliquer la **Loi d'Ohm**.
+Cette loi nous donne la relation : **U = Req x I**
+
+Comme nous voulons calculer l'intensité I, nous devons modifier la formule pour isoler I. Cela nous donne :
+**I = U / Req**
+
+Faisons maintenant l'application numérique avec nos données :
+U = 12 V
+Req = 12 ohms
+
+I = 12 / 12
+**I = 1 A** (Ampère)
+
+L'intensité du courant qui traverse le circuit est donc de **1 Ampère**.
+
+Félicitations ! Tu as suivi toutes les étapes avec succès. Continue ainsi, tu es sur la bonne voie pour le BEPC !",381,1217,63
+Sciences de la Vie et de la Terre,Sols et roches,examen,gemini-flash-lite-latest,A_minimal,"Au cours d'une sortie pédagogique dans une région du Nord-Bénin, un élève observe un sol sableux. Sachant qu'un échantillon de ce sol sec de masse 200g, versé dans une éprouvette graduée contenant 100 mL d'eau, laisse infiltrer toute l'eau rapidement, calcule la porosité (en pourcentage) de cet échantillon si le volume d'eau recueilli après infiltration est de 80 mL.",La porosité de cet échantillon de sol est de 80%.,"Étape 1 : Rappelle la formule de la porosité d'un sol, qui est le rapport entre le volume des pores (qui correspond ici au volume d'eau infiltrée) et le volume total de l'échantillon de sol sec, multiplié par 100. Étape 2 : Identifie les données du problème. Le volume d'eau infiltrée est de 80 mL, ce qui représente le volume des vides (ou pores). Étape 3 : Pour trouver le volume total du sol, on regarde la quantité d'eau versée au départ, soit 100 mL. Étape 4 : Applique la formule : Porosité = (Volume d'eau infiltrée / Volume total) x 100. Ce qui donne (80 / 100) x 100 = 80%. Bravo pour ton effort, continue comme ça !",369,625,59
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,examen,gemini-flash-lite-latest,C_complet,"Un élève de troisième réalise un montage en série comprenant un générateur, un interrupteur et un conducteur ohmique de résistance R. Aux bornes du conducteur ohmique, il mesure une tension U = 6 V et un courant I = 0,2 A qui le traverse. 1) Calcule la valeur de la résistance R. 2) On ajoute en série un deuxième conducteur ohmique de résistance R' = 15 ohms. Quelle est la nouvelle intensité du courant dans le circuit si la tension du générateur reste constante à 6 V ?","1) R = 30 ohms ; 2) I' = 0,13 A","Bonjour mon cher élève ! Pour réussir cet exercice type BEPC, allons-y pas à pas avec beaucoup de calme. Premier point : on cherche la résistance R du conducteur ohmique. Tu connais la loi d'Ohm qui relie la tension U, l'intensité I et la résistance R : U = R × I. Pour trouver R, on isole R en faisant la formule R = U ÷ I. En remplaçant par les valeurs de l'énoncé, on a R = 6 ÷ 0,2, ce qui nous donne R = 30 ohms. C'est la première étape réussie ! Deuxième point : on ajoute un deuxième conducteur ohmique R' = 15 ohms en série. Dans un circuit en série, les résistances s'ajoutent. La résistance totale du nouveau circuit devient R(total) = R + R', soit R(total) = 30 + 15 = 45 ohms. Le générateur garde la même tension U = 6 V. Pour trouver la nouvelle intensité I' du courant, on applique à nouveau la loi d'Ohm sur le circuit total : I' = U ÷ R(total). On calcule alors I' = 6 ÷ 45, ce qui donne environ 0,13 A. Tu vois, en prenant le temps de poser chaque formule, la physique devient beaucoup plus simple. Tu es capable de refaire cet exercice tout seul, bon courage pour tes révisions du BEPC !",472,1104,88
+Physique-Chimie-Technologie,Forces et équilibre,moyen,gemini-3.5-flash,B_markdown,"Dans un marché de Cotonou, un vendeur suspend un régime de bananes de masse m = 3 kg à un dynamomètre. Le régime est immobile. On donne g = 10 N/kg.
+1) Identifie les forces qui s'exercent sur le régime de bananes.
+2) Écris la condition d'équilibre du régime.
+3) Détermine l'intensité de la force exercée par le dynamomètre sur le régime.","1) Le poids P (vecteur) du régime et la tension T (vecteur) du ressort du dynamomètre.
+2) P + T = 0 (en vecteurs), ce qui implique P = T.
+3) T = 30 N.","Bonjour mon champion ! Ensemble, nous allons résoudre cet exercice pas à pas. C'est un grand classique du BEPC, tu vas tout comprendre !
+
+**Étape 1 : Identifier les forces**
+Pour trouver les forces, posons-nous deux questions :
+- Qu'est-ce qui attire le régime de bananes vers le bas ? C'est la Terre ! Cette force d'attraction s'appelle le **poids du régime**, noté **P** (avec une petite flèche au-dessus pour montrer que c'est un vecteur).
+- Qu'est-ce qui empêche le régime de tomber ? C'est le ressort du dynamomètre qui le retient vers le haut. Cette force de contact s'appelle la **tension du ressort**, notée **T** (avec une flèche).
+Il y a donc deux forces : le poids **P** et la tension **T**.
+
+**Étape 2 : Écrire la condition d'équilibre**
+Comme le régime de bananes est immobile (au repos), il est en équilibre sous l'action de ces deux forces.
+La règle en physique nous dit que lorsqu'un solide soumis à deux forces est en équilibre, ces deux forces se compensent.
+En mathématiques, on écrit que leur somme vectorielle est nulle : **P + T = 0** (avec des flèches sur P, T et le 0).
+Cela signifie concrètement que les deux forces ont la même droite d'action (verticale), des sens opposés (le poids tire vers le bas, la tension tire vers le haut) et surtout la **même intensité** : **P = T**.
+
+**Étape 3 : Calculer l'intensité de la tension**
+Pour trouver la tension **T**, nous allons d'abord calculer le poids **P** du régime de bananes.
+La formule du poids est : **P = m x g**
+Utilisons les données de l'énoncé :
+- m = 3 kg (la masse du régime)
+- g = 10 N/kg (l'intensité de la pesanteur)
+Calculons : P = 3 kg x 10 N/kg = **30 N** (Newtons).
+Comme nous avons établi à l'étape 2 que **T = P** à l'équilibre, alors la tension du dynamomètre est elle aussi de **30 N**.
+
+Félicitations pour tes efforts ! Continue comme ça, le BEPC est à ta portée !",337,1858,62
+Allemand,Wortschatz des Alltags,examen,gemini-3.5-flash,A_minimal,"Wortschatz des Alltags - Niveau BEPC.
+
+Lies den folgenden Satz und wähle das richtige Wort, um die Lücke zu füllen :
+
+Jeden Morgen wäscht sich Kofi, zieht sich an und isst sein ________ (Hausaufgabe / Frühstück / Auto), bevor er schnell zur Schule geht.
+
+Schreibe nur das richtige Wort auf.",Frühstück,"Bonjour mon ami ! Prêt à briller au BEPC ? Analysons ensemble cette phrase très simple qui ressemble à ton quotidien à Cotonou ou Parakou avant d'aller au cours.
+
+Étape 1 : Comprenons le sens de la phrase.
+- ""Jeden Morgen"" = Chaque matin.
+- ""wäscht sich Kofi, zieht sich an"" = Kofi se lave, s'habille.
+- ""und isst sein..."" = et mange son...
+- ""bevor er schnell zur Schule geht"" = avant d'aller vite à l'école.
+
+Étape 2 : Analysons les trois options proposées :
+1. ""Hausaufgabe"" signifie ""devoir de maison"". On ne mange pas ses devoirs d'allemand !
+2. ""Auto"" signifie ""voiture"". C'est un moyen de transport, impossible à manger !
+3. ""Frühstück"" signifie ""petit-déjeuner"". C'est le repas du matin, comme une bonne bouillie chaude ou du pain avant de partir en classe.
+
+Étape 3 : Conclusion.
+Le verbe ""essen"" (manger) s'associe logiquement avec la nourriture. Le bon choix est donc ""Frühstück"".
+
+Félicitations pour ton effort ! Tu es sur la bonne voie pour réussir ton examen !",290,974,50
+Espagnol,Pretérito indefinido e imperfecto,examen,gemini-flash-lite-latest,C_complet,"Completa la frase con el tiempo correcto (pretérito indefinido o imperfecto): Ayer, mientras yo (estudiar) ____ en mi habitación, mi madre (preparar) ____ elú (salsa de maní) en la cocina.",estudiaba / preparó,"Paso 1: Analizamos la frase para ver qué acción interrumpe a otra o cuál es una acción de fondo. La palabra 'mientras' indica una acción que estaba en curso (duración). Paso 2: Para una acción pasada que duraba o estaba en desarrollo, usamos el pretérito imperfecto. Con el sujeto 'yo' y el verbo 'estudiar' (grupo -ar), la forma es 'estudiaba'. Paso 3: La acción de preparar la salsa ocurrió de repente o interrumpió la otra, o simplemente sucedió como un hecho puntual terminado. Para acciones puntuales y acabadas usamos el pretérito indefinido. Con el sujeto 'mi madre' (tercera persona singular) y el verbo 'preparar', la forma es 'preparó'.",188,646,30
+Anglais,"Writing (letter, narrative)",facile,gemini-flash-lite-latest,A_minimal,Write a short informal letter (about 5 lines) to your friend Koffi to invite him to your birthday party next Saturday at your house in Cotonou.,"Dear Koffi,
+
+How are you? I am very happy to invite you to my birthday party next Saturday at my house in Cotonou. There will be delicious food, music, and a lot of fun. Please try to come!
+
+Your friend,
+Kouassi","Pour rédiger une lettre informelle (à un ami) pour le BEPC, procède étape par étape :
+1. Mets le lieu et la date en haut à droite (ou juste une formule amicale).
+2. Commence par une formule de salutation chaleureuse comme 'Dear [Nom]' (Cher...). 
+3. Demande des nouvelles ('How are you?') et annonce clairement l'invitation (le motif de la lettre).
+4. Ajoute un petit détail (la nourriture, la musique, le lieu).
+5. Termine par une formule de politesse amicale comme 'Your friend' (Ton ami) suivie de ton nom.",143,509,26
+Sciences de la Vie et de la Terre,Sols et roches,facile,gemini-flash-lite-latest,C_complet,"Un élève de troisième prélève un échantillon de terre dans son champ à Bohicon. Il y verse un peu d'eau et observe la formation de bulles d'air, puis, après agitation et repos dans un tube à essai, il observe le dépôt de différents éléments (graviers, sable, limon, argile). Comment appelle-t-on le phénomène qui a permis de mettre en évidence la présence d'air dans ce sol, et comment appelle-t-on la méthode qui a permis de séparer les constituants du sol par sédimentation ?","La mise en évidence de l'air est l'effervescence ou le test de porosité (ou battance), et la séparation des constituants par dépôt dans l'eau est l'analyse granulométrique par sédimentation.","Première étape : lorsque l'élève verse de l'eau sur la terre sèche, l'eau chasse l'air qui remplissait les pores (les espaces vides) entre les grains de terre. Cet air s'échappe sous forme de bulles, ce qui prouve que le sol contient de l'air et est poreux. Deuxième étape : en mélangeant la terre avec de l'eau dans un tube et en laissant reposer, les particules solides se déposent selon leur taille et leur poids (les plus lourdes comme les graviers et le sable en bas, les plus fines comme l'argile tout en haut). C'est l'analyse granulométrique par sédimentation, qui permet de connaître la texture du sol.",477,611,82
+Communication écrite,Rédaction narrative,facile,gemini-flash-lite-latest,C_complet,"Imagine la suite d'un événement heureux dans ton quartier (par exemple, la réussite d'un ami au BEPC ou une fête traditionnelle). Rédige un court récit de 5 à 10 lignes en employant un temps du passé et un connecteur logique.","Récit respectant la consigne : 5 à 10 lignes, utilisation d'un temps du passé (imparfait ou passé simple) et d'un connecteur logique (ex: ensuite, soudain, enfin), en lien avec un événement heureux au quartier.","Étape 1 : Choisis un événement heureux simple, comme la fête organisée après la proclamation des résultats du BEPC dans ton quartier. Étape 2 : Écris 5 à 10 lignes en décrivant l'ambiance et les actions. Étape 3 : Utilise un temps du passé (par exemple le passé simple : 'nous chantâmes' ou l'imparfait : 'les gens dansaient'). Étape 4 : Insère un connecteur logique pour lier tes idées (par exemple : 'Soudain', 'Enfin', 'Puis'). Étape 5 : Relis-toi pour corriger les fautes d'orthographe.",225,490,40
+Communication écrite,Rédaction argumentative,facile,gemini-flash-lite-latest,A_minimal,"Sujet : Certains pensent que les réseaux sociaux sont une perte de temps pour les élèves, tandis que d'autres pensent qu'ils sont utiles pour apprendre. Rédige un paragraphe argumentatif de 5 lignes pour donner ton point de vue en t'appuyant sur un exemple précis.","Pour ma part, les réseaux sociaux sont utiles pour apprendre s'ils sont bien utilisés. En effet, ils permettent de rejoindre des groupes de travail en ligne pour échanger sur des exercices difficiles. Par exemple, sur WhatsApp, de nombreux élèves créent des forums de mathématiques pour s'entraider le soir. Ainsi, bien encadrés, ces outils deviennent de véritables alliés pour la réussite scolaire.","Étape 1 : Lire attentivement le sujet et choisir sa position (pour ou contre, ou nuancé). Ici, on choisit qu'ils sont utiles.
+Étape 2 : Énoncer clairement son avis dès la première phrase.
+Étape 3 : Donner un argument logique (ils permettent de travailler ensemble).
+Étape 4 : Illustrer cet argument avec un exemple concret et proche du quotidien au Bénin (les forums WhatsApp de mathématiques).
+Étape 5 : Conclure par une phrase qui résume l'idée. Veiller à respecter la longueur demandée (environ 5 lignes) et à faire attention à l'orthographe.",264,545,44
+Allemand,Präpositionen und Satzbau,facile,gemini-flash-lite-latest,C_complet,Ergänze die richtige Präposition: Ich warte ... dich (attendre quelqu'un).,auf,"Schritt 1: Wir suchen die passende Präposition für das Verb 'warten' (attendre). Im Deutschen verbindet man 'warten' oft mit der Präposition 'auf'. Schritt 2: Diese Präposition verlangt den Akkusativ. Da 'dich' schon im Akkusativ steht, setzen wir einfach 'auf' ein.",74,266,10
+Espagnol,Pronombres y preposiciones,examen,gemini-flash-lite-latest,A_minimal,Completa la siguiente frase con el pronombre y la preposición correctos: 'María piensa a menudo ___ madre y ___ escribe una carta.' (Usa los pronombres y preposiciones adecuados).,en su / le,"Paso 1: Identificar el verbo que requiere una preposición. El verbo 'pensar' en el sentido de recordar o tener en mente va seguido de la preposición 'en' (pensar en). Paso 2: Sustituir 'madre' por un posesivo adecuado, que es 'su'. Tenemos 'en su'. Paso 3: Identificar el complemento de objeto indirecto (a su madre). Para no repetir 'a su madre', usamos el pronombre de objeto indirecto correspondiente a la tercera persona singular, que es 'le' (le escribe). Juntando todo, obtenemos 'en su / le'.",179,499,28
+Mathématiques,"Statistiques (moyenne, effectifs)",facile,gemini-flash-lite-latest,B_markdown,"Les notes sur 20 obtenues par un groupe de 5 élèves en Mathématiques sont : 10, 12, 14, 10 et 14. Calcule la moyenne de cette classe.",12,"Pour calculer la moyenne, on procède en deux étapes simples. Étape 1 : On additionne toutes les notes obtenues par les élèves, ce qui donne 10 + 12 + 14 + 10 + 14 = 60. Étape 2 : On divise cette somme totale par le nombre total d'élèves, qui est 5. On fait donc 60 divisé par 5, ce qui donne 12. La moyenne de ce groupe est donc de 12 sur 20. C'est comme si on partageait équitablement les points entre tous les élèves !",133,420,27
+Communication écrite,Lettre et écrits fonctionnels,examen,gemini-flash-lite-latest,A_minimal,"Cotonou, le 15 mai 2024
+
+Objet : Demande de stage de vacances
+
+Monsieur le Directeur,
+
+Élève en classe de troisième au CEG Sainte-Rita, je sollicite auprès de votre bienveillance l'obtention d'un stage de vacances dans votre entreprise.
+
+Dans l'attente d'une suite favorable, veuillez agréer, Monsieur le Directeur, l'expression de mes salutations distinguées.
+
+[Signature]
+
+Question : Identifie la nature de ce document et précise le destinataire exact de cette lettre selon le texte.",Nature : Lettre administrative (demande de stage). Destinataire : Le Directeur de l'entreprise.,"Étape 1 : Analyser le document. On observe la présence d'un lieu et d'une date en haut à gauche, d'un 'Objet', d'une interpellation ('Monsieur le Directeur') et d'une formule de politesse finale. Il s'agit donc d'une lettre.
+Étape 2 : Déterminer la nature exacte. La présence de la mention 'Objet' et l'adresse à une autorité (un Directeur) pour formuler une demande officielle caractérise une lettre administrative.
+Étape 3 : Identifier le destinataire. En lisant l'en-tête de la lettre ('Monsieur le Directeur') et la formule d'appel, on voit clairement à qui le message est adressé : c'est le Directeur de l'entreprise.",485,622,72
+Sciences de la Vie et de la Terre,Hérédité et génétique,facile,gemini-flash-lite-latest,A_minimal,"Au cours d'un élevage de lapins à Cotonou, un éleveur croise un lapin à pelage noir (caractère dominant) avec un lapin à pelage blanc (caractère récessif). Tous les lapins de la première génération (F1) ont un pelage noir. Comment appelle-t-on la loi de Mendel qui montre que tous les individus de la F1 sont semblables lorsqu'on croise deux parents de race pure ?",La loi d'uniformité des hybrides de la première génération (ou première loi de Mendel).,"1. Observe bien la situation : on croise deux parents de race pure (l'un noir, l'autre blanc) et toute la descendance (F1) est identique (tous noirs).
+2. Rappelle-toi le cours sur la génétique : lorsque le croisement de deux parents de race pure donne une génération F1 où tous les individus se ressemblent, on est en présence de la loi d'uniformité.
+3. Conclus donc qu'il s'agit de la première loi de Mendel, dite loi d'uniformité des hybrides de la première génération.",364,471,63
+Sciences de la Vie et de la Terre,Respiration et circulation,facile,gemini-flash-lite-latest,A_minimal,"Au cours d'une course à pied dans la cour de ton collège à Cotonou, ton rythme respiratoire s'accélère. Nomme le gaz rejeté en plus grande quantité par tes poumons lors de cet effort.",Le dioxyde de carbone,"Étape 1 : Rappelle-toi ce qui se passe dans ton corps quand tu fais un effort physique comme courir. Tes muscles travaillent beaucoup et ont besoin d'énergie.
+Étape 2 : Pour fabriquer cette énergie, les cellules de tes muscles consomment du dioxygène et rejhent un déchet, le dioxyde de carbone.
+Étape 3 : Ce gaz carbonique passe dans le sang, arrive aux poumons, et est rejeté à l'extérieur par la respiration. C'est pour cela qu'on respire plus vite !",183,453,33
+Lecture,Compréhension d’un texte argumentatif,moyen,gemini-flash-lite-latest,A_minimal,"Lis l'extrait suivant : ""Certaines personnes pensent que les jeunes ne s'intéressent plus à la lecture. Pourtant, il suffit de voir l'engouement pour les bandes dessinées et les romans dans nos rues et nos collèges pour comprendre le contraire."" Quelle est la thèse (l'idée défendue) de l'auteur dans ce passage ?",La jeunesse s'intéresse bel et bien à la lecture.,"Étape 1 : Identifie le sujet dont on parle. Ici, il s'agit de l'intérêt des jeunes pour la lecture. Étape 2 : Repère l'opinion de l'auteur. La première phrase (""Certaines personnes pensent que..."") présente l'avis des autres (la thèse adverse). Le mot ""Pourtant"" introduit l'idée propre de l'auteur. Étape 3 : Conclus. L'auteur réfute l'idée reçue en montrant que les jeunes lisent (bandes dessinées, romans). La thèse est donc que les jeunes s'intéressent à la lecture.",313,470,51
