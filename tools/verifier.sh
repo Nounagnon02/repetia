@@ -45,7 +45,7 @@ if [ "${1:-}" = "--notebooks" ]; then
   titre "Notebooks — régénération depuis les scripts, puis exécution"
   # Le .ipynb est un ARTEFACT : la source est construire_notebook_0X.py.
   # Régénérer avant d'exécuter garantit que les deux ne divergent pas.
-  for n in 01 02; do
+  for n in 01 02 03; do
     script=$(ls recherche/src/construire_notebook_${n}.py 2>/dev/null || true)
     [ -z "$script" ] && continue
     if "$PY" "$script" >/dev/null 2>&1; then ok "$script régénéré"; else ko "$script a échoué"; continue; fi
