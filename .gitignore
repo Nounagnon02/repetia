@@ -54,3 +54,8 @@ coverage/
 # Environnement Python de recherche et artefacts
 *.pyc
 NOTE_TECHNIQUE.odg
+
+# Données de tiers collectées pour évaluation — usage privé, NON redistribuées.
+# Les annales du BEPC restent la propriété de leurs éditeurs : seules les
+# métriques agrégées calculées à partir d'elles figurent dans les notebooks.
+recherche/donnees/privees/
