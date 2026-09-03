@@ -17,6 +17,7 @@ tâche où l'appel au LLM serait disproportionné.
 | `notebooks/01-banc-evaluation-llm.ipynb` | Banc d'évaluation de l'intégration : conformité au contrat, effet des consignes de prompt, latence, comparaison de deux modèles |
 | `notebooks/02-classifieur-matiere.ipynb` | Classifieur de matière entraîné par nos soins : quatre approches comparées, généralisation du synthétique vers 318 passages d'annales réelles, analyse des erreurs |
 | `notebooks/03-benin-edubench.ipynb` | Banc de test standardisé Bénin-EduBench : évaluation comparative des LLM sur le curriculum et les critères APC du Bénin |
+| `notebooks/04-evaluation-rag.ipynb` | Test A/B du RAG : le bloc de consignes du programme officiel injecté dans le prompt change-t-il réellement les réponses du modèle ? |
 
 ## Reproduire les résultats
 
@@ -54,27 +55,35 @@ collecte.
 
 ## Résultats principaux du notebook 02
 
-Entraînement sur 87 énoncés (générés + banque de secours), évaluation sur
+Entraînement sur 149 énoncés (générés + banque de secours), évaluation sur
 **318 passages d'annales réelles** océrisés — deux sources indépendantes.
 
 | Approche | F1 macro (VC 5 plis) | F1 macro (annales réelles) |
 |---|---|---|
-| Référence (classe majoritaire) | 0,051 | 0,049 |
-| Bayes naïf (mots) | 0,505 | 0,288 |
-| Régression logistique (mots) | 0,764 | 0,460 |
-| **SVM linéaire (caractères)** | 0,709 | **0,493** |
+| Référence (classe majoritaire) | 0,043 | 0,049 |
+| Bayes naïf (mots) | 0,774 | 0,448 |
+| Régression logistique (mots) | 0,874 | 0,536 |
+| **SVM linéaire (caractères)** | **0,881** | **0,581** |
+
+En regroupant Communication écrite et Lecture — deux épreuves que le corpus ne
+permet pas encore de séparer — le SVM atteint **0,618** sur annales réelles.
 
 Les n-grammes de caractères l'emportent sur données réelles tout en présentant
 le plus faible écart de généralisation : ils résistent mieux au bruit de l'OCR.
-Le classifieur décide en **0,17 ms**, contre 2,2 s pour l'appel LLM le plus
-rapide — environ 13 000 fois plus vite, sans consommer de quota.
+Le classifieur décide en **0,18 ms**, contre 2,8 s pour l'appel LLM le plus
+rapide — environ 15 000 fois plus vite, sans consommer de quota.
 
-**Le modèle n'est pas prêt pour la production**, et le notebook le dit : la
-classe SVT se comporte en réceptacle (34 % des prédictions pour 1,9 % du jeu de
-test). Une ablation montre que la cause n'est pas la pondération des classes
-mais la longueur des textes d'entraînement — symptôme d'un corpus trop maigre.
-La courbe d'apprentissage ne plafonne pas : il manque des données, pas un
-meilleur modèle.
+**Le modèle n'est pas prêt pour la production**, et le notebook le dit : une
+classe se comporte en réceptacle (« Communication écrite », 27 % des
+prédictions pour 10,1 % du jeu de test réel ; après regroupement, c'est
+« Lecture » qui absorbe 129 des 318 passages). La confusion dominante est
+Lecture → Communication écrite (56 % des passages de Lecture), rejointe par
+Histoire-Géographie, Espagnol et Allemand : de la prose française sans
+marqueur lexical distinctif. L'ablation par troncature, qui semblait
+désigner la longueur des textes comme cause à 94 exemples, ne tient plus à
+149 — la direction était bonne, la cause exacte non. La courbe
+d'apprentissage ne plafonne pas : il manque des données, pas un meilleur
+modèle.
 
 ## Plan d'expérience
 

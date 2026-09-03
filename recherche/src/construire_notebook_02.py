@@ -257,7 +257,7 @@ print(f"Classes      : {len(np.unique(y_train))}")"""))
 c.append(md("""---
 ## 3. Expérience A — validation croisée sur le corpus d'entraînement
 
-Avec 87 exemples pour 9 classes, une simple partition entraînement/test
+Avec 149 exemples pour 9 classes, une simple partition entraînement/test
 gaspillerait des données et donnerait un score très instable. On utilise donc
 une **validation croisée stratifiée à 5 plis** : chaque exemple sert une fois à
 l'évaluation, et la répartition des classes est préservée dans chaque pli."""))
@@ -485,24 +485,35 @@ for n_mots in (None, 30, 20, 15):
     print(f"  {etiquette:<22} F1 macro={f1_score(y_test, q, average='macro', zero_division=0):.3f}"
           f"   réceptacle prédit {(q == recepteur).sum():>3} fois")"""))
 
-c.append(md("""### Ce que l'ablation démontre
+c.append(md("""### Ce que l'ablation démontre — et ce qu'elle ne démontre plus
 
 La pondération des classes est **hors de cause** : la retirer ne vide pas le
-réceptacle. La longueur, elle, l'explique en grande partie — tronquer les textes
-d'entraînement réduit fortement l'effet, et **sans coût mesurable sur le F1
-macro**.
+réceptacle (86 → 92 prédictions, F1 quasi identique). La longueur, elle,
+n'explique plus qu'une **petite part** de l'effet à ce stade du corpus :
+tronquer à 15 mots ne fait passer le réceptacle que de 86 à 69 prédictions,
+pour un F1 macro inchangé (0,581). C'est loin du « réduit fortement l'effet »
+qu'un corpus plus petit avait laissé penser — un rappel utile que conclure sur
+une ablation à 94 exemples, puis la revoir à 149, est exactement la démarche
+honnête que ce notebook essaie de tenir.
 
-Mais la longueur est un symptôme, pas le mécanisme. Les passages d'annales que
-le modèle range à tort dans cette classe sont les « situations d'évaluation » :
-des énoncés de mathématiques qui ouvrent sur plusieurs phrases de mise en
-situation — un domaine à partager, un chantier à équiper — avant d'en venir aux
-questions. Les symboles mathématiques qui les trahiraient ne survivent pas à
-l'OCR. Ce qui reste est du **français courant**, et le modèle le rapproche
-naturellement des textes d'entraînement les plus longs et les plus généralistes.
+Le vrai signal est dans le tableau de confusions ci-dessus : ce ne sont pas
+les longs textes en général qui alimentent le réceptacle, mais un groupe
+précis — **Lecture (56 % de ses passages), Histoire-Géographie (29 %),
+Espagnol (46 %) et Allemand (33 %)** finissent classés « Communication
+écrite ». Le point commun n'est pas la longueur mais le **registre** : de la
+prose descriptive en français courant (récit historique, consigne de langue
+rédigée en français, texte littéraire) sans marqueur lexical assez distinctif
+pour un modèle à n-grammes de caractères.
+
+Un phénomène différent et plus ancien persiste en parallèle : 18,7 % des
+passages de mathématiques sont prédits SVT — ce que le regroupement
+Communication écrite → Lecture (section 6) ne touche pas, puisqu'il ne
+concerne pas ces deux classes.
 
 La leçon est méthodologique, et elle vaut d'être retenue : **le F1 macro seul
-aurait laissé ce défaut invisible.** Il a fallu la matrice, puis une ablation,
-pour le nommer."""))
+aurait laissé ce défaut invisible**, et une ablation sur un petit échantillon
+peut désigner la bonne direction (la longueur comme indice) sans en être la
+cause exacte."""))
 
 c.append(md("""---
 ## 6. Regroupement : Communication écrite → Lecture
@@ -577,16 +588,23 @@ print(pd.DataFrame(resultats_r).set_index("configuration").to_string())"""))
 
 c.append(md("""### Ce que le regroupement apporte — et ce qu'il ne résout pas
 
-Le gain est net : **+0,12 de F1 macro en validation croisée, +0,06 sur les
-annales réelles.** La distinction Lecture / Communication écrite, telle qu'elle
-était posée, n'était pas apprenable avec 6 exemples. Le regroupement n'est pas
-un aveu de faiblesse : c'est l'ajustement du grain de la tâche au corpus
-disponible.
+Le gain reste réel mais **plus modeste qu'aux 94 premiers exemples** :
+**+0,03 de F1 macro en validation croisée, +0,04 sur les annales réelles**
+(contre +0,12 / +0,06 mesurés alors). C'est cohérent : à mesure que le corpus
+grandit, la distinction Lecture / Communication écrite devient un peu plus
+apprenable seule, donc le regroupement a un peu moins à corriger. Il reste
+la correction la plus efficace pour le F1 macro global, mais son effet
+diminue avec les données — ce qui est exactement ce qu'on attendrait s'il
+traitait un vrai manque de données plutôt qu'un défaut de modèle.
 
-En revanche, **le réceptacle SVT persiste**. Le nombre de prédictions SVT
-diminue légèrement, mais le mécanisme reste le même. Avec 11 exemples
-d'entraînement et 6 passages de test, cette classe restera instable tant que
-le corpus ne sera pas enrichi. La section suivante chiffre ce besoin."""))
+Une nuance à ne pas passer sous silence : **la classe fusionnée « Lecture »
+devient elle-même un réceptacle plus large qu'avant la fusion** (129
+prédictions contre 86 pour « Communication écrite » seule au même
+corpus). Le F1 macro global progresse malgré cela, parce que la fusion
+supprime la confusion *entre* les deux anciennes classes sans empêcher
+d'autres classes (Histoire-Géographie, Espagnol, Allemand) de continuer à s'y
+déverser. Regrouper a résolu un problème et laissé un autre, plus large,
+visible à sa place."""))
 
 c.append(md("""---
 ## 7. De combien de données aurions-nous besoin ?
@@ -676,29 +694,33 @@ c.append(md("""---
    caractères en tête ; la matrice de confusion a montré qu'il devait une part
    de ses prédictions à une classe réceptacle. Nous ne l'aurions pas vu sans
    descendre au niveau de la classe, puis sans ablation.
-5. **Le regroupement CE → Lecture est la correction la plus efficace.** Avec
-   seulement 6 exemples, Communication écrite n'était pas une classe apprenable.
-   Regrouper gagne +0,06 de F1 macro sur les annales réelles — un gain modeste
-   mais systématique, obtenu sans toucher au modèle.
+5. **Le regroupement CE → Lecture reste la correction la plus efficace**, même
+   si son gain se réduit à mesure que le corpus grandit (+0,12 → +0,03 de F1
+   macro en validation croisée entre 94 et 149 exemples). Il déplace le
+   réceptacle plutôt que de le supprimer (section 5) — un résultat honnête,
+   pas un problème résolu.
 
 ### Ce que l'étude ne permet pas de conclure
 
 Le classifieur n'est **pas prêt pour la production**, même après regroupement.
-Avec 0,56 de F1 macro et un réceptacle SVT persistant, l'intégrer au chat
-dégraderait l'expérience de l'élève plutôt que de l'améliorer. La courbe
-d'apprentissage indique la direction — le F1 de validation progresse encore
-entre le quart du corpus et sa totalité, sans plateau — mais la conclusion
-honnête est qu'il manque des données, pas qu'il manque un meilleur modèle.
+Avec 0,618 de F1 macro sur les annales réelles et une classe qui absorbe encore
+129 prédictions sur 318 pour une part bien moindre du jeu de test réel,
+l'intégrer au chat dégraderait l'expérience de l'élève sur les matières
+absorbées plutôt que de l'améliorer. La courbe d'apprentissage indique la
+direction — le F1 de validation progresse encore entre le quart du corpus et
+sa totalité, sans plateau — mais la conclusion honnête est qu'il manque des
+données, pas qu'il manque un meilleur modèle.
 
 ### Limites, énoncées sans détour
 
-- **Corpus d'entraînement très petit** : 87 exemples pour 9 classes, dont
-  seulement 3 en espagnol et 3 en allemand. Aucune conclusion solide n'est
-  possible sur ces deux matières.
-- **Six passages de test seulement en SVT**, contre 91 en mathématiques. Cette
-  classe s'est révélée être le réceptacle du modèle : elle capte 34 % des
-  prédictions pour 1,9 % du jeu de test. Son rappel de 1,00 est un artefact,
-  pas une réussite.
+- **Corpus d'entraînement encore modeste** : 149 exemples pour 9 classes.
+  Espagnol (13) et Allemand (9) sont sortis de la zone la plus critique (3
+  exemples chacun au dernier bilan) mais restent minoritaires ; aucune
+  conclusion définitive n'est possible sur ces deux matières.
+- **Six passages de test seulement en SVT**, contre 91 en mathématiques —
+  inchangé depuis le premier bilan : ce nombre dépend des annales
+  disponibles, pas de la collecte d'entraînement. Le classifieur continue par
+  ailleurs de confondre 18,7 % des passages de mathématiques avec la SVT.
 - **Le jeu de test est bruité par l'OCR.** Nous avons mesuré la perte des
   diacritiques — 0,44 % de lettres accentuées contre 5 à 6 % attendus — et
   appliqué la même normalisation des deux côtés pour que la comparaison porte
