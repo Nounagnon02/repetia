@@ -58,7 +58,7 @@ repères, pas des contraintes.
 | 5 | 0:50–1:12 | **Capture web** — il répond, puis la correction s'affiche | « Il répond. Et c'est là que tout se joue : il ne reçoit pas seulement un verdict. Il reçoit la correction, expliquée pas à pas — parce qu'un élève qui voit la bonne réponse sans le raisonnement n'a rien appris. » |
 | 6 | 1:12–1:26 | **Capture web** — le chat | « S'il bloque encore, il demande. Le répétiteur lui répond, dans sa langue de classe. » |
 | 7 | 1:26–1:40 | **Capture web** — progression | « L'application retient ce qu'il maîtrise, et lui propose ensuite ce qu'il maîtrise le moins. » |
-| 8 | 1:40–1:58 | **Capture mobile** — mode avion | « Nous l'avons conçue pour le réseau béninois, pas pour une démonstration. Coupez la connexion : les exercices déjà chargés restent là. Si le modèle d'IA tombe en panne, une banque d'exercices écrits à la main prend le relais. L'élève ne voit jamais d'écran d'erreur. » |
+| 8 | 1:40–1:58 | **Capture mobile** — mode avion | « Nous l'avons conçue pour le réseau béninois, pas pour une démonstration. Coupez la connexion : les exercices déjà chargés restent là. Si le modèle d'IA tombe en panne, une banque de plusieurs milliers d'exercices vérifiés prend le relais, calibrée sur la classe de l'élève. Il ne voit jamais d'écran d'erreur. » |
 | 9a | 1:58–2:12 | Carton « modèle entraîné » | « Nous ne nous sommes pas contentés d'appeler une API. Nous avons entraîné notre propre modèle à reconnaître la matière d'une question, et nous l'avons évalué sur trois cent dix-huit extraits d'annales réelles du BEPC. » |
 | 9b | 2:12–2:26 | Carton « latence » | « Il décide en deux dixièmes de milliseconde, là où l'appel au grand modèle en demande près de trois. Et nos résultats disent aussi ce qui ne marche pas encore : c'est à cela que sert la mesure. » |
 | 10 | 2:26–2:40 | Carton final + URL | « RépétIA est en ligne, gratuit, et tourne sur un téléphone d'entrée de gamme. Parce que ce qui manque à l'élève béninois, ce n'est pas l'envie. C'est quelqu'un pour lui expliquer. » |
@@ -216,6 +216,21 @@ une fois la vidéo compressée.
 production, il confond Lecture et Communication écrite dans 56 % des cas, et le
 notebook l'écrit noir sur blanc. Devant un jury technique, une limite mesurée
 et nommée vaut mieux qu'un score gonflé.
+
+### Si on vous interroge sur la banque de secours
+
+Elle a deux moitiés, et il vaut mieux le dire que le cacher.
+
+- **Mathématiques et physique-chimie** : les exercices sont **calculés**, pas
+  stockés. Un modèle d'énoncé, des valeurs qui varient, une solution obtenue
+  par le calcul — donc juste par construction. Plus de 2 600 énoncés distincts,
+  et des tests qui recalculent les solutions depuis l'énoncé pour le prouver.
+- **Les autres matières** : les exercices sont **produits par le modèle hors
+  ligne, puis validés un par un** avant d'entrer dans le dépôt. Ni LaTeX, ni
+  titre Markdown, ni doublon, ni explication trop courte — le contrôle est
+  automatique et ce qui échoue est rejeté, pas rafistolé.
+
+Ne dites pas « écrits à la main » : ce n'était vrai que des 55 premiers.
 
 ---
 

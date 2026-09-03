@@ -122,6 +122,32 @@ consigne. La tâche « chat » a été ajoutée pour corriger ce défaut de plan
 | `donnees/privees/texte/` | 66 transcriptions OCR + scores de confiance (**non versionnées**) |
 | `donnees/privees/jeu_de_test.csv` | 318 passages étiquetés par matière, extraits des annales (**non versionné**) |
 
+## Un outil qui sert l'application, pas l'étude
+
+`src/generer_banque.py` n'appartient pas au dossier scientifique : il produit la
+**banque de secours hors ligne** de RépétIA, pour les matières où un générateur
+paramétré ne peut rien — SVT, langues, histoire-géographie, philosophie,
+lecture, communication écrite.
+
+```bash
+npm run build --prefix backend && node recherche/src/exporter_catalogue.js
+set -a && . backend/.env && set +a
+python recherche/src/generer_banque.py --plan      # état de la couverture
+python recherche/src/generer_banque.py --limite 20 # produire
+python recherche/src/generer_banque.py --export    # figer dans backend/src/data/
+```
+
+Il vit ici parce qu'il partage l'infrastructure de la collecte — même clé, même
+gestion du quota, même discipline de validation. Neuf exercices par appel, le
+couple le plus pauvre complété en premier, et rien n'entre sans passer le
+contrôle : champ vide, énoncé trop court, LaTeX, titre Markdown ou doublon sont
+rejetés et comptés.
+
+Ce qu'il produit est du **contenu d'application**, pas une donnée d'expérience.
+Il ne doit jamais alimenter le corpus d'entraînement du notebook 02 : le jeu de
+test serait alors comparé à des exercices issus du même modèle, et la question
+de généralisation posée par ce notebook perdrait tout son sens.
+
 ## Limite structurante : le quota
 
 Le palier gratuit de l'API Gemini plafonne à quelques dizaines d'appels par jour
