@@ -1,9 +1,11 @@
 /**
- * Agent de Vérification Scientifique & Solveur Déterministe.
+ * Solveur déterministe pour quelques formules usuelles du BEPC & BAC.
  *
- * Élimine 100 % des hallucinations numériques des LLM sur les matières
- * scientifiques (Maths & PCT) en résolvant formellement les équations
- * et formules usuelles du BEPC & BAC.
+ * Sert de second avis pour la correction : quand la solution attendue est un
+ * nombre unique et que le LLM juge la réponse fausse, on vérifie par le
+ * calcul plutôt que de trancher uniquement sur le jugement du modèle. Ça
+ * rattrape les cas où le LLM se trompe sur un exercice qu'il a pourtant lui
+ * généré — ce n'est pas une garantie générale contre les erreurs numériques.
  */
 
 export interface ResultatResolution {
