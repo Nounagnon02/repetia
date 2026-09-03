@@ -66,6 +66,94 @@ Trois règles :
 
 ---
 
+## 2026-09-03 — Trou de couverture du RAG, corpus élargi, et premier test A/B du RAG
+
+**Auteur** Claude Code · **Commit** voir ci-dessous
+
+**Fait**
+
+1. **Trou de couverture du RAG, trouvé et corrigé.**
+   `backend/src/data/programme_officiel.ts` contenait une fiche « Français »
+   **orpheline** : aucune matière réelle ne porte ce nom (le catalogue
+   distingue Lecture et Communication écrite), et la correspondance de
+   `RagService` ne la déclenchait jamais. Pendant ce temps **Espagnol et
+   Allemand n'avaient aucune fiche** et retombaient silencieusement sur
+   `DIRECTIVE_GENERIQUE` — deux matières entières sans ancrage curriculaire,
+   sans erreur ni avertissement. Remplacé par quatre fiches réelles (Lecture,
+   Communication écrite, Espagnol, Allemand) dont les `notionsCles` sont
+   calquées sur les thèmes réels du catalogue.
+   Nouveau test `backend/tests/rag.service.test.ts` (11 tests) : verrouille la
+   couverture des 9 matières, pour que le prochain oubli soit détecté ici.
+
+2. **Corpus du classifieur élargi par collecte réelle.**
+   `collecte.py` relancé : **100 → 149 exemples** (107 appels API accumulés,
+   soit 8,9 % du plan). Le quota de `gemini-3.5-flash` s'est épuisé en cours
+   de route ; le script a poursuivi seul sur `gemini-flash-lite-latest`, comme
+   prévu depuis T5. Espagnol 5 → 13, Allemand 5 → 9.
+
+3. **Premier test A/B réel du RAG** (`recherche/src/evaluer_rag.py`,
+   `notebooks/04-evaluation-rag.ipynb`). 9 cas × 2 conditions = **18 appels
+   réels** : prompt système exact de production (avec bloc RAG) contre le même
+   persona sans bloc RAG. Trois critères vérifiables automatiquement.
+
+**Mesures**
+
+Notebook 02 régénéré et réexécuté (149 exemples, 318 passages de test) :
+
+| Configuration | F1 macro (VC 5 plis) | F1 macro (annales réelles) |
+|---|---|---|
+| SVM caractères, 9 classes | 0,881 (était 0,858 à 94 ex.) | **0,581** (était 0,523) |
+| SVM caractères, 8 classes (CE → Lecture) | 0,911 | **0,618** (était 0,600) |
+
+Test A/B du RAG (9 cas, `gemini-flash-lite-latest`) :
+
+| Critère | Sans RAG | Avec RAG |
+|---|---|---|
+| Zéro fuite LaTeX | 100 % | 100 % |
+| Structure pas-à-pas | 100 % | 100 % |
+| Terme-clé du programme présent | 33,3 % | **44,4 %** |
+
+**Échecs / non fait — et résultats contraires aux attentes**
+
+- **Le gain du regroupement CE → Lecture s'érode** : +0,12 / +0,06 de F1 macro
+  à 94 exemples, seulement **+0,03 / +0,04** à 149. Cohérent avec l'hypothèse
+  d'un manque de données plutôt que d'un défaut de modèle, mais cela affaiblit
+  l'argument en faveur du regroupement à mesure que le corpus grandit.
+- **Le regroupement déplace le réceptacle au lieu de le supprimer** : la classe
+  fusionnée « Lecture » absorbe **129** prédictions sur 318, davantage que les
+  86 de « Communication écrite » avant fusion.
+- **L'explication par la longueur des textes ne tient plus.** L'ablation par
+  troncature, qui à 94 exemples semblait désigner la longueur comme cause du
+  réceptacle, ne produit plus qu'un effet faible à 149 (86 → 69 prédictions,
+  F1 inchangé à 0,581). Le texte du notebook 02 qui l'affirmait a été réécrit :
+  la vraie régularité visible dans la matrice est un groupe de matières à prose
+  française peu marquée (Lecture 56 %, Espagnol 46 %, Allemand 33 %,
+  Histoire-Géographie 29 %) qui se déversent dans la même classe.
+- **Le RAG n'améliore pas uniformément** : +11,1 points au global, mais l'effet
+  est **négatif** sur Communication écrite et Allemand (réussite sans RAG,
+  échec avec), nul sur Mathématiques, Lecture et Espagnol. Avec 9 cas et un
+  seul tirage par condition, **cet écart n'est pas conclusif** — une seule
+  bascule l'inverserait. Écrit comme tel dans le notebook, sans le présenter
+  comme une validation du RAG.
+- Comparaison face à GPT-4o / Claude non faite : seule une clé Gemini est
+  configurée. La faire supposerait des clés OpenAI/Anthropic (payantes) — à
+  l'appréciation du porteur du projet, pas une décision d'agent.
+
+**Observé, non traité**
+
+- 18,7 % des passages de mathématiques sont prédits SVT — confusion distincte
+  du réceptacle, que le regroupement CE → Lecture ne touche pas.
+- Le banc A/B mériterait plusieurs tirages par cas (génération non
+  déterministe) pour distinguer effet réel et bruit d'échantillonnage.
+
+**Vérifications**
+
+- `npm test` : ✅ 151 tests (79 backend dont 11 nouveaux, 11 web, 61 mobile)
+- `npm run typecheck` : ✅ · `bash tools/verifier.sh --notebooks` : ✅
+- Notebooks 01 à 04 régénérés depuis leurs scripts puis réexécutés sans erreur.
+
+---
+
 ## 2026-09-03 — Correction de la dérive du 2026-09-02 (fabrication de résultats)
 
 **Auteur** Claude Code · **Commit** voir ci-dessous
