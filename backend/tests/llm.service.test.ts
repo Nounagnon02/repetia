@@ -12,7 +12,7 @@ jest.mock('@google/genai', () => ({
 }));
 
 import { LlmService, LlmIndisponibleError, resetLlmClient } from '../src/services/llm.service';
-import { exerciceDeSecours, tailleBanque, BANQUE } from '../src/data/banque';
+import { exerciceDeSecours, exercicesDisponibles, tailleBanque, BANQUE } from '../src/data/banque';
 
 const EXERCICE_VALIDE = {
   enonce: 'Résous : 2x + 3 = 11.',
@@ -229,21 +229,45 @@ describe('Banque de secours', () => {
   });
 
   it('sert un exercice de la bonne matière quand le thème est inconnu', () => {
-    const anglais = exerciceDeSecours('Reported speech', 'examen', 'Anglais');
-    expect(anglais.solution).toMatch(/would travel/);
+    // Le repli peut venir de trois sources — banque rédigée, générateur
+    // paramétré, banque produite hors ligne — et laquelle l'emporte dépend de
+    // ce qui est disponible. On vérifie donc que l'exercice servi appartient
+    // bien au vivier de SA matière, plutôt que d'exiger un énoncé précis qui
+    // cesse d'être le seul possible dès qu'on enrichit la banque.
+    const vivier = (theme: string, difficulte: string, matiere: string, niveau: string) => {
+      const total = exercicesDisponibles(theme, difficulte, matiere, niveau);
+      const enonces = new Set<string>();
+      for (let i = 0; i < total; i++) {
+        enonces.add(exerciceDeSecours(theme, difficulte, matiere, niveau, i).enonce);
+      }
+      return enonces;
+    };
 
-    // Depuis l'ajout des générateurs, la physique est servie par un modèle
-    // paramétré plutôt que par l'exercice rédigé : on vérifie la matière,
-    // pas un énoncé précis qui n'est plus le seul possible.
-    const pct = exerciceDeSecours('Loi d\'Ohm', 'facile', 'Physique-Chimie-Technologie', 'BEPC', 0);
-    expect(`${pct.enonce} ${pct.solution}`).toMatch(/Ω|V\b|W\b|kWh|A\b/);
+    const cas = [
+      ['Reported speech', 'examen', 'Anglais', 'BEPC'],
+      ['Loi d\'Ohm', 'facile', 'Physique-Chimie-Technologie', 'BEPC'],
+      ['Digestion', 'facile', 'Sciences de la Vie et de la Terre', 'BEPC'],
+      ['Ser y estar', 'facile', 'Espagnol', 'BEPC'],
+      ['Deklination', 'facile', 'Allemand', 'BEPC'],
+    ] as const;
 
-    const svt = exerciceDeSecours('Digestion', 'facile', 'Sciences de la Vie et de la Terre');
-    expect(svt.enonce).toMatch(/aliments/);
+    for (const [theme, difficulte, matiere, niveau] of cas) {
+      const possibles = vivier(theme, difficulte, matiere, niveau);
+      expect(possibles.size).toBeGreaterThan(0);
 
-    // Les deux épreuves de langue du BEPC béninois ont chacune leur repli.
-    expect(exerciceDeSecours('Ser y estar', 'facile', 'Espagnol').solution).toMatch(/ES profesora/);
-    expect(exerciceDeSecours('Deklination', 'facile', 'Allemand').solution).toMatch(/DEN Lehrer/);
+      // Dix tirages : aucun ne doit sortir du vivier de la matière.
+      for (let essai = 0; essai < 10; essai++) {
+        const exo = exerciceDeSecours(theme, difficulte, matiere, niveau);
+        expect(possibles.has(exo.enonce)).toBe(true);
+      }
+    }
+
+    // Les deux épreuves de langue du BEPC béninois ont chacune leur repli,
+    // distinct de celui de l'autre : un élève d'allemand ne reçoit pas
+    // d'espagnol.
+    const espagnol = vivier('Ser y estar', 'facile', 'Espagnol', 'BEPC');
+    const allemand = vivier('Deklination', 'facile', 'Allemand', 'BEPC');
+    for (const enonce of espagnol) expect(allemand.has(enonce)).toBe(false);
   });
 
   it('renvoie le bon thème et la bonne difficulté', () => {
@@ -327,10 +351,20 @@ describe('banque de secours — dimension niveau', () => {
     );
   });
 
-  it('retombe sur le repli par matière pour un niveau sans table dédiée', () => {
-    // Le BAC n'a pas encore de repli propre : il hérite de celui de la matière.
-    expect(exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BAC', 0)).toEqual(
-      exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC', 0),
+  it('sert la banque produite quand le couple est couvert, le repli rédigé sinon', () => {
+    // La philosophie n'existe qu'au BAC dans le catalogue béninois.
+    // Au BAC, elle a désormais sa banque produite hors ligne ; demandée à un
+    // niveau où elle n'est pas au programme, elle retombe sur le repli rédigé
+    // par matière — dernier maillon avant le générique.
+    const auBac = exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BAC', 0);
+    const horsProgramme = exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC', 0);
+
+    expect(auBac.enonce).not.toBe(horsProgramme.enonce);
+    expect(exercicesDisponibles('', 'facile', 'Philosophie', 'BAC')).toBeGreaterThan(1);
+
+    // Le repli rédigé reste stable : il ne dépend d'aucune source variable.
+    expect(exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC', 7)).toEqual(
+      horsProgramme,
     );
   });
 

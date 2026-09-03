@@ -8,6 +8,7 @@
 
 import { niveauPar } from './niveaux';
 import { exerciceGenere, nombreDeVariantes } from './generateurs';
+import { exerciceDeBanqueGeneree, nombreDExercicesGeneres } from './banqueGeneree';
 
 export interface ExerciceBanque {
   enonce: string;
@@ -768,7 +769,13 @@ export function exercicesDisponibles(
   const code = niveauPar(niveau).code;
   const variantes = nombreDeVariantes(matiere, theme, code, d);
   const redige = BANQUE[theme] ? 1 : 0;
-  return variantes > 0 ? variantes + redige : 1;
+  if (variantes > 0) return variantes + redige;
+
+  // Matières qualitatives : la réserve vient de la banque produite hors ligne.
+  // On compte tout le couple, thème confondu, parce que c'est la promesse
+  // faite à l'élève — cinquante exercices par matière et par classe.
+  const generes = nombreDExercicesGeneres(matiere, code, d);
+  return generes > 0 ? generes + redige : 1;
 }
 
 /**
@@ -807,6 +814,17 @@ export function exerciceDeSecours(
     if (redige && rang === 0) return redige;
     const genere = exerciceGenere(matiere, theme, code, d, rang - (redige ? 1 : 0));
     if (genere) return genere;
+  }
+
+  const generes = nombreDExercicesGeneres(matiere, code, d, theme);
+  if (generes > 0) {
+    const total = generes + (redige ? 1 : 0);
+    const rang = ((index % total) + total) % total;
+    if (redige && rang === 0) return redige;
+    const exercice = exerciceDeBanqueGeneree(
+      matiere, code, d, theme, rang - (redige ? 1 : 0),
+    );
+    if (exercice) return exercice;
   }
 
   if (redige) return redige;
