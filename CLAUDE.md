@@ -93,6 +93,20 @@ server.ts
 `appelModele` → `parseJsonResponse` (retire le Markdown, isole `{…}`) →
 `schema.safeParse` (Zod) → nouvel essai (2 au total) → `exerciceDeSecours()`.
 
+`exerciceDeSecours(theme, difficulte, matiere, niveau)` résout du plus précis au
+plus large : **thème exact → niveau + matière → matière → générique**. Le niveau
+passe avant la matière seule, car les replis par matière sont calibrés BEPC :
+les consulter d'abord servirait un énoncé de 3ème à un élève de 6ème.
+
+`backend/src/data/niveaux.ts` est la **source unique** du niveau — persona du
+répétiteur, consigne de génération et banque de secours doivent parler du même.
+Un code inconnu retombe sur le BEPC plutôt que de lever. N'écrivez plus de test
+`niveau === 'BAC'` ailleurs : c'est ce raccourci qui faisait recevoir à un élève
+de 6ème une consigne réclamant du niveau BEPC.
+
+Le premier cycle (6ème, 5ème, 4ème × Maths, PCT, SVT) a sa propre table. Le BAC
+hérite encore du repli BEPC : mauvais calibrage assumé, pas un contresens.
+
 Le piège historique : `{}` est un JSON **valide**. Sans la validation Zod, il
 traversait le service et faisait échouer l'écriture Prisma en `500`. Toute
 modification du parsing doit conserver ce garde-fou.
