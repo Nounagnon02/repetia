@@ -73,13 +73,66 @@ export const PROGRAMME_OFFICIEL: Record<string, DirectiveProgramme> = {
     },
   },
 
-  Français: {
+  Lecture: {
     commune:
-      "Respecter les types de textes (narratif, descriptif, explicatif, argumentatif). Soigner l'orthographe, la syntaxe et la variété du vocabulaire.",
+      "Faire lire le texte avant d'expliquer : repérer d'abord la situation d'énonciation (qui parle, à qui, où, quand) puis justifier chaque réponse par une citation ou un renvoi précis au texte, jamais par une impression générale.",
     competences: [
-      "Analyse stylistique et littéraire (figures de style, procédés de dramatisation ou d'argumentation).",
-      "Maitrise des techniques d'expression écrite (synthèse, commentaire, dissertation).",
+      "Repérage des idées essentielles et de la structure (schéma narratif ou argumentatif).",
+      "Identification des figures de style et de leur effet sur le sens (comparaison, métaphore, personnification, hyperbole).",
+      "Lecture d'image et de document : décrire avant d'interpréter.",
     ],
+    notionsCles: {
+      "Compréhension de texte": "Répondre en citant le texte entre guillemets, jamais en reformulant sans preuve. Distinguer ce que le texte dit de ce qu'on en déduit.",
+      "Figures de style": "Nommer la figure, citer le passage, puis expliquer l'effet produit — jamais l'un sans les deux autres.",
+      "Vocabulaire et sens des mots": "Déduire le sens d'un mot inconnu du contexte avant de proposer un synonyme.",
+      "Poésie et versification": "Compter les syllabes pour identifier le mètre, repérer le schéma des rimes avant d'analyser le rythme.",
+    },
+  },
+
+  "Communication écrite": {
+    commune:
+      "Respecter le type de texte demandé (narratif, argumentatif, lettre, compte rendu) et sa structure attendue. Soigner l'orthographe et les accords : une idée juste mal accordée reste sanctionnée au BEPC.",
+    competences: [
+      "Conjugaison et accords corrects (sujet-verbe, participe passé, groupe nominal).",
+      "Rédaction structurée en paragraphes, avec une idée par paragraphe et des connecteurs logiques.",
+      "Résumé fidèle au texte source : ni ajout d'opinion, ni oubli d'une idée essentielle.",
+    ],
+    notionsCles: {
+      "Grammaire (nature et fonction)": "Identifier d'abord la nature du mot (nom, verbe, adjectif...) puis sa fonction dans la phrase (sujet, complément...) — les deux questions sont distinctes.",
+      "Conjugaison et temps verbaux": "Choisir le temps selon la valeur (récit au passé simple/imparfait, généralité au présent), pas au hasard.",
+      "Rédaction argumentative": "Une thèse, des arguments illustrés d'exemples concrets, un plan visible (introduction, développement, conclusion).",
+      "Lettre et écrits fonctionnels": "Respecter la formule d'appel et de politesse attendues pour le destinataire (administration, ami, etc.).",
+    },
+  },
+
+  Espagnol: {
+    commune:
+      "Enseñar la lengua en contexto real (vida cotidiana beninesa) antes que la regla abstracta. Corregir con explicación breve, nunca solo con la forma correcta.",
+    competences: [
+      "Distinción correcta entre ser y estar según el contexto.",
+      "Conjugación del presente y de los pasados (pretérito indefinido e imperfecto) según su valor de uso.",
+      "Comprensión de un texto corto y respuesta con vocabulario propio, no copiado.",
+    ],
+    notionsCles: {
+      "Ser y estar": "Ser = identité/caractéristique permanente ; estar = état/lieu temporaire. Exemple : 'es alto' (permanent) vs 'está cansado' (temporaire).",
+      "Presente de indicativo": "Attention aux verbes irréguliers courants (ser, ir, tener) : ne pas appliquer la conjugaison régulière.",
+      "Pretérito indefinido e imperfecto": "Indefinido = action ponctuelle achevée ; imperfecto = action habituelle ou description dans le passé.",
+    },
+  },
+
+  Allemand: {
+    commune:
+      "Grammatik immer an einem konkreten Beispiel aus dem Alltag erklären, nie isoliert. Auf die Wortstellung (Verb an zweiter Stelle im Hauptsatz) besonders achten.",
+    competences: [
+      "Korrekte Deklination nach den vier Fällen (Nominativ, Akkusativ, Dativ, Genitiv).",
+      "Unterscheidung zwischen Perfekt (mündlich) und Präteritum (schriftlich, Erzählung).",
+      "Textverständnis: die Hauptidee vor den Details identifizieren.",
+    ],
+    notionsCles: {
+      "Deklination und Fälle": "Der Fall hängt von der Funktion im Satz ab (Subjekt = Nominativ, direktes Objekt = Akkusativ), nicht vom Geschlecht allein.",
+      "Präsens und starke Verben": "Starke Verben ändern den Stammvokal (fahren → er fährt) — das muss auswendig gelernt werden.",
+      "Präpositionen und Satzbau": "Manche Präpositionen verlangen immer den Akkusativ, andere immer den Dativ, einige beides je nach Bedeutung.",
+    },
   },
 
   Anglais: {
