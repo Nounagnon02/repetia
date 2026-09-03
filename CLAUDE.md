@@ -107,6 +107,36 @@ de 6ème une consigne réclamant du niveau BEPC.
 Le premier cycle (6ème, 5ème, 4ème × Maths, PCT, SVT) a sa propre table. Le BAC
 hérite encore du repli BEPC : mauvais calibrage assumé, pas un contresens.
 
+### Générateurs paramétrés
+
+`backend/src/data/generateurs.ts` produit des exercices **calculés** plutôt que
+stockés : un modèle d'énoncé (« Résous *ax + b = cx + d* ») dont les valeurs
+varient selon un index. La solution étant calculée, elle ne peut être fausse
+que si la formule l'est — d'où les tests qui **recalculent** chaque solution
+depuis l'énoncé, sans réutiliser le code du générateur.
+
+Couvre **Mathématiques et Physique-Chimie sur les 5 niveaux**, soit plus de
+2 600 exercices distincts. Les matières qualitatives (SVT, langues,
+Histoire-Géo, Philosophie, Lecture, Communication écrite) en sont exclues :
+faire varier des nombres n'y produit pas un exercice différent.
+
+Trois règles à respecter en ajoutant un modèle :
+
+1. **`variantes` doit être le nombre RÉEL d'énoncés distincts.** Si deux
+   paramètres défilent au même rythme, leurs périodes se resynchronisent et
+   les variantes se répètent — découpez l'index en tranches
+   (`i % 5`, puis `Math.floor(i / 5) % 7`…). Un test le vérifie.
+2. **Chaque (niveau, difficulté) ouvre sur un modèle qui lui est propre**,
+   sinon « facile » et « examen » servent le même énoncé à l'index 0 et le
+   sélecteur de difficulté ne sert plus à rien.
+3. **Passez par les aides `membre()` et `avecSigne()`** pour écrire un
+   polynôme : elles évitent `1x`, `+ -6` et `+ 0`, tous rencontrés en écrivant
+   ce module et verrouillés par un test.
+
+`exerciceDeSecours` tire une variante **au hasard** par défaut, pour qu'un
+élève qui retombe sur le repli ne revoie pas le même énoncé. Les tests passent
+un index explicite, ou figent `Math.random`.
+
 Le piège historique : `{}` est un JSON **valide**. Sans la validation Zod, il
 traversait le service et faisait échouer l'écriture Prisma en `500`. Toute
 modification du parsing doit conserver ce garde-fou.
