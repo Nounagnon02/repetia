@@ -74,6 +74,10 @@ describe('Parsing des réponses du LLM', () => {
 });
 
 describe('Génération : nouvel essai puis banque de secours', () => {
+  // Le repli choisit une variante au hasard. Ces tests comparent le contenu
+  // servi à un exercice précis : on fige donc le tirage sur la première.
+  beforeEach(() => jest.spyOn(Math, 'random').mockReturnValue(0));
+  afterEach(() => jest.spyOn(Math, 'random').mockRestore());
   it('réessaie une fois puis bascule sur la banque si le JSON est incomplet', async () => {
     // Piège historique : `{}` est un JSON valide mais inexploitable.
     mockGenerateContent.mockResolvedValue(reponse('{}'));
@@ -82,7 +86,7 @@ describe('Génération : nouvel essai puis banque de secours', () => {
 
     expect(mockGenerateContent).toHaveBeenCalledTimes(2);
     expect(res.source).toBe('banque');
-    expect(res).toMatchObject(exerciceDeSecours('Théorème de Thalès', 'facile'));
+    expect(res).toMatchObject(exerciceDeSecours('Théorème de Thalès', 'facile', '', '', 0));
   });
 
   it('bascule sur la banque quand un champ est vide', async () => {
@@ -228,8 +232,11 @@ describe('Banque de secours', () => {
     const anglais = exerciceDeSecours('Reported speech', 'examen', 'Anglais');
     expect(anglais.solution).toMatch(/would travel/);
 
-    const pct = exerciceDeSecours('Loi d\'Ohm', 'facile', 'Physique-Chimie-Technologie');
-    expect(pct.solution).toBe('U = 10 V');
+    // Depuis l'ajout des générateurs, la physique est servie par un modèle
+    // paramétré plutôt que par l'exercice rédigé : on vérifie la matière,
+    // pas un énoncé précis qui n'est plus le seul possible.
+    const pct = exerciceDeSecours('Loi d\'Ohm', 'facile', 'Physique-Chimie-Technologie', 'BEPC', 0);
+    expect(`${pct.enonce} ${pct.solution}`).toMatch(/Ω|V\b|W\b|kWh|A\b/);
 
     const svt = exerciceDeSecours('Digestion', 'facile', 'Sciences de la Vie et de la Terre');
     expect(svt.enonce).toMatch(/aliments/);
@@ -240,11 +247,11 @@ describe('Banque de secours', () => {
   });
 
   it('renvoie le bon thème et la bonne difficulté', () => {
-    const thales = exerciceDeSecours('Théorème de Thalès', 'facile');
+    const thales = exerciceDeSecours('Théorème de Thalès', 'facile', '', '', 0);
     expect(thales.enonce).toContain('parallèle');
     expect(thales.solution).toBe('MN = 4 cm');
 
-    const pythagore = exerciceDeSecours('Théorème de Pythagore', 'facile');
+    const pythagore = exerciceDeSecours('Théorème de Pythagore', 'facile', '', '', 0);
     expect(pythagore.solution).toBe('BC = 5 cm');
   });
 
@@ -265,8 +272,8 @@ describe('Banque de secours', () => {
   });
 
   it('normalise une difficulté inattendue vers « moyen »', () => {
-    expect(exerciceDeSecours('Racines carrées', 'inconnue')).toEqual(
-      exerciceDeSecours('Racines carrées', 'moyen'),
+    expect(exerciceDeSecours('Racines carrées', 'inconnue', '', '', 0)).toEqual(
+      exerciceDeSecours('Racines carrées', 'moyen', '', '', 0),
     );
   });
 });
@@ -275,8 +282,8 @@ describe('banque de secours — dimension niveau', () => {
   it('ne sert pas un exercice de 3ème à un élève de 6ème', () => {
     // La régression que ce module corrige : avant l'ajout du niveau, ces deux
     // appels renvoyaient le MÊME exercice, calibré BEPC.
-    const sixieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', '6ème');
-    const troisieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', 'BEPC');
+    const sixieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', '6ème', 0);
+    const troisieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', 'BEPC', 0);
 
     expect(sixieme.enonce).not.toBe(troisieme.enonce);
     expect(sixieme.enonce).toMatch(/jardin rectangulaire/);
@@ -284,10 +291,12 @@ describe('banque de secours — dimension niveau', () => {
 
   it('couvre les trois matières du premier cycle, à chaque niveau et chaque difficulté', () => {
     const matieres = ['Mathématiques', 'Physique-Chimie-Technologie', 'Sciences de la Vie et de la Terre'];
-    const bepc = new Set(
-      matieres.flatMap((m) =>
+    // Les replis rédigés pour le BEPC : ceux qu'un collégien ne doit jamais
+    // recevoir. On les atteint en demandant une matière sans générateur.
+    const bepcRediges = new Set(
+      ['Sciences de la Vie et de la Terre'].flatMap((m) =>
         (['facile', 'moyen', 'examen'] as const).map(
-          (d) => exerciceDeSecours('Thème absent', d, m, 'BEPC').enonce,
+          (d) => exerciceDeSecours('Thème absent', d, m, 'BEPC', 0).enonce,
         ),
       ),
     );
@@ -295,14 +304,17 @@ describe('banque de secours — dimension niveau', () => {
     for (const niveau of ['6ème', '5ème', '4ème']) {
       for (const matiere of matieres) {
         for (const difficulte of ['facile', 'moyen', 'examen'] as const) {
-          const exo = exerciceDeSecours('Thème absent', difficulte, matiere, niveau);
+          const exo = exerciceDeSecours('Thème absent', difficulte, matiere, niveau, 0);
 
           expect(exo.enonce.trim().length).toBeGreaterThan(10);
           expect(exo.solution.trim().length).toBeGreaterThan(0);
           expect(exo.explication.trim().length).toBeGreaterThan(20);
 
-          // Aucune demande de collège ne doit retomber sur un repli BEPC.
-          expect(bepc.has(exo.enonce)).toBe(false);
+          // Aucune demande de collège ne doit retomber sur les replis RÉDIGÉS,
+          // qui sont tous calibrés BEPC — c'est la régression d'origine.
+          // Un générateur peut en revanche servir le même énoncé à deux niveaux
+          // voisins : « P = m × g » est au programme de 4ème et révisé en 3ème.
+          expect(bepcRediges.has(exo.enonce)).toBe(false);
         }
       }
     }
@@ -310,22 +322,21 @@ describe('banque de secours — dimension niveau', () => {
 
   it('ignore le niveau quand le thème exact est dans la banque', () => {
     // Le thème reste le critère le plus précis : il prime sur le niveau.
-    expect(exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', '6ème')).toEqual(
-      exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', 'BEPC'),
+    expect(exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', '6ème', 0)).toEqual(
+      exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', 'BEPC', 0),
     );
   });
 
   it('retombe sur le repli par matière pour un niveau sans table dédiée', () => {
     // Le BAC n'a pas encore de repli propre : il hérite de celui de la matière.
-    expect(exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BAC')).toEqual(
-      exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC'),
+    expect(exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BAC', 0)).toEqual(
+      exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC', 0),
     );
   });
 
   it('traite un niveau inconnu ou absent comme du BEPC', () => {
-    const reference = exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'BEPC');
-    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'Master')).toEqual(reference);
-    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', '')).toEqual(reference);
-    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques')).toEqual(reference);
+    const reference = exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'BEPC', 3);
+    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'Master', 3)).toEqual(reference);
+    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', '', 3)).toEqual(reference);
   });
 });

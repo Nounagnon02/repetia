@@ -7,6 +7,7 @@
  */
 
 import { niveauPar } from './niveaux';
+import { exerciceGenere, nombreDeVariantes } from './generateurs';
 
 export interface ExerciceBanque {
   enonce: string;
@@ -752,29 +753,64 @@ function normaliserDifficulte(difficulte: string): Difficulte {
 }
 
 /**
- * Renvoie un exercice de secours, du meilleur degré de précision disponible :
- * le thème exact, sinon le couple niveau + matière, sinon la matière seule,
- * sinon un exercice générique.
+ * Nombre d'exercices distincts que le repli sait servir pour ce couple.
+ *
+ * Sert à vérifier la promesse faite à l'élève — au moins cinquante énoncés
+ * différents par matière et par classe — plutôt qu'à la supposer tenue.
+ */
+export function exercicesDisponibles(
+  theme: string,
+  difficulte: string,
+  matiere = '',
+  niveau = '',
+): number {
+  const d = normaliserDifficulte(difficulte);
+  const code = niveauPar(niveau).code;
+  const variantes = nombreDeVariantes(matiere, theme, code, d);
+  const redige = BANQUE[theme] ? 1 : 0;
+  return variantes > 0 ? variantes + redige : 1;
+}
+
+/**
+ * Renvoie un exercice de secours, du meilleur degré de précision disponible.
+ *
+ * L'ordre est celui de la pertinence pédagogique :
+ *
+ *   1. l'exercice rédigé pour ce thème exact, s'il existe — rien ne vaut un
+ *      énoncé écrit pour « Théorème de Thalès » quand l'élève révise Thalès ;
+ *   2. les variantes du générateur, quand la matière est numérique — c'est ce
+ *      qui donne la variété, un exercice écrit ne servant qu'une fois ;
+ *   3. le repli niveau + matière, puis matière, puis générique.
+ *
+ * `index` choisit la variante. Par défaut il est tiré au sort, pour qu'un
+ * élève qui retombe sur le repli ne revoie pas le même énoncé ; les tests le
+ * fixent pour rester déterministes.
  *
  * Ne lève jamais d'exception : il y a toujours un exercice à servir.
- *
- * Le niveau passe AVANT la matière seule, et non l'inverse. Les replis par
- * matière sont calibrés pour le BEPC : les consulter en premier reviendrait à
- * servir un énoncé de 3ème à un élève de 6ème, ce que cette table existe
- * précisément pour éviter.
  */
 export function exerciceDeSecours(
   theme: string,
   difficulte: string,
   matiere = '',
   niveau = '',
+  index = Math.floor(Math.random() * 1e6),
 ): ExerciceBanque {
   const d = normaliserDifficulte(difficulte);
-
-  const parTheme = BANQUE[theme];
-  if (parTheme) return parTheme[d];
-
   const code = niveauPar(niveau).code;
+
+  const redige = BANQUE[theme] ? BANQUE[theme][d] : null;
+  const variantes = nombreDeVariantes(matiere, theme, code, d);
+
+  if (variantes > 0) {
+    const total = variantes + (redige ? 1 : 0);
+    const rang = ((index % total) + total) % total;
+    if (redige && rang === 0) return redige;
+    const genere = exerciceGenere(matiere, theme, code, d, rang - (redige ? 1 : 0));
+    if (genere) return genere;
+  }
+
+  if (redige) return redige;
+
   const parNiveau = SECOURS_PAR_NIVEAU_MATIERE.find(
     (n) => n.niveau === code && (n.motif.test(matiere) || n.motif.test(theme)),
   );
