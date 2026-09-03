@@ -71,6 +71,26 @@ on n'y touche que pour y intégrer les résultats de la recherche.
 7. **Les tests ne touchent jamais `dev.db`.** `tests/env.setup.ts` force
    `DATABASE_URL=file:./test.db`.
 
+8. **Aucune métrique sans exécution réelle, aucune interface qui ment.**
+   Un rapport d'évaluation n'existe que si les appels qu'il décrit ont
+   réellement eu lieu — jamais un champ codé en dur à la valeur qu'on veut
+   démontrer. Un dataset « généré » doit contenir du contenu réel, pas du
+   texte à gabarit avec substitution de variables (`f"La maîtrise de {theme}
+   nécessite..."` répété N fois n'est pas N exemples). Un bouton, un badge ou
+   un libellé ne doit jamais annoncer une capacité que le code ne fournit pas
+   — un bouton non fonctionnel se désactive avec un libellé honnête
+   (« bientôt disponible »), il ne simule jamais son effet. **Cette règle
+   existe parce qu'elle a été enfreinte** : voir `evolu.md`, entrée du
+   2026-09-03, pour le détail de ce qui a été fabriqué puis retiré (dataset
+   « 1 million d'exemples » généré par gabarit en 10 secondes, modèle
+   « souverain » jamais entraîné, benchmark aux métriques câblées à `true`,
+   boutons caméra/micro qui n'analysaient ni n'écoutaient rien). Si un
+   objectif donné est hors de portée avec les moyens disponibles (ex. :
+   entraîner un modèle qui dépasse GPT-4o/Claude/Gemini sur un ordinateur
+   portable sans GPU), le dire explicitement et proposer l'objectif
+   réellement atteignable vaut toujours mieux que fabriquer l'apparence du
+   succès.
+
 ---
 
 ## 3. Fichiers générés — ne jamais éditer à la main
