@@ -1,6 +1,7 @@
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { exerciceDeSecours } from '../data/banque';
+import { niveauPar } from '../data/niveaux';
 import { normaliserChamps, normaliserTexte } from './texte.service';
 import { RagService } from './rag.service';
 import { MathSolverService } from './math_solver.service';
@@ -35,8 +36,7 @@ N'utilise JAMAIS de LaTeX. Pas de $, pas de \\sqrt, pas de \\frac, pas de \\time
  * Persona du répétiteur, adaptée à la matière et enrichie par le RAG du programme officiel.
  */
 function promptSysteme(matiere: string, niveau: string = 'BEPC', theme?: string): string {
-  const examen = niveau === 'BAC' ? 'le Baccalauréat' : 'le BEPC';
-  const public_ = niveau === 'BAC' ? 'lycéens (2nde–Terminale)' : 'collégiens (6ème–3ème)';
+  const { examen, public: public_ } = niveauPar(niveau);
   const base = `Tu es RépétIA, un répétiteur particulier bienveillant pour des ${public_} béninois qui préparent ${examen}. Tu enseignes ${matiere} du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
 
 N'utilise pas de titres Markdown (# ou ##). Pour insister, entoure de **deux
@@ -185,9 +185,7 @@ export class LlmService {
     matiere: string = MATIERE_GENERIQUE,
     niveau: string = 'BEPC',
   ): Promise<ExerciceGenere> {
-    const niveauTexte = niveau === 'BAC'
-      ? 'BAC (Terminale, programme béninois)'
-      : 'BEPC (3ème, programme béninois)';
+    const niveauTexte = niveauPar(niveau).programme;
     const prompt = `Génère UN exercice de ${matiere} de niveau ${niveauTexte} sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
 
     const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere, niveau, theme));
@@ -200,7 +198,7 @@ export class LlmService {
     console.warn(
       `[LLM] Bascule sur la banque de secours (matière="${matiere}", thème="${theme}", difficulté="${difficulte}")`,
     );
-    return { ...exerciceDeSecours(theme, difficulte, matiere), source: 'banque' };
+    return { ...exerciceDeSecours(theme, difficulte, matiere, niveau), source: 'banque' };
   }
 
   /**

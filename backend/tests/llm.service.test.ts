@@ -270,3 +270,62 @@ describe('Banque de secours', () => {
     );
   });
 });
+
+describe('banque de secours — dimension niveau', () => {
+  it('ne sert pas un exercice de 3ème à un élève de 6ème', () => {
+    // La régression que ce module corrige : avant l'ajout du niveau, ces deux
+    // appels renvoyaient le MÊME exercice, calibré BEPC.
+    const sixieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', '6ème');
+    const troisieme = exerciceDeSecours('Thème absent de la banque', 'moyen', 'Mathématiques', 'BEPC');
+
+    expect(sixieme.enonce).not.toBe(troisieme.enonce);
+    expect(sixieme.enonce).toMatch(/jardin rectangulaire/);
+  });
+
+  it('couvre les trois matières du premier cycle, à chaque niveau et chaque difficulté', () => {
+    const matieres = ['Mathématiques', 'Physique-Chimie-Technologie', 'Sciences de la Vie et de la Terre'];
+    const bepc = new Set(
+      matieres.flatMap((m) =>
+        (['facile', 'moyen', 'examen'] as const).map(
+          (d) => exerciceDeSecours('Thème absent', d, m, 'BEPC').enonce,
+        ),
+      ),
+    );
+
+    for (const niveau of ['6ème', '5ème', '4ème']) {
+      for (const matiere of matieres) {
+        for (const difficulte of ['facile', 'moyen', 'examen'] as const) {
+          const exo = exerciceDeSecours('Thème absent', difficulte, matiere, niveau);
+
+          expect(exo.enonce.trim().length).toBeGreaterThan(10);
+          expect(exo.solution.trim().length).toBeGreaterThan(0);
+          expect(exo.explication.trim().length).toBeGreaterThan(20);
+
+          // Aucune demande de collège ne doit retomber sur un repli BEPC.
+          expect(bepc.has(exo.enonce)).toBe(false);
+        }
+      }
+    }
+  });
+
+  it('ignore le niveau quand le thème exact est dans la banque', () => {
+    // Le thème reste le critère le plus précis : il prime sur le niveau.
+    expect(exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', '6ème')).toEqual(
+      exerciceDeSecours('Théorème de Thalès', 'facile', 'Mathématiques', 'BEPC'),
+    );
+  });
+
+  it('retombe sur le repli par matière pour un niveau sans table dédiée', () => {
+    // Le BAC n'a pas encore de repli propre : il hérite de celui de la matière.
+    expect(exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BAC')).toEqual(
+      exerciceDeSecours('Thème absent', 'facile', 'Philosophie', 'BEPC'),
+    );
+  });
+
+  it('traite un niveau inconnu ou absent comme du BEPC', () => {
+    const reference = exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'BEPC');
+    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', 'Master')).toEqual(reference);
+    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques', '')).toEqual(reference);
+    expect(exerciceDeSecours('Thème absent', 'moyen', 'Mathématiques')).toEqual(reference);
+  });
+});

@@ -6,6 +6,8 @@
  * du BON thème et de la BONNE difficulté plutôt qu'une erreur.
  */
 
+import { niveauPar } from './niveaux';
+
 export interface ExerciceBanque {
   enonce: string;
   solution: string;
@@ -196,6 +198,280 @@ const BANQUE: Record<string, Record<Difficulte, ExerciceBanque>> = {
     },
   },
 };
+
+/**
+ * Repli par NIVEAU et matière — le cran le plus précis après le thème exact.
+ *
+ * Le catalogue couvre cinq niveaux, mais les 24 exercices de mathématiques
+ * ci-dessus et les replis par matière plus bas sont tous calibrés pour le
+ * BEPC. Sans cette table, un élève de 6ème dont le thème n'est pas dans la
+ * banque recevait un exercice de 3ème : juste, mais hors de portée.
+ *
+ * Seul le premier cycle (6ème, 5ème, 4ème) figure ici, parce que c'est là que
+ * l'écart fait mal. Le catalogue n'y propose que trois matières, ce qui suffit
+ * à garantir qu'aucune demande de collège ne retombe sur du BEPC.
+ * Le BAC reste servi par le repli par matière — un énoncé de 3ème pour un
+ * élève de Terminale est un mauvais calibrage, pas un contresens.
+ */
+const SECOURS_PAR_NIVEAU_MATIERE: {
+  niveau: string;
+  motif: RegExp;
+  exercices: Record<Difficulte, ExerciceBanque>;
+}[] = [
+  // ─────────────────────────────── 6ème ───────────────────────────────
+  {
+    niveau: '6ème',
+    motif: /math/i,
+    exercices: {
+      facile: {
+        enonce: 'Pose et effectue l\'addition : 47,5 + 128,75.',
+        solution: '176,25',
+        explication:
+          'Pour additionner des nombres décimaux, on aligne les virgules.\n\n1) On écrit les deux nombres l\'un sous l\'autre, virgule sous virgule :\n     47,50\n   +128,75\n2) On complète 47,5 par un zéro pour avoir le même nombre de chiffres après la virgule : 47,50\n3) On additionne colonne par colonne, en partant de la droite :\n   0 + 5 = 5\n   5 + 7 = 12 → on écrit 2, on retient 1\n   7 + 8 + 1 = 16 → on écrit 6, on retient 1\n   4 + 2 + 1 = 7\n   1 → 1\n4) On abaisse la virgule : 176,25\n\nAjouter un zéro à droite après la virgule ne change pas le nombre.',
+      },
+      moyen: {
+        enonce:
+          'Un jardin rectangulaire mesure 12 m de longueur et 7 m de largeur.\n1) Calcule son périmètre.\n2) Calcule son aire.',
+        solution: 'Périmètre = 38 m et aire = 84 m²',
+        explication:
+          '1) LE PÉRIMÈTRE\n   C\'est la longueur du tour du jardin.\n   P = 2 × (Longueur + largeur)\n   P = 2 × (12 + 7)\n   P = 2 × 19\n   P = 38 m\n\n2) L\'AIRE\n   C\'est la surface occupée par le jardin.\n   A = Longueur × largeur\n   A = 12 × 7\n   A = 84 m²\n\nÀ RETENIR\n   Le périmètre se mesure en mètres (m), l\'aire en mètres carrés (m²).\n   Si tu devais clôturer le jardin, tu achèterais 38 m de grillage.\n   Si tu devais y semer du gazon, tu en couvrirais 84 m².',
+      },
+      examen: {
+        enonce:
+          'Au marché, 5 cahiers identiques coûtent 1 250 francs.\n1) Quel est le prix d\'un cahier ?\n2) Combien coûtent 8 cahiers ?',
+        solution: 'Un cahier coûte 250 F et 8 cahiers coûtent 2 000 F.',
+        explication:
+          'Le prix est proportionnel au nombre de cahiers : deux fois plus de cahiers coûtent deux fois plus cher.\n\n1) PRIX D\'UN CAHIER\n   On partage le prix total entre les 5 cahiers :\n   1 250 ÷ 5 = 250\n   Un cahier coûte 250 F.\n\n2) PRIX DE 8 CAHIERS\n   On multiplie le prix d\'un cahier par 8 :\n   250 × 8 = 2 000\n   8 cahiers coûtent 2 000 F.\n\nVÉRIFICATION\n   8 cahiers, c\'est plus que 5 cahiers, et 2 000 F est bien plus que 1 250 F.\n   Le résultat est cohérent.',
+      },
+    },
+  },
+  {
+    niveau: '6ème',
+    motif: /physique|chimie|technolog|pct/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Cite les trois états physiques de l\'eau et donne un exemple de chacun dans la vie courante.',
+        solution: 'État solide (glace), état liquide (eau du robinet), état gazeux (vapeur d\'eau).',
+        explication:
+          'L\'eau est la même substance dans les trois cas ; seule son organisation change.\n\n1) L\'ÉTAT SOLIDE\n   Exemple : les glaçons du congélateur.\n   L\'eau a une forme propre et un volume propre.\n\n2) L\'ÉTAT LIQUIDE\n   Exemple : l\'eau du robinet, l\'eau d\'un puits.\n   L\'eau n\'a pas de forme propre — elle prend celle du récipient — mais elle a un volume propre.\n\n3) L\'ÉTAT GAZEUX\n   Exemple : la vapeur au-dessus d\'une marmite d\'eau bouillante.\n   L\'eau n\'a ni forme propre ni volume propre : elle occupe tout l\'espace disponible.\n\nATTENTION\n   La vapeur d\'eau est invisible. Le nuage blanc que tu vois au-dessus de la marmite, ce sont de fines gouttelettes d\'eau liquide.',
+      },
+      moyen: {
+        enonce:
+          'Tu veux mesurer le volume d\'un caillou qui ne rentre pas dans une éprouvette graduée pleine.\nTu verses 50 mL d\'eau dans l\'éprouvette, puis tu y plonges le caillou : le niveau monte à 68 mL.\nQuel est le volume du caillou ?',
+        solution: 'V = 18 mL',
+        explication:
+          'C\'est la méthode du déplacement d\'eau : un solide chasse un volume d\'eau exactement égal au sien.\n\n1) VOLUME AVANT\n   V₁ = 50 mL (eau seule)\n2) VOLUME APRÈS\n   V₂ = 68 mL (eau + caillou)\n3) VOLUME DU CAILLOU\n   V = V₂ - V₁\n   V = 68 - 50\n   V = 18 mL\n\nPOURQUOI ÇA MARCHE\n   Le caillou prend la place de l\'eau. La montée du niveau mesure donc\n   directement la place qu\'il occupe.\n\nÀ RETENIR\n   1 mL = 1 cm³. Le caillou occupe donc aussi 18 cm³.',
+      },
+      examen: {
+        enonce:
+          'On veut allumer une lampe avec une pile.\n1) Cite les trois éléments indispensables du circuit.\n2) Explique ce qui se passe si l\'un des fils se détache.',
+        solution:
+          'Il faut une pile (le générateur), une lampe (le récepteur) et des fils de connexion. Si un fil se détache, le circuit est ouvert et la lampe s\'éteint.',
+        explication:
+          '1) LES TROIS ÉLÉMENTS\n   • LE GÉNÉRATEUR : la pile. Elle fournit l\'énergie électrique.\n   • LE RÉCEPTEUR : la lampe. Elle transforme cette énergie en lumière.\n   • LES FILS DE CONNEXION : ils relient la pile à la lampe et laissent passer le courant.\n\n2) SI UN FIL SE DÉTACHE\n   Le circuit devient OUVERT : la chaîne est coupée.\n   Le courant électrique ne peut plus circuler, car il lui faut une boucle\n   fermée pour aller de la pile à la lampe et revenir à la pile.\n   La lampe s\'éteint aussitôt.\n\nÀ RETENIR\n   Circuit FERMÉ → le courant passe → la lampe brille.\n   Circuit OUVERT → le courant ne passe pas → la lampe reste éteinte.\n   C\'est exactement le rôle d\'un interrupteur : ouvrir ou fermer le circuit.',
+      },
+    },
+  },
+  {
+    niveau: '6ème',
+    motif: /sciences de la vie|svt|biolog/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Parmi ces éléments, distingue les êtres vivants des éléments non vivants :\nun manguier, une pierre, un poulet, l\'eau du puits, une fourmi.',
+        solution: 'Vivants : le manguier, le poulet, la fourmi. Non vivants : la pierre, l\'eau du puits.',
+        explication:
+          'Un être vivant se reconnaît à quatre caractères.\n\n1) IL SE NOURRIT\n   Le manguier puise l\'eau et les sels minéraux du sol ; le poulet mange des grains.\n2) IL RESPIRE\n   Tous les êtres vivants échangent des gaz avec leur milieu.\n3) IL GRANDIT\n   Le manguier devient un grand arbre, le poussin devient un poulet.\n4) IL SE REPRODUIT\n   Le manguier donne des graines, la poule pond des œufs.\n\nLA PIERRE ET L\'EAU\n   Elles ne se nourrissent pas, ne respirent pas, ne grandissent pas et ne se\n   reproduisent pas. Ce sont des éléments NON VIVANTS du milieu.\n\nATTENTION\n   Une pierre peut grossir par dépôt, mais ce n\'est pas de la croissance :\n   rien ne se construit de l\'intérieur.',
+      },
+      moyen: {
+        enonce:
+          'Dans un village, plusieurs enfants ont mal au ventre après avoir bu l\'eau d\'une mare.\n1) Explique pourquoi cette eau est dangereuse.\n2) Propose deux moyens de la rendre potable.',
+        solution:
+          'L\'eau de mare contient des microbes responsables de maladies. On peut la faire bouillir ou la filtrer puis la javelliser.',
+        explication:
+          '1) POURQUOI CETTE EAU EST DANGEREUSE\n   Une mare est une eau stagnante, à ciel ouvert.\n   Les animaux s\'y abreuvent, les eaux de pluie y entraînent des déchets.\n   Elle contient donc des MICROBES — bactéries, parasites — invisibles à l\'œil nu.\n   Bue telle quelle, elle provoque des diarrhées, la fièvre typhoïde ou le choléra.\n\n2) DEUX MOYENS DE LA RENDRE POTABLE\n   • FAIRE BOUILLIR l\'eau pendant au moins 5 minutes.\n     La chaleur tue les microbes. On laisse ensuite refroidir à couvert.\n   • FILTRER puis DÉSINFECTER.\n     On filtre à travers un tissu propre pour retirer les saletés visibles,\n     puis on ajoute de l\'eau de Javel selon la dose indiquée, et on attend 30 minutes.\n\nÀ RETENIR\n   Une eau claire n\'est pas forcément une eau saine : les microbes ne se voient pas.',
+      },
+      examen: {
+        enonce:
+          'Les habitants d\'un village coupent les arbres pour faire du charbon de bois.\n1) Cite deux rôles que jouent les arbres dans l\'environnement.\n2) Cite deux conséquences du déboisement.\n3) Propose une solution.',
+        solution:
+          'Les arbres produisent du dioxygène et retiennent le sol. Le déboisement entraîne l\'érosion des sols et la disparition des animaux. Le reboisement est une solution.',
+        explication:
+          '1) DEUX RÔLES DES ARBRES\n   • Ils produisent du DIOXYGÈNE par la photosynthèse et absorbent le dioxyde de carbone.\n   • Leurs racines RETIENNENT LE SOL et l\'empêchent d\'être emporté par la pluie.\n   On peut aussi citer : ils donnent de l\'ombre, abritent des animaux, fournissent des fruits.\n\n2) DEUX CONSÉQUENCES DU DÉBOISEMENT\n   • L\'ÉROSION : sans racines, la pluie emporte la terre fertile. Les champs deviennent pauvres.\n   • LA PERTE DE BIODIVERSITÉ : les oiseaux et les petits animaux perdent leur abri et disparaissent.\n   On observe aussi un air plus chaud et des pluies moins régulières.\n\n3) UNE SOLUTION\n   LE REBOISEMENT : planter de jeunes arbres, en particulier des essences locales,\n   et les protéger jusqu\'à ce qu\'ils soient assez grands.\n   On peut aussi utiliser des foyers améliorés, qui consomment moins de charbon\n   pour la même cuisson.',
+      },
+    },
+  },
+
+  // ─────────────────────────────── 5ème ───────────────────────────────
+  {
+    niveau: '5ème',
+    motif: /math/i,
+    exercices: {
+      facile: {
+        enonce: 'Calcule : (-7) + (+12).',
+        solution: '+5',
+        explication:
+          'On additionne deux nombres relatifs de signes contraires.\n\n1) On compare les distances à zéro :\n   celle de -7 vaut 7, celle de +12 vaut 12.\n2) 12 est plus grand que 7 : le résultat prend le signe de +12, donc le signe PLUS.\n3) On soustrait la plus petite distance de la plus grande :\n   12 - 7 = 5\n4) Résultat : +5\n\nPOUR SE REPRÉSENTER\n   Pars de -7 sur la droite graduée et avance de 12 vers la droite.\n   Tu passes par 0 après 7 pas, puis tu continues encore 5 pas : tu arrives à +5.',
+      },
+      moyen: {
+        enonce: 'Calcule et donne le résultat sous forme de fraction simplifiée :\nA = 3/4 + 5/6.',
+        solution: 'A = 19/12',
+        explication:
+          'Pour additionner deux fractions, il faut le MÊME dénominateur.\n\n1) On cherche un dénominateur commun à 4 et 6.\n   Multiples de 4 : 4, 8, 12, 16…\n   Multiples de 6 : 6, 12, 18…\n   Le plus petit commun est 12.\n2) On transforme chaque fraction :\n   3/4 = (3 × 3)/(4 × 3) = 9/12\n   5/6 = (5 × 2)/(6 × 2) = 10/12\n3) On additionne les numérateurs, on garde le dénominateur :\n   A = 9/12 + 10/12 = 19/12\n4) 19 est un nombre premier : la fraction ne se simplifie pas.\n\nREMARQUE\n   19/12 est supérieur à 1, ce qui est normal : 3/4 et 5/6 valent chacun\n   presque 1, leur somme dépasse donc 1.',
+      },
+      examen: {
+        enonce:
+          'Un commerçant accorde une remise de 15 % sur un pagne affiché à 8 000 francs.\n1) Calcule le montant de la remise.\n2) Calcule le prix payé par le client.',
+        solution: 'Remise = 1 200 F et prix payé = 6 800 F',
+        explication:
+          '1) MONTANT DE LA REMISE\n   Prendre 15 % d\'un nombre, c\'est le multiplier par 15/100.\n   Remise = 8 000 × 15/100\n   Remise = 8 000 × 0,15\n   Remise = 1 200 F\n\n2) PRIX PAYÉ\n   On retire la remise du prix affiché :\n   Prix = 8 000 - 1 200\n   Prix = 6 800 F\n\nMÉTHODE PLUS RAPIDE\n   Si le client bénéficie de 15 % de remise, il paie 100 % - 15 % = 85 % du prix.\n   Prix = 8 000 × 85/100 = 8 000 × 0,85 = 6 800 F\n   On retrouve bien le même résultat.',
+      },
+    },
+  },
+  {
+    niveau: '5ème',
+    motif: /physique|chimie|technolog|pct/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Deux lampes sont branchées sur une même pile.\nExplique la différence entre un montage EN SÉRIE et un montage EN DÉRIVATION.',
+        solution:
+          'En série, les lampes sont sur une seule boucle ; si l\'une s\'éteint, l\'autre s\'éteint aussi. En dérivation, chaque lampe a sa propre boucle et reste allumée si l\'autre est retirée.',
+        explication:
+          '1) LE MONTAGE EN SÉRIE\n   Les deux lampes sont placées l\'une après l\'autre sur la MÊME boucle.\n   Le courant les traverse successivement.\n   Si une lampe grille, le circuit est coupé : l\'autre s\'éteint aussi.\n   Les lampes brillent moins que si elles étaient seules.\n\n2) LE MONTAGE EN DÉRIVATION\n   Chaque lampe est placée sur sa PROPRE branche.\n   Le courant se partage entre les deux branches.\n   Si une lampe grille, l\'autre continue de briller normalement.\n\nDANS LA VIE COURANTE\n   Les lampes d\'une maison sont montées en dérivation.\n   C\'est pour cela qu\'une ampoule grillée dans la chambre n\'éteint pas le salon.',
+      },
+      moyen: {
+        enonce:
+          'Un bloc de fer a une masse de 390 g et un volume de 50 cm³.\nCalcule sa masse volumique.',
+        solution: 'ρ = 7,8 g/cm³',
+        explication:
+          'La masse volumique est la masse d\'un centimètre cube de matière.\n\n1) On écrit la formule :\n   ρ = m ÷ V\n2) On repère les données :\n   m = 390 g\n   V = 50 cm³\n3) On applique :\n   ρ = 390 ÷ 50\n4) On calcule :\n   ρ = 7,8 g/cm³\n\nCE QUE CELA SIGNIFIE\n   Chaque centimètre cube de ce fer pèse 7,8 grammes.\n\nCOMPARAISON\n   L\'eau a une masse volumique de 1 g/cm³.\n   Le fer est donc 7,8 fois plus lourd que l\'eau, à volume égal : il coule.',
+      },
+      examen: {
+        enonce:
+          'On chauffe de l\'eau dans une casserole. Sa température monte jusqu\'à 100 °C, puis n\'augmente plus alors que le feu continue.\n1) Comment s\'appelle ce changement d\'état ?\n2) Explique pourquoi la température ne monte plus.',
+        solution:
+          'C\'est l\'ébullition, ou vaporisation. La température reste constante car toute la chaleur reçue sert à transformer l\'eau liquide en vapeur.',
+        explication:
+          '1) LE CHANGEMENT D\'ÉTAT\n   Le passage de l\'état liquide à l\'état gazeux s\'appelle la VAPORISATION.\n   Quand elle se produit dans toute la masse du liquide, avec des bulles,\n   on parle d\'ÉBULLITION.\n\n2) POURQUOI LA TEMPÉRATURE STAGNE\n   Tant qu\'il reste de l\'eau liquide, la chaleur apportée par le feu ne sert\n   plus à élever la température : elle sert entièrement à ARRACHER les\n   molécules d\'eau les unes aux autres pour les faire passer à l\'état de vapeur.\n   La température reste donc bloquée à 100 °C.\n\nÀ RETENIR\n   Pendant un changement d\'état, la température d\'un corps pur ne varie pas.\n   Ce palier à 100 °C est la température d\'ébullition de l\'eau au niveau de la mer.',
+      },
+    },
+  },
+  {
+    niveau: '5ème',
+    motif: /sciences de la vie|svt|biolog/i,
+    exercices: {
+      facile: {
+        enonce:
+          'Cite dans l\'ordre les organes que traverse un morceau d\'igname depuis la bouche jusqu\'à sa sortie.',
+        solution: 'Bouche → œsophage → estomac → intestin grêle → gros intestin → anus.',
+        explication:
+          'Les aliments suivent le tube digestif, un long tuyau qui traverse le corps.\n\n1) LA BOUCHE\n   Les dents broient l\'igname, la salive l\'humecte : c\'est la mastication.\n2) L\'ŒSOPHAGE\n   Un tube qui conduit les aliments jusqu\'à l\'estomac.\n3) L\'ESTOMAC\n   Une poche qui brasse les aliments et les mélange aux sucs digestifs.\n4) L\'INTESTIN GRÊLE\n   Très long et très fin. C\'est là que les nutriments passent dans le sang :\n   c\'est l\'ABSORPTION.\n5) LE GROS INTESTIN\n   Il récupère l\'eau restante et forme les déchets.\n6) L\'ANUS\n   Les déchets non digérés sont évacués.\n\nÀ RETENIR\n   Digérer, c\'est transformer de gros aliments en nutriments assez petits\n   pour traverser la paroi de l\'intestin et rejoindre le sang.',
+      },
+      moyen: {
+        enonce:
+          'Un plant de maïs est arraché du sol : ses racines sont coupées.\n1) Quel est le rôle des racines ?\n2) Explique ce qui va arriver au plant.',
+        solution:
+          'Les racines fixent la plante et absorbent l\'eau et les sels minéraux. Privé de racines, le plant se fane puis meurt.',
+        explication:
+          '1) LE RÔLE DES RACINES\n   • FIXATION : elles ancrent la plante dans le sol et lui évitent d\'être couchée par le vent.\n   • ABSORPTION : par leurs poils absorbants, elles puisent dans le sol l\'EAU et les SELS MINÉRAUX.\n   Ce mélange, la sève brute, monte ensuite jusqu\'aux feuilles.\n\n2) CE QUI ARRIVE AU PLANT\n   Sans racines, plus d\'absorption d\'eau.\n   Or les feuilles continuent d\'évaporer de l\'eau par transpiration.\n   Le plant perd donc plus d\'eau qu\'il n\'en reçoit : ses tiges et ses feuilles\n   se ramollissent, il SE FANE.\n   Si rien ne change, il meurt en quelques jours.\n\nAPPLICATION PRATIQUE\n   C\'est pourquoi, lors d\'un repiquage, on prend soin de garder une motte de\n   terre autour des racines et on arrose aussitôt.',
+      },
+      examen: {
+        enonce:
+          'Après de fortes pluies, un champ situé sur une pente a perdu une partie de sa terre.\n1) Comment s\'appelle ce phénomène ?\n2) Cite deux causes qui l\'aggravent.\n3) Propose deux techniques pour le limiter.',
+        solution:
+          'C\'est l\'érosion. Elle est aggravée par le déboisement et le labour dans le sens de la pente. On peut la limiter par des cordons pierreux et des cultures en courbes de niveau.',
+        explication:
+          '1) LE PHÉNOMÈNE\n   C\'est l\'ÉROSION du sol : l\'eau de pluie entraîne la couche superficielle,\n   qui est justement la plus fertile.\n\n2) DEUX CAUSES AGGRAVANTES\n   • LE DÉBOISEMENT : sans racines ni feuillage, rien ne retient la terre\n     et rien n\'amortit la violence des gouttes.\n   • LE LABOUR DANS LE SENS DE LA PENTE : les sillons deviennent des rigoles\n     qui accélèrent l\'écoulement de l\'eau.\n   On peut aussi citer le surpâturage et les feux de brousse.\n\n3) DEUX TECHNIQUES DE LUTTE\n   • LES CORDONS PIERREUX : des alignements de pierres posés perpendiculairement\n     à la pente. Ils ralentissent l\'eau et retiennent la terre.\n   • LES CULTURES EN COURBES DE NIVEAU : on laboure perpendiculairement à la pente,\n     de sorte que chaque sillon retienne l\'eau au lieu de la conduire.\n   Le reboisement et les haies vives sont également efficaces.',
+      },
+    },
+  },
+
+  // ─────────────────────────────── 4ème ───────────────────────────────
+  {
+    niveau: '4ème',
+    motif: /math/i,
+    exercices: {
+      facile: {
+        enonce: 'Écris sous la forme d\'une seule puissance de 2 :\nA = 2³ × 2⁴.',
+        solution: 'A = 2⁷',
+        explication:
+          'Pour multiplier deux puissances d\'un MÊME nombre, on additionne les exposants.\n\n1) On écrit la règle :\n   aᵐ × aⁿ = aᵐ⁺ⁿ\n2) Ici la base est 2 dans les deux cas :\n   A = 2³ × 2⁴ = 2³⁺⁴\n3) A = 2⁷\n\nVÉRIFICATION\n   2³ = 8 et 2⁴ = 16, donc A = 8 × 16 = 128.\n   Or 2⁷ = 128. C\'est bien cela.\n\nATTENTION\n   Cette règle ne vaut que si les BASES sont identiques.\n   2³ × 5⁴ ne se simplifie pas de cette façon.',
+      },
+      moyen: {
+        enonce: 'Développe puis réduis : B = 3(x + 4) - 2(x - 1).',
+        solution: 'B = x + 14',
+        explication:
+          '1) ON DÉVELOPPE LA PREMIÈRE PARENTHÈSE\n   3(x + 4) = 3 × x + 3 × 4 = 3x + 12\n\n2) ON DÉVELOPPE LA SECONDE\n   Attention au signe MOINS devant le 2 : il multiplie tout l\'intérieur.\n   -2(x - 1) = -2 × x + (-2) × (-1) = -2x + 2\n\n3) ON RASSEMBLE\n   B = 3x + 12 - 2x + 2\n\n4) ON RÉDUIT\n   Les termes en x : 3x - 2x = x\n   Les nombres : 12 + 2 = 14\n   B = x + 14\n\nVÉRIFICATION avec x = 5\n   B = 3(5 + 4) - 2(5 - 1) = 3 × 9 - 2 × 4 = 27 - 8 = 19\n   Et x + 14 = 5 + 14 = 19. Les deux écritures donnent le même nombre.',
+      },
+      examen: {
+        enonce:
+          'Un triangle ABC est rectangle en A.\nOn donne AB = 6 cm et AC = 8 cm.\nCalcule la longueur BC.',
+        solution: 'BC = 10 cm',
+        explication:
+          'Le triangle est rectangle en A : on peut appliquer le théorème de Pythagore.\n\n1) ON IDENTIFIE L\'HYPOTÉNUSE\n   C\'est le côté opposé à l\'angle droit, donc [BC].\n\n2) ON ÉCRIT LE THÉORÈME\n   BC² = AB² + AC²\n\n3) ON REMPLACE\n   BC² = 6² + 8²\n   BC² = 36 + 64\n   BC² = 100\n\n4) ON PREND LA RACINE CARRÉE\n   BC = √100\n   BC = 10 cm\n\nVÉRIFICATION DE BON SENS\n   L\'hypoténuse est toujours le plus long côté.\n   10 cm est bien supérieur à 6 cm et à 8 cm : le résultat est cohérent.',
+      },
+    },
+  },
+  {
+    niveau: '4ème',
+    motif: /physique|chimie|technolog|pct/i,
+    exercices: {
+      facile: {
+        enonce:
+          'La formule de la molécule d\'eau est H₂O.\n1) Quels atomes la composent ?\n2) Combien y a-t-il de chaque sorte ?',
+        solution: 'Elle est composée de 2 atomes d\'hydrogène (H) et 1 atome d\'oxygène (O).',
+        explication:
+          '1) LES ATOMES PRÉSENTS\n   La formule H₂O comporte deux symboles :\n   • H, symbole de l\'HYDROGÈNE\n   • O, symbole de l\'OXYGÈNE\n\n2) LE NOMBRE DE CHAQUE SORTE\n   Le chiffre écrit en INDICE, en bas à droite d\'un symbole, indique combien\n   d\'atomes de cette sorte entrent dans la molécule.\n   • H₂ → 2 atomes d\'hydrogène\n   • O → pas de chiffre, donc 1 seul atome d\'oxygène\n\nÀ RETENIR\n   Une molécule est un assemblage d\'atomes liés entre eux.\n   Une goutte d\'eau contient des milliards de milliards de molécules H₂O,\n   toutes identiques.',
+      },
+      moyen: {
+        enonce:
+          'Un conducteur ohmique de résistance R = 45 Ω est soumis à une tension U = 9 V.\nCalcule l\'intensité du courant qui le traverse.',
+        solution: 'I = 0,2 A',
+        explication:
+          'On utilise la loi d\'Ohm.\n\n1) ON ÉCRIT LA LOI\n   U = R × I\n\n2) ON ISOLE L\'INTENSITÉ\n   I = U ÷ R\n\n3) ON REMPLACE\n   I = 9 ÷ 45\n\n4) ON CALCULE\n   I = 0,2 A\n\nCONTRÔLE DES UNITÉS\n   U en volts (V), R en ohms (Ω), I en ampères (A).\n   Les données étaient déjà dans ces unités : aucune conversion n\'était nécessaire.\n\nCE QUE CELA SIGNIFIE\n   Plus la résistance est grande, moins le courant passe, à tension égale.\n   C\'est le rôle d\'une résistance : freiner le courant.',
+      },
+      examen: {
+        enonce:
+          'Un sac de riz a une masse de 25 kg.\nOn prend g = 10 N/kg.\n1) Calcule son poids.\n2) Ce sac est emporté sur la Lune, où g = 1,6 N/kg. Que deviennent sa masse et son poids ?',
+        solution:
+          'Sur Terre P = 250 N. Sur la Lune, la masse reste 25 kg mais le poids devient 40 N.',
+        explication:
+          '1) LE POIDS SUR TERRE\n   P = m × g\n   P = 25 × 10\n   P = 250 N\n\n2) SUR LA LUNE\n   • LA MASSE ne change pas : elle mesure la quantité de matière du sac.\n     Le riz est le même, donc m = 25 kg partout dans l\'univers.\n   • LE POIDS change : il mesure l\'attraction exercée par l\'astre.\n     P = m × g = 25 × 1,6 = 40 N\n\nÀ RETENIR — NE PAS CONFONDRE\n   La MASSE se mesure en kilogrammes avec une balance. Elle est invariable.\n   Le POIDS se mesure en newtons avec un dynamomètre. Il dépend du lieu.\n   Sur la Lune, le sac serait environ 6 fois plus facile à soulever,\n   mais il contiendrait toujours autant de riz.',
+      },
+    },
+  },
+  {
+    niveau: '4ème',
+    motif: /sciences de la vie|svt|biolog/i,
+    exercices: {
+      facile: {
+        enonce: 'Cite les trois sortes d\'éléments figurés du sang et donne le rôle de chacun.',
+        solution:
+          'Les globules rouges transportent le dioxygène, les globules blancs défendent l\'organisme, les plaquettes permettent la coagulation.',
+        explication:
+          'Le sang est constitué d\'un liquide, le plasma, dans lequel flottent trois sortes de cellules.\n\n1) LES GLOBULES ROUGES\n   Ce sont les plus nombreux. Ils contiennent l\'hémoglobine, qui donne au sang\n   sa couleur rouge et qui TRANSPORTE LE DIOXYGÈNE des poumons vers tous les organes.\n\n2) LES GLOBULES BLANCS\n   Ils DÉFENDENT L\'ORGANISME contre les microbes. Certains les avalent et les\n   digèrent, d\'autres fabriquent des anticorps.\n\n3) LES PLAQUETTES\n   Elles permettent la COAGULATION. Lors d\'une blessure, elles s\'agglutinent et\n   forment un caillot qui bouche la plaie et arrête le saignement.\n\nÀ RETENIR\n   Un manque de globules rouges provoque l\'anémie : l\'organisme est mal\n   approvisionné en dioxygène, d\'où la fatigue et la pâleur.',
+      },
+      moyen: {
+        enonce:
+          'Décris le trajet d\'une goutte de sang partant du cœur, chargée de dioxygène, jusqu\'à un muscle de la jambe, puis son retour au cœur.',
+        solution:
+          'Cœur (ventricule gauche) → artère → capillaires du muscle → veine → cœur (oreillette droite).',
+        explication:
+          'C\'est la CIRCULATION GÉNÉRALE, ou grande circulation.\n\n1) LE DÉPART\n   Le sang riche en dioxygène quitte le VENTRICULE GAUCHE, la partie du cœur\n   qui pousse le plus fort.\n\n2) LES ARTÈRES\n   Il circule dans l\'aorte, puis dans des artères de plus en plus fines.\n   Les artères conduisent toujours le sang À PARTIR du cœur.\n\n3) LES CAPILLAIRES\n   Dans le muscle, les vaisseaux deviennent microscopiques.\n   C\'est là que se font les ÉCHANGES : le dioxygène et les nutriments passent\n   dans les cellules, le dioxyde de carbone et les déchets en sortent.\n\n4) LES VEINES\n   Le sang, désormais pauvre en dioxygène, repart par des veines de plus en\n   plus grosses. Les veines ramènent toujours le sang VERS le cœur.\n\n5) LE RETOUR\n   Il arrive dans l\'OREILLETTE DROITE.\n\nMOYEN DE NE PAS SE TROMPER\n   Artère = le sang s\'éloigne du cœur. Veine = le sang revient au cœur.',
+      },
+      examen: {
+        enonce:
+          'Un manguier fleurit puis donne des fruits.\n1) Quel phénomène permet le passage de la fleur au fruit ?\n2) Explique le rôle des insectes dans ce phénomène.\n3) Que devient l\'ovule après la fécondation ?',
+        solution:
+          'C\'est la pollinisation suivie de la fécondation. Les insectes transportent le pollen d\'une fleur à l\'autre. L\'ovule fécondé devient la graine, et l\'ovaire devient le fruit.',
+        explication:
+          '1) LE PHÉNOMÈNE\n   D\'abord la POLLINISATION : le pollen, produit par les étamines, est déposé\n   sur le pistil d\'une fleur.\n   Puis la FÉCONDATION : le grain de pollen rejoint l\'ovule contenu dans l\'ovaire\n   et fusionne avec lui.\n\n2) LE RÔLE DES INSECTES\n   Attirés par la couleur des pétales et par le nectar, les abeilles et autres\n   insectes se posent sur les fleurs.\n   Le pollen se colle à leur corps, et ils le déposent sur la fleur suivante.\n   Ils assurent ainsi le transport du pollen d\'une fleur à l\'autre — c\'est la\n   pollinisation croisée, qui favorise le mélange des caractères.\n\n3) APRÈS LA FÉCONDATION\n   • L\'OVULE fécondé se transforme en GRAINE, qui contient le futur plant.\n   • L\'OVAIRE qui l\'entoure se transforme en FRUIT, qui protège la graine\n     et facilite sa dispersion.\n   La mangue est donc un ovaire transformé, et son noyau contient la graine.\n\nCONSÉQUENCE PRATIQUE\n   Sans insectes pollinisateurs, la production de mangues chute fortement.\n   C\'est pourquoi les pesticides qui tuent les abeilles nuisent aussi aux vergers.',
+      },
+    },
+  },
+];
 
 /**
  * Repli par matière, servi quand le thème précis n'est pas dans la banque.
@@ -476,19 +752,33 @@ function normaliserDifficulte(difficulte: string): Difficulte {
 }
 
 /**
- * Renvoie un exercice de secours, du meilleur niveau de précision disponible :
- * le thème exact, sinon la matière, sinon un exercice générique.
+ * Renvoie un exercice de secours, du meilleur degré de précision disponible :
+ * le thème exact, sinon le couple niveau + matière, sinon la matière seule,
+ * sinon un exercice générique.
+ *
  * Ne lève jamais d'exception : il y a toujours un exercice à servir.
+ *
+ * Le niveau passe AVANT la matière seule, et non l'inverse. Les replis par
+ * matière sont calibrés pour le BEPC : les consulter en premier reviendrait à
+ * servir un énoncé de 3ème à un élève de 6ème, ce que cette table existe
+ * précisément pour éviter.
  */
 export function exerciceDeSecours(
   theme: string,
   difficulte: string,
   matiere = '',
+  niveau = '',
 ): ExerciceBanque {
   const d = normaliserDifficulte(difficulte);
 
   const parTheme = BANQUE[theme];
   if (parTheme) return parTheme[d];
+
+  const code = niveauPar(niveau).code;
+  const parNiveau = SECOURS_PAR_NIVEAU_MATIERE.find(
+    (n) => n.niveau === code && (n.motif.test(matiere) || n.motif.test(theme)),
+  );
+  if (parNiveau) return parNiveau.exercices[d];
 
   const parMatiere = SECOURS_PAR_MATIERE.find((m) => m.motif.test(matiere) || m.motif.test(theme));
   if (parMatiere) return parMatiere.exercices[d];
