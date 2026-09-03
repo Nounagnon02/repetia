@@ -7,6 +7,7 @@ import MessageErreur from '../components/MessageErreur';
 import TexteFormate from '../components/TexteFormate';
 import EnTete from '../components/EnTete';
 import { sauvegarderExercice, lireDernierExercice } from '../services/horsLigne';
+import { useDicteeVocale } from '../hooks/useDicteeVocale';
 import type { Exercice, Correction } from '../types';
 
 interface EtatNavigation {
@@ -28,6 +29,10 @@ export default function Entrainement() {
   const [erreurCorrection, setErreurCorrection] = useState<ErreurApi | null>(null);
   /** Vrai quand on affiche l'exercice mis en cache faute de connexion. */
   const [modeHorsLigne, setModeHorsLigne] = useState(false);
+
+  const { ecoute, disponible: dicteeDisponible, basculer: basculerDictee } = useDicteeVocale(
+    (texte) => setReponse((r) => (r ? `${r} ` : '') + texte),
+  );
 
   const themeId = state?.themeId;
   const difficulte = state?.difficulte || 'moyen';
@@ -170,34 +175,28 @@ export default function Entrainement() {
                     'Corriger ma réponse'
                   )}
                 </button>
-                <input
-                  type="file"
-                  id="exo-photo-input"
-                  accept="image/*"
-                  capture="environment"
-                  className="hidden"
-                  onChange={(e) => {
-                    const file = e.target.files?.[0];
-                    if (file) {
-                      setReponse((r) => (r ? r + " [Photo scannée]" : "[Photo scannée de l'exercice]"));
-                    }
-                  }}
-                />
                 <button
                   type="button"
-                  onClick={() => document.getElementById('exo-photo-input')?.click()}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-green shadow-sm hover:bg-brand-paper"
-                  title="Scanner une photo"
-                  aria-label="Scanner une photo"
+                  disabled
+                  className="flex h-12 w-12 cursor-not-allowed items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-lines opacity-40 shadow-sm"
+                  title="Bientôt disponible"
+                  aria-label="Scanner une photo — bientôt disponible"
                 >
                   <Camera size={22} aria-hidden="true" />
                 </button>
                 <button
                   type="button"
-                  onClick={() => setReponse((r) => (r ? r + " " : "") + "Résolution guidée pas à pas.")}
-                  className="flex h-12 w-12 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-gold shadow-sm hover:bg-brand-gold-soft"
-                  title="Dictée vocale"
-                  aria-label="Dictée vocale"
+                  onClick={basculerDictee}
+                  disabled={!dicteeDisponible}
+                  className={`flex h-12 w-12 items-center justify-center rounded-xl border shadow-sm ${
+                    !dicteeDisponible
+                      ? 'cursor-not-allowed border-brand-lines bg-white text-brand-lines opacity-40'
+                      : ecoute
+                        ? 'animate-pulse border-red-300 bg-red-50 text-red-600'
+                        : 'border-brand-lines bg-white text-brand-gold hover:bg-brand-gold-soft'
+                  }`}
+                  title={dicteeDisponible ? 'Dictée vocale' : 'Dictée vocale non disponible sur ce navigateur'}
+                  aria-label={ecoute ? 'Arrêter la dictée vocale' : 'Dictée vocale'}
                 >
                   <Mic size={22} aria-hidden="true" />
                 </button>

@@ -5,6 +5,7 @@ import { apiService, ErreurApi } from '../services/api';
 import MessageErreur from '../components/MessageErreur';
 import TexteFormate from '../components/TexteFormate';
 import EnTete from '../components/EnTete';
+import { useDicteeVocale } from '../hooks/useDicteeVocale';
 import type { MessageChat } from '../types';
 
 const ACCUEIL: MessageChat = {
@@ -23,6 +24,9 @@ export default function Chat() {
   const [messageEnEchec, setMessageEnEchec] = useState<string | null>(null);
 
   const finDeListe = useRef<HTMLDivElement>(null);
+  const { ecoute, disponible: dicteeDisponible, basculer: basculerDictee } = useDicteeVocale(
+    (texte) => setSaisie((s) => (s ? `${s} ` : '') + texte),
+  );
 
   useEffect(() => {
     finDeListe.current?.scrollIntoView({ behavior: 'smooth' });
@@ -154,34 +158,28 @@ export default function Chat() {
             rows={1}
             className="scrollbar-hide max-h-32 min-h-[48px] flex-1 resize-none rounded-xl border border-brand-lines bg-brand-paper px-4 py-3 text-sm focus:border-brand-green focus:outline-none"
           />
-          <input
-            type="file"
-            id="photo-input"
-            accept="image/*"
-            capture="environment"
-            className="hidden"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                setSaisie((s) => (s ? s + " [Photo scannée]" : "[Photo scannée d'un exercice]"));
-              }
-            }}
-          />
           <button
             type="button"
-            onClick={() => document.getElementById('photo-input')?.click()}
-            aria-label="Scanner une photo d'exercice"
-            title="Scanner une photo d'exercice"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-green hover:bg-brand-paper"
+            disabled
+            aria-label="Scanner une photo d'exercice — bientôt disponible"
+            title="Bientôt disponible"
+            className="flex h-12 w-12 shrink-0 cursor-not-allowed items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-lines opacity-40"
           >
             <Camera size={20} aria-hidden="true" />
           </button>
           <button
             type="button"
-            onClick={() => setSaisie((s) => (s ? s + " " : "") + "Résous cet exercice pas à pas.")}
-            aria-label="Dictée vocale"
-            title="Dictée vocale (Audio STT)"
-            className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-gold hover:bg-brand-gold-soft"
+            onClick={basculerDictee}
+            disabled={!dicteeDisponible}
+            aria-label={ecoute ? 'Arrêter la dictée vocale' : 'Dictée vocale'}
+            title={dicteeDisponible ? 'Dictée vocale' : 'Dictée vocale non disponible sur ce navigateur'}
+            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${
+              !dicteeDisponible
+                ? 'cursor-not-allowed border-brand-lines bg-white text-brand-lines opacity-40'
+                : ecoute
+                  ? 'animate-pulse border-red-300 bg-red-50 text-red-600'
+                  : 'border-brand-lines bg-white text-brand-gold hover:bg-brand-gold-soft'
+            }`}
           >
             <Mic size={20} aria-hidden="true" />
           </button>

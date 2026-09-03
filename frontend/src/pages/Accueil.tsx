@@ -79,13 +79,13 @@ export default function Accueil() {
             {niveauChoisi === 'BAC' ? 'Programme Secondaire (BAC)' : `Niveau ${niveauChoisi}`}
           </span>
           <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
-            <span>🇧🇯 RépétIA-LLM Souverain</span>
+            <span>🇧🇯 Ancré au programme béninois</span>
           </span>
         </div>
         <h2 className="mb-1 font-serif text-2xl">
           On révise quoi aujourd'hui ?
         </h2>
-        <p className="text-sm opacity-90">IA souveraine béninoise : choisis ton niveau et ton thème, puis lance-toi !</p>
+        <p className="text-sm opacity-90">Choisis ton niveau et ton thème, puis lance-toi !</p>
       </div>
 
       {chargement && <Loader message="Chargement de tes thèmes…" pleinePage />}

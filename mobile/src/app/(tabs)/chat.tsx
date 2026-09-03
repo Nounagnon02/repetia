@@ -166,18 +166,18 @@ export default function Chat() {
             className="max-h-28 min-h-[46px] flex-1 rounded-xl border border-brand-lines bg-brand-paper px-4 py-3 text-brand-ink"
           />
           <Pressable
-            onPress={() => setSaisie((s) => (s ? s + " [Photo scannée]" : "[Photo scannée d'un exercice]"))}
+            disabled
             accessibilityRole="button"
-            accessibilityLabel="Scanner photo d'exercice"
-            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper"
+            accessibilityLabel="Scanner photo d'exercice — bientôt disponible"
+            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper opacity-40"
           >
             <Camera size={19} color={couleurs.green} />
           </Pressable>
           <Pressable
-            onPress={() => setSaisie((s) => (s ? s + " " : "") + "Résous cet exercice pas à pas.")}
+            disabled
             accessibilityRole="button"
-            accessibilityLabel="Dictée vocale"
-            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper"
+            accessibilityLabel="Dictée vocale — bientôt disponible"
+            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper opacity-40"
           >
             <Mic size={19} color={couleurs.gold} />
           </Pressable>

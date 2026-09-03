@@ -217,18 +217,18 @@ export default function Entrainement() {
                       />
                     </View>
                     <Pressable
-                      onPress={() => setReponse((r) => (r ? r + " [Photo scannée]" : "[Photo scannée de l'exercice]"))}
+                      disabled
                       accessibilityRole="button"
-                      accessibilityLabel="Scanner photo"
-                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white"
+                      accessibilityLabel="Scanner photo — bientôt disponible"
+                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white opacity-40"
                     >
                       <Camera size={20} color={couleurs.green} />
                     </Pressable>
                     <Pressable
-                      onPress={() => setReponse((r) => (r ? r + " " : "") + "Résolution guidée pas à pas.")}
+                      disabled
                       accessibilityRole="button"
-                      accessibilityLabel="Dictée vocale"
-                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white"
+                      accessibilityLabel="Dictée vocale — bientôt disponible"
+                      className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-white opacity-40"
                     >
                       <Mic size={20} color={couleurs.gold} />
                     </Pressable>
