@@ -1,8 +1,8 @@
 # RépétIA — Répétiteur particulier IA
 
-Aide les élèves béninois à préparer l'épreuve de **mathématiques du BEPC** :
-génération d'exercices calés sur le programme, correction avec explication pas
-à pas, chat répétiteur, suivi de progression thème par thème.
+Aide les élèves béninois du **cycle secondaire (BEPC et Baccalauréat)** à réviser et progresser :
+génération d'exercices calés sur le programme officiel béninois (6ème → Terminale), correction avec explication pas
+à pas, chat répétiteur, suivi de progression matière par matière et thème par thème.
 
 Deux clients partagent **le même backend et la même IA** :
 
@@ -27,6 +27,7 @@ Deux clients partagent **le même backend et la même IA** :
 - [Commandes disponibles](#commandes-disponibles)
 - [Tests](#tests)
 - [Structure du projet](#structure-du-projet)
+- [Recherche — volet scientifique](#recherche--volet-scientifique)
 - [API](#api)
 - [Robustesse : banque de secours](#robustesse--banque-de-secours)
 - [PWA et hors-ligne](#pwa-et-hors-ligne)
@@ -40,8 +41,8 @@ Deux clients partagent **le même backend et la même IA** :
 
 | Réf | Fonctionnalité | État |
 |---|---|---|
-| F1 | Sélection du thème (8 thèmes BEPC) et de la difficulté (Facile / Moyen / Type Examen) | ✅ |
-| F2 | Génération d'un exercice par l'IA, adapté au thème et à la difficulté | ✅ |
+| F1 | Sélection de l'examen (BEPC / BAC), de la matière et du thème, avec choix de la difficulté (Facile / Moyen / Type Examen) | ✅ |
+| F2 | Génération d'un exercice par l'IA, adapté à l'examen, à la matière et au thème | ✅ |
 | F3 | Saisie de la réponse et correction (les formes équivalentes sont acceptées) | ✅ |
 | F4 | Explication pas à pas après chaque tentative | ✅ |
 | F5 | Chat répétiteur, avec le contexte de l'exercice en cours | ✅ |
@@ -216,15 +217,40 @@ Ce qui est couvert, entre autres :
 │   │   ├── services/llm.service.ts  # SEUL point d'appel au LLM
 │   │   └── server.ts
 │   └── tests/                   # Jest — API + service IA
-└── frontend/
-    ├── src/
-    │   ├── components/          # Loader, MessageErreur, TexteFormate, EnTete
-    │   ├── pages/               # Accueil, Entrainement, Chat, Progression
-    │   ├── services/api.ts      # Client HTTP + erreurs en français
-    │   ├── services/horsLigne.ts# Cache local du dernier exercice
-    │   └── types/               # Types partagés
-    └── tests/                   # Vitest — parcours clé
+├── frontend/
+│   ├── src/
+│   │   ├── components/          # Loader, MessageErreur, TexteFormate, EnTete
+│   │   ├── pages/               # Accueil, Entrainement, Chat, Progression
+│   │   ├── services/api.ts      # Client HTTP + erreurs en français
+│   │   ├── services/horsLigne.ts# Cache local du dernier exercice
+│   │   └── types/               # Types partagés
+│   └── tests/                   # Vitest — parcours clé
+├── mobile/                      # Application Android (Expo, React Native)
+└── recherche/                   # Volet scientifique — voir section ci-dessous
+    ├── notebooks/               # Deux notebooks reproductibles
+    └── src/                     # Scripts de collecte, OCR, classifieur
 ```
+
+---
+
+## Recherche — volet scientifique
+
+Le dossier [`recherche/`](recherche/) contient le travail expérimental associé
+au projet, documenté dans son propre
+[`README`](recherche/README.md). Deux notebooks reproductibles :
+
+| Notebook | Question |
+|---|---|
+| **01 — Banc d'évaluation du LLM** | La génération d'exercices est-elle fiable ? Conformité, latence, comparaison de modèles et de variantes de prompt. |
+| **02 — Classifieur de matière** | Un classifieur léger, entraîné sur des exercices générés, reconnaît-il la matière d'un vrai sujet d'examen ? |
+
+Le classifieur est destiné à terme à être intégré au chat du backend : détecter
+la matière d'une question d'élève en millisecondes, sans appel au LLM, pour
+adapter le prompt système et mettre à jour la progression.
+
+Les annales réelles utilisées pour l'évaluation ne sont **pas versionnées**
+(droits des diffuseurs) : le dossier `donnees/privees/` est exclu du dépôt.
+Les notebooks ne publient que des métriques agrégées.
 
 ---
 

@@ -15,6 +15,7 @@ import SelecteurDifficulte from '@/components/SelecteurDifficulte';
 import type { Difficulte, Matiere, Progression, Theme } from '@/types';
 
 export default function Accueil() {
+  const [niveauChoisi, setNiveauChoisi] = useState<string>('BEPC');
   const [matieres, setMatieres] = useState<Matiere[]>([]);
   const [matiereChoisie, setMatiereChoisie] = useState('');
   const [themes, setThemes] = useState<Theme[]>([]);
@@ -30,7 +31,7 @@ export default function Accueil() {
   const charger = useCallback(async () => {
     setErreur(null);
     try {
-      const liste = await apiService.getMatieres();
+      const liste = await apiService.getMatieres(niveauChoisi);
       if (liste.length === 0) {
         throw new ErreurApi("Aucune matière disponible. La base du serveur n'est pas initialisée.");
       }
@@ -68,7 +69,7 @@ export default function Accueil() {
       setChargement(false);
       setRafraichit(false);
     }
-  }, [matiereChoisie]);
+  }, [niveauChoisi, matiereChoisie]);
 
   // Rechargé à chaque retour sur l'onglet : la progression reste à jour
   // après une session d'entraînement.
@@ -86,6 +87,8 @@ export default function Accueil() {
       params: { themeId: themeChoisi, difficulte, themeLibelle: libelle },
     });
   };
+
+  const matiereObj = matieres.find((m) => m.id === matiereChoisie);
 
   return (
     <SafeAreaView className="flex-1 bg-brand-paper" edges={['top']}>
@@ -105,14 +108,21 @@ export default function Accueil() {
           <Logo taille={30} />
           <View className="flex-row items-center gap-1.5 rounded-full bg-brand-gold-soft px-3 py-1.5">
             <GraduationCap size={14} color={couleurs.greenDark} />
-            <Text className="text-brand-green-dark text-xs font-bold">BEPC · Maths</Text>
+            <Text className="text-brand-green-dark text-xs font-bold">
+              {niveauChoisi} · {matiereObj?.libelle || 'Matières'}
+            </Text>
           </View>
         </View>
 
         <View className="rounded-2xl bg-brand-green p-5">
-          <Text className="mb-1 text-xl font-bold text-white">Salut 👋</Text>
+          <View className="flex-row items-center justify-between mb-2">
+            <Text className="text-xl font-bold text-white">Salut 👋</Text>
+            <View className="rounded-full bg-white/20 px-2.5 py-1">
+              <Text className="text-xs font-bold text-white">🇧🇯 Ancré au programme béninois</Text>
+            </View>
+          </View>
           <Text className="mb-2 text-xl font-bold text-white">On révise quoi aujourd&apos;hui ?</Text>
-          <Text className="text-sm text-white/90">Choisis un thème et lance-toi !</Text>
+          <Text className="text-sm text-white/90">Choisis ton niveau et ton thème, puis lance-toi !</Text>
         </View>
 
         {horsLigne ? (
@@ -153,6 +163,35 @@ export default function Accueil() {
                 </Text>
               </View>
             ) : null}
+
+            <View>
+              <View className="mb-3 flex-row items-center gap-2">
+                <GraduationCap size={17} color={couleurs.gold} />
+                <Text className="text-brand-green-dark font-bold">Niveau & Classe</Text>
+              </View>
+              <View className="flex-row flex-wrap gap-2">
+                {[
+                  { code: '6ème', libelle: '6ème' },
+                  { code: '5ème', libelle: '5ème' },
+                  { code: '4ème', libelle: '4ème' },
+                  { code: 'BEPC', libelle: '3ème (BEPC)' },
+                  { code: 'BAC', libelle: 'Lycée (BAC)' },
+                ].map((n) => (
+                  <Puce
+                    key={n.code}
+                    libelle={n.libelle}
+                    actif={niveauChoisi === n.code}
+                    onPress={() => {
+                      if (niveauChoisi !== n.code) {
+                        setNiveauChoisi(n.code);
+                        setMatiereChoisie('');
+                        setThemeChoisi('');
+                      }
+                    }}
+                  />
+                ))}
+              </View>
+            </View>
 
             <View>
               <View className="mb-3 flex-row items-center gap-2">

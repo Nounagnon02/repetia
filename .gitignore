@@ -59,3 +59,7 @@ NOTE_TECHNIQUE.odg
 # Les annales du BEPC restent la propriété de leurs éditeurs : seules les
 # métriques agrégées calculées à partir d'elles figurent dans les notebooks.
 recherche/donnees/privees/
+
+# Montage vidéo : rushes, voix off et rendus sont trop lourds pour le dépôt.
+# Les cartons se régénèrent avec tools/cartons-video.sh.
+montage/

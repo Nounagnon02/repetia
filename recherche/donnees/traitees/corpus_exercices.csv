@@ -326,3 +326,786 @@ Question: How does Koffi go to school?",Koffi goes to school by bicycle.,"Étape
 Étape 3 : Juste après, le texte dit ""by bicycle"" (à vélo).
 Étape 4 : Rédige ta réponse de façon simple et claire en te basant sur cette information.",212,375,40
 Physique-Chimie-Technologie,Circuits électriques,facile,gemini-flash-lite-latest,C_complet,"Un dipôle ohmique a une résistance R = 50 ohms et est traversé par un courant d'intensité I = 0,2 ampère. Calcule la tension U aux bornes de ce résistor.",U = 10 volts,"Etape 1 : On rappelle la loi d'ohm qui relie la tension U, la résistance R et l'intensité I. La formule est U = R × I. Etape 2 : On remplace les lettres par les valeurs données dans l'énoncé : R = 50 et I = 0,2. Etape 3 : On fait le calcul : U = 50 × 0,2 = 10. Le résultat est donc 10 volts.",158,297,30
+Physique-Chimie-Technologie,"Atomes, molécules et ions",facile,gemini-3.5-flash,A_minimal,"Pour préparer la sauce gombo, maman utilise du sel de cuisine qui contient du sodium. L'atome de sodium est représenté par le symbole Na et possède un numéro atomique Z = 11. Détermine le nombre de protons et le nombre d'électrons présents dans cet atome de sodium.",L'atome de sodium possède 11 protons et 11 électrons.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur de PCT. Ensemble, nous allons résoudre cet exercice très facile, tu vas voir !\n\nÉtape 1 : Comprenons ce que signifie le numéro atomique Z.\nEn chimie, le numéro atomique, noté Z, représente toujours le nombre de protons (charges positives) présents dans le noyau de l'atome. Ici, l'énoncé nous dit que Z = 11. Donc, l'atome de sodium possède exactement 11 protons.\n\nÉtape 2 : Trouvons le nombre d'électrons.\nUn atome est toujours électriquement neutre. Cela signifie qu'il possède autant de charges positives (les protons) que de charges négatives (les électrons) pour que le total soit égal à zéro.\nComme notre atome de sodium a 11 protons, il doit obligatoirement avoir 11 électrons pour rester neutre.\n\nVoilà, c'est aussi simple que cela ! Tu as très bien travaillé, continue comme ça pour décrocher ton BEPC !",265,869,47
+Français,Rédaction et argumentation,examen,gemini-flash-lite-latest,C_complet,"Sujet (BEPC Bénin) : ""Certains pensent que l'utilisation excessive des téléphones portables nuit aux relations familiales, tandis que d'autres estiment qu'elle les facilite. Rédige un paragraphe argumentatif d'une dizaine de lignes prenant position pour la première idée, en t'appuyant sur un exemple précis de la vie quotidienne au Bénin.""","Enoncé d'une thèse claire, introduction d'un connecteur logique, développement avec l'exemple des repas de famille où chacun est sur son écran, et conclusion partielle montrant l'isolement malgré la proximité physique.","Etape 1 : On commence par affirmer clairement sa position (la thèse) : le téléphone nuit aux relations familiales. Par exemple, on peut dire que les écrans détruisent la communication sous le même toit. 
+
+Etape 2 : On introduit un argument avec un connecteur comme ""En effet"" ou ""D'abord"". On explique que l'attention est détournée vers les réseaux sociaux au détriment des échanges réels. 
+
+Etape 3 : On illustre avec un exemple concret et proche de nous au Bénin, comme le moment du repas du soir à la maison, où chacun mange les yeux rivés sur son smartphone au lieu de discuter de sa journée. 
+
+Etape 4 : On termine par une phrase bilan qui montre la conséquence : la famille vit sous le même toit mais les cœurs sont éloignés.",340,731,49
+Physique-Chimie-Technologie,Réactions chimiques,facile,gemini-3.5-flash,B_markdown,"Pour préparer le repas de midi, une maman utilise du charbon de bois (constitué essentiellement de carbone) dans un foyer. Lors de la combustion complète de 12 g de carbone dans le dioxygène, il se forme du dioxyde de carbone. 1. Écris l'équation-bilan de cette réaction chimique. 2. Calcule la masse de dioxygène nécessaire pour brûler complètement ces 12 g de carbone, sachant qu'il se forme 44 g de dioxyde de carbone.",1. L'équation-bilan est : C + O2 -> CO2. 2. La masse de dioxygène nécessaire est de 32 g.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur. Ensemble, nous allons résoudre cet exercice pas à pas, tu vas voir que c'est très simple !
+
+**Étape 1 : Écrire l'équation-bilan de la réaction**
+Dans nos maisons au Bénin, quand on allume le charbon pour cuisiner, le carbone (noté **C**) réagit avec le dioxygène de l'air (noté **O2**) pour former du gaz dioxyde de carbone (noté **CO2**).
+Les réactifs (ceux qui réagissent) sont placés à gauche de la flèche, et le produit (ce qui est formé) est placé à droite.
+L'équation s'écrit donc : **C + O2 -> CO2**.
+Elle est déjà équilibrée car nous avons exactement un atome de carbone et deux atomes d'oxygène de chaque côté. C'est super !
+
+**Étape 2 : Appliquer la loi de conservation de la masse**
+En chimie, la masse totale des réactifs qui disparaissent est toujours égale à la masse totale des produits qui se forment. C'est la loi de conservation de la masse.
+Ici, la masse de carbone consommée plus la masse de dioxygène consommée est égale à la masse de dioxyde de carbone formée.
+On peut écrire la formule : **m(C) + m(O2) = m(CO2)**.
+
+**Étape 3 : Calculer la masse de dioxygène**
+Remplaçons maintenant les lettres par les valeurs données dans notre énoncé :
+La masse de carbone **m(C)** = 12 g.
+La masse de dioxyde de carbone **m(CO2)** = 44 g.
+Notre formule devient : **12 + m(O2) = 44**.
+Pour trouver la masse de dioxygène **m(O2)**, il suffit de faire une simple soustraction :
+**m(O2) = 44 - 12**
+**m(O2) = 32 g**.
+
+La masse de dioxygène nécessaire est donc de **32 g**. Excellent travail ! Tu as parfaitement compris comment appliquer la loi de conservation de la masse. Continue comme ça, le BEPC est à ta portée !",421,1673,72
+Anglais,Future and conditionals,examen,gemini-3.5-flash,C_complet,"Complete the following sentence with the correct form of the verbs in brackets: If Yao (to study) hard, he (to pass) his BEPC exam next June.",studies / will pass,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice type du BEPC. C'est très simple, tu vas voir !
+
+**Étape 1 : Analyser la phrase**
+La phrase commence par **If** (si) et parle d'un événement futur : l'examen du BEPC en juin. Nous sommes face au **Conditional Type 1** (le conditionnel de type 1), qui exprime une action future très probable si la condition est remplie.
+
+**Étape 2 : Appliquer la règle du Conditional Type 1**
+La règle d'or à retenir par cœur pour ton examen est :
+**If + Present Simple, Future Simple (will + base verbale)**.
+
+**Étape 3 : Conjuguer le premier verbe (to study)**
+Le verbe après 'If' doit être au Present Simple. Le sujet est 'Yao' (ce qui équivaut au pronom de la 3ème personne du singulier 'he').
+Au présent simple, avec 'he', le verbe 'study' subit une petite transformation : comme il se termine par une consonne suivie de 'y', le 'y' devient 'i' et on ajoute 'es'.
+On obtient donc : **studies**.
+
+**Étape 4 : Conjuguer le second verbe (to pass)**
+Le second verbe exprime le résultat dans le futur. On utilise donc le Future Simple.
+Pour former le futur en anglais, c'est un jeu d'enfant : on met simplement l'auxiliaire **will** devant le verbe sans le modifier.
+On obtient donc : **will pass**.
+
+**En conclusion :**
+La phrase complète est : 'If Yao studies hard, he will pass his BEPC exam next June.'
+Si Yao étudie bien (comme toi en ce moment !), il réussira son examen. Tu as vu ? Ce n'est pas si sorcier ! Continue comme ça, tu es sur la bonne voie pour décrocher ton BEPC !",141,1527,26
+Français,Figures de style,moyen,gemini-3.5-flash,B_markdown,Identifie et explique la figure de style présente dans la phrase suivante : « Le marché Dantokpa est une fourmilière géante. »,C'est une métaphore.,"Bonjour mon ami ! Ensemble, nous allons analyser cette phrase pour trouver la figure de style. C'est un excellent exercice pour ton BEPC !
+
+**Étape 1 : Observons la phrase**
+Dans la phrase « Le marché Dantokpa est une fourmilière géante », on compare deux choses. D'un côté, nous avons le marché Dantokpa (le comparé) et de l'autre, une fourmilière géante (le comparant). Tu sais bien comment Dantokpa est animé, avec des milliers de personnes qui bougent dans tous les sens, comme des petites fourmis !
+
+**Étape 2 : Cherchons l'outil de comparaison**
+Regarde bien la phrase. Est-ce qu'il y a un mot de comparaison comme « comme », « semblable à » ou « ressemble à » ? Non, il n'y en a pas ! On dit directement que le marché **est** une fourmilière.
+
+**Étape 3 : Identifions la figure de style**
+Quand on compare deux éléments directement, sans utiliser de mot de liaison, on fait une **métaphore**. Si on avait écrit « Le marché est comme une fourmilière », cela aurait été une comparaison. Mais ici, c'est une métaphore.
+
+**Étape 4 : Comprenons le sens**
+Cette métaphore sert à insister sur la grande foule, l'agitation et l'activité intense du marché Dantokpa. Les acheteurs et vendeurs s'y déplacent en grand nombre, tout comme des fourmis s'activent dans leur nid.
+
+Tu as vu ? C'est très simple quand on va pas à pas ! Continue comme ça, tu vas briller au BEPC !",126,1367,22
+Physique-Chimie-Technologie,Circuits électriques,moyen,gemini-3.5-flash,B_markdown,"Pour éclairer sa chambre d'étude à Cotonou, Kemi utilise une batterie de tension U = 12 V. Il réalise un circuit en série comportant deux petites lampes assimilables à des conducteurs ohmiques de résistances respectives R1 = 4 ohms et R2 = 8 ohms.
+
+1) Calcule la résistance équivalente Req de l'association.
+2) Détermine l'intensité I du courant électrique qui traverse le circuit.","1) Req = 12 ohms
+2) I = 1 A","Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas. Tu vas voir, c'est très simple !
+
+**Étape 1 : Calcul de la résistance équivalente Req**
+
+Dans un circuit en série, les appareils sont branchés les uns à la suite des autres. C'est comme si le courant devait traverser deux obstacles l'un après l'autre sur la route de Dantokpa. Pour trouver la résistance totale (dite équivalente), il suffit d'additionner les résistances individuelles.
+
+La formule est : **Req = R1 + R2**
+
+En remplaçant par les valeurs de l'énoncé :
+Req = 4 + 8
+**Req = 12 ohms**
+
+Super ! Passons à la deuxième partie.
+
+**Étape 2 : Détermination de l'intensité I du courant**
+
+Pour trouver l'intensité, nous allons appliquer la **Loi d'Ohm**.
+Cette loi nous donne la relation : **U = Req x I**
+
+Comme nous voulons calculer l'intensité I, nous devons modifier la formule pour isoler I. Cela nous donne :
+**I = U / Req**
+
+Faisons maintenant l'application numérique avec nos données :
+U = 12 V
+Req = 12 ohms
+
+I = 12 / 12
+**I = 1 A** (Ampère)
+
+L'intensité du courant qui traverse le circuit est donc de **1 Ampère**.
+
+Félicitations ! Tu as suivi toutes les étapes avec succès. Continue ainsi, tu es sur la bonne voie pour le BEPC !",381,1217,63
+Sciences de la Vie et de la Terre,Sols et roches,examen,gemini-flash-lite-latest,A_minimal,"Au cours d'une sortie pédagogique dans une région du Nord-Bénin, un élève observe un sol sableux. Sachant qu'un échantillon de ce sol sec de masse 200g, versé dans une éprouvette graduée contenant 100 mL d'eau, laisse infiltrer toute l'eau rapidement, calcule la porosité (en pourcentage) de cet échantillon si le volume d'eau recueilli après infiltration est de 80 mL.",La porosité de cet échantillon de sol est de 80%.,"Étape 1 : Rappelle la formule de la porosité d'un sol, qui est le rapport entre le volume des pores (qui correspond ici au volume d'eau infiltrée) et le volume total de l'échantillon de sol sec, multiplié par 100. Étape 2 : Identifie les données du problème. Le volume d'eau infiltrée est de 80 mL, ce qui représente le volume des vides (ou pores). Étape 3 : Pour trouver le volume total du sol, on regarde la quantité d'eau versée au départ, soit 100 mL. Étape 4 : Applique la formule : Porosité = (Volume d'eau infiltrée / Volume total) x 100. Ce qui donne (80 / 100) x 100 = 80%. Bravo pour ton effort, continue comme ça !",369,625,59
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,examen,gemini-flash-lite-latest,C_complet,"Un élève de troisième réalise un montage en série comprenant un générateur, un interrupteur et un conducteur ohmique de résistance R. Aux bornes du conducteur ohmique, il mesure une tension U = 6 V et un courant I = 0,2 A qui le traverse. 1) Calcule la valeur de la résistance R. 2) On ajoute en série un deuxième conducteur ohmique de résistance R' = 15 ohms. Quelle est la nouvelle intensité du courant dans le circuit si la tension du générateur reste constante à 6 V ?","1) R = 30 ohms ; 2) I' = 0,13 A","Bonjour mon cher élève ! Pour réussir cet exercice type BEPC, allons-y pas à pas avec beaucoup de calme. Premier point : on cherche la résistance R du conducteur ohmique. Tu connais la loi d'Ohm qui relie la tension U, l'intensité I et la résistance R : U = R × I. Pour trouver R, on isole R en faisant la formule R = U ÷ I. En remplaçant par les valeurs de l'énoncé, on a R = 6 ÷ 0,2, ce qui nous donne R = 30 ohms. C'est la première étape réussie ! Deuxième point : on ajoute un deuxième conducteur ohmique R' = 15 ohms en série. Dans un circuit en série, les résistances s'ajoutent. La résistance totale du nouveau circuit devient R(total) = R + R', soit R(total) = 30 + 15 = 45 ohms. Le générateur garde la même tension U = 6 V. Pour trouver la nouvelle intensité I' du courant, on applique à nouveau la loi d'Ohm sur le circuit total : I' = U ÷ R(total). On calcule alors I' = 6 ÷ 45, ce qui donne environ 0,13 A. Tu vois, en prenant le temps de poser chaque formule, la physique devient beaucoup plus simple. Tu es capable de refaire cet exercice tout seul, bon courage pour tes révisions du BEPC !",472,1104,88
+Physique-Chimie-Technologie,Forces et équilibre,moyen,gemini-3.5-flash,B_markdown,"Dans un marché de Cotonou, un vendeur suspend un régime de bananes de masse m = 3 kg à un dynamomètre. Le régime est immobile. On donne g = 10 N/kg.
+1) Identifie les forces qui s'exercent sur le régime de bananes.
+2) Écris la condition d'équilibre du régime.
+3) Détermine l'intensité de la force exercée par le dynamomètre sur le régime.","1) Le poids P (vecteur) du régime et la tension T (vecteur) du ressort du dynamomètre.
+2) P + T = 0 (en vecteurs), ce qui implique P = T.
+3) T = 30 N.","Bonjour mon champion ! Ensemble, nous allons résoudre cet exercice pas à pas. C'est un grand classique du BEPC, tu vas tout comprendre !
+
+**Étape 1 : Identifier les forces**
+Pour trouver les forces, posons-nous deux questions :
+- Qu'est-ce qui attire le régime de bananes vers le bas ? C'est la Terre ! Cette force d'attraction s'appelle le **poids du régime**, noté **P** (avec une petite flèche au-dessus pour montrer que c'est un vecteur).
+- Qu'est-ce qui empêche le régime de tomber ? C'est le ressort du dynamomètre qui le retient vers le haut. Cette force de contact s'appelle la **tension du ressort**, notée **T** (avec une flèche).
+Il y a donc deux forces : le poids **P** et la tension **T**.
+
+**Étape 2 : Écrire la condition d'équilibre**
+Comme le régime de bananes est immobile (au repos), il est en équilibre sous l'action de ces deux forces.
+La règle en physique nous dit que lorsqu'un solide soumis à deux forces est en équilibre, ces deux forces se compensent.
+En mathématiques, on écrit que leur somme vectorielle est nulle : **P + T = 0** (avec des flèches sur P, T et le 0).
+Cela signifie concrètement que les deux forces ont la même droite d'action (verticale), des sens opposés (le poids tire vers le bas, la tension tire vers le haut) et surtout la **même intensité** : **P = T**.
+
+**Étape 3 : Calculer l'intensité de la tension**
+Pour trouver la tension **T**, nous allons d'abord calculer le poids **P** du régime de bananes.
+La formule du poids est : **P = m x g**
+Utilisons les données de l'énoncé :
+- m = 3 kg (la masse du régime)
+- g = 10 N/kg (l'intensité de la pesanteur)
+Calculons : P = 3 kg x 10 N/kg = **30 N** (Newtons).
+Comme nous avons établi à l'étape 2 que **T = P** à l'équilibre, alors la tension du dynamomètre est elle aussi de **30 N**.
+
+Félicitations pour tes efforts ! Continue comme ça, le BEPC est à ta portée !",337,1858,62
+Allemand,Wortschatz des Alltags,examen,gemini-3.5-flash,A_minimal,"Wortschatz des Alltags - Niveau BEPC.
+
+Lies den folgenden Satz und wähle das richtige Wort, um die Lücke zu füllen :
+
+Jeden Morgen wäscht sich Kofi, zieht sich an und isst sein ________ (Hausaufgabe / Frühstück / Auto), bevor er schnell zur Schule geht.
+
+Schreibe nur das richtige Wort auf.",Frühstück,"Bonjour mon ami ! Prêt à briller au BEPC ? Analysons ensemble cette phrase très simple qui ressemble à ton quotidien à Cotonou ou Parakou avant d'aller au cours.
+
+Étape 1 : Comprenons le sens de la phrase.
+- ""Jeden Morgen"" = Chaque matin.
+- ""wäscht sich Kofi, zieht sich an"" = Kofi se lave, s'habille.
+- ""und isst sein..."" = et mange son...
+- ""bevor er schnell zur Schule geht"" = avant d'aller vite à l'école.
+
+Étape 2 : Analysons les trois options proposées :
+1. ""Hausaufgabe"" signifie ""devoir de maison"". On ne mange pas ses devoirs d'allemand !
+2. ""Auto"" signifie ""voiture"". C'est un moyen de transport, impossible à manger !
+3. ""Frühstück"" signifie ""petit-déjeuner"". C'est le repas du matin, comme une bonne bouillie chaude ou du pain avant de partir en classe.
+
+Étape 3 : Conclusion.
+Le verbe ""essen"" (manger) s'associe logiquement avec la nourriture. Le bon choix est donc ""Frühstück"".
+
+Félicitations pour ton effort ! Tu es sur la bonne voie pour réussir ton examen !",290,974,50
+Espagnol,Pretérito indefinido e imperfecto,examen,gemini-flash-lite-latest,C_complet,"Completa la frase con el tiempo correcto (pretérito indefinido o imperfecto): Ayer, mientras yo (estudiar) ____ en mi habitación, mi madre (preparar) ____ elú (salsa de maní) en la cocina.",estudiaba / preparó,"Paso 1: Analizamos la frase para ver qué acción interrumpe a otra o cuál es una acción de fondo. La palabra 'mientras' indica una acción que estaba en curso (duración). Paso 2: Para una acción pasada que duraba o estaba en desarrollo, usamos el pretérito imperfecto. Con el sujeto 'yo' y el verbo 'estudiar' (grupo -ar), la forma es 'estudiaba'. Paso 3: La acción de preparar la salsa ocurrió de repente o interrumpió la otra, o simplemente sucedió como un hecho puntual terminado. Para acciones puntuales y acabadas usamos el pretérito indefinido. Con el sujeto 'mi madre' (tercera persona singular) y el verbo 'preparar', la forma es 'preparó'.",188,646,30
+Anglais,"Writing (letter, narrative)",facile,gemini-flash-lite-latest,A_minimal,Write a short informal letter (about 5 lines) to your friend Koffi to invite him to your birthday party next Saturday at your house in Cotonou.,"Dear Koffi,
+
+How are you? I am very happy to invite you to my birthday party next Saturday at my house in Cotonou. There will be delicious food, music, and a lot of fun. Please try to come!
+
+Your friend,
+Kouassi","Pour rédiger une lettre informelle (à un ami) pour le BEPC, procède étape par étape :
+1. Mets le lieu et la date en haut à droite (ou juste une formule amicale).
+2. Commence par une formule de salutation chaleureuse comme 'Dear [Nom]' (Cher...). 
+3. Demande des nouvelles ('How are you?') et annonce clairement l'invitation (le motif de la lettre).
+4. Ajoute un petit détail (la nourriture, la musique, le lieu).
+5. Termine par une formule de politesse amicale comme 'Your friend' (Ton ami) suivie de ton nom.",143,509,26
+Sciences de la Vie et de la Terre,Sols et roches,facile,gemini-flash-lite-latest,C_complet,"Un élève de troisième prélève un échantillon de terre dans son champ à Bohicon. Il y verse un peu d'eau et observe la formation de bulles d'air, puis, après agitation et repos dans un tube à essai, il observe le dépôt de différents éléments (graviers, sable, limon, argile). Comment appelle-t-on le phénomène qui a permis de mettre en évidence la présence d'air dans ce sol, et comment appelle-t-on la méthode qui a permis de séparer les constituants du sol par sédimentation ?","La mise en évidence de l'air est l'effervescence ou le test de porosité (ou battance), et la séparation des constituants par dépôt dans l'eau est l'analyse granulométrique par sédimentation.","Première étape : lorsque l'élève verse de l'eau sur la terre sèche, l'eau chasse l'air qui remplissait les pores (les espaces vides) entre les grains de terre. Cet air s'échappe sous forme de bulles, ce qui prouve que le sol contient de l'air et est poreux. Deuxième étape : en mélangeant la terre avec de l'eau dans un tube et en laissant reposer, les particules solides se déposent selon leur taille et leur poids (les plus lourdes comme les graviers et le sable en bas, les plus fines comme l'argile tout en haut). C'est l'analyse granulométrique par sédimentation, qui permet de connaître la texture du sol.",477,611,82
+Communication écrite,Rédaction narrative,facile,gemini-flash-lite-latest,C_complet,"Imagine la suite d'un événement heureux dans ton quartier (par exemple, la réussite d'un ami au BEPC ou une fête traditionnelle). Rédige un court récit de 5 à 10 lignes en employant un temps du passé et un connecteur logique.","Récit respectant la consigne : 5 à 10 lignes, utilisation d'un temps du passé (imparfait ou passé simple) et d'un connecteur logique (ex: ensuite, soudain, enfin), en lien avec un événement heureux au quartier.","Étape 1 : Choisis un événement heureux simple, comme la fête organisée après la proclamation des résultats du BEPC dans ton quartier. Étape 2 : Écris 5 à 10 lignes en décrivant l'ambiance et les actions. Étape 3 : Utilise un temps du passé (par exemple le passé simple : 'nous chantâmes' ou l'imparfait : 'les gens dansaient'). Étape 4 : Insère un connecteur logique pour lier tes idées (par exemple : 'Soudain', 'Enfin', 'Puis'). Étape 5 : Relis-toi pour corriger les fautes d'orthographe.",225,490,40
+Communication écrite,Rédaction argumentative,facile,gemini-flash-lite-latest,A_minimal,"Sujet : Certains pensent que les réseaux sociaux sont une perte de temps pour les élèves, tandis que d'autres pensent qu'ils sont utiles pour apprendre. Rédige un paragraphe argumentatif de 5 lignes pour donner ton point de vue en t'appuyant sur un exemple précis.","Pour ma part, les réseaux sociaux sont utiles pour apprendre s'ils sont bien utilisés. En effet, ils permettent de rejoindre des groupes de travail en ligne pour échanger sur des exercices difficiles. Par exemple, sur WhatsApp, de nombreux élèves créent des forums de mathématiques pour s'entraider le soir. Ainsi, bien encadrés, ces outils deviennent de véritables alliés pour la réussite scolaire.","Étape 1 : Lire attentivement le sujet et choisir sa position (pour ou contre, ou nuancé). Ici, on choisit qu'ils sont utiles.
+Étape 2 : Énoncer clairement son avis dès la première phrase.
+Étape 3 : Donner un argument logique (ils permettent de travailler ensemble).
+Étape 4 : Illustrer cet argument avec un exemple concret et proche du quotidien au Bénin (les forums WhatsApp de mathématiques).
+Étape 5 : Conclure par une phrase qui résume l'idée. Veiller à respecter la longueur demandée (environ 5 lignes) et à faire attention à l'orthographe.",264,545,44
+Allemand,Präpositionen und Satzbau,facile,gemini-flash-lite-latest,C_complet,Ergänze die richtige Präposition: Ich warte ... dich (attendre quelqu'un).,auf,"Schritt 1: Wir suchen die passende Präposition für das Verb 'warten' (attendre). Im Deutschen verbindet man 'warten' oft mit der Präposition 'auf'. Schritt 2: Diese Präposition verlangt den Akkusativ. Da 'dich' schon im Akkusativ steht, setzen wir einfach 'auf' ein.",74,266,10
+Espagnol,Pronombres y preposiciones,examen,gemini-flash-lite-latest,A_minimal,Completa la siguiente frase con el pronombre y la preposición correctos: 'María piensa a menudo ___ madre y ___ escribe una carta.' (Usa los pronombres y preposiciones adecuados).,en su / le,"Paso 1: Identificar el verbo que requiere una preposición. El verbo 'pensar' en el sentido de recordar o tener en mente va seguido de la preposición 'en' (pensar en). Paso 2: Sustituir 'madre' por un posesivo adecuado, que es 'su'. Tenemos 'en su'. Paso 3: Identificar el complemento de objeto indirecto (a su madre). Para no repetir 'a su madre', usamos el pronombre de objeto indirecto correspondiente a la tercera persona singular, que es 'le' (le escribe). Juntando todo, obtenemos 'en su / le'.",179,499,28
+Mathématiques,"Statistiques (moyenne, effectifs)",facile,gemini-flash-lite-latest,B_markdown,"Les notes sur 20 obtenues par un groupe de 5 élèves en Mathématiques sont : 10, 12, 14, 10 et 14. Calcule la moyenne de cette classe.",12,"Pour calculer la moyenne, on procède en deux étapes simples. Étape 1 : On additionne toutes les notes obtenues par les élèves, ce qui donne 10 + 12 + 14 + 10 + 14 = 60. Étape 2 : On divise cette somme totale par le nombre total d'élèves, qui est 5. On fait donc 60 divisé par 5, ce qui donne 12. La moyenne de ce groupe est donc de 12 sur 20. C'est comme si on partageait équitablement les points entre tous les élèves !",133,420,27
+Communication écrite,Lettre et écrits fonctionnels,examen,gemini-flash-lite-latest,A_minimal,"Cotonou, le 15 mai 2024
+
+Objet : Demande de stage de vacances
+
+Monsieur le Directeur,
+
+Élève en classe de troisième au CEG Sainte-Rita, je sollicite auprès de votre bienveillance l'obtention d'un stage de vacances dans votre entreprise.
+
+Dans l'attente d'une suite favorable, veuillez agréer, Monsieur le Directeur, l'expression de mes salutations distinguées.
+
+[Signature]
+
+Question : Identifie la nature de ce document et précise le destinataire exact de cette lettre selon le texte.",Nature : Lettre administrative (demande de stage). Destinataire : Le Directeur de l'entreprise.,"Étape 1 : Analyser le document. On observe la présence d'un lieu et d'une date en haut à gauche, d'un 'Objet', d'une interpellation ('Monsieur le Directeur') et d'une formule de politesse finale. Il s'agit donc d'une lettre.
+Étape 2 : Déterminer la nature exacte. La présence de la mention 'Objet' et l'adresse à une autorité (un Directeur) pour formuler une demande officielle caractérise une lettre administrative.
+Étape 3 : Identifier le destinataire. En lisant l'en-tête de la lettre ('Monsieur le Directeur') et la formule d'appel, on voit clairement à qui le message est adressé : c'est le Directeur de l'entreprise.",485,622,72
+Sciences de la Vie et de la Terre,Hérédité et génétique,facile,gemini-flash-lite-latest,A_minimal,"Au cours d'un élevage de lapins à Cotonou, un éleveur croise un lapin à pelage noir (caractère dominant) avec un lapin à pelage blanc (caractère récessif). Tous les lapins de la première génération (F1) ont un pelage noir. Comment appelle-t-on la loi de Mendel qui montre que tous les individus de la F1 sont semblables lorsqu'on croise deux parents de race pure ?",La loi d'uniformité des hybrides de la première génération (ou première loi de Mendel).,"1. Observe bien la situation : on croise deux parents de race pure (l'un noir, l'autre blanc) et toute la descendance (F1) est identique (tous noirs).
+2. Rappelle-toi le cours sur la génétique : lorsque le croisement de deux parents de race pure donne une génération F1 où tous les individus se ressemblent, on est en présence de la loi d'uniformité.
+3. Conclus donc qu'il s'agit de la première loi de Mendel, dite loi d'uniformité des hybrides de la première génération.",364,471,63
+Sciences de la Vie et de la Terre,Respiration et circulation,facile,gemini-flash-lite-latest,A_minimal,"Au cours d'une course à pied dans la cour de ton collège à Cotonou, ton rythme respiratoire s'accélère. Nomme le gaz rejeté en plus grande quantité par tes poumons lors de cet effort.",Le dioxyde de carbone,"Étape 1 : Rappelle-toi ce qui se passe dans ton corps quand tu fais un effort physique comme courir. Tes muscles travaillent beaucoup et ont besoin d'énergie.
+Étape 2 : Pour fabriquer cette énergie, les cellules de tes muscles consomment du dioxygène et rejhent un déchet, le dioxyde de carbone.
+Étape 3 : Ce gaz carbonique passe dans le sang, arrive aux poumons, et est rejeté à l'extérieur par la respiration. C'est pour cela qu'on respire plus vite !",183,453,33
+Lecture,Compréhension d’un texte argumentatif,moyen,gemini-flash-lite-latest,A_minimal,"Lis l'extrait suivant : ""Certaines personnes pensent que les jeunes ne s'intéressent plus à la lecture. Pourtant, il suffit de voir l'engouement pour les bandes dessinées et les romans dans nos rues et nos collèges pour comprendre le contraire."" Quelle est la thèse (l'idée défendue) de l'auteur dans ce passage ?",La jeunesse s'intéresse bel et bien à la lecture.,"Étape 1 : Identifie le sujet dont on parle. Ici, il s'agit de l'intérêt des jeunes pour la lecture. Étape 2 : Repère l'opinion de l'auteur. La première phrase (""Certaines personnes pensent que..."") présente l'avis des autres (la thèse adverse). Le mot ""Pourtant"" introduit l'idée propre de l'auteur. Étape 3 : Conclus. L'auteur réfute l'idée reçue en montrant que les jeunes lisent (bandes dessinées, romans). La thèse est donc que les jeunes s'intéressent à la lecture.",313,470,51
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,facile,gemini-3.5-flash,A_minimal,"Pour faire fonctionner une petite lampe témoin sur un panneau solaire à Cotonou, un technicien utilise un conducteur ohmique de résistance R = 50 ohms. Il mesure une tension de U = 6 V aux bornes de ce conducteur. Calcule l'intensité I du courant électrique qui traverse ce conducteur ohmique.","L'intensité du courant électrique qui traverse le conducteur ohmique est I = 0,12 A (soit 120 mA).","Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice très simple sur la loi d'Ohm. C'est un classique du BEPC, tu vas voir, c'est très facile !
+
+Étape 1 : Identifions les données de l'énoncé.
+- La résistance du conducteur ohmique : R = 50 ohms.
+- La tension aux bornes du conducteur : U = 6 volts (V).
+- Nous cherchons l'intensité du courant : I (en ampères, A).
+
+Étape 2 : Rappelons la formule de la loi d'Ohm.
+La formule que tu as apprise en classe est : U = R x I.
+Ici, nous voulons trouver I. Pour isoler I, nous transformons la formule : I = U / R.
+
+Étape 3 : Faisons le calcul numérique.
+On remplace les lettres par leurs valeurs :
+I = 6 / 50
+I = 0,12 A.
+
+Étape 4 : Conclusion et conversion.
+L'intensité du courant est de 0,12 Ampère (A). Si on veut l'exprimer en milliampères (mA), on multiplie par 1000, ce qui nous donne 120 mA.
+
+Félicitations, tu as appliqué la loi d'Ohm comme un chef ! Continue comme ça, le BEPC est à ta portée !",293,951,50
+Espagnol,Pretérito indefinido e imperfecto,examen,gemini-flash-lite-latest,A_minimal,"Choisis la bonne forme verbale (Pretérito Indefinido ou Imperfecto) pour compléter cette phrase : ""Ayer, mientras mi madre (cocinar) el fufu, yo (llegar) a casa.""",cocinaba / llegué,"Étape 1 : Analuse la phrase. On a deux actions au passé : l'une est longue (cuire le fufu) et l'autre est ponctuelle ou interrompt la première (arriver à la maison).
+Étape 2 : Pour l'action en cours ou d'arrière-plan avec ""mientras"", on utilise le Pretérito Imperfecto. Le verbe ""cocinar"" pour ""mi madre"" (ella) donne ""cocinaba"".
+Étape 3 : Pour l'action soudaine ou qui interrompt, on utilise le Pretérito Indefinido. Le verbe ""llegar"" pour ""yo"" donne ""llegué"".",162,461,25
+Communication écrite,Conjugaison et temps verbaux,examen,gemini-3.5-flash,B_markdown,"Dans la phrase suivante, conjugue le verbe entre parenthèses au temps et au mode qui conviennent : 'Bien que le jeune Amadou (fournir) beaucoup d'efforts pour préparer son BEPC, il doit encore rester très concentré.'",fournisse,"Bonjour mon ami ! Pour réussir cet exercice d'examen, nous allons procéder **étape par étape**.
+
+Première étape : repérons le mot-clé. Dans notre phrase, nous avons la locution conjonctive **bien que**.
+
+Deuxième étape : appliquons la règle. En français, après **bien que**, on utilise toujours le mode **subjonctif**.
+
+Troisième étape : choisissons le bon temps. La principale 'il doit' est au présent, donc nous conjuguons au **subjonctif présent**.
+
+Quatrième étape : conjuguons le verbe. Le verbe 'fournir' (2ème groupe) à la 3ème personne du singulier au subjonctif présent donne **qu'il fournisse**.
+
+C'est excellent ! Continue de t'entraîner ainsi pour briller au BEPC !",216,677,35
+Allemand,Wortschatz des Alltags,examen,gemini-3.5-flash,C_complet,Ergänze den Satz mit dem passenden Wort aus der Klammer: Jeden Morgen vor dem Unterricht hilft Amadou seiner Mutter und holt ________ (Wasser / Schule / Auto) am Brunnen.,Wasser,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice typique du BEPC pour que tu brilles le jour de l'examen.
+
+**Étape 1 : Comprendre le contexte de la phrase**
+La phrase nous parle de la routine quotidienne d'un jeune élève : 'Chaque matin avant les cours, Amadou aide sa mère et cherche...'. Le mot clé à la fin est 'am Brunnen', qui signifie 'au puits' ou 'à la fontaine'.
+
+**Étape 2 : Analyser les options proposées**
+Regardons les trois mots entre parenthèses :
+- 'Wasser' veut dire 'l'eau'.
+- 'Schule' veut dire 'l'école'.
+- 'Auto' veut dire 'la voiture'.
+
+**Étape 3 : Faire le choix logique**
+Qu'est-ce qu'on va chercher au puits pour aider maman à la maison ? C'est bien sûr de l'eau ! Donc, le verbe 'holen' (aller chercher) s'associe avec **Wasser**.
+
+La phrase correcte est : 'Jeden Morgen vor dem Unterricht hilft Amadou seiner Mutter und holt Wasser am Brunnen.'
+
+Félicitations pour tes efforts ! Tu progresses chaque jour, continue comme ça !",170,965,29
+Communication écrite,Résumé et compte rendu,facile,gemini-3.5-flash,C_complet,"Voici un exercice classique pour t'entraîner à la contraction de texte, une étape clé du résumé au BEPC. Un texte de lecture proposé à l'examen compte exactement 240 mots. Les consignes te demandent de faire un résumé au quart (1/4) de sa longueur, avec une marge de tolérance de plus ou moins 10%. Calcule le nombre minimal et le nombre maximal de mots que ton résumé devra contenir.",Le résumé doit contenir entre 54 et 66 mots.,"Bonjour mon champion ! C'est RépétIA, ton répétiteur. Ensemble, nous allons résoudre cet exercice pas à pas, comme un jeu d'enfant.
+
+**Première étape : Trouver le nombre de mots théorique**
+On te demande de résumer le texte au quart (1/4). Cela signifie qu'il faut diviser le nombre total de mots du texte de départ par 4.
+Faisons le calcul : 240 mots divisés par 4.
+240 / 4 = 60.
+Le nombre idéal de mots pour ton résumé est donc de **60 mots**.
+
+**Deuxième étape : Calculer la marge de tolérance de 10%**
+À l'examen du BEPC au Bénin, les correcteurs acceptent une petite marge de 10% en plus ou en moins. Calculons combien représentent ces 10% par rapport à notre cible de 60 mots.
+Pour trouver 10% de 60, on fait : (60 x 10) / 100 = 6.
+La marge est donc de **6 mots**.
+
+**Troisième étape : Déterminer les limites minimale et maximale**
+Pour trouver le nombre minimal de mots : on soustrait la marge de tolérance du nombre théorique.
+60 - 6 = **54 mots**.
+Pour trouver le nombre maximal de mots : on ajoute la marge de tolérance au nombre théorique.
+60 + 6 = **66 mots**.
+
+Voilà ! Ton résumé devra donc compter entre **54 et 66 mots** au maximum. C'est une excellente habitude à prendre pour ne pas perdre de points bêtement le jour J. Félicitations pour tes efforts, tu vas briller au BEPC !",384,1293,68
+Lecture,Repérage des idées et de la structure,facile,gemini-3.5-flash,C_complet,"Voici un court texte :
+
+'Le marché Dantokpa de Cotonou est une véritable ruche humaine. Dès l'aube, les grossistes installent leurs marchandises venues de l'intérieur du pays. Ensuite, vers huit heures, les revendeuses s'activent pour achalander leurs étals de piments, de tomates et de gari. Enfin, au coucher du soleil, les clients se bousculent pour faire les derniers achats avant la fermeture.'
+
+Consigne :
+1. Quelle est l'idée générale de ce texte ?
+2. Comment ce texte est-il structuré (quel est le type d'organisation utilisé) ? Aide-toi des indices de temps.","1. L'idée générale est l'animation et le déroulement des activités au marché Dantokpa au fil de la journée.
+2. Le texte a une structure chronologique (organisation selon le temps), marquée par les indicateurs temporels : 'Dès l'aube', 'Ensuite, vers huit heures' et 'Enfin, au coucher du soleil'.","Bonjour mon ami ! C'est un excellent exercice pour s'entraîner pour le BEPC. Allons-y pas à pas, avec méthode et confiance.
+
+**Première étape : Trouver l'idée générale**
+Pour trouver l'idée générale, pose-toi toujours cette question simple : « De quoi parle-t-on du début à la fin du texte ? »
+Ici, le texte nous parle du célèbre marché Dantokpa. On y décrit les mouvements des vendeurs de gari ou de piments et des acheteurs. L'idée générale est donc **l'animation ou l'activité au marché Dantokpa tout au long de la journée**.
+
+**Deuxième étape : Repérer la structure du texte**
+Pour comprendre comment l'auteur a organisé ses idées, nous devons chercher les indices de liaison, surtout au début des phrases.
+Regardons ensemble ces expressions du texte :
+- Au début : « Dès l'aube » (le matin très tôt).
+- Au milieu : « Ensuite, vers huit heures » (la matinée avance).
+- À la fin : « Enfin, au coucher du soleil » (la fin de la journée).
+
+Ces expressions indiquent des moments précis de la journée qui se suivent. L'auteur a donc choisi de classer ses idées en suivant le passage du temps. On dit que la structure est **chronologique** ou temporelle.
+
+Félicitations pour ton travail ! Continue d'analyser les textes ainsi, tu es sur la bonne voie pour réussir ton examen !",567,1274,91
+Mathématiques,"Statistiques (moyenne, effectifs)",facile,gemini-flash-lite-latest,C_complet,"Les notes sur 20 obtenues par un groupe d'élèves d'une classe de troisième au Benin sont les suivantes : 8, 10, 12, 10, 14, 12, 10. Calcule la moyenne de ces notes.","10,86 sur 20","Pour calculer la moyenne, nous allons procéder en deux étapes simples.
+
+Première étape : On additionne toutes les notes ensemble.
+Somme = 8 + 10 + 12 + 10 + 14 + 12 + 10 = 76.
+
+Deuxième étape : On compte le nombre total d'élèves, ce qui donne l'effectif total. Ici, il y a 7 notes donc l'effectif total est 7.
+
+Troisième étape : On divise la somme totale par l'effectif total.
+Moyenne = 76 ÷ 7 = 10,857...
+
+En arrondissant au centième près, on trouve 10,86.
+
+C'est très bien, continue tes efforts pour le BEPC !",164,511,32
+Espagnol,Expresión escrita,moyen,gemini-flash-lite-latest,C_complet,"Completa la frase con el verbo correcto en presente de indicativo: ""Mañana, mis amigos y yo (ir) al mercado de Dantokpa para comprar frutas.""",vamos,"Étape 1 : Identifions le sujet de la phrase. Le sujet est ""mis amigos y yo"", ce qui correspond au pronom ""nosotros"" (nous) en espagnol. Étape 2 : Regardons le verbe entre parenthèses, qui est ""ir"" (aller). Étape 3 : Conjuguons le verbe ""ir au présent de l'indicatif avec ""nosotros"". Le verbe ""ir"" est irrégulier et sa forme pour ""nosotros"" est ""vamos"". La phrase complète devient donc : ""Mañana, mis amigos y yo vamos al mercado de Dantokpa..."".",141,445,24
+Histoire-Géographie,Activités économiques du Bénin,moyen,gemini-flash-lite-latest,B_markdown,"Cite deux principales cultures de rente qui contribuent à l'économie du Bénin, puis indique le rôle principal de l'agriculture dans le Produit Intérieur Brut (PIB) du pays.",1. Le coton et l'anacarde (ou le palmier à huile). 2. L'agriculture est le pilier de l'économie béninoise et représente une part majeure du PIB et des exportations.,"Étape 1 : Pour répondre à la première partie, souviens-toi des cultures que le Bénin produit principalement pour l'exportation et qui rapportent de l'argent au pays, comme le coton qu'on appelle l'or blanc. Étape 2 : Pour la deuxième partie, pense à la place qu'occupe le travail de la terre dans notre pays : c'est l'activité qui emploie le plus de Béninois et qui nourrit l'économie.",172,385,27
+Espagnol,Ser y estar,examen,gemini-flash-lite-latest,A_minimal,"Choisis le verbe correct (Ser ou Estar) et justifie : ""Mi tío __ médico en el hospital de Cotonou.""",es,"Étape 1 : On cherche à exprimer la profession ou le métier d'une personne (médico). Étape 2 : Selon la règle du programme béninois, pour indiquer une profession, une origine ou une caractéristique permanente, on utilise toujours le verbe ""ser"". Étape 3 : Le sujet ""Mi tío"" (mon oncle) est à la troisième personne du singulier. Le présent de l'indicatif du verbe ""ser"" à cette personne est ""es"". La phrase correcte est donc : ""Mi tío es médico en el hospital de Cotonou.""",99,470,19
+Espagnol,Pretérito indefinido e imperfecto,facile,gemini-3.5-flash,C_complet,"Complète la phrase suivante en conjuguant le verbe entre parenthèses au temps du passé qui convient (Pretérito indefinido ou imperfecto) : 'Ayer, mi madre (comprar) frutas en el mercado.'",compró,"Bonjour mon champion ! Ne t'inquiète pas, nous allons résoudre cela ensemble, étape par étape.
+
+**Étape 1 : Analyser l'indicateur de temps**
+Dans la phrase, nous avons le mot **Ayer** qui signifie **hier**. C'est un indicateur de temps qui montre une action précise, complètement terminée dans le passé.
+
+**Étape 2 : Choisir le bon temps du passé**
+Comme l'action de faire les achats au marché est achevée et s'est produite à un moment précis (hier), nous devons utiliser le **Pretérito indefinido** (l'équivalent du passé simple). Le *Pretérito imperfecto* (l'imparfait) aurait été utilisé pour une habitude ou une description, ce qui n'est pas le cas ici.
+
+**Étape 3 : Conjuguer le verbe**
+Le verbe entre parenthèses est **comprar** (acheter). C'est un verbe régulier qui se termine par **-ar**.
+Le sujet est **mi madre** (ma mère), ce qui correspond à la troisième personne du singulier (**ella** / elle).
+Au Pretérito indefinido, la terminaison pour **ella** des verbes en -ar est **-ó**.
+En enlevant la terminaison -ar de comprar et en ajoutant -ó, nous obtenons **compró**.
+
+La phrase correcte est donc : Ayer, mi madre **compró** frutas en el mercado.
+
+Excellent travail ! Continue comme ça, le BEPC est à ta portée !",187,1224,29
+Espagnol,Pronombres y preposiciones,facile,gemini-flash-lite-latest,B_markdown,Completa con el pronombre correcto: María y _ (yo) vamos al mercado de Dantokpa.,yo,Étape 1 : Identifions le sujet de la phrase qui fait l'action d'aller au marché avec María. Étape 2 : Le pronom sujet en espagnol qui correspond à 'je' est 'yo'. C'est le seul qui convient directement avec le verbe 'vamos'.,80,223,14
+Histoire-Géographie,Activités économiques du Bénin,examen,gemini-flash-lite-latest,C_complet,"Le Bénin exporte une grande partie de sa production de coton brute. Explique en deux lignes pourquoi cette situation constitue une faiblesse pour l'économie béninoise, puis propose une solution pour y remédier.",Faiblesse : manque de transformation locale entraînant une perte de valeur ajoutée et de devises. Solution : industrialiser le pays en développant des usines de filature et de textile.,"Première étape, on analyse le problème : le Bénin vend son coton sans le transformer, ce qui prive le pays de créer des emplois industriels et de vendre des produits finis plus chers. Deuxième étape, on trouve la solution : il faut encourager la transformation sur place, comme le fait la zone industrielle de Glo-Djigbé (GDIZ), pour valoriser nos produits locaux.",210,364,32
+Espagnol,Comprensión de texto,examen,gemini-flash-lite-latest,A_minimal,"Lee el texto y responde a la pregunta:
+""María vive en Cotonú con su familia. Cada mañana se levanta a las seis, desayuna té con pan y va a la escuela en autobús. Por la tarde, hace sus deberes y ayuda a su madre en el mercado.""
+Pregunta: ¿A qué hora se levanta María por la mañana?",A las seis.,"Paso 1: Lee atentamente la pregunta. Te pide la hora a la que se levanta María.
+
+Paso 2: Busca en el texto la frase que hable de despertarse (""se levanta""). Encontramos: ""Cada mañana se levanta a las seis..."".
+
+Paso 3: Extrae la información exacta. La respuesta es ""a las seis"" (à six heures). ¡Muy bien, ánimo para el BEPC!",281,324,57
+Mathématiques,Calcul littéral (développer / factoriser),examen,gemini-flash-lite-latest,B_markdown,On donne l'expression littérale E = (2x - 3)(x + 5) - (2x - 3)^2. 1) Développer et réduire E. 2) Factoriser E.,"1) E = -2x^2 + 13x - 18
+2) E = (2x - 3)(8 - x)","Bonjour cher élève ! Pour le développement, on utilise la double distributivité pour le premier terme et l'identité remarquable (a - b)^2 pour le second, en faisant très attention au signe moins devant la parenthèse. Cela donne E = (2x^2 + 10x - 3x - 15) - (4x^2 - 12x + 9). En enlevant les parenthèses et en changeant les signes du deuxième groupe, on obtient E = 2x^2 + 7x - 15 - 4x^2 + 12x - 9. En regroupant les termes en x^2, en x et les nombres constants, on trouve E = -2x^2 + 13x - 18. Pour la factorisation, on observe l'expression de départ E = (2x - 3)(x + 5) - (2x - 3)(2x - 3). Le facteur commun est (2x - 3). On le met en avant : E = (2x - 3) [ (x + 5) - (2x - 3) ]. On simplifie l'expression à l'intérieur du grand crochet en enlevant la petite parenthèse : [ x + 5 - 2x + 3 ] ce qui donne [ 8 - x ]. Finalement, la forme factorisée est E = (2x - 3)(8 - x). C'est du très bon travail, continue ainsi !",110,916,23
+Mathématiques,Calcul littéral (développer / factoriser),facile,gemini-flash-lite-latest,B_markdown,On donne l'expression litterale E = (x + 3)(x + 2) + x(x + 3). 1) developpe et reduis E. 2) factorise E.,1) E = 2x² + 8x + 6 ; 2) E = (x + 3)(2x + 2),"Pour developper E, on utilise la distributivite. D'abord, (x + 3)(x + 2) donne x² + 2x + 3x + 6. Ensuite, x(x + 3) donne x² + 3x. En regroupant tous les termes, on obtient x² + 2x + 3x + 6 + x² + 3x, ce qui donne apres reduction E = 2x² + 8x + 6. Pour factoriser E, on observe l'expression de depart (x + 3)(x + 2) + x(x + 3). Le facteur commun est (x + 3). On le met en avant : E = (x + 3) * [(x + 2) + x]. A l'interieur des crochets, on simplifie x + 2 + x pour obtenir (2x + 2). La forme factorisee est donc (x + 3)(2x + 2).",104,527,23
+Communication écrite,Rédaction argumentative,examen,gemini-3.5-flash,B_markdown,"Sujet : De nos jours, de nombreux adolescents au Bénin passent la majeure partie de leur temps libre sur les réseaux sociaux (TikTok, WhatsApp, Facebook) au détriment de leurs études. Dans un texte argumentatif bien structuré, présente deux inconvénients majeurs de cette pratique sur les résultats scolaires, puis propose deux solutions concrètes pour aider les élèves à mieux concilier les écrans et l'école.","Une production écrite réussie doit comporter : 1. Une introduction (amorce sur le numérique au Bénin, problématique et annonce du plan). 2. Un développement en deux parties (Partie 1 : deux inconvénients comme la baisse de concentration en classe et le manque de sommeil dû aux connexions tardives ; Partie 2 : deux solutions comme la planification d'heures d'étude sans téléphone et la sensibilisation parentale). 3. Une conclusion (bilan des arguments et ouverture sur l'éducation numérique).","Bonjour mon champion ! Bonjour ma championne ! Ne t'inquiète pas, la rédaction argumentative est un exercice facile quand on a la méthode. Ensemble, nous allons analyser ce sujet pas à pas pour que tu obtiennes le maximum de points au BEPC.
+
+**Étape 1 : Analyser le sujet pour éviter le hors-sujet**
+Il faut d'abord repérer les mots-clés du sujet. Ici, nous avons : **réseaux sociaux**, **adolescents au Bénin**, **inconvénients sur le travail scolaire** et **solutions**. 
+Ton travail consiste donc à faire un plan en deux grandes parties dans ton développement : d'abord les conséquences négatives, puis les solutions pour y remédier.
+
+**Étape 2 : Réussir l'introduction**
+L'introduction se rédige en un seul paragraphe et contient trois parties :
+1. **L'amorce** : Tu introduis le thème de façon générale. Exemple : De nos jours au Bénin, avec l'accès facile à internet, presque tous les élèves possèdent un smartphone.
+2. **La problématique** : Tu poses la question sous forme de débat. Exemple : Cependant, quel est l'impact de l'usage abusif des réseaux sociaux sur les études de ces jeunes, et comment corriger ce tir ?
+3. **L'annonce du plan** : Tu indiques ce que tu vas faire dans le développement. Exemple : Nous présenterons d'abord les méfaits de cette pratique avant de proposer des solutions pour y remédier.
+
+**Étape 3 : Rédiger le développement**
+Pour avoir une bonne note, utilise des **connecteurs logiques** (D'abord, Ensuite, de plus, Enfin) pour lier tes idées.
+
+*Première partie : Les inconvénients (deux arguments)*
+- **Argument 1 : La distraction et la baisse de concentration.** Pendant que le professeur explique les cours de Mathématiques ou de Français, l'élève distrait pense aux vidéos TikTok ou répond à des messages sur WhatsApp. Cela entraîne une baisse immédiate des notes.
+- **Argument 2 : La fatigue physique et intellectuelle.** Beaucoup de jeunes utilisent les forfaits de nuit pour naviguer tard. Le lendemain, ils dorment en classe et ne peuvent plus suivre les explications.
+
+*Deuxième partie : Les solutions (deux arguments)*
+- **Argument 1 : L'autodiscipline de l'élève.** Tu peux proposer que l'élève éteigne son téléphone ou le range dans son sac pendant les heures de cours et d'étude à la maison.
+- **Argument 2 : Le contrôle des parents.** Au Bénin, les parents doivent jouer leur rôle en limitant le temps de connexion de leurs enfants et en confisquant les téléphones à partir d'une certaine heure de la nuit.
+
+**Étape 4 : Rédiger la conclusion**
+La conclusion ferme ton devoir en deux étapes :
+1. **Le bilan** : Tu résumes rapidement ton devoir. Exemple : En somme, les réseaux sociaux nuisent gravement aux études s'ils sont mal utilisés, mais une bonne discipline peut changer la donne.
+2. **L'ouverture** : Tu poses une question pour élargir le sujet. Exemple : Ne devrait-on pas plutôt introduire des cours de civisme numérique dans nos collèges ?
+
+Voilà ! En suivant cette démarche pas à pas, ton correcteur te donnera une excellente note. Tu as tout pour réussir, fais-toi confiance !",410,3042,63
+Communication écrite,Lettre et écrits fonctionnels,moyen,gemini-3.5-flash,A_minimal,"Voici les cinq éléments d'une lettre administrative rédigée par un élève du CEG d'Abomey-Calavi. Remets-les dans l'ordre officiel de présentation (du haut vers le bas) :
+A) Objet : Demande d'autorisation d'une journée 'Loisirs et Culture'
+B) Abomey-Calavi, le 15 mars 2024
+C) À Monsieur le Directeur du CEG d'Abomey-Calavi
+D) Monsieur le Directeur,
+E) Marc SOSSOU, Représentant des élèves de la 3ème A",E - B - C - A - D,"Bonjour mon cher ami ! Pour réussir cet exercice du BEPC sur la lettre administrative, nous allons suivre ensemble la structure officielle d'une lettre au Bénin, étape par étape.
+
+Étape 1 : Qui écrit la lettre ? C'est l'expéditeur. Dans la lettre administrative, ses coordonnées se placent toujours tout en haut à gauche. Ici, c'est Marc SOSSOU (élément E).
+
+Étape 2 : Où et quand la lettre est-elle écrite ? C'est le lieu et la date. On les place en haut à droite. Ici, c'est 'Abomey-Calavi, le 15 mars 2024' (élément B).
+
+Étape 3 : À qui s'adresse la lettre ? C'est le destinataire. On le place à droite, un peu plus bas que la date, et on commence toujours par la préposition 'À' suivie du titre de la personne. Ici, c'est 'À Monsieur le Directeur...' (élément C).
+
+Étape 4 : De quoi parle la lettre ? C'est l'objet. Il se place à gauche, en dessous du niveau du destinataire. Il résume le but de la lettre. Ici, c'est 'Objet : Demande d'autorisation...' (élément A).
+
+Étape 5 : Comment commence-t-on à s'adresser au destinataire dans le texte ? Par la formule d'appel. Elle se place juste avant le début du message. Ici, c'est 'Monsieur le Directeur,' (élément D).
+
+En rassemblant tout cela dans le bon ordre de lecture, nous obtenons la combinaison : E - B - C - A - D. Bravo pour tes efforts, tu es sur la bonne voie pour le BEPC !",401,1337,64
+Anglais,Present and past tenses,moyen,gemini-3.5-flash,C_complet,"Mets les verbes entre parenthèses au temps du passé qui convient :
+
+Yesterday, while Kofi (to study) for his BEPC exam, his mother (to call) him.",was studying / called,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas. C'est un grand classique de l'examen du BEPC !
+
+**Étape 1 : Repérer les indices de temps**
+Dans notre phrase, nous avons le mot **Yesterday** (hier). Cela nous indique tout de suite que l'action se déroule dans le passé. Nous devons donc utiliser des temps du passé (Past tenses).
+
+**Étape 2 : Comprendre la relation entre les deux actions**
+Nous avons aussi le mot **While** (pendant que). Ce mot magique introduit une action longue qui était en train de se dérouler, et qui a été interrompue par une action plus courte.
+
+**Étape 3 : Conjuguer le premier verbe (to study)**
+L'action de réviser (to study) est l'action longue qui était en cours. Pour une action longue dans le passé, on utilise le **Past Continuous** (was/were + verbe-ING).
+Kofi est un garçon (he), on utilise donc 'was'.
+Le verbe devient : **was studying**.
+
+**Étape 4 : Conjuguer le second verbe (to call)**
+L'appel de la maman (to call) est l'action courte et soudaine qui vient interrompre la révision. Pour une action courte et précise dans le passé, on utilise le **Past Simple**.
+'To call' est un verbe régulier, il suffit de lui ajouter '-ed' à la fin.
+Le verbe devient : **called**.
+
+C'est exactement comme chez nous au Bénin quand tu dis : 'Pendant que je préparais la pâte (was preparing), le gaz s'est éteint (went out)'.
+
+La phrase correcte est donc : 'Yesterday, while Kofi was studying for his BEPC exam, his mother called him.'
+
+Excellent travail, continue comme ça et tu vas briller à l'examen !",145,1553,26
+Physique-Chimie-Technologie,Solutions et concentrations,facile,gemini-3.5-flash,C_complet,"Pour préparer une boisson sucrée pour la fête de la Tabaski, Bio dissout complètement 20 g de sucre dans de l'eau pure afin d'obtenir 250 mL de solution. Calcule la concentration massique (Cm) en g/L de cette solution sucrée.",La concentration massique de la solution sucrée est de 80 g/L.,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice pas à pas. C'est très simple, tu vas voir.
+
+**Étape 1 : Comprendre ce qu'on nous demande et identifier les données**
+On veut calculer la **concentration massique** (Cm) de la boisson.
+Pour cela, l'énoncé nous donne deux informations importantes :
+- La masse du sucre (le soluté) : m = 20 g
+- Le volume de la solution : V = 250 mL
+
+**Étape 2 : Convertir les unités si nécessaire**
+Attention ! On nous demande la concentration en grammes par litre (**g/L**).
+La masse est déjà en grammes (g), c'est parfait !
+Mais le volume est en millilitres (mL). Il faut donc convertir 250 mL en litres (L).
+Tu sais que 1 L = 1000 mL.
+Pour passer des mL aux L, on divise par 1000.
+V = 250 ÷ 1000 = 0,25 L.
+
+**Étape 3 : Appliquer la formule de la concentration massique**
+La formule magique que tu as apprise en classe est :
+Cm = m ÷ V
+(La concentration massique est égale à la masse du soluté divisée par le volume de la solution).
+
+**Étape 4 : Faire le calcul**
+Remplaçons les lettres par les chiffres :
+Cm = 20 ÷ 0,25
+Cm = 80 g/L.
+
+Voilà ! Tu as trouvé la bonne démarche. C'est excellent pour ta préparation au BEPC. Continue comme ça !",225,1184,39
+Physique-Chimie-Technologie,"Atomes, molécules et ions",moyen,gemini-flash-lite-latest,B_markdown,Un atome de chlore a pour numéro atomique Z = 17. Il capte un électron pour donner un ion chlore. 1. Détermine le nombre d'électrons de cet ion. 2. Écris le symbole chimique de cet ion.,1. 18 électrons. 2. Cl^-,"Étape 1 : Rappelons-nous qu'un atome neutre de chlore (Z = 17) possède 17 protons et donc 17 électrons. Étape 2 : L'énoncé nous dit que cet atome capte (gagne) un électron. Pour trouver le nombre d'électrons de l'ion formé, on ajoute cet électron gagné aux électrons de départ : 17 + 1 = 18 électrons. Étape 3 : Comme l'atome a gagné une charge négative (un électron), l'ion formé est un anion. Son symbole se note en écrivant le symbole de l'élément (Cl) suivi du signe moins en exposant, ce qui donne Cl^-.",185,508,36
+Histoire-Géographie,Indépendances africaines,examen,gemini-3.5-flash,C_complet,"A l'examen du BEPC, on te demande d'expliquer le processus qui a conduit le Dahomey (actuel Bénin) à son indépendance le 1er août 1960. Nomme le premier président de la République du Dahomey qui a proclamé cette indépendance et cite deux étapes politiques majeures entre 1956 et 1960 qui ont préparé cet événement.",Le premier président est Hubert Maga. Les deux étapes majeures sont l'application de la Loi-Cadre Defferre de 1956 (autonomie interne) et le référendum de septembre 1958 (création de la Communauté française).,"Bonjour mon ami ! C'est une excellente question d'examen. Ensemble, nous allons analyser le sujet pas à pas pour que tu comprennes parfaitement la démarche.
+
+**Étape 1 : Identifier l'acteur principal de l'indépendance**
+Pour trouver le nom du premier président, rappelle-toi des récits sur le 1er août 1960 à Porto-Novo. C'est **Hubert Maga** qui a prononcé le discours solennel proclamant l'indépendance du Dahomey (notre actuel Bénin).
+
+**Étape 2 : Analyser la première étape historique (1956)**
+Pourquoi l'année 1956 est-elle importante ? C'est l'année de la **Loi-Cadre Defferre**. Pour bien comprendre, c'est comme si on te confiait la gestion de la boutique familiale pour t'entraîner avant de te laisser ouvrir ton propre commerce. Cette loi a accordé l'autonomie interne au Dahomey, permettant aux Dahoméens de gérer eux-mêmes leurs affaires locales.
+
+**Étape 3 : Analyser la deuxième étape historique (1958)**
+En septembre 1958, le Général de Gaulle organise un grand vote : le **référendum de 1958**. Le Dahomey choisit de voter ""Oui"" pour entrer dans la Communauté française. Cela permet au pays de devenir une République autonome le 4 décembre 1958. C'était la dernière marche avant l'indépendance totale de 1960.
+
+En apprenant à situer ces événements dans l'ordre, tu construis une argumentation solide pour ton examen. Félicitations pour tes efforts, tu vas réussir !",314,1381,53
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,facile,gemini-3.5-flash,C_complet,"Pour faire fonctionner une petite lampe de poche à Cotonou, Koffi utilise un conducteur ohmique de résistance R = 45 Ω. Le courant électrique qui traverse ce conducteur ohmique a une intensité I = 0,2 A. Calcule la tension U aux bornes de ce conducteur ohmique.",La tension aux bornes du conducteur ohmique est U = 9 V.,"Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice très simple sur la loi d'Ohm. C'est un grand classique du BEPC !
+
+**Étape 1 : Comprendre ce qu'on nous donne et ce qu'on cherche**
+Dans l'énoncé, nous avons deux informations importantes :
+- La résistance du conducteur ohmique : R = 45 Ω (ohms).
+- L'intensité du courant : I = 0,2 A (ampères).
+Nous cherchons la tension électrique U (en volts).
+
+**Étape 2 : Rappeler la formule de la loi d'Ohm**
+La loi d'Ohm est une formule très importante en électricité. Elle s'écrit :
+U = R × I
+Ici, U est la tension en volts (V), R est la résistance en ohms (Ω), et I est l'intensité en ampères (A). C'est une simple multiplication !
+
+**Étape 3 : Faire l'application numérique**
+Remplaçons les lettres par les valeurs de notre exercice :
+U = 45 × 0,2
+
+**Étape 4 : Calculer le résultat**
+Faisons le calcul :
+45 × 0,2 = 9
+La tension U est donc égale à 9 V.
+
+**Conclusion**
+La tension aux bornes du conducteur ohmique de Koffi est de 9 V (volts).
+Félicitations ! Tu as appliqué la loi d'Ohm comme un chef. Continue ainsi, le BEPC est à ta portée !",261,1094,46
+Mathématiques,Racines carrées,examen,gemini-flash-lite-latest,C_complet,"On donne le nombre A tel que A = 3√75 - 2√27 + √3. Écris A sous la forme a√3, où a est un nombre entier.",A = 12√3,"Pour écrire A sous la forme a√3, nous allons simplifier chaque racine carrée en cherchant à faire apparaître le facteur 3 à l'intérieur. D'abord, occupons-nous de 3√75. On sait que 75 = 25 × 3, donc √75 = √(25 × 3) = √25 × √3 = 5√3. En multipliant par le 3 qui est devant, cela donne 3 × 5√3 = 15√3. Ensuite, passons à 2√27. On sait que 27 = 9 × 3, donc √27 = √(9 × 3) = √9 × √3 = 3√3. En multipliant par le 2 qui est devant, cela donne 2 × 3√3 = 6√3. La dernière racine est déjà simplifiée, c'est √3. Maintenant, remplaçons tous ces résultats dans l'expression de départ : A = 15√3 - 6√3 + √3. N'oublie pas que √3 c'est la même chose que 1√3. Il ne reste plus qu'à regrouper les nombres : (15 - 6 + 1)√3, ce qui donne bien 12√3.",104,729,26
+Communication écrite,Rédaction argumentative,moyen,gemini-3.5-flash,C_complet,"Sujet : De nombreux jeunes béninois pensent que la réussite ne se trouve que dans les bureaux à Cotonou et négligent l'agriculture. Rédige un paragraphe argumentatif court (5 à 8 lignes) pour montrer que l'agriculture est une véritable source de richesse. Consigne : Utilise obligatoirement un connecteur logique pour commencer, formule un argument clair, et illustre-le par un exemple local béninois.","D'abord, l'agriculture est un secteur d'avenir qui permet aux jeunes de s'auto-employer et de devenir autonomes. En effet, la terre offre de grandes opportunités de richesse pour celui qui la travaille avec courage. Par exemple, au Bénin, la production et la transformation du manioc en gari ou en tapioca permettent à de nombreux jeunes de gagner très bien leur vie sans attendre un emploi de l'État.","Bonjour mon ami ! C'est RépétIA, ton répétiteur. Ensemble, nous allons analyser cet exercice pas à pas pour que tu réussisses brillamment au BEPC.
+
+**Étape 1 : Comprendre la consigne**
+On te demande de rédiger un paragraphe argumentatif. Pour cela, tu as besoin de trois éléments clés : un connecteur logique, un argument (ton idée principale) et un exemple (une preuve concrète).
+
+**Étape 2 : Choisir le connecteur logique**
+Pour commencer ton paragraphe de façon ordonnée, utilise un mot de liaison comme **D'abord**, **En premier lieu** ou **Tout d'abord**. Cela montre au correcteur que ton devoir est bien structuré.
+
+**Étape 3 : Formuler un argument fort**
+L'argument doit prouver que l'agriculture rend riche et indépendant. Nous avons choisi : l'agriculture permet de créer son propre emploi (l'auto-emploi) et de ne pas dépendre du chômage.
+
+**Étape 4 : Trouver un exemple béninois**
+Pour convaincre, rien de tel qu'un exemple que tout le monde connaît chez nous au Bénin ! Nous avons pris la culture du manioc et sa transformation en gari. C'est une activité très rentable dans nos départements comme le Plateau ou le Zou.
+
+**Étape 5 : Assembler le tout**
+Tu relies tes idées pour former des phrases simples et claires. Tu commences par le connecteur, tu développes l'argument, et tu termines par l'exemple en utilisant un mot comme **Par exemple** ou **C'est le cas de**.
+
+Travaille bien, la terre ne ment jamais, et ton succès au BEPC est assuré !",401,1459,61
+Physique-Chimie-Technologie,Loi d’Ohm et résistances,moyen,gemini-flash-lite-latest,A_minimal,Un élève de troisième au Bénin mesure la tension aux bornes d'un conducteur ohmique et trouve U = 6 V. Il mesure ensuite l'intensité du courant qui le traverse et trouve I = 50 mA. Calcule la valeur de la résistance R de ce conducteur ohmique en ohms.,R = 120 ohms,"Étape 1 : Rappelle-toi de la loi d'Ohm qui relie la tension U, l'intensité I et la résistance R par la formule U = R x I. Étape 2 : Convertis l'intensité I en ampères (A) car la formule exige des unités légales (SI). I = 50 mA = 50 / 1000 A = 0,05 A. Étape 3 : Isole la résistance R dans la formule, ce qui donne R = U / I. Étape 4 : Remplace U et I par leurs valeurs : R = 6 / 0,05. Étape 5 : Calcule le résultat final, R = 120 ohms. Bravo, tu as réussi !",251,456,48
+Lecture,Poésie et versification,facile,gemini-3.5-flash,C_complet,"Voici un vers inspiré de notre cher pays : ""Mon beau pays est le Bénin.""
+
+Consigne : Compte le nombre de syllabes métriques de ce vers et donne son nom (le mètre).",Ce vers contient 8 syllabes. C'est un octosyllabe.,"Bonjour mon ami ! C'est RépétIA, ton répétiteur. Ensemble, nous allons analyser ce vers pas à pas, avec le sourire.
+
+**Étape 1 : Comprendre ce qu'on nous demande**
+En poésie, pour trouver le mètre d'un vers, il faut compter ses syllabes prononcées. C'est comme découper les mots en tapant doucement dans les mains.
+
+**Étape 2 : Découper le vers en syllabes**
+Faisons le découpage ensemble :
+- Mon (1)
+- beau (2)
+- pa-ys (3 et 4 : attention, le mot ""pays"" se prononce en deux syllabes ""pa-ys"")
+- est (5)
+- le (6)
+- Bé-nin (7 et 8)
+
+**Étape 3 : Faire le total**
+Si on lit le vers en marquant bien chaque rythme, on obtient : Mon / beau / pa / ys / est / le / Bé / nin.
+Nous avons donc exactement **8 syllabes**.
+
+**Étape 4 : Trouver le nom du vers**
+Chaque longueur de vers a un nom précis en versification. Un vers de 8 syllabes s'appelle un **octosyllabe** (le préfixe ""octo"" signifie huit, comme dans un octogone).
+
+Félicitations pour tes efforts ! Tu as vu, ce n'est pas si difficile. Continue comme ça et le BEPC sera une formalité pour toi !",163,1045,32
+Physique-Chimie-Technologie,"Optique (lentilles, miroirs)",moyen,gemini-3.5-flash,C_complet,"Koffi, un élève de troisième à Cotonou, utilise une loupe (qui est une lentille convergente) de distance focale f = 10 cm pour projeter l'image d'une bougie de hauteur AB = 2 cm sur un écran. La bougie est placée perpendiculairement à l'axe optique, à une distance p = 15 cm devant la lentille.
+
+1. Calcule la distance p' entre la lentille et l'écran pour obtenir une image nette de la bougie.
+2. Détermine la hauteur A'B' de l'image obtenue sur l'écran.","1. La distance entre la lentille et l'écran est p' = 30 cm.
+2. La hauteur de l'image est A'B' = 4 cm.","Bonjour mon ami ! Ensemble, nous allons résoudre cet exercice d'optique pas à pas. C'est un classique du BEPC, tu vas voir, c'est très simple !
+
+**Étape 1 : Comprenons les données de l'exercice**
+Nous avons :
+- La distance focale de la lentille : f = 10 cm
+- La hauteur de la bougie (l'objet) : AB = 2 cm
+- La distance entre la bougie et la lentille : p = 15 cm
+
+**Étape 2 : Calcul de la distance de l'image p'**
+Pour trouver la position de l'image sur l'écran, nous utilisons la formule de conjugaison des lentilles minces convergentes :
+1/f = 1/p + 1/p'
+
+Nous cherchons 1/p'. Isolons-le dans la formule :
+1/p' = 1/f - 1/p
+
+Remplaçons par les valeurs numériques :
+1/p' = 1/10 - 1/15
+
+Pour faire cette soustraction, mettons les fractions au même dénominateur (qui est 30) :
+1/10 = 3/30
+1/15 = 2/30
+
+Ce qui nous donne :
+1/p' = 3/30 - 2/30
+1/p' = 1/30
+
+En inversant la fraction, nous trouvons :
+p' = 30 cm
+
+La distance entre la lentille et l'écran pour avoir une image nette est donc de **30 cm**.
+
+**Étape 3 : Calcul de la hauteur de l'image A'B'**
+Pour trouver la taille de l'image, nous utilisons la formule du grandissement :
+g = A'B' / AB = p' / p
+
+De cette égalité, nous pouvons tirer la hauteur de l'image A'B' :
+A'B' = AB × (p' / p)
+
+Passons à l'application numérique :
+A'B' = 2 × (30 / 15)
+A'B' = 2 × 2
+A'B' = 4 cm
+
+La hauteur de l'image de la bougie sur l'écran est donc de **4 cm**.
+
+Félicitations ! Tu as appliqué les formules comme un chef. Continue ainsi pour ton BEPC !",454,1482,82
+Allemand,Schriftlicher Ausdruck,moyen,gemini-flash-lite-latest,C_complet,"Formule une phrase correcte en allemand pour te présenter en donnant ton nom (Koffi), ton âge (14 ans) et ta ville d'origine (Cotonou). Utilise les verbes heißen, sein et wohnen.","Ich heiße Koffi, ich bin vierzehn Jahre alt und ich wohne in Cotonou.","Pour te présenter pas à pas, nous allons traduire chaque information en allemand.
+Première étape, ton nom : 'Je m'appelle Koffi' se traduit par 'Ich heiße Koffi'. Le verbe heißen prend la terminaison -e avec le pronom Ich.
+Deuxième étape, ton âge : 'J'ai quatorze ans' se dit 'ich bin vierzehn Jahre alt' en allemand (on utilise le verbe sein = être). Vierzehn signifie quatorze.
+Troisième étape, ta ville : 'J'habite à Cotonou' se traduit par 'ich wohne in Cotonou' (le verbe wohnen signifie habiter, et la préposition in s'utilise devant les noms de villes).
+Enfin, pour lier ces trois idées en une seule phrase correcte, on utilise la conjonction 'und' (et) : 'Ich heiße Koffi, ich bin vierzehn Jahre alt und ich wohne in Cotonou.' Bravo pour ton effort, continue comme ça !",178,777,30
+Mathématiques,Théorème de Thalès,examen,gemini-3.5-flash,C_complet,"Koffi possède un champ triangulaire ABC à Bohicon tel que AB = 6 m, AC = 9 m et BC = 7.5 m. Pour séparer ses cultures de maïs et de manioc, il trace une ligne (MN) parallèle à la bordure (BC), de sorte que le point M appartienne au segment [AB] et le point N appartienne au segment [AC]. On donne AM = 2 m. Calcule les longueurs AN et MN pour aider Koffi à bien délimiter son champ.",AN = 3 m et MN = 2.5 m,"Bonjour mon ami ! C'est un superbe exercice pour t'entraîner pour le BEPC. Ne t'inquiète pas, nous allons le résoudre ensemble, étape par étape.
+
+**Étape 1 : Analyser la situation**
+Koffi a un champ en forme de triangle ABC.
+On nous dit que la droite (MN) est parallèle à la droite (BC).
+Les points A, M, B sont alignés dans cet ordre, et les points A, N, C sont aussi alignés dans cet ordre.
+Quand tu vois des droites parallèles qui coupent un triangle, quel théorème te vient tout de suite à l'esprit ? Oui, c'est le **théorème de Thalès** !
+
+**Étape 2 : Écrire l'égalité de Thalès**
+Puisque (MN) ∥ (BC), d'après le théorème de Thalès, nous pouvons écrire les rapports de proportionnalité suivants :
+AM/AB = AN/AC = MN/BC.
+C'est comme une recette de cuisine, il suffit de remplacer les lettres par les valeurs que nous connaissons.
+
+**Étape 3 : Calculer la longueur AN**
+Utilisons d'abord la première partie de l'égalité :
+AM/AB = AN/AC.
+Remplaçons par les nombres donnés dans l'énoncé :
+2/6 = AN/9.
+Pour trouver AN, nous faisons un produit en croix (la règle de trois) :
+AN = (2 × 9) ÷ 6
+AN = 18 ÷ 6
+AN = 3 m.
+Bravo ! Tu as trouvé la première longueur. Koffi sait maintenant que AN mesure 3 m.
+
+**Étape 4 : Calculer la longueur MN**
+Utilisons maintenant une autre partie de notre égalité :
+AM/AB = MN/BC.
+Remplaçons par les nombres :
+2/6 = MN/7.5.
+Faisons encore un produit en croix pour trouver MN :
+MN = (2 × 7.5) ÷ 6
+MN = 15 ÷ 6
+MN = 2.5 m.
+
+Et voilà ! La longueur MN est de 2.5 m. Tu as vu ? En allant pas à pas, la géométrie devient très simple ! Continue comme ça, tu es sur la bonne voie pour ton BEPC !",382,1613,80
+Mathématiques,Racines carrées,examen,gemini-3.5-flash,B_markdown,On considère le nombre réel A = 3√50 - √18 + 2√8. Écris A sous la forme a√2 où a est un nombre entier relatif.,A = 16√2,"Salut mon champion ! Prêt à briller au BEPC ? Ensemble, nous allons résoudre cet exercice classique pas à pas.
+
+**Étape 1 : Comprendre la consigne**
+On nous demande d'écrire l'expression sous la forme a√2. Cela signifie que nous devons faire apparaître le nombre 2 sous chaque racine carrée. C'est comme si on voulait emballer nos marchandises du marché de Dantokpa dans des sachets de même taille pour mieux les compter !
+
+**Étape 2 : Décomposer les nombres sous les racines**
+Cherchons des multiplications contenant le chiffre 2 et un carré parfait (comme 4, 9, 25, 36...) :
+- Pour 50 : on sait que 50 = 25 × 2. (Et 25 est le carré de 5)
+- Pour 18 : on sait que 18 = 9 × 2. (Et 9 est le carré de 3)
+- Pour 8 : on sait que 8 = 4 × 2. (Et 4 est le carré de 2)
+
+**Étape 3 : Simplifier chaque terme**
+Appliquons la règle qui dit que √(x × y) = √x × √y :
+- Premier terme : 3√50 = 3 × √(25 × 2) = 3 × √25 × √2 = 3 × 5 × √2 = 15√2.
+- Deuxième terme : √18 = √(9 × 2) = √9 × √2 = 3√2.
+- Troisième terme : 2√8 = 2 × √(4 × 2) = 2 × √4 × √2 = 2 × 2 × √2 = 4√2.
+
+**Étape 4 : Rassembler et calculer l'expression A**
+Maintenant, remplaçons chaque élément simplifié dans notre calcul de départ :
+A = 15√2 - 3√2 + 4√2
+
+Comme tous les termes partagent maintenant le même ""√2"", nous pouvons les regrouper ensemble, exactement comme on regroupe des mesures de gari :
+A = (15 - 3 + 4)√2
+A = (12 + 4)√2
+A = 16√2
+
+Et voilà le travail ! Tu as obtenu une très belle note à cette question d'examen. Continue comme ça, tu vas cartonner au BEPC !",110,1520,25
+Sciences de la Vie et de la Terre,Sols et roches,moyen,gemini-3.5-flash,A_minimal,"Kofi, un élève de troisième à Cotonou, réalise une expérience pour étudier deux types de sols de sa région : le sol A (sol sableux de plage) et le sol B (sol argileux ou 'terre de barre'). Il prend 100 cm3 de chaque sol bien sec, les place dans des entonnoirs filtrants et verse doucement 100 mL d'eau sur chacun d'eux. Après 10 minutes, il mesure le volume d'eau recueilli dans les éprouvettes sous les entonnoirs. Il obtient : 85 mL d'eau pour le sol A et 15 mL d'eau pour le sol B. 1) Calcule le volume d'eau retenu par chaque échantillon de sol. 2) Compare la perméabilité de ces deux sols et explique la différence en te basant sur leur structure. 3) Quel sol conseilles-tu à Kofi pour une culture dont les racines pourrissent facilement en cas d'excès d'eau ?","1) Eau retenue : Sol A = 15 mL ; Sol B = 85 mL. 2) Le sol A est très perméable car il laisse passer beaucoup d'eau (85 mL) grâce à ses gros grains et ses grands espaces vides. Le sol B est peu perméable car ses grains très fins et serrés retiennent l'eau (85 mL). 3) Pour éviter le pourrissement des racines, il faut conseiller le sol A.","Bonjour mon ami ! Allons-y pas à pas pour comprendre cet exercice très classique du BEPC béninois.
+
+Étape 1 : Calculons le volume d'eau retenu.
+Pour trouver la quantité d'eau que le sol a gardée (retenue), il suffit de soustraire le volume d'eau récupéré du volume d'eau versé au départ (100 mL).
+- Pour le sol A (sableux) : 100 mL (versés) - 85 mL (récupérés) = 15 mL d'eau retenue.
+- Pour le sol B (argileux) : 100 mL (versés) - 15 mL (récupérés) = 85 mL d'eau retenue.
+
+Étape 2 : Comparons et expliquons la perméabilité.
+La perméabilité est la capacité d'un sol à se laisser traverser par l'eau.
+- Le sol A laisse passer presque toute l'eau (85 mL sur 100). Il est donc très perméable. Cela s'explique par sa structure : le sable est constitué de gros grains. Entre ces grains, il y a de grands espaces vides (les pores) qui laissent l'eau s'écouler rapidement.
+- Le sol B ne laisse passer que très peu d'eau (15 mL). Il est donc peu perméable (ou imperméable). L'argile est constituée de grains microscopiques très serrés les uns contre les autres. Les pores sont minuscules, ce qui piège l'eau et l'empêche de couler.
+
+Étape 3 : Faisons le choix pour l'agriculture.
+Une plante dont les racines pourrissent facilement craint l'asphyxie due à l'eau qui stagne. Le sol B retient trop d'eau (85 mL), ce qui va noyer les racines. Le sol A, au contraire, laisse l'eau s'écouler rapidement (seulement 15 mL retenus). C'est donc le sol A (sol sableux) qui convient le mieux pour cette culture.
+
+Excellent travail d'analyse ! Continue ainsi, tu es sur la bonne voie pour décrocher ton BEPC !",765,1587,142
+Mathématiques,"Statistiques (moyenne, effectifs)",moyen,gemini-3.5-flash,A_minimal,"Lors d'un devoir de Mathématiques dans une classe de troisième à Cotonou, les notes sur 20 des 20 élèves se répartissent comme suit :
+- Note 8 : 4 élèves
+- Note 10 : 6 élèves
+- Note 12 : 5 élèves
+- Note 15 : 3 élèves
+- Note 18 : 2 élèves
+
+1) Calcule la moyenne de la classe à ce devoir.
+2) Détermine le pourcentage d'élèves ayant obtenu une note supérieure ou égale à 10.","1) La moyenne de la classe est de 11,65 sur 20.
+2) Le pourcentage d'élèves ayant obtenu au moins 10 sur 20 est de 80%.","Bonjour mon champion ! C'est RépétIA, ton répétiteur de maths. Ensemble, nous allons résoudre cet exercice pas à pas. C'est très simple, tu vas voir !
+
+Étape 1 : Calculons la moyenne de la classe.
+Pour trouver la moyenne, on multiplie chaque note par le nombre d'élèves qui l'ont obtenue (l'effectif), on additionne tous ces produits, puis on divise le tout par l'effectif total (le nombre total d'élèves, qui est 20).
+
+Faisons les calculs ensemble :
+- Pour la note 8 : 8 x 4 = 32
+- Pour la note 10 : 10 x 6 = 60
+- Pour la note 12 : 12 x 5 = 60
+- Pour la note 15 : 15 x 3 = 45
+- Pour la note 18 : 18 x 2 = 36
+
+La somme totale des points est : 32 + 60 + 60 + 45 + 36 = 233 points.
+Maintenant, on divise cette somme par l'effectif total (20 élèves) :
+Moyenne = 233 / 20 = 11,65.
+La moyenne de la classe est donc de 11,65 sur 20. Félicitations à cette classe !
+
+Étape 2 : Calculons le pourcentage d'élèves ayant au moins 10 sur 20.
+D'abord, cherchons le nombre d'élèves (l'effectif) qui ont eu une note supérieure ou égale à 10. Ce sont les élèves qui ont eu 10, 12, 15 ou 18.
+Nombre d'élèves = 6 (qui ont eu 10) + 5 (qui ont eu 12) + 3 (qui ont eu 15) + 2 (qui ont eu 18) = 16 élèves.
+
+Pour trouver le pourcentage, on applique la règle de trois (comme quand on calcule les bénéfices au marché de Dantokpa !) :
+Pourcentage = (Nombre d'élèves concernés / Effectif total) x 100
+Pourcentage = (16 / 20) x 100
+Pourcentage = 0,8 x 100 = 80%.
+
+Voilà ! 80% des élèves ont la moyenne ou plus. Tu as vu, ce n'était pas si difficile ! Continue comme ça, le BEPC est dans la poche !",371,1568,78
+Mathématiques,Théorème de Thalès,examen,gemini-3.5-flash,B_markdown,"Pour construire la charpente d'une case à Natitingou, un menuisier réalise un support triangulaire ABC. Il place une barre de renfort [MN] parallèle à la base [BC] telle que M appartient à [AB] et N appartient à [AC]. On donne les mesures suivantes : AB = 5 m, AC = 6 m, BC = 4 m et AM = 2 m. Calcule les longueurs AN et MN pour aider le menuisier.","AN = 2,4 m et MN = 1,6 m","Bonjour mon jeune champion ! Ensemble, nous allons résoudre cet exercice pas à pas, avec méthode.
+
+**Étape 1 : Vérification des conditions d'application**
+Pour utiliser le théorème de Thalès, nous devons nous assurer que les conditions sont réunies. Ici, dans le triangle ABC :
+- Le point M appartient au segment [AB]
+- Le point N appartient au segment [AC]
+- Les droites (MN) et (BC) sont parallèles.
+Ces conditions sont bien respectées, nous pouvons donc appliquer le **théorème de Thalès**.
+
+**Étape 2 : Écriture des rapports de Thalès**
+Le théorème nous dit que les côtés des triangles AMN et ABC sont proportionnels. Nous pouvons donc écrire l'égalité des rapports :
+AM / AB = AN / AC = MN / BC
+
+Remplaçons maintenant les lettres par les valeurs données dans l'énoncé :
+2 / 5 = AN / 6 = MN / 4
+
+**Étape 3 : Calcul de la longueur AN**
+Pour trouver AN, nous utilisons la première partie de notre égalité :
+2 / 5 = AN / 6
+En appliquant le produit en croix (la règle de trois), nous obtenons :
+AN = (2 * 6) / 5
+AN = 12 / 5
+AN = 2,4
+La longueur AN est donc de **2,4 m**.
+
+**Étape 4 : Calcul de la longueur MN**
+Pour trouver MN, nous utilisons l'autre égalité :
+2 / 5 = MN / 4
+En appliquant à nouveau le produit en croix, nous obtenons :
+MN = (2 * 4) / 5
+MN = 8 / 5
+MN = 1,6
+La longueur de la barre de renfort MN est donc de **1,6 m**.
+
+Félicitations ! Tu as aidé le menuisier de Natitingou à trouver ses mesures exactes. Continue ainsi, le BEPC est à ta portée !",348,1462,71
+Anglais,"Writing (letter, narrative)",moyen,gemini-flash-lite-latest,B_markdown,Write a short informal letter of about 60 to 80 words to your friend Koffi to tell him about your last holidays in Grand-Popo. Mention what you did there and how you felt.,"Cotonou, 12th July 2023
+
+Dear Koffi,
+
+How are you? I hope you are doing well. I am writing to tell you about my fantastic holidays in Grand-Popo. I spent wonderful days swimming in the ocean and visiting the Mono River. The landscape was breathtaking and I ate delicious fried fish. I felt so relaxed and happy! I can't wait to see you soon.
+
+Your friend,
+Komi","Pour réussir cette lettre informelle au BEPC, procédons étape par étape.
+
+Première étape : Écris l'en-tête en haut à droite avec le lieu et la date, par exemple : Cotonou, 12th July 2023.
+
+Deuxième étape : Mets une formule de salutation amicale à gauche, comme 'Dear Koffi,'.
+
+Troisième étape : Dans le corps du texte, respecte le thème demandé. Dis où tu es allé (Grand-Popo), ce que tu y as fait (nager dans l'océan, visiter le fleuve Mono, manger du poisson frit) et exprime tes sentiments (détendu et heureux).
+
+Quatrième étape : Termine par une formule de politesse chaleureuse comme 'Your friend,' suivie de ton prénom.",171,625,33
+Histoire-Géographie,Indépendances africaines,facile,gemini-flash-lite-latest,C_complet,En quelle année le Dahomey (actuel Bénin) a-t-il accédé à l'indépendance ?,Le 1er août 1960.,"Pour trouver cette date, souviens-toi que la plupart des pays d'Afrique de l'Ouest francophone, y compris le Dahomey, sont devenus indépendants au cours de l'année 1960. Pour notre pays, c'est précisément le 1er août 1960 que l'indépendance a été proclamée, mettant fin à la colonisation française. C'est une date très importante à retenir pour le BEPC !",74,354,12
+Allemand,Präsens und starke Verben,examen,gemini-flash-lite-latest,C_complet,"Conjugue le verbe fort ""sprechen"" au présent de l'indicatif (Präsens) à la deuxième personne du singulier (du) : Du ... gut Deutsch.",sprichst,"Pour conjuguer un verbe fort au présent à la deuxième personne du singulier (du), on prend le radical du verbe ""sprech-"". Sur les verbes forts ayant un ""e"" au radical comme ""sprechen"", il y a souvent un changement de voyelle : le ""e"" se transforme en ""i"" ou ""ie"" (ici, ""sprich-""). Ensuite, on ajoute la terminaison habituelle du ""du"", qui est ""-st"". Ce qui donne : du sprichst.",132,377,22
+Anglais,Reading comprehension,examen,gemini-flash-lite-latest,B_markdown,"Read the text below and answer the question. Text: 'Koffi is a hard-working student in Cotonou. Every morning, he wakes up at 5 AM, revises his lessons, and helps his mother sell akassa before going to school.' Question: What does Koffi do right after waking up in the morning according to the text?",He revises his lessons.,"Étape 1 : Lis attentivement la question pour savoir ce qu'on te demande (ce que fait Koffi juste après s'être réveillé). Étape 2 : Cherche le moment du réveil dans le texte ('Every morning, he wakes up at 5 AM'). Étape 3 : Regarde ce qui vient immédiatement après dans la phrase ('revises his lessons'). C'est cela la bonne réponse ! Bravo pour ton effort.",299,356,53
+Physique-Chimie-Technologie,"Optique (lentilles, miroirs)",moyen,gemini-flash-lite-latest,A_minimal,"Un élève de 3ème dispose d'une lentille convergente de distance focale f = 5 cm. Il place un objet lumineux AB, de hauteur 2 cm, perpendiculairement à l'axe optique, à 10 cm en avant de la lentille. Calcule la distance de l'image (OA') par rapport à la lentille en utilisant la formule de conjugaison des lentilles minces.",OA' = +10 cm,"Étape 1 : On identifie les données du texte. La distance focale est f = +5 cm car la lentille est convergente. La distance de l'objet est OA = -10 cm (car l'objet est placé en avant de la lentille, dans le sens contraires des rayons lumineux).
+Étape 2 : On rappelle la formule de conjugaison des lentilles minces : (1/OA') - (1/OA) = (1/f).
+Étape 3 : On isole le terme recherché (1/OA') : (1/OA') = (1/f) + (1/OA).
+Étape 4 : On remplace par les valeurs numériques : (1/OA') = (1/5) + (1/-10) = (1/5) - (1/10).
+Étape 5 : On met au même dénominateur : (1/OA') = (2/10) - (1/10) = 1/10.
+Étape 6 : On en déduit OA' en inversant la fraction : OA' = +10 cm. L'image se trouve donc à 10 cm derrière la lentille.",322,704,57
+Espagnol,Pretérito indefinido e imperfecto,examen,gemini-flash-lite-latest,B_markdown,"Completa la frase con el tiempo correcto (pretérito indefinido o imperfecto): Ayer, mientras yo (estudiar) ____ en mi habitación, mi madre (preparar) ____ elú de arroz con salsa de maní.",estudiaba / preparó,"Paso 1: Analizamos la frase para ver qué acción dura en el pasado y qué acción interrumpe o ocurre de repente. 
+
+Paso 2: La primera parte tiene 'mientras', que indica una acción en desarrollo (una acción de fondo). Para esto, usamos el pretérito imperfecto. Con el sujeto 'yo' y el verbo 'estudiar' (grupo -ar), la forma es 'estudiaba'. Piensa en ti sentado en tu cuarto en Cotonou repasando tus lecciones durante un tiempo largo.
+
+Paso 3: La segunda parte es una acción puntual que ocurre en ese mismo momento. Para una acción completa o que interrumpe, usamos el pretérito indefinido. Con el sujeto 'mi madre' (tercera persona del singular) y el verbo 'preparar', la forma es 'preparó'. ¡Ánimo, vas por buen camino para el BEPC!",186,730,30
+Communication écrite,Résumé et compte rendu,moyen,gemini-flash-lite-latest,B_markdown,"Lis le texte suivant et rédige son résumé en 30 mots (plus ou mal 5 mots) : La scolarisation des jeunes filles est un levier fondamental pour le développement de notre pays. Lorsqu'une fille va à l'école, elle acquiert des connaissances qui lui permettent de subvenir à ses besoins et de participer activement aux decisions de sa communauté. Malheureusement, certains parents persistent à privilégier la scolarisation des garçons à cause des pesanteurs socioculturelles. Il est donc urgent de sensibiliser les populations sur l'importance cruciale de l'éducation des filles pour bâtir un Bénin prospère et égalitaire.","L'éducation des filles est essentielle pour le développement du Bénin. Malgré les pesanteurs socioculturelles qui favorisent les garçons, il faut sensibiliser les populations pour scolariser toutes les jeunes filles et bâtir un pays prospère.","Étape 1 : Lire attentivement le texte pour comprendre l'idée principale, à savoir l'importance de l'éducation des filles au Bénin malgré les obstacles culturels. Étape 2 : Identifier les trois idées clés : l'importance de l'éducation féminine, le problème des pesanteurs socioculturelles et la nécessité de sensibiliser. Étape 3 : Rédiger des phrases courtes en éliminant les exemples superflus et les répétitions. Étape 4 : Compter les mots pour respecter la consigne de longueur (environ 30 mots).",617,499,95
+Histoire-Géographie,Le Bénin contemporain,moyen,gemini-flash-lite-latest,B_markdown,Calcule la densité de population d'une région du Bénin sachant que sa population est de 1.500.000 habitants et sa superficie est de 25.000 km².,60 habitants par km²,"Pour trouver la densité de population, on applique la formule mathématique : Densité = Population totale divisée par Superficie. Ici, on prend le nombre d'habitants, c'est-à-dire 1.500.000, et on le divise par la superficie qui est de 25.000 km². Pour simplifier le calcul, on peut barrer trois zéros en haut et trois zéros en bas, ce qui donne 1.500 divisé par 25. En effectuant la division, on trouve 60. L'unité de mesure pour la densité est l'habitant par kilomètre carré, noté hab/km². La réponse est donc 60 habitants par km².",143,532,24
+Sciences de la Vie et de la Terre,Sols et roches,facile,gemini-flash-lite-latest,A_minimal,"Au cours d'une séance de travaux pratiques au collège, un élève de 3ème verse de l'eau sur un échantillon de sol prélevé dans son champ à Bohicon. Il observe que l'eau traverse très rapidement ce sol et qu'il reste très peu d'eau retenue. Comment appelle-t-on la propriété physique de ce sol qui laisse passer l'eau aussi facilement ?",La perméabilité,"Étape 1 : Analyser la situation. L'élève observe que l'eau traverse rapidement le sol. Cela montre que le sol laisse passer l'eau. 
+Étape 2 : Connaître les propriétés du sol au programme du BEPC. Parmi les propriétés physiques des sols (comme la porosité, la perméabilité, la battance), celle qui désigne l'aptitude d'un sol à laisser circuler l'eau est la perméabilité. 
+Étape 3 : Conclure. Un sol qui laisse passer l'eau rapidement est un sol très perméable.",334,460,58
+Sciences de la Vie et de la Terre,Hygiène et maladies,facile,gemini-flash-lite-latest,B_markdown,"Pour prévenir le choléra, une maladie très fréquente liée au manque d'hygiène au Bénin, quelle habitude simple et quotidienne doit-on obligatoirement observer avant de manger ?",Se laver les mains à l'eau propre et au savon.,"Etape 1 : Le choléra se transmet souvent par l'ingestion d'aliments ou d'eau souillés par des microbes. Etape 2 : Nos mains touchent beaucoup d'objets sales au cours de la journée au marché, à l'école ou à la maison. Etape 3 : Pour éviter de porter ces microbes dans notre bouche, il faut donc impérativement se laver les mains avec de l'eau propre et du savon avant chaque repas. C'est un geste simple qui sauve des vies au Bénin !",176,432,26
+Espagnol,Comprensión de texto,examen,gemini-flash-lite-latest,C_complet,"Lee el texto y responde a la pregunta. Texto: 'María vive en Cotonú con su familia. Todos los días se levanta a las 6 de la mañana, desayuna pan con té y luego va a la escuela a pie.' Pregunta: ¿Cómo va María a la escuela?",María va a la escuela a pie.,"Étape 1 : Lis attentivement la question pour savoir ce qu'on cherche. Ici, on cherche le moyen de transport que utilise María pour aller à l'école ('¿Cómo va... ?'). Étape 2 : Cherche les mots clés 'escuela' et l'action de se déplacer dans le texte. On trouve la phrase 'va a la escuela a pie'. Étape 3 : Traduis ou comprends l'expression 'a pie', qui signifie 'à pied'. La réponse est donc qu'elle y va à pied.",222,411,46
+Communication écrite,Orthographe et accords,moyen,gemini-flash-lite-latest,B_markdown,Conjugue le verbe entre parenthèses au temps qui convient et fais l'accord nécessaire : 'Les mangues que maman a (acheter) au marché de Dantokpa sont bien mûres.',achetées,"Étape 1 : On observe le verbe 'acheter' qui est employé avec l'auxiliaire 'avoir'. 
+Étape 2 : On cherche son COD (Complément d'Objet Direct). Le pronom relatif 'que' remplace 'les mangues'. 
+Étape 3 : On remarque que le COD 'que' est placé AVANT le verbe. 
+Étape 4 : La règle d'or nous dit que le participe passé conjugué avec 'avoir' s'accorde avec son COD si celui-ci est placé avant. 
+Étape 5 : Comme 'les mangues' est un nom féminin pluriel, on ajoute un 'e' et un 's' au participe passé, ce qui donne 'achetées'.",162,517,27
+Mathématiques,Équations du 1er degré,examen,gemini-flash-lite-latest,C_complet,Résous dans R l'équation suivante : 3(2x - 1) - 5 = 2(x + 3) + 4.,x = 4,"Bonjour ! Pour résoudre cette équation comme au BEPC, allons-y pas à pas. Étape 1 : On développe les parenthèses en distribuant les nombres devant. Pour 3(2x - 1), on fait 3 × 2x et 3 × (-1), ce qui donne 6x - 3. On recopie le reste : 6x - 3 - 5. De l'autre côté, pour 2(x + 3), on fait 2 × x et 2 × 3, ce qui donne 2x + 6. On recopie le reste : 2x + 6 + 4. L'équation devient donc : 6x - 3 - 5 = 2x + 6 + 4. Étape 2 : On réduit chaque membre en regroupant les nombres seuls. À gauche, -3 - 5 donne -8, donc on a 6x - 8. À droite, 6 + 4 donne 10, donc on a 2x + 10. L'équation simplifiée est : 6x - 8 = 2x + 10. Étape 3 : On regroupe les termes en x du même côté (à gauche) et les nombres de l'autre (à droite). En passant 2x à gauche, il devient -2x. En passant -8 à droite, il devient +8. On obtient : 6x - 2x = 10 + 8. Étape 4 : On calcule. 6x - 2x donne 4x, et 10 + 8 donne 18. On a donc : 4x = 18. Étape 5 : Pour trouver x, on divise par le nombre qui est devant x, c'est-à-dire 4. On a x = 18/4. En simplifiant par 2, on trouve x = 9/2 ou x = 4,5. C'est du très bon travail, continue ainsi !",65,1097,17
+Communication écrite,Lettre et écrits fonctionnels,facile,gemini-flash-lite-latest,A_minimal,"Cotonou, le 15 mai 2024
+
+Objet : Demande d'autorisation d'absence
+
+Monsieur le Directeur du collège, 
+
+Je viens par la présente solliciter auprès de votre bienveillance une autorisation d'absence de deux jours, les 18 et 19 mai 2024, pour motif de santé.
+
+Dans l'attente d'une suite favorable, veuillez agréer, Monsieur le Directeur, l'expression de mes salutations distinguées.
+
+Signé : Koffi
+
+Question : S'agit-il d'une lettre administrative ou d'une lettre amicale ? Justifie ta réponse en t'appuyant sur deux indices précis du texte.",Il s'agit d'une lettre administrative. Justification : la présence de l'objet (Demande d'autorisation d'absence) et la formule finale de politesse adressée à un supérieur hiérarchique (Monsieur le Directeur).,"Étape 1 : Observe la structure du texte. On remarque la présence d'un 'Objet' et d'un destinataire qui est une autorité ('Monsieur le Directeur'). Étape 2 : Rappelle-toi qu'une lettre amicale s'adresse à un proche (ami, parent) et n'a pas d'objet. Une lettre administrative, en revanche, sert à faire une requête officielle à un supérieur. Étape 3 : Conclus donc qu'il s'agit d'une lettre administrative en citant l'objet et la formule de politesse hiérarchique.",537,462,81
+Allemand,Präpositionen und Satzbau,examen,gemini-flash-lite-latest,B_markdown,Wähle die richtige Präposition: Ich wararte ... den Bus. (auf / an / in),auf,Schritt 1: Das Verb 'warten' braucht hier eine bestimmte Präposition. Auf Deutsch sagen wir 'warten auf'. Schritt 2: Im Dativ oder Akkusativ? Nach 'warten auf' folgt im Akkusativ 'den Bus'. Schritt 3: Die richtige Wahl ist also 'auf'.,72,234,14

@@ -1,7 +1,10 @@
 import { GoogleGenAI } from '@google/genai';
 import { z } from 'zod';
 import { exerciceDeSecours } from '../data/banque';
+import { niveauPar } from '../data/niveaux';
 import { normaliserChamps, normaliserTexte } from './texte.service';
+import { RagService } from './rag.service';
+import { MathSolverService } from './math_solver.service';
 
 /**
  * Modèles essayés dans l'ordre.
@@ -30,18 +33,18 @@ N'utilise JAMAIS de LaTeX. Pas de $, pas de \\sqrt, pas de \\frac, pas de \\time
   comparaisons  → ≤ ≥ ≠ ≈    angle → ∠ABC = 60°     parallèle → (MN) ∥ (BC)`;
 
 /**
- * Persona du répétiteur, adaptée à la matière travaillée.
- * Les consignes d'écriture symbolique ne s'appliquent qu'aux matières
- * scientifiques : les imposer en français ou en anglais n'aurait aucun sens.
+ * Persona du répétiteur, adaptée à la matière et enrichie par le RAG du programme officiel.
  */
-function promptSysteme(matiere: string): string {
-  const base = `Tu es RépétIA, un répétiteur particulier bienveillant pour des élèves béninois qui préparent le BEPC. Tu enseignes ${matiere} du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
+function promptSysteme(matiere: string, niveau: string = 'BEPC', theme?: string): string {
+  const { examen, public: public_ } = niveauPar(niveau);
+  const base = `Tu es RépétIA, un répétiteur particulier bienveillant pour des ${public_} béninois qui préparent ${examen}. Tu enseignes ${matiere} du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
 
 N'utilise pas de titres Markdown (# ou ##). Pour insister, entoure de **deux
 astérisques**. Sépare les étapes par des retours à la ligne, pas par des tirets
 de séparation.`;
 
-  return MATIERES_SCIENTIFIQUES.test(matiere) ? base + REGLE_MATHS : base;
+  const promptComplet = MATIERES_SCIENTIFIQUES.test(matiere) ? base + REGLE_MATHS : base;
+  return RagService.enrichirPromptSysteme(promptComplet, matiere, theme, niveau);
 }
 
 /** Matière par défaut quand l'appelant n'en fournit pas (chat libre). */
@@ -180,10 +183,12 @@ export class LlmService {
     theme: string,
     difficulte: string,
     matiere: string = MATIERE_GENERIQUE,
+    niveau: string = 'BEPC',
   ): Promise<ExerciceGenere> {
-    const prompt = `Génère UN exercice de ${matiere} de niveau BEPC (3ème, programme béninois) sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
+    const niveauTexte = niveauPar(niveau).programme;
+    const prompt = `Génère UN exercice de ${matiere} de niveau ${niveauTexte} sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
 
-    const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere));
+    const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere, niveau, theme));
 
     if (resultat) {
       const propre = normaliserChamps(resultat, ['enonce', 'solution', 'explication']);
@@ -193,7 +198,7 @@ export class LlmService {
     console.warn(
       `[LLM] Bascule sur la banque de secours (matière="${matiere}", thème="${theme}", difficulté="${difficulte}")`,
     );
-    return { ...exerciceDeSecours(theme, difficulte, matiere), source: 'banque' };
+    return { ...exerciceDeSecours(theme, difficulte, matiere, niveau), source: 'banque' };
   }
 
   /**
@@ -206,11 +211,26 @@ export class LlmService {
     solution: string,
     reponseEleve: string,
     matiere: string = MATIERE_GENERIQUE,
+    niveau: string = 'BEPC',
   ): Promise<Correction> {
     const prompt = `Voici un exercice, la solution attendue et la réponse d'un élève. Exercice : ${enonce}. Solution attendue : ${solution}. Réponse de l'élève : ${reponseEleve}. L'élève a-t-il juste (accepte les formes mathématiquement équivalentes, par exemple 0,5 et 1/2) ? Réponds UNIQUEMENT en JSON valide, sans Markdown : {"correct":true/false,"verdict":"phrase courte et encourageante","explication":"la bonne démarche pas à pas, en français simple et en texte brut"}.`;
 
-    const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1, promptSysteme(matiere));
-    if (resultat) return normaliserChamps(resultat, ['verdict', 'explication']);
+    const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1, promptSysteme(matiere, niveau));
+    if (resultat) {
+      const propre = normaliserChamps(resultat, ['verdict', 'explication']);
+      // Validation croisée avec le solveur mathématique déterministe pour les matières scientifiques
+      if (MATIERES_SCIENTIFIQUES.test(matiere) && !propre.correct) {
+        const nombresSolution = solution.match(/-?\d+(\.\d+)?/g);
+        if (nombresSolution && nombresSolution.length === 1) {
+          const valAttendue = parseFloat(nombresSolution[0]);
+          if (MathSolverService.verifierCoherenceReponse(reponseEleve, valAttendue)) {
+            propre.correct = true;
+            propre.verdict = 'Bravo ! Ta réponse est mathématiquement correcte.';
+          }
+        }
+      }
+      return propre;
+    }
 
     console.warn('[LLM] Correction de repli utilisée.');
     return {
@@ -232,8 +252,9 @@ export class LlmService {
     historique: { role: string; content: string }[],
     contexteExercice?: string,
     matiere: string = MATIERE_GENERIQUE,
+    niveau: string = 'BEPC',
   ): Promise<string> {
-    let systemInstruction = promptSysteme(matiere);
+    let systemInstruction = promptSysteme(matiere, niveau);
     if (contexteExercice) {
       systemInstruction += `\nL'élève travaille sur cet exercice : ${contexteExercice}`;
     }

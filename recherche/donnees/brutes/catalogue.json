@@ -128,5 +128,206 @@
       "Activités économiques du Bénin",
       "Environnement et risques naturels"
     ]
+  },
+  {
+    "code": "MATHS_BAC",
+    "libelle": "Mathématiques",
+    "niveau": "BAC",
+    "themes": [
+      "Suites numériques",
+      "Limites et continuité",
+      "Dérivation et étude de fonctions",
+      "Fonctions logarithme et exponentielle",
+      "Intégration",
+      "Probabilités et dénombrement",
+      "Statistiques à deux variables",
+      "Nombres complexes",
+      "Géométrie dans l’espace",
+      "Équations et inéquations (2nd degré)"
+    ]
+  },
+  {
+    "code": "PCT_BAC",
+    "libelle": "Physique-Chimie-Technologie",
+    "niveau": "BAC",
+    "themes": [
+      "Mécanique du point (cinématique et dynamique)",
+      "Travail, énergie et puissance",
+      "Oscillations et ondes mécaniques",
+      "Électricité (condensateur, bobine, circuits RLC)",
+      "Ondes lumineuses et optique",
+      "Réactions acido-basiques",
+      "Réactions d’oxydoréduction",
+      "Cinétique chimique"
+    ]
+  },
+  {
+    "code": "SVT_BAC",
+    "libelle": "Sciences de la Vie et de la Terre",
+    "niveau": "BAC",
+    "themes": [
+      "Communication nerveuse",
+      "Communication hormonale",
+      "Immunologie",
+      "Génétique et hérédité",
+      "Évolution et biodiversité",
+      "Géologie (tectonique des plaques)",
+      "Reproduction humaine et contraception",
+      "Écologie et gestion des ressources"
+    ]
+  },
+  {
+    "code": "PHILO_BAC",
+    "libelle": "Philosophie",
+    "niveau": "BAC",
+    "themes": [
+      "La conscience et l’inconscient",
+      "Le devoir et la morale",
+      "La liberté et le déterminisme",
+      "L’État, le droit et la justice",
+      "Le travail et la technique",
+      "La vérité et la raison",
+      "L’art et le beau",
+      "La religion et la croyance"
+    ]
+  },
+  {
+    "code": "FRANCAIS_BAC",
+    "libelle": "Français",
+    "niveau": "BAC",
+    "themes": [
+      "Commentaire composé",
+      "Dissertation littéraire",
+      "Contraction de texte et essai",
+      "Le roman et ses personnages",
+      "Le théâtre (texte et représentation)",
+      "La poésie (formes et thèmes)",
+      "L’argumentation et les Lumières"
+    ]
+  },
+  {
+    "code": "ANGLAIS_BAC",
+    "libelle": "Anglais",
+    "niveau": "BAC",
+    "themes": [
+      "Essay writing and argumentation",
+      "Reading comprehension (advanced)",
+      "Grammar review (tenses, modals, passive)",
+      "Vocabulary and idiomatic expressions",
+      "Summary and text analysis",
+      "Translation (version and thème)",
+      "Oral communication skills"
+    ]
+  },
+  {
+    "code": "HISTGEO_BAC",
+    "libelle": "Histoire-Géographie",
+    "niveau": "BAC",
+    "themes": [
+      "Le monde de 1945 à nos jours",
+      "La décolonisation et le Tiers-Monde",
+      "L’Afrique dans les relations internationales",
+      "Le Bénin de 1960 à nos jours",
+      "Mondialisation et développement",
+      "Population, urbanisation et migration",
+      "Les défis environnementaux",
+      "Géographie du Bénin et de l’Afrique de l’Ouest"
+    ]
+  },
+  {
+    "code": "MATHS_6EME",
+    "libelle": "Mathématiques",
+    "niveau": "6ème",
+    "themes": [
+      "Nombres entiers et décimaux",
+      "Fractions simples",
+      "Éléments de géométrie (droites, segments, angles)",
+      "Périmètres et aires",
+      "Proportionnalité et pourcentages",
+      "Statistiques et tableaux"
+    ]
+  },
+  {
+    "code": "PCT_6EME",
+    "libelle": "Physique-Chimie-Technologie",
+    "niveau": "6ème",
+    "themes": [
+      "Matières et états de la matière",
+      "Circuit électrique simple",
+      "Mesures de masse et volume"
+    ]
+  },
+  {
+    "code": "SVT_6EME",
+    "libelle": "Sciences de la Vie et de la Terre",
+    "niveau": "6ème",
+    "themes": [
+      "Monde vivant et environnement",
+      "Régimes alimentaires des animaux",
+      "Devenir des aliments chez l’Homme"
+    ]
+  },
+  {
+    "code": "MATHS_5EME",
+    "libelle": "Mathématiques",
+    "niveau": "5ème",
+    "themes": [
+      "Nombres relatifs",
+      "Fractions et opérations",
+      "Symétrie centrale",
+      "Triangles et angles",
+      "Aires et volumes simples"
+    ]
+  },
+  {
+    "code": "PCT_5EME",
+    "libelle": "Physique-Chimie-Technologie",
+    "niveau": "5ème",
+    "themes": [
+      "Mélanges et corps purs",
+      "Combustions et sécurité",
+      "Circuit électrique en série et dérivation"
+    ]
+  },
+  {
+    "code": "SVT_5EME",
+    "libelle": "Sciences de la Vie et de la Terre",
+    "niveau": "5ème",
+    "themes": [
+      "Respiration des êtres vivants",
+      "Sols et végétation au Bénin",
+      "Organisation des plantes à fleurs"
+    ]
+  },
+  {
+    "code": "MATHS_4EME",
+    "libelle": "Mathématiques",
+    "niveau": "4ème",
+    "themes": [
+      "Calcul littéral et équations simples",
+      "Théorème de Pythagore (initiation)",
+      "Symétrie axiale et translation",
+      "Statistiques et moyennes"
+    ]
+  },
+  {
+    "code": "PCT_4EME",
+    "libelle": "Physique-Chimie-Technologie",
+    "niveau": "4ème",
+    "themes": [
+      "Lois des tensions et des intensités",
+      "Transformations chimiques et atomes",
+      "Masse volumique"
+    ]
+  },
+  {
+    "code": "SVT_4EME",
+    "libelle": "Sciences de la Vie et de la Terre",
+    "niveau": "4ème",
+    "themes": [
+      "Reproduction des animaux et végétaux",
+      "Circulation sanguine chez l’Homme",
+      "Écosystèmes tropicaux"
+    ]
   }
 ]

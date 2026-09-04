@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams } from 'expo-router';
-import { Send } from 'lucide-react-native';
+import { Send, Camera, Mic } from 'lucide-react-native';
 import { apiService, ErreurApi } from '@/services/api';
 import LogoMark from '@/components/LogoMark';
 import MessageErreur from '@/components/MessageErreur';
@@ -22,7 +22,7 @@ import type { MessageChat } from '@/types';
 const ACCUEIL: MessageChat = {
   role: 'model',
   content:
-    "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur les maths du BEPC.",
+    "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur ton cours ou tes exercices (BEPC ou BAC).",
 };
 
 export default function Chat() {
@@ -165,6 +165,22 @@ export default function Chat() {
             accessibilityLabel="Ta question pour RépétIA"
             className="max-h-28 min-h-[46px] flex-1 rounded-xl border border-brand-lines bg-brand-paper px-4 py-3 text-brand-ink"
           />
+          <Pressable
+            disabled
+            accessibilityRole="button"
+            accessibilityLabel="Scanner photo d'exercice — bientôt disponible"
+            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper opacity-40"
+          >
+            <Camera size={19} color={couleurs.green} />
+          </Pressable>
+          <Pressable
+            disabled
+            accessibilityRole="button"
+            accessibilityLabel="Dictée vocale — bientôt disponible"
+            className="h-[46px] w-[46px] items-center justify-center rounded-xl border border-brand-lines bg-brand-paper opacity-40"
+          >
+            <Mic size={19} color={couleurs.gold} />
+          </Pressable>
           <Pressable
             onPress={() => void envoyer(saisie)}
             disabled={!saisie.trim() || chargement}

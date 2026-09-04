@@ -11,6 +11,7 @@ import type { Matiere, Theme, Progression, Difficulte } from '../types';
 export default function Accueil() {
   const navigate = useNavigate();
 
+  const [niveauChoisi, setNiveauChoisi] = useState<string>('BEPC');
   const [matieres, setMatieres] = useState<Matiere[]>([]);
   const [matiereChoisie, setMatiereChoisie] = useState('');
   const [themes, setThemes] = useState<Theme[]>([]);
@@ -25,10 +26,10 @@ export default function Accueil() {
     setChargement(true);
     setErreur(null);
     try {
-      const liste = await apiService.getMatieres();
+      const liste = await apiService.getMatieres(niveauChoisi);
       if (liste.length === 0) {
         throw new ErreurApi(
-          "Aucune matière n'est disponible. La base de données n'a peut-être pas été initialisée.",
+          "Aucune matière n'est disponible pour ce niveau. La base de données n'a peut-être pas été initialisée.",
         );
       }
       setMatieres(liste);
@@ -50,7 +51,7 @@ export default function Accueil() {
     } finally {
       setChargement(false);
     }
-  }, [matiereChoisie]);
+  }, [niveauChoisi, matiereChoisie]);
 
   useEffect(() => {
     charger();
@@ -61,22 +62,30 @@ export default function Accueil() {
     navigate('/entrainement', { state: { themeId: themeChoisi, difficulte } });
   };
 
+  const matiereObj = matieres.find((m) => m.id === matiereChoisie);
+
   return (
     <div className="flex flex-1 flex-col gap-6">
       <header className="flex items-center justify-between py-2">
         <Logo taille={30} />
         <span className="rounded-full bg-brand-gold-soft px-3 py-1 text-xs font-bold text-brand-green-dark">
-          BEPC · Maths
+          {niveauChoisi} · {matiereObj?.libelle || 'Matières'}
         </span>
       </header>
 
-      <div className="rounded-2xl bg-brand-green p-6 text-white shadow-lg">
-        <h2 className="mb-2 font-serif text-2xl">
-          Salut 👋
-          <br />
+      <div className="rounded-2xl bg-brand-green p-6 text-white shadow-md relative overflow-hidden">
+        <div className="flex items-center justify-between mb-3">
+          <span className="inline-block rounded-full bg-brand-gold px-3 py-1 text-xs font-bold text-brand-green-dark">
+            {niveauChoisi === 'BAC' ? 'Programme Secondaire (BAC)' : `Niveau ${niveauChoisi}`}
+          </span>
+          <span className="inline-flex items-center gap-1 rounded-full bg-white/20 px-3 py-1 text-xs font-semibold text-white backdrop-blur-sm">
+            <span>🇧🇯 Ancré au programme béninois</span>
+          </span>
+        </div>
+        <h2 className="mb-1 font-serif text-2xl">
           On révise quoi aujourd'hui ?
         </h2>
-        <p className="text-sm opacity-90">Choisis un thème et lance-toi !</p>
+        <p className="text-sm opacity-90">Choisis ton niveau et ton thème, puis lance-toi !</p>
       </div>
 
       {chargement && <Loader message="Chargement de tes thèmes…" pleinePage />}
@@ -105,6 +114,43 @@ export default function Accueil() {
           )}
 
           <div className="flex flex-col gap-5">
+            <fieldset>
+              <legend className="mb-3 font-bold text-brand-green-dark">Niveau & Classe</legend>
+              <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Choix de la classe">
+                {[
+                  { code: '6ème', libelle: '6ème' },
+                  { code: '5ème', libelle: '5ème' },
+                  { code: '4ème', libelle: '4ème' },
+                  { code: 'BEPC', libelle: '3ème (BEPC)' },
+                  { code: 'BAC', libelle: 'Lycée (BAC)' },
+                ].map((n) => {
+                  const actif = niveauChoisi === n.code;
+                  return (
+                    <button
+                      key={n.code}
+                      type="button"
+                      role="radio"
+                      aria-checked={actif}
+                      onClick={() => {
+                        if (niveauChoisi !== n.code) {
+                          setNiveauChoisi(n.code);
+                          setMatiereChoisie('');
+                          setThemeChoisi('');
+                        }
+                      }}
+                      className={`flex-1 min-w-[70px] rounded-xl py-2 text-xs sm:text-sm font-bold transition-colors ${
+                        actif
+                          ? 'bg-brand-green text-white shadow-sm'
+                          : 'border border-brand-lines bg-white text-brand-ink'
+                      }`}
+                    >
+                      {n.libelle}
+                    </button>
+                  );
+                })}
+              </div>
+            </fieldset>
+
             <fieldset>
               <legend className="mb-3 font-bold text-brand-green-dark">Matière</legend>
               <div className="flex flex-wrap gap-2" role="radiogroup" aria-label="Choix de la matière">

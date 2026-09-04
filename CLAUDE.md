@@ -93,6 +93,107 @@ server.ts
 `appelModele` → `parseJsonResponse` (retire le Markdown, isole `{…}`) →
 `schema.safeParse` (Zod) → nouvel essai (2 au total) → `exerciceDeSecours()`.
 
+`exerciceDeSecours(theme, difficulte, matiere, niveau)` résout du plus précis au
+plus large : **thème exact → niveau + matière → matière → générique**. Le niveau
+passe avant la matière seule, car les replis par matière sont calibrés BEPC :
+les consulter d'abord servirait un énoncé de 3ème à un élève de 6ème.
+
+`backend/src/data/niveaux.ts` est la **source unique** du niveau — persona du
+répétiteur, consigne de génération et banque de secours doivent parler du même.
+Un code inconnu retombe sur le BEPC plutôt que de lever. N'écrivez plus de test
+`niveau === 'BAC'` ailleurs : c'est ce raccourci qui faisait recevoir à un élève
+de 6ème une consigne réclamant du niveau BEPC.
+
+Le premier cycle (6ème, 5ème, 4ème × Maths, PCT, SVT) a sa propre table. Le BAC
+hérite encore du repli BEPC : mauvais calibrage assumé, pas un contresens.
+
+### Générateurs paramétrés
+
+`backend/src/data/generateurs.ts` produit des exercices **calculés** plutôt que
+stockés : un modèle d'énoncé (« Résous *ax + b = cx + d* ») dont les valeurs
+varient selon un index. La solution étant calculée, elle ne peut être fausse
+que si la formule l'est — d'où les tests qui **recalculent** chaque solution
+depuis l'énoncé, sans réutiliser le code du générateur.
+
+Couvre **Mathématiques et Physique-Chimie sur les 5 niveaux**, soit plus de
+2 600 exercices distincts. Les matières qualitatives (SVT, langues,
+Histoire-Géo, Philosophie, Lecture, Communication écrite) en sont exclues :
+faire varier des nombres n'y produit pas un exercice différent.
+
+Trois règles à respecter en ajoutant un modèle :
+
+1. **`variantes` doit être le nombre RÉEL d'énoncés distincts.** Si deux
+   paramètres défilent au même rythme, leurs périodes se resynchronisent et
+   les variantes se répètent — découpez l'index en tranches
+   (`i % 5`, puis `Math.floor(i / 5) % 7`…). Un test le vérifie.
+2. **Chaque (niveau, difficulté) ouvre sur un modèle qui lui est propre**,
+   sinon « facile » et « examen » servent le même énoncé à l'index 0 et le
+   sélecteur de difficulté ne sert plus à rien.
+3. **Passez par les aides `membre()` et `avecSigne()`** pour écrire un
+   polynôme : elles évitent `1x`, `+ -6` et `+ 0`, tous rencontrés en écrivant
+   ce module et verrouillés par un test.
+
+`exerciceDeSecours` tire une variante **au hasard** par défaut, pour qu'un
+élève qui retombe sur le repli ne revoie pas le même énoncé. Les tests passent
+un index explicite, ou figent `Math.random`.
+
+### Banque produite hors ligne
+
+Les matières qualitatives — SVT, langues, histoire-géographie, philosophie,
+lecture, communication écrite — échappent aux générateurs : y faire varier des
+nombres ne produit pas un exercice différent. Leurs exercices sont **produits
+par le modèle hors ligne**, validés, puis figés dans
+`backend/src/data/banque-generee.json`.
+
+```bash
+npm run build --prefix backend && node recherche/src/exporter_catalogue.js
+set -a && . backend/.env && set +a
+recherche/.venv/bin/python recherche/src/generer_banque.py --plan
+recherche/.venv/bin/python recherche/src/generer_banque.py --limite 20
+recherche/.venv/bin/python recherche/src/generer_banque.py --export
+```
+
+Le script demande **neuf exercices par appel** — le quota gratuit est de
+quelques dizaines d'appels par jour, un exercice par appel prendrait des
+semaines — et complète en priorité le couple le plus pauvre, pour que la
+couverture progresse partout plutôt qu'en un seul endroit. Il est reprenable :
+chaque exercice validé est écrit aussitôt dans le JSONL, un arrêt sur quota ne
+perd rien.
+
+**Rien n'entre sans contrôle** : champ vide, énoncé de moins de vingt
+caractères, explication de moins de quatre-vingts, LaTeX, titre Markdown,
+doublon, **français dépouillé de ses accents** — tout cela est rejeté et
+compté, jamais rafistolé.
+
+Ce dernier filtre mérite un mot. Le modèle rend parfois un texte français privé
+à la fois de ses accents et de ses apostrophes : *« Le travail alienant est il
+une fatalite pour l homme »*. C'est illisible pour un élève et irrattrapable
+après coup — on ne devine pas où replacer les apostrophes. Le seuil est de
+1,5 % de lettres accentuées, quand un texte français courant en porte 4 à 6 % ;
+il est placé bas pour tolérer les énoncés courts ou très techniques. Les
+épreuves de langue en sont exclues, leur énoncé étant légitimement rédigé en
+anglais, en espagnol ou en allemand. Sur la première collecte, 60 exercices sur
+1 512 ont été retirés à ce titre. `banqueGeneree.test.ts`
+revérifie ces invariants sur le JSON exporté, et vérifie aussi que les thèmes
+cités existent bien au catalogue.
+
+Le JSON est **importé** (`resolveJsonModule`), pas lu au démarrage : la banque
+doit rester disponible même sur un disque de production en lecture seule.
+
+### Ordre de résolution complet du repli
+
+```
+thème exact (rédigé)  →  générateur paramétré  →  banque produite hors ligne
+   →  niveau + matière  →  matière  →  générique
+```
+
+Conséquence à connaître : pour une matière couverte par un générateur ou par la
+banque produite, **le repli rédigé par matière devient inatteignable**. C'est
+voulu — les deux sources le battent sur le niveau et sur la variété — mais cela
+signifie qu'un test qui vérifie un énoncé rédigé précis cassera dès qu'on
+enrichit la banque. Vérifiez l'appartenance au vivier de la matière, pas un
+énoncé figé.
+
 Le piège historique : `{}` est un JSON **valide**. Sans la validation Zod, il
 traversait le service et faisait échouer l'écriture Prisma en `500`. Toute
 modification du parsing doit conserver ce garde-fou.

@@ -173,6 +173,99 @@ def construire_corpus() -> pd.DataFrame:
 
     corpus = pd.concat([banque, generes], ignore_index=True)
     corpus = corpus[corpus["texte"].str.len() > 20].reset_index(drop=True)
+    corpus = _reetiqueter_francais(corpus)
     corpus["theme"] = corpus["theme"].fillna("").replace("", pd.NA)
     corpus["n_mots"] = corpus["texte"].str.split().str.len()
     return corpus
+
+
+PRIVEES = RACINE / "recherche/donnees/privees"
+
+
+# L'ancien catalogue réunissait « Français » en une seule matière. Le BEPC
+# béninois distingue en réalité Lecture et Communication écrite. Les exemples
+# collectés avant cette correction sont reclassés d'après leur thème, plutôt
+# que jetés : ce sont de vraies données, seule leur étiquette était grossière.
+_THEMES_LECTURE = {
+    "Figures de style",
+    "Compréhension de texte",
+    "Vocabulaire et sens des mots",
+}
+
+
+def _reetiqueter_francais(corpus: pd.DataFrame) -> pd.DataFrame:
+    ancien = corpus["matiere"] == "Français"
+    if not ancien.any():
+        return corpus
+    corpus = corpus.copy()
+    vers_lecture = ancien & corpus["theme"].isin(_THEMES_LECTURE)
+    corpus.loc[vers_lecture, "matiere"] = "Lecture"
+    corpus.loc[ancien & ~vers_lecture, "matiere"] = "Communication écrite"
+    return corpus
+
+
+def regrouper_lecture(df: pd.DataFrame) -> pd.DataFrame:
+    """Fusionne « Communication écrite » dans « Lecture ».
+
+    Avec seulement 6 exemples d'entraînement, Communication écrite n'est pas
+    séparable : le classifieur la confond systématiquement avec la classe
+    réceptacle. Le regroupement ramène la distinction au niveau du BEPC ancien
+    (« Français ») tout en gardant la terminologie du programme actuel.
+
+    Le notebook 02 utilise cette fonction pour mesurer l'impact du
+    regroupement. Ce n'est pas un nettoyage silencieux : l'expérience est
+    documentée et les scores avant/après sont rapportés.
+    """
+    df = df.copy()
+    df.loc[df["matiere"] == "Communication écrite", "matiere"] = "Lecture"
+    return df
+
+
+def charger_jeu_de_test() -> "pd.DataFrame | None":
+    """
+    Passages extraits d'annales réelles du BEPC, ou None si absents.
+
+    Ces données ne sont pas versionnées (droits des diffuseurs). Le notebook
+    doit donc se dégrader proprement plutôt qu'échouer : sans elles, seule
+    l'évaluation par validation croisée reste possible, et le notebook le dit.
+    """
+    chemin = PRIVEES / "jeu_de_test.csv"
+    if not chemin.exists():
+        return None
+    return pd.read_csv(chemin)
+
+
+def corpus_entrainement(retirer_accents: bool = True) -> pd.DataFrame:
+    """
+    Corpus d'entraînement normalisé, prêt pour la vectorisation.
+
+    La normalisation est appliquée ICI, du côté entraînement, exactement comme
+    elle l'a été du côté test : c'est la condition pour que la comparaison
+    porte sur la matière et non sur la typographie.
+    """
+    import sys
+
+    sys.path.insert(0, str(RACINE / "recherche/src"))
+    from normalisation import normaliser
+
+    corpus = construire_corpus()
+    corpus["texte_normalise"] = corpus["texte"].apply(
+        lambda t: normaliser(t, retirer_accents=retirer_accents)
+    )
+    return corpus
+
+
+def jeu_de_test_normalise(retirer_accents: bool = True) -> "pd.DataFrame | None":
+    import sys
+
+    sys.path.insert(0, str(RACINE / "recherche/src"))
+    from normalisation import normaliser
+
+    test = charger_jeu_de_test()
+    if test is None:
+        return None
+    test = test.copy()
+    test["texte_normalise"] = test["texte"].apply(
+        lambda t: normaliser(str(t), retirer_accents=retirer_accents)
+    )
+    return test

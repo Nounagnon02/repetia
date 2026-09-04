@@ -341,12 +341,14 @@ def collecter_chat(limite: int, pause: float, graine: int) -> None:
     print(f"\n[chat] terminé : {fuites} fuite(s) LaTeX sur cette salve. Total : {total} appels.")
 
 
-def collecter(limite: int, pause: float, graine: int) -> None:
+def collecter(limite: int, pause: float, graine: int, me_filtre: str | None = None) -> None:
     cle = os.environ.get("LLM_API_KEY")
     if not cle:
         sys.exit("LLM_API_KEY absente. Charger backend/.env avant de lancer.")
 
     restant = [c for c in plan_complet() if cle_unique(c) not in deja_collecte()]
+    if me_filtre:
+        restant = [c for c in restant if c["modele"] == me_filtre]
     # Ordre aléatoire mais reproductible : si le quota s'épuise, l'échantillon
     # collecté reste équilibré entre matières, modèles et variantes.
     random.Random(graine).shuffle(restant)
@@ -354,9 +356,13 @@ def collecter(limite: int, pause: float, graine: int) -> None:
 
     print(f"{len(restant)} combinaisons restantes ; {len(a_faire)} tentées maintenant.")
     reussis = echecs = 0
+    modeles_epuises = set()
 
     with SORTIE.open("a", encoding="utf-8") as f:
         for i, c in enumerate(a_faire, 1):
+            if c["modele"] in modeles_epuises:
+                continue
+
             systeme = prompt_systeme(c["variante"], c["matiere"])
             utilisateur = prompt_utilisateur(c["matiere"], c["theme"], c["difficulte"])
 
@@ -364,8 +370,9 @@ def collecter(limite: int, pause: float, graine: int) -> None:
             try:
                 brut, latence = appeler_gemini(cle, c["modele"], systeme, utilisateur)
             except QuotaEpuise:
-                print(f"  [{i}] quota épuisé pour {c['modele']} — arrêt propre.")
-                break
+                modeles_epuises.add(c["modele"])
+                print(f"  [{i}] quota épuisé pour {c['modele']} — poursuite des autres modèles.")
+                continue
             except Exception as e:  # noqa: BLE001 — on journalise et on continue
                 enregistrement.update(erreur=str(e)[:200], conforme=False)
                 f.write(json.dumps(enregistrement, ensure_ascii=False) + "\n")
@@ -412,6 +419,7 @@ def main() -> None:
     p.add_argument("--plan", action="store_true", help="affiche l'état sans rien collecter")
     p.add_argument("--tache", choices=["generation", "chat"], default="generation",
                    help="tâche mesurée : génération JSON ou chat en texte libre")
+    p.add_argument("--modele", type=str, default=None, help="filtrer sur un modèle spécifique")
     args = p.parse_args()
 
     if args.tache == "chat":
@@ -425,12 +433,14 @@ def main() -> None:
     total, faits = len(plan_complet()), len(deja_collecte())
     if args.plan:
         print(f"Plan d'expérience : {total} combinaisons")
-        print(f"  {len(json.loads(CATALOGUE.read_text())) } matières · 46 thèmes · "
+        catalogue = json.loads(CATALOGUE.read_text())
+        nb_themes = sum(len(m.get("themes", [])) for m in catalogue)
+        print(f"  {len(catalogue)} matières · {nb_themes} thèmes · "
               f"{len(DIFFICULTES)} difficultés · {len(MODELES)} modèles · {len(VARIANTES)} variantes")
         print(f"Déjà collecté : {faits} ({faits / total:.1%})")
         return
 
-    collecter(args.limite, args.pause, args.graine)
+    collecter(args.limite, args.pause, args.graine, args.modele)
 
 
 if __name__ == "__main__":

@@ -57,7 +57,7 @@ describe('Écran Accueil', () => {
 
     expect(await screen.findByText('Équations du 1er degré')).toBeInTheDocument();
     expect(screen.getByText('Théorème de Pythagore')).toBeInTheDocument();
-    expect(screen.getByText('BEPC · Maths')).toBeInTheDocument();
+    expect(screen.getByText('BEPC · Mathématiques')).toBeInTheDocument();
     expect(screen.getByRole('radio', { name: 'Moyen' })).toHaveAttribute('aria-checked', 'true');
     expect(screen.getByRole('button', { name: /Commencer l'entraînement/ })).toBeEnabled();
   });

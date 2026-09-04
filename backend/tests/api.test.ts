@@ -334,7 +334,7 @@ describe('POST /api/chat', () => {
       .set('X-User-Id', nouvelEleve())
       .send({ message: 'Je bloque', historique: [], exerciceId });
 
-    expect(mockChat).toHaveBeenCalledWith('Je bloque', [], EXERCICE_IA.enonce, 'Mathématiques');
+    expect(mockChat).toHaveBeenCalledWith('Je bloque', [], EXERCICE_IA.enonce, 'Mathématiques', 'BEPC');
   });
 
   it('renvoie 503 (et non une fausse réponse) quand le LLM est injoignable', async () => {

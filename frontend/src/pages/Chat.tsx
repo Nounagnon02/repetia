@@ -1,15 +1,16 @@
 import { useState, useRef, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
-import { Send } from 'lucide-react';
+import { Send, Camera, Mic } from 'lucide-react';
 import { apiService, ErreurApi } from '../services/api';
 import MessageErreur from '../components/MessageErreur';
 import TexteFormate from '../components/TexteFormate';
 import EnTete from '../components/EnTete';
+import { useDicteeVocale } from '../hooks/useDicteeVocale';
 import type { MessageChat } from '../types';
 
 const ACCUEIL: MessageChat = {
   role: 'model',
-  content: "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur les maths du BEPC.",
+  content: "Bonjour ! Je suis RépétIA, ton répétiteur. Pose-moi ta question sur ton cours ou tes exercices (BEPC ou BAC).",
 };
 
 export default function Chat() {
@@ -23,6 +24,9 @@ export default function Chat() {
   const [messageEnEchec, setMessageEnEchec] = useState<string | null>(null);
 
   const finDeListe = useRef<HTMLDivElement>(null);
+  const { ecoute, disponible: dicteeDisponible, basculer: basculerDictee } = useDicteeVocale(
+    (texte) => setSaisie((s) => (s ? `${s} ` : '') + texte),
+  );
 
   useEffect(() => {
     finDeListe.current?.scrollIntoView({ behavior: 'smooth' });
@@ -154,6 +158,31 @@ export default function Chat() {
             rows={1}
             className="scrollbar-hide max-h-32 min-h-[48px] flex-1 resize-none rounded-xl border border-brand-lines bg-brand-paper px-4 py-3 text-sm focus:border-brand-green focus:outline-none"
           />
+          <button
+            type="button"
+            disabled
+            aria-label="Scanner une photo d'exercice — bientôt disponible"
+            title="Bientôt disponible"
+            className="flex h-12 w-12 shrink-0 cursor-not-allowed items-center justify-center rounded-xl border border-brand-lines bg-white text-brand-lines opacity-40"
+          >
+            <Camera size={20} aria-hidden="true" />
+          </button>
+          <button
+            type="button"
+            onClick={basculerDictee}
+            disabled={!dicteeDisponible}
+            aria-label={ecoute ? 'Arrêter la dictée vocale' : 'Dictée vocale'}
+            title={dicteeDisponible ? 'Dictée vocale' : 'Dictée vocale non disponible sur ce navigateur'}
+            className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border ${
+              !dicteeDisponible
+                ? 'cursor-not-allowed border-brand-lines bg-white text-brand-lines opacity-40'
+                : ecoute
+                  ? 'animate-pulse border-red-300 bg-red-50 text-red-600'
+                  : 'border-brand-lines bg-white text-brand-gold hover:bg-brand-gold-soft'
+            }`}
+          >
+            <Mic size={20} aria-hidden="true" />
+          </button>
           <button
             type="button"
             onClick={() => void envoyer(saisie)}

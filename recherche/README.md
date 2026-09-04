@@ -15,7 +15,9 @@ tâche où l'appel au LLM serait disproportionné.
 | Notebook | Objet |
 |---|---|
 | `notebooks/01-banc-evaluation-llm.ipynb` | Banc d'évaluation de l'intégration : conformité au contrat, effet des consignes de prompt, latence, comparaison de deux modèles |
-| `notebooks/02-classifieur-theme.ipynb` | *(en cours)* Classifieur de thème BEPC entraîné sur le corpus, comparé à plusieurs approches |
+| `notebooks/02-classifieur-matiere.ipynb` | Classifieur de matière entraîné par nos soins : quatre approches comparées, généralisation du synthétique vers 318 passages d'annales réelles, analyse des erreurs |
+| `notebooks/03-benin-edubench.ipynb` | Banc de test standardisé Bénin-EduBench : évaluation comparative des LLM sur le curriculum et les critères APC du Bénin |
+| `notebooks/04-evaluation-rag.ipynb` | Test A/B du RAG : le bloc de consignes du programme officiel injecté dans le prompt change-t-il réellement les réponses du modèle ? |
 
 ## Reproduire les résultats
 
@@ -29,20 +31,59 @@ npm run build --prefix backend        # produit backend/dist
 node recherche/src/exporter_catalogue.js
 node recherche/src/extraire_banque.js
 
-# 3. Collecte expérimentale (nécessite LLM_API_KEY)
+# 3. Collecte expérimentale & Benchmark (nécessite LLM_API_KEY)
 set -a && . backend/.env && set +a
 python recherche/src/collecte.py --plan                 # état du plan
 python recherche/src/collecte.py --limite 20            # tâche « génération »
 python recherche/src/collecte.py --tache chat --limite 20
+python recherche/src/edubench.py                         # calcule le score Bénin-EduBench
 
 # 4. Exécuter les notebooks
 cd recherche/notebooks
 ../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 01-banc-evaluation-llm.ipynb
+../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 02-classifieur-matiere.ipynb
+../.venv/bin/python -m jupyter nbconvert --to notebook --execute --inplace 03-benin-edubench.ipynb
 ```
+
+Les notebooks sont **générés** par des scripts pour rester reproductibles :
+`src/construire_notebook_01.py`, `src/construire_notebook_02.py` et `src/construire_notebook_03.py`.
+script, pas le `.ipynb`.
 
 Les notebooks s'exécutent **sans clé d'API** : ils lisent les données déjà
 collectées dans `donnees/brutes/`. La clé n'est requise que pour enrichir la
 collecte.
+
+## Résultats principaux du notebook 02
+
+Entraînement sur 149 énoncés (générés + banque de secours), évaluation sur
+**318 passages d'annales réelles** océrisés — deux sources indépendantes.
+
+| Approche | F1 macro (VC 5 plis) | F1 macro (annales réelles) |
+|---|---|---|
+| Référence (classe majoritaire) | 0,043 | 0,049 |
+| Bayes naïf (mots) | 0,774 | 0,448 |
+| Régression logistique (mots) | 0,874 | 0,536 |
+| **SVM linéaire (caractères)** | **0,881** | **0,581** |
+
+En regroupant Communication écrite et Lecture — deux épreuves que le corpus ne
+permet pas encore de séparer — le SVM atteint **0,618** sur annales réelles.
+
+Les n-grammes de caractères l'emportent sur données réelles tout en présentant
+le plus faible écart de généralisation : ils résistent mieux au bruit de l'OCR.
+Le classifieur décide en **0,18 ms**, contre 2,8 s pour l'appel LLM le plus
+rapide — environ 15 000 fois plus vite, sans consommer de quota.
+
+**Le modèle n'est pas prêt pour la production**, et le notebook le dit : une
+classe se comporte en réceptacle (« Communication écrite », 27 % des
+prédictions pour 10,1 % du jeu de test réel ; après regroupement, c'est
+« Lecture » qui absorbe 129 des 318 passages). La confusion dominante est
+Lecture → Communication écrite (56 % des passages de Lecture), rejointe par
+Histoire-Géographie, Espagnol et Allemand : de la prose française sans
+marqueur lexical distinctif. L'ablation par troncature, qui semblait
+désigner la longueur des textes comme cause à 94 exemples, ne tient plus à
+149 — la direction était bonne, la cause exacte non. La courbe
+d'apprentissage ne plafonne pas : il manque des données, pas un meilleur
+modèle.
 
 ## Plan d'expérience
 
@@ -51,8 +92,8 @@ risques :
 
 | Tâche | Combinaisons | Ce qui est mesuré |
 |---|---|---|
-| **Génération** | 46 thèmes × 3 difficultés × 2 modèles × 3 variantes = **828** | Conformité au schéma JSON, latence, format |
-| **Chat** | 39 énoncés × 2 modèles × 3 variantes = **234** | Fuite LaTeX en texte libre, latence |
+| **Génération** | 67 thèmes × 3 difficultés × 2 modèles × 3 variantes = **1206** | Conformité au schéma JSON, latence, format |
+| **Chat** | 48 énoncés × 2 modèles × 3 variantes = **288** | Fuite LaTeX en texte libre, latence |
 
 Trois variantes de prompt emboîtées isolent l'effet de chaque consigne :
 
@@ -72,11 +113,40 @@ consigne. La tâche « chat » a été ajoutée pour corriger ce défaut de plan
 
 | Fichier | Nature |
 |---|---|
-| `donnees/brutes/banque_manuelle.csv` | 39 exercices **rédigés à la main**, étiquetés matière/thème/difficulté. Seule vérité terrain non générée par un modèle. |
-| `donnees/brutes/catalogue.json` | 6 matières, 46 thèmes du BEPC béninois |
+| `donnees/brutes/banque_manuelle.csv` | 48 exercices **rédigés à la main**, étiquetés matière/thème/difficulté. Seule vérité terrain non générée par un modèle. |
+| `donnees/brutes/catalogue.json` | 9 matières, 67 thèmes du BEPC béninois |
 | `donnees/brutes/collecte.jsonl` | Journal d'expérience, tâche génération |
 | `donnees/brutes/collecte_chat.jsonl` | Journal d'expérience, tâche chat |
 | `donnees/traitees/corpus_exercices.csv` | Corpus étiqueté extrait des appels conformes |
+| `donnees/privees/pdf/` | 66 PDF d'annales du BEPC (**non versionnés** — droits des éditeurs) |
+| `donnees/privees/texte/` | 66 transcriptions OCR + scores de confiance (**non versionnées**) |
+| `donnees/privees/jeu_de_test.csv` | 318 passages étiquetés par matière, extraits des annales (**non versionné**) |
+
+## Un outil qui sert l'application, pas l'étude
+
+`src/generer_banque.py` n'appartient pas au dossier scientifique : il produit la
+**banque de secours hors ligne** de RépétIA, pour les matières où un générateur
+paramétré ne peut rien — SVT, langues, histoire-géographie, philosophie,
+lecture, communication écrite.
+
+```bash
+npm run build --prefix backend && node recherche/src/exporter_catalogue.js
+set -a && . backend/.env && set +a
+python recherche/src/generer_banque.py --plan      # état de la couverture
+python recherche/src/generer_banque.py --limite 20 # produire
+python recherche/src/generer_banque.py --export    # figer dans backend/src/data/
+```
+
+Il vit ici parce qu'il partage l'infrastructure de la collecte — même clé, même
+gestion du quota, même discipline de validation. Neuf exercices par appel, le
+couple le plus pauvre complété en premier, et rien n'entre sans passer le
+contrôle : champ vide, énoncé trop court, LaTeX, titre Markdown ou doublon sont
+rejetés et comptés.
+
+Ce qu'il produit est du **contenu d'application**, pas une donnée d'expérience.
+Il ne doit jamais alimenter le corpus d'entraînement du notebook 02 : le jeu de
+test serait alors comparé à des exercices issus du même modèle, et la question
+de généralisation posée par ce notebook perdrait tout son sens.
 
 ## Limite structurante : le quota
 
@@ -91,8 +161,11 @@ que commentées brutes.
 
 ## Éthique et intégrité
 
-- Le corpus généré l'est par un modèle, et non tiré d'annales officielles. Cette
-  limite est déclarée et ses conséquences discutées dans le notebook 02.
+- Le corpus d'**entraînement** est généré par un modèle, et non tiré d'annales
+  officielles. Le jeu de **test**, en revanche, est extrait d'annales réelles du
+  BEPC béninois par OCR. Ces annales ne sont **pas redistribuées** : seules les
+  métriques agrégées figurent dans les notebooks. Les fichiers sources sont
+  exclus du dépôt par `.gitignore` (`donnees/privees/`).
 - Aucune donnée d'élève réel n'est utilisée : l'application ne collecte aucune
   donnée personnelle.
 - Les échecs et les résultats contraires à nos hypothèses sont rapportés, y

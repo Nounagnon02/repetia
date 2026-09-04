@@ -84,7 +84,7 @@ describe('Écran Accueil (F1)', () => {
 
     expect(await screen.findByText('Équations du 1er degré')).toBeOnTheScreen();
     expect(screen.getByText('Théorème de Pythagore')).toBeOnTheScreen();
-    expect(screen.getByText('BEPC · Maths')).toBeOnTheScreen();
+    expect(screen.getByText('BEPC · Mathématiques')).toBeOnTheScreen();
 
     // « Moyen » est la difficulté sélectionnée par défaut.
     expect(screen.getByLabelText('Moyen').props.accessibilityState.selected).toBe(true);

@@ -1,0 +1,18 @@
+{
+  "horodatage": "2026-09-03 17:37:40",
+  "n_cas": 9,
+  "avec_rag": {
+    "n": 9,
+    "taux_zero_latex_pct": 100.0,
+    "taux_terme_cle_present_pct": 44.4,
+    "taux_structure_pas_a_pas_pct": 100.0,
+    "latence_moyenne_s": 12.1
+  },
+  "sans_rag": {
+    "n": 9,
+    "taux_zero_latex_pct": 100.0,
+    "taux_terme_cle_present_pct": 33.3,
+    "taux_structure_pas_a_pas_pct": 100.0,
+    "latence_moyenne_s": 8.0
+  }
+}

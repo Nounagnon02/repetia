@@ -1,6 +1,6 @@
 import { Request, Response, NextFunction } from 'express';
 import { prisma } from '../db';
-import { LlmService } from '../services/llm.service';
+import { OrchestratorService } from '../services/orchestrator.service';
 
 /** Coefficient de la moyenne mobile exponentielle du score de maîtrise. */
 const ALPHA = 0.3;
@@ -15,12 +15,13 @@ export const genererExercice = async (req: Request, res: Response, next: NextFun
     });
     if (!theme) return res.status(404).json({ error: 'Thème non trouvé' });
 
-    // Ne lève jamais : bascule sur la banque de secours si le LLM échoue.
-    const genere = await LlmService.genererExercice(
-      theme.libelle,
+    // Ne lève jamais : orchestre le modèle local / cloud et le RAG
+    const genere = await OrchestratorService.genererExercice({
+      theme: theme.libelle,
       difficulte,
-      theme.matiere.libelle,
-    );
+      matiere: theme.matiere.libelle,
+      niveau: theme.matiere.niveau,
+    });
 
     const exercice = await prisma.exercice.create({
       data: {
@@ -57,11 +58,12 @@ export const soumettreTentative = async (req: Request, res: Response, next: Next
     });
     if (!exercice) return res.status(404).json({ error: 'Exercice non trouvé' });
 
-    const correction = await LlmService.corrigerExercice(
+    const correction = await OrchestratorService.corrigerExercice(
       exercice.enonce,
       exercice.solution,
       reponseEleve,
       exercice.theme.matiere.libelle,
+      exercice.theme.matiere.niveau,
     );
 
     await prisma.tentative.create({
