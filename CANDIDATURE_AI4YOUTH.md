@@ -6,89 +6,48 @@ Thème : **Éducation** · Catégorie : **Application (Intégration et Expérien
 
 ## Description du projet & Approche
 
-> À recopier dans le champ « Description du projet & Approche ».
+> À recopier tel quel. **893 caractères** — la limite est de 900.
 
-**Le problème.** Au Bénin, des dizaines de milliers d'élèves préparent le BEPC
-chaque année. Le soir, quand une question résiste, il n'y a souvent personne
-pour l'expliquer : un répétiteur particulier coûte plusieurs milliers de francs
-par mois, hors de portée de la plupart des familles. Ce qui manque à ces élèves
-n'est ni l'envie ni le travail — c'est quelqu'un qui reprenne le raisonnement
-avec eux.
+Au Bénin, des dizaines de milliers d'élèves préparent le BEPC sans personne pour leur expliquer ce qui résiste : un répétiteur particulier coûte plusieurs milliers de francs par mois.
 
-**La solution.** RépétIA est un répétiteur qui tient dans un téléphone
-d'entrée de gamme. L'élève choisit sa classe — de la sixième à la terminale —,
-sa matière, son thème et sa difficulté. L'application lui génère un exercice
-ancré dans son quotidien, corrige sa réponse en déroulant le raisonnement pas
-à pas, répond à ses questions dans un chat, et suit sa progression pour lui
-proposer ensuite ce qu'il maîtrise le moins. Le catalogue couvre les
-**25 couples matière × niveau** du secondaire béninois et 156 thèmes, calés sur
-les épreuves réelles : au BEPC, « Français » n'existe pas — ce sont deux
-épreuves distinctes, *Lecture* et *Communication écrite*.
+RépétIA tient dans un téléphone d'entrée de gamme. L'élève choisit sa classe (6ème à Terminale), sa matière et son thème ; l'application génère un exercice, corrige sa réponse pas à pas, répond dans un chat et suit sa maîtrise. 25 couples matière x niveau, 156 thèmes, calés sur les épreuves du BEPC.
 
-**L'approche, et ce qui la distingue.** Les directives du hackathon demandent
-d'utiliser les API d'IA comme briques complémentaires, non comme solution
-complète. C'est précisément notre architecture.
+L'API n'est qu'une brique sur trois. Elle génère. Un modèle que nous avons entraîné reconnaît la matière d'une question : quatre approches comparées, évaluées sur 318 passages d'annales réelles océrisées — F1 macro 0,58 contre 0,05 pour la référence, en 0,18 ms. Une banque hors ligne de 4 140 exercices prend le relais quand le modèle tombe.
 
-1. **Un grand modèle** génère les exercices et les explications — ce qu'il fait
-   de mieux.
-2. **Un modèle que nous avons entraîné** reconnaît la matière d'une question
-   posée dans le chat. Nous avons comparé quatre approches (référence triviale,
-   Bayes naïf, régression logistique, SVM à n-grammes de caractères), en
-   validation croisée puis sur **318 passages d'annales réelles du BEPC**,
-   océrisées par nos soins. Le SVM caractères obtient 0,58 de F1 macro sur ces
-   annales, contre 0,05 pour la référence, et décide en **0,18 ms** là où
-   l'appel au grand modèle en demande 2,8 s — quinze mille fois plus vite, sans
-   consommer de quota.
-3. **Une banque hors ligne** prend le relais quand le modèle est indisponible.
-   Elle tient **plus de 50 exercices distincts par matière et par classe** :
-   2 688 en mathématiques et physique-chimie, produits par des générateurs
-   paramétrés dont la solution est *calculée* — donc juste par construction — et
-   1 452 dans les matières qualitatives, produits hors ligne puis validés un par
-   un contre six filtres automatiques.
-
-**La question scientifique** que nous nous sommes posée : *un classifieur
-entraîné sur des exercices générés par une IA sait-il reconnaître la matière
-d'un vrai sujet d'examen béninois, rédigé par un enseignant ?* Deux notebooks y
-répondent, mesures à l'appui, et disent aussi ce qui ne marche pas : le
-classifieur confond *Lecture* et *Communication écrite* dans 56 % des cas, et
-n'est pas prêt pour la production. La courbe d'apprentissage montre qu'il manque
-des données, pas un meilleur modèle.
-
-**L'état.** L'application est **en ligne et publique** — web et Android —,
-couverte par 186 tests automatisés, et conçue pour le réseau béninois :
-elle fonctionne sur un téléphone d'entrée de gamme et ne fait jamais transiter
-de clé d'IA vers le client.
+Deux notebooks disent aussi où il échoue. En ligne, 186 tests.
 
 ---
 
 ## Pourquoi souhaitez-vous participer ?
 
-> À recopier dans le champ « Pourquoi souhaitez-vous participer ? ».
+> À recopier tel quel. **871 caractères.**
 
-J'ai construit RépétIA parce que je connais le problème de l'intérieur : au
-Bénin, l'écart entre un élève qui a un répétiteur et un élève qui n'en a pas se
-lit directement sur les résultats du BEPC. Je voulais vérifier si une IA pouvait
-combler une partie de cet écart, pour le prix d'un forfait data.
+J'ai construit RépétIA parce que je connais le problème de l'intérieur : au Bénin, l'écart entre un élève qui a un répétiteur et un élève qui n'en a pas se lit sur les résultats du BEPC.
 
-Je participe à AI4Youth pour trois raisons précises.
+Je participe pour trois raisons.
 
-**Pour être évalué sur la méthode, pas sur la démonstration.** Il est facile de
-brancher une API et d'appeler cela de l'intelligence artificielle. Ce hackathon
-demande l'inverse : mesurer, comparer plusieurs approches, documenter ses choix,
-et énoncer ses limites. J'ai déjà travaillé ainsi — mes notebooks disent
-explicitement où mon modèle échoue — et je veux confronter cette démarche au
-regard de chercheurs.
+Être évalué sur la méthode. Brancher une API est facile ; ce hackathon demande de mesurer, de comparer plusieurs approches et d'énoncer ses limites. Mes notebooks disent explicitement où mon modèle échoue, et je veux confronter cette démarche au regard de chercheurs.
 
-**Pour le mentorat.** Mon classifieur plafonne à 0,58 de F1 macro sur données
-réelles. Je sais que le corpus est trop petit ; je ne sais pas si c'est la seule
-cause. Une heure avec un mentor sur ce point précis vaudrait des jours d'essais
-solitaires.
+Le mentorat. Mon classifieur plafonne à 0,58 de F1 macro sur données réelles. Je sais le corpus trop petit ; j'ignore si c'est la seule cause. Une heure avec un mentor vaudrait des jours d'essais solitaires.
 
-**Pour que ce travail serve.** RépétIA est déjà en ligne et gratuit. Ce qui lui
-manque pour atteindre des élèves, ce n'est plus du code — c'est un réseau
-d'enseignants qui valident les contenus et une visibilité que je n'ai pas seul.
-AI4Youth réunit exactement ces gens, en Afrique de l'Ouest, autour d'une IA
-pensée pour nos contextes.
+Que ce travail serve. RépétIA est déjà en ligne et gratuit. Ce qui lui manque n'est plus du code, mais des enseignants qui valident les contenus. AI4Youth réunit ces gens.
+
+---
+
+## Ce que j'ai dû retirer pour tenir en 900 signes
+
+Gardez ces éléments **pour l'oral** ou pour la vidéo — ils portent, mais ne
+tenaient pas dans le champ :
+
+- « Français » n'existe pas au BEPC béninois : ce sont deux épreuves,
+  *Lecture* et *Communication écrite*. C'est la preuve la plus nette que le
+  catalogue est calé sur le terrain, pas recopié d'un programme français.
+- Le détail de la banque : 2 688 exercices de maths et physique-chimie dont la
+  solution est **calculée**, donc juste par construction, et 1 452 exercices
+  qualitatifs validés un par un contre six filtres.
+- La limite nommée : le classifieur confond *Lecture* et *Communication écrite*
+  dans 56 % des cas. La slide 4 la porte déjà.
+- L'invariant de sécurité : la clé d'IA ne transite jamais vers le client.
 
 ---
 
