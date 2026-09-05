@@ -175,3 +175,27 @@ describe('générateurs d\'exercices', () => {
     expect(verifiees).toBeGreaterThan(20);
   });
 });
+
+describe('écriture des mathématiques', () => {
+  it("n'écrit jamais une puissance avec un accent circonflexe", () => {
+    // La banque rédigée écrit 3², pas 3^2, et le prompt système interdit le
+    // LaTeX pour la même raison : c'est l'écriture que l'élève voit au tableau.
+    // Un exercice servi en production affichait « 3^2 × 3^5 » avant ce test.
+    const fautifs: string[] = [];
+    for (const niveau of NIVEAUX) {
+      for (const matiere of MATIERES) {
+        for (const difficulte of DIFFICULTES) {
+          const total = nombreDeVariantes(matiere, '', niveau, difficulte);
+          for (let i = 0; i < total; i++) {
+            const e = exerciceGenere(matiere, '', niveau, difficulte, i)!;
+            const texte = `${e.enonce}\n${e.solution}\n${e.explication}`;
+            if (/\w\^\w|\^\(/.test(texte)) {
+              fautifs.push(`${niveau}/${difficulte}#${i} : ${e.enonce.slice(0, 50)}`);
+            }
+          }
+        }
+      }
+    }
+    expect(fautifs).toEqual([]);
+  });
+});
