@@ -7,27 +7,26 @@ Kit de production pour la vidéo de démonstration du hackathon.
 
 ## ⚠️ Étape 0 — à faire AVANT de filmer
 
-Deux vérifications, sans lesquelles la vidéo montrera autre chose que ce que
-dit la voix off.
+### 1. Vérifier que la production est bien à jour
 
-### 1. La production est en retard sur le code
-
-`https://repetia-api.onrender.com/api/matieres` sert aujourd'hui **6 matières,
-niveau BEPC uniquement**, avec l'ancien libellé « Français ». Le code, lui, gère
-**25 couples matière × niveau sur 5 niveaux** (6ème, 5ème, 4ème, BEPC, BAC) et a
-remplacé « Français » par *Lecture* et *Communication écrite*.
-
-La cause : **24 commits ne sont pas poussés**. Render ne redéploie que sur
-`git push`.
+La PR `develop` → `main` a été fusionnée le 4 septembre 2026 ; Render et Vercel
+ont redéployé. Vérifiez tout de même avant de lancer l'enregistreur — un
+déploiement peut échouer en silence :
 
 ```bash
-git push origin main       # déclenche le redéploiement Render
-# attendre ~3 min, puis vérifier :
-curl -s https://repetia-api.onrender.com/api/matieres | python3 -c "import json,sys;print(len(json.load(sys.stdin)),'matières')"
+curl -s https://repetia-api.onrender.com/api/matieres \
+  | python3 -c "import json,sys;print(len(json.load(sys.stdin)),'matières')"
 ```
 
-Tant que cette commande ne renvoie pas 25, **ne filmez pas** : le script parle
-de la sixième au baccalauréat.
+Tant que cette commande ne renvoie pas **25**, ne filmez pas : le script parle
+de la sixième au baccalauréat, et l'écran montrerait autre chose.
+
+Un détail à connaître, qui n'est pas un bug : si des élèves ont déjà travaillé
+sur l'ancienne matière « Français », elle reste affichée à côté de *Lecture* et
+*Communication écrite*. Le code refuse d'effacer une matière porteuse de
+progression. **Évitez de cadrer la liste complète des matières du BEPC** si ce
+doublon est visible ; filmez plutôt un autre niveau, ou entrez directement dans
+une matière.
 
 ### 2. Réveiller l'API avant chaque prise
 

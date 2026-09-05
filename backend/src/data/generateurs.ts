@@ -42,6 +42,18 @@ function fr(n: number): string {
   return dec ? `${milliers},${dec}` : milliers;
 }
 
+/**
+ * Exposant en chiffres Unicode : 3² plutôt que 3^2.
+ *
+ * La banque rédigée à la main écrit les puissances ainsi, et le prompt système
+ * interdit le LaTeX pour la même raison : c'est l'écriture que l'élève voit au
+ * tableau, et elle reste lisible sur un téléphone d'entrée de gamme.
+ */
+function exposant(n: number): string {
+  const chiffres = '⁰¹²³⁴⁵⁶⁷⁸⁹';
+  return String(n).split('').map((c) => chiffres[Number(c)] ?? c).join('');
+}
+
 /** Écrit un terme signé : « + 5 » ou « - 5 », jamais « + -5 ». */
 function avecSigne(n: number): string {
   return n >= 0 ? `+ ${fr(n)}` : `- ${fr(-n)}`;
@@ -247,16 +259,16 @@ const produitPuissances: Modele = {
     const m = 2 + (Math.floor(i / 5) % 4);
     const n = 1 + (Math.floor(i / 20) % 5);
     return {
-      enonce: `Écris sous la forme d'une seule puissance de ${base} :\nA = ${base}^${m} × ${base}^${n}.`,
-      solution: `A = ${base}^${m + n}`,
+      enonce: `Écris sous la forme d'une seule puissance de ${base} :\nA = ${base}${exposant(m)} × ${base}${exposant(n)}.`,
+      solution: `A = ${base}${exposant(m + n)}`,
       explication:
         `Pour multiplier deux puissances d'un MÊME nombre, on additionne les exposants.\n\n` +
-        `1) On écrit la règle :\n   a^m × a^n = a^(m+n)\n` +
+        `1) On écrit la règle :\n   aᵐ × aⁿ = aᵐ⁺ⁿ\n` +
         `2) Ici la base est ${base} dans les deux cas :\n` +
-        `   A = ${base}^${m} × ${base}^${n} = ${base}^(${m}+${n})\n` +
-        `3) A = ${base}^${m + n}\n\n` +
-        `VÉRIFICATION\n   ${base}^${m} = ${fr(base ** m)} et ${base}^${n} = ${fr(base ** n)}\n` +
-        `   Leur produit vaut ${fr(base ** m * base ** n)}, et ${base}^${m + n} = ${fr(base ** (m + n))}.\n\n` +
+        `   A = ${base}${exposant(m)} × ${base}${exposant(n)} = ${base}${exposant(m + n)}\n` +
+        `3) A = ${base}${exposant(m + n)}\n\n` +
+        `VÉRIFICATION\n   ${base}${exposant(m)} = ${fr(base ** m)} et ${base}${exposant(n)} = ${fr(base ** n)}\n` +
+        `   Leur produit vaut ${fr(base ** m * base ** n)}, et ${base}${exposant(m + n)} = ${fr(base ** (m + n))}.\n\n` +
         `ATTENTION\n   Cette règle ne vaut que si les BASES sont identiques.`,
     };
   },
