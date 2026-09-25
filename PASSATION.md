@@ -1,5 +1,12 @@
 # PASSATION — RépétIA
 
+> **Mise à jour du 2026-09-25.** Les tâches T1 → T6 ci-dessous ont été
+> traitées (voir `evolu.md`) ; les sections 2 et 3 décrivent l'état du
+> 2 septembre et sont conservées pour la trace. **Le nouveau chantier est
+> l'entraînement d'un modèle de langue propre à RépétIA** : son plan, par
+> phases et avec critères de passage, est dans
+> [recherche/PLAN_ENTRAINEMENT.md](recherche/PLAN_ENTRAINEMENT.md).
+
 **État des lieux au 2 septembre 2026** · branche `main` · dernier commit `83e5a64d`
 
 Ce fichier dit **ce qu'on fait**, **où on en est** et **ce qui reste**. Il se
@@ -48,7 +55,7 @@ coûte 2 à 15 secondes.
 ### 2.1 Application — stable
 
 ```
-npm test   →  68 (backend) + 11 (web) + 61 (mobile, 8 ignorés) = 140 tests, tous verts
+npm test   →  114 (backend) + 11 (web) + 61 (mobile, 8 ignorés) = 186 tests, tous verts (mesuré le 2026-09-25)
 ```
 
 Les 8 tests ignorés sont `mobile/tests/integration.test.ts`, optionnel par
@@ -305,7 +312,7 @@ finie quand il passe **et** que ton entrée est écrite dans `evolu.md`.
 Commandes utiles :
 
 ```bash
-npm test                     # 68 back + 11 web + 61 mobile
+npm test                     # 114 back + 11 web + 61 mobile
 npm run typecheck            # les trois projets
 npm run dev                  # backend 3000 + web 5173
 

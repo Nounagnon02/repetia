@@ -55,7 +55,7 @@ npm run dev         # backend (3000) + frontend web (5173)
 npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (139 tests : 67 back + 11 web + 61 mobile)
+npm test            # toute la suite (186 tests : 114 back + 11 web + 61 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 

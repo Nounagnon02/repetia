@@ -113,7 +113,7 @@ prochaine régénération écrase ton travail sans prévenir.
 
 ```bash
 # Application
-npm test                  # 68 backend + 11 web + 61 mobile (8 ignorés)
+npm test                  # 114 backend + 11 web + 61 mobile (8 ignorés)
 npm run typecheck         # les trois projets
 npm run dev               # backend 3000 + web 5173
 npm run dev:mobile        # Expo, Metro sur 8081

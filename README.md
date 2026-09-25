@@ -174,7 +174,7 @@ Depuis la racine du dépôt :
 Une seule commande couvre les trois projets :
 
 ```bash
-npm test        # backend (67) + web (11) + mobile (61) = 139 tests
+npm test        # backend (114) + web (11) + mobile (61) = 186 tests
 ```
 
 - **Backend** (Jest + Supertest) — le service LLM est mocké : ni réseau, ni clé

@@ -66,6 +66,54 @@ Trois règles :
 
 ---
 
+## 2026-09-25 — Plan d'entraînement du modèle RépétIA et remise à jour des compteurs
+
+**Auteur** Claude Code · **Commit** voir ci-dessous
+
+**Fait**
+- `recherche/PLAN_ENTRAINEMENT.md` : plan en six phases pour affiner un petit
+  modèle ouvert (départ proposé : Qwen2.5-1.5B-Instruct, QLoRA sur GPU gratuit
+  Kaggle/Colab) sur trois tâches — générer, corriger, expliquer. Le banc
+  d'évaluation passe **avant** tout entraînement ; chaque phase a un livrable
+  vérifiable et un critère de passage. Aucun entraînement n'a été lancé.
+- Inventaire réel des données d'entraînement : > 2 600 exercices calculés
+  (générateurs), 1 452 (banque générée), 48 (banque manuelle), 101 (corpus
+  de collecte), 3 réponses de chat. Aucune donnée de correction : le plan
+  prévoit de la fabriquer à partir des solutions connues.
+- Compteurs de tests corrigés dans `README.md`, `CLAUDE.md`, `AGENTS.md`,
+  `PASSATION.md` (ils annonçaient 139 ou 140 tests).
+- Bandeau en tête de `PASSATION.md` : T1 → T6 traitées, renvoi au plan.
+
+**Échecs / non fait**
+- Suppression de `backend/src/services/vision.service.ts` et
+  `audio.service.ts` **non faite** (refusée par le garde-fou de la session,
+  en attente de l'accord du porteur). Ces deux fichiers ne sont importés par
+  aucun contrôleur. `vision.service.ts` importe `@google/genai` hors de
+  `llm.service.ts` (invariant n° 1) et crée son client dès le chargement ;
+  `audio.service.ts` renvoie une transcription codée en dur (invariant n° 8).
+  Ce sont des restes de la session du 2026-09-02.
+- Pas d'entrée dans ce journal pour les commits du 2026-09-03 postérieurs au
+  test A/B du RAG (niveaux centralisés, générateurs paramétrés, banque
+  produite hors ligne) : leur contenu est décrit dans `CLAUDE.md` et dans les
+  messages de commit `dfe4a5f` → `c2ac96f`, mais aucune mesure n'y a été
+  consignée ici.
+
+**Observé, non traité**
+- `NOTE_TECHNIQUE.md` annonce « 140 tests » ; non modifié, car c'est un
+  livrable figé du concours (avec ses versions `.pdf` et `.docx`).
+- `recherche/donnees/traitees/huggingface_datasets.json` contient un champ
+  `total_exemples_sft_unifies: 183` issu de la session du 2026-09-02, sans
+  script qui le produise encore.
+- Les données produites par Gemini posent une question de conditions
+  d'utilisation si elles servent à entraîner un modèle publié (§3.4 du plan).
+
+**Vérifications**
+- `npm test` : ✅ 186 tests (114 backend + 11 web + 61 mobile, 8 ignorés)
+- `npm run typecheck` : ✅ backend + frontend + mobile
+- notebook réexécuté : non (aucun changement de recherche exécutable)
+
+---
+
 ## 2026-09-03 — Trou de couverture du RAG, corpus élargi, et premier test A/B du RAG
 
 **Auteur** Claude Code · **Commit** voir ci-dessous
