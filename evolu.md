@@ -66,6 +66,21 @@ Trois règles :
 
 ---
 
+## 2026-09-25 — [Phase 0] Retirer les services vision et audio orphelins
+
+**Auteur** Claude Code · **Commit** voir ci-dessous
+
+**Fait**
+- Supprimé `backend/src/services/vision.service.ts` et `audio.service.ts`,
+  avec l'accord du porteur du projet. Aucun contrôleur ne les importait.
+  Le premier importait `@google/genai` hors de `llm.service.ts` (invariant
+  n° 1) ; le second renvoyait une transcription codée en dur (invariant n° 8).
+
+**Vérifications**
+- `npm run typecheck --prefix backend` : ✅ · `npm test --prefix backend` : ✅ 114
+
+---
+
 ## 2026-09-25 — Plan d'entraînement du modèle RépétIA et remise à jour des compteurs
 
 **Auteur** Claude Code · **Commit** voir ci-dessous
