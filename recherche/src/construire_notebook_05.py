@@ -248,11 +248,18 @@ c.append(md("""---
   proposée : aucune référence n'existe pour un exercice inventé. La justesse
   mathématique est mesurée à part, sur la tâche `resolution`, et la relecture
   humaine de la phase 4 reste indispensable.
+- **« Utilisable » en génération juge la forme, pas le fond.** Le plancher
+  (la banque de secours) y obtient presque 100 % : ses exercices, validés à
+  la main, sont impeccables sur la forme — mais ils ne suivent pas toujours
+  le thème demandé et se répètent. Ni l'adéquation au thème, ni la variété,
+  ni la justesse ne sont mesurées ici pour cette tâche ; elles relèvent de la
+  relecture humaine (phase 4) ou d'un juge automatique à construire.
 - **La résolution ne couvre que Mathématiques et Physique-Chimie**, les deux
   matières dotées de générateurs. La justesse compare les *nombres* de la
   solution (appariement un pour un, tolérance d'une unité sur la dernière
   décimale écrite) : une réponse juste mais rédigée sans ses nombres
-  (« l'ensemble vide ») serait comptée fausse.
+  (« l'ensemble vide ») serait comptée fausse. Les nombres de la référence
+  qui redisent une donnée de l'énoncé (« 9 m = 900 cm ») ne sont pas exigés.
 - **Les réponses d'élève sont fabriquées.** Justes : la solution, parfois sans
   son « x = ». Fausses : un nombre faussé, ou la solution d'un exercice d'un
   autre thème. De vraies erreurs d'élèves sont plus subtiles ; ce banc mesure

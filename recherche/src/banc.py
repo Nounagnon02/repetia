@@ -359,11 +359,31 @@ def mots_desaccentues(texte: str) -> list[str]:
 
 # Sensible à la casse : « le point M est » ou « N un entier » ne sont pas des
 # élisions perdues.
+ELISION_CORRECTE = re.compile(r"\b(?:[ldjmnst]|qu)['’](?=[aeiouyhéèêàâîôû])", re.I)
 ELISION_PERDUE = re.compile(r"\b(?:[ldjmnst]|qu) (?:[aeiouyhéèêà][a-zà-ÿ]+)\b")
 
 
+_ACCENTUE = re.compile(r"(?<![\w])[a-zàâäéèêëîïôöùûüç]*[àâäéèêëîïôöùûüç][a-zàâäéèêëîïôöùûüç]*")
+
+
 def desaccentue(texte: str) -> bool:
-    return len(mots_desaccentues(texte)) >= 2 or len(ELISION_PERDUE.findall(texte)) >= 2
+    """Au moins deux mots fautifs ET au moins un quart des mots à accent fautifs.
+
+    La proportion écarte les faux positifs isolés : « tu donnes » ou « les
+    partages » sont corrects, mais absents du vocabulaire de référence, qui
+    ne connaît que « données » et « partagés ». Un texte réellement dépouillé
+    en aligne beaucoup et garde peu de mots accentués ; un texte normal en a
+    des dizaines.
+    """
+    fautifs = len(mots_desaccentues(texte))
+    accentues = len(_ACCENTUE.findall(texte))
+    if fautifs >= 2 and fautifs >= 0.25 * (fautifs + accentues):
+        return True
+    # Même logique pour les apostrophes : « t est » (t, le temps) ou « d est »
+    # (d, la distance) sont des variables, pas des élisions perdues. Un texte
+    # réellement privé d'apostrophes n'en garde presque aucune.
+    perdues = len(ELISION_PERDUE.findall(texte))
+    return perdues >= 2 and perdues >= len(ELISION_CORRECTE.findall(texte))
 
 
 def semble_anglais(texte: str) -> bool:
@@ -418,8 +438,13 @@ def meme_valeur(modele: float, ref: float, dec_ref: int) -> bool:
     return round(modele, dec_ref) == round(ref, dec_ref)
 
 
-def resolution_juste(solution_modele: str, solution_ref: str) -> bool | None:
-    """Toutes les valeurs de la référence se retrouvent dans la solution du modèle.
+def resolution_juste(solution_modele: str, solution_ref: str, enonce: str = "") -> bool | None:
+    """Toutes les valeurs CALCULÉES de la référence se retrouvent dans la solution du modèle.
+
+    Une solution de référence redit souvent une donnée de l'énoncé (« 9 m =
+    900 cm », « un cahier coûte 500 F, donc 10 coûtent 5 000 F ») : on n'exige
+    du modèle que les valeurs qui n'y figurent pas — sauf si TOUTES y figurent,
+    auquel cas on les exige toutes.
 
     None si la référence ne contient aucun nombre : la justesse ne se mesure
     alors pas automatiquement, et l'item est compté à part.
@@ -427,6 +452,9 @@ def resolution_juste(solution_modele: str, solution_ref: str) -> bool | None:
     refs = valeurs(solution_ref, garder_composantes=False)
     if not refs:
         return None
+    donnees = [v for v, _ in valeurs(enonce, garder_composantes=True)]
+    calculees = [(r, d) for r, d in refs if not any(math.isclose(r, v, abs_tol=1e-9) for v in donnees)]
+    refs = calculees or refs
     # Appariement un pour un : chaque nombre du modèle ne justifie qu'une seule
     # valeur de référence. Sans cela, « -7^7 » passait pour « 7^7 » (l'exposant
     # couvrait les deux 7).
@@ -463,7 +491,8 @@ def noter(item: dict, texte: str) -> dict:
         note["solution_dans_enonce"] = len(sol) >= 4 and sol in normaliser(enonce)
         note["longueurs_ok"] = len(enonce) >= 20 and len(obj["explication"].strip()) >= 80
     elif tache == "resolution":
-        note["juste"] = resolution_juste(obj["solution"], item["attendu"]["solution"])
+        note["juste"] = resolution_juste(obj["solution"], item["attendu"]["solution"],
+                                         item["attendu"].get("enonce", ""))
     elif tache == "correction":
         note["verdict_juste"] = obj["correct"] == item["attendu"]["correct"]
 

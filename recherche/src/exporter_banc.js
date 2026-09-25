@@ -212,7 +212,7 @@ const estReserve = (niveau, matiere, theme) =>
             theme_reserve: false,
             systeme: promptSysteme(m.libelle, m.niveau),
             consigne: consigneResolution(ex.enonce),
-            attendu: { solution: ex.solution, explication: ex.explication },
+            attendu: { solution: ex.solution, explication: ex.explication, enonce: ex.enonce },
             provenance: source,
           });
           return;
