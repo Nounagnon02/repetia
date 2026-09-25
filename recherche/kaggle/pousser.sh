@@ -38,6 +38,9 @@ mkdir -p "$etape/donnees"
 case "$travail" in
   banc)
     cp "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/" ;;
+  entrainement)
+    cp "$racine/recherche/donnees/sft/train.jsonl" "$racine/recherche/donnees/sft/validation.jsonl" \
+       "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/" ;;
   *)
     echo "travail inconnu : $travail" >&2; exit 1 ;;
 esac

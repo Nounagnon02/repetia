@@ -183,11 +183,14 @@ def interroger_gemini(modele: str, items: list[dict], limite: int | None, pause:
 # ---------------------------------------------------------------------------
 
 
-def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, max_jetons: int) -> None:
+def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, max_jetons: int,
+                  adaptateur: str | None = None, nom: str | None = None) -> None:
+    """Interroge un modèle ouvert ; `adaptateur` : dossier d'un adaptateur LoRA à
+    fusionner au modèle de base (modèle affiné de la phase 3)."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
-    nom = f"hf:{depot}"
+    nom = nom or f"hf:{depot}"
     faits = deja_repondu(nom)
     a_faire = [it for it in items if it["id"] not in faits][: limite or None]
     print(f"{nom} : {len(faits)} déjà faits, {len(a_faire)} à faire")
@@ -210,6 +213,9 @@ def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, m
         # charge par la classe image+texte et on ne lui donne que du texte.
         from transformers import AutoModelForImageTextToText
         modele = AutoModelForImageTextToText.from_pretrained(depot, torch_dtype=torch.float16, device_map="auto")
+    if adaptateur:
+        from peft import PeftModel
+        modele = PeftModel.from_pretrained(modele, adaptateur).merge_and_unload()
     modele.eval()
     torch.manual_seed(0)
 
