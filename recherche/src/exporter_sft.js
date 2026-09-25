@@ -326,6 +326,55 @@ for (const r of lireCsv(fs.readFileSync(path.join(racine, 'recherche/donnees/tra
 }
 
 // ---------------------------------------------------------------------------
+// 5. Complément Gemini (`completer_generation.py`) : thèmes sans exemple.
+//    Génération et correction pour tous ; résolution aussi pour les
+//    exercices numériques confirmés par une résolution indépendante.
+// ---------------------------------------------------------------------------
+
+{
+  const fichier = path.join(racine, 'recherche/donnees/brutes/complement_generation.jsonl');
+  const complement = fs.existsSync(fichier)
+    ? fs.readFileSync(fichier, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l))
+    : [];
+  for (const ex of complement) {
+    if (enoncesExclus.has(empreinte(ex.enonce))) {
+      compteurs.ecartes_banc++;
+      continue;
+    }
+    if (estReserve(ex.niveau, ex.matiere, ex.theme)) {
+      compteurs.ecartes_theme_reserve++;
+      continue;
+    }
+    const base = { niveau: ex.niveau, matiere: ex.matiere, difficulte: ex.difficulte, theme: ex.theme,
+      source: 'complement_gemini' };
+    ajouter({
+      ...base,
+      tache: 'generation',
+      systeme: promptSysteme(ex.matiere, ex.niveau, ex.theme),
+      consigne: consigneGeneration(ex.theme, ex.difficulte, ex.matiere, ex.niveau),
+      cible: { enonce: ex.enonce, solution: ex.solution, explication: ex.explication },
+      enonce: ex.enonce,
+    });
+    ajouterCorrection(base, ex, 'juste', ex.solution);
+    if (ex.verifie_par_resolution === true) {
+      ajouter({
+        ...base,
+        tache: 'resolution',
+        systeme: promptSysteme(ex.matiere, ex.niveau),
+        consigne: consigneResolution(ex.enonce),
+        cible: { solution: ex.solution, explication: ex.explication },
+        enonce: ex.enonce,
+      });
+      const faux = reponseFausseNumerique(ex.solution, outils);
+      if (faux) ajouterCorrection(base, ex, 'nombre_fausse', faux.reponse, faux);
+    } else {
+      const autres = complement.filter((o) => o.matiere === ex.matiere && o.niveau === ex.niveau && o.theme !== ex.theme);
+      if (autres.length) ajouterCorrection(base, ex, 'solution_autre_theme', choisir(autres).solution);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Écriture
 // ---------------------------------------------------------------------------
 

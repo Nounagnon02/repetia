@@ -88,7 +88,7 @@ Trois règles :
 | Plancher (application sans LLM) | 0,99 | 0,00 | 0,50 | — |
 | Gemini flash-lite (n = 90) | 0,87 | 0,87 (0,96) | 1,00 (1,00) | 1,6 s |
 | Qwen3-4B | 0,97 | 0,55 (0,63) | 0,88 (0,98) | 3,0 s* |
-| Qwen3.5-4B | 0,62 | 0,78 (0,79) | 0,99 (0,99) | 5,7 s* |
+| Qwen3.5-4B | 0,62 | 0,79 (0,80) | 0,99 (0,99) | 5,7 s* |
 | Qwen3-1.7B | 0,88 | 0,47 (0,51) | 0,54 (0,60) | 1,4 s* |
 | SmolLM3-3B | 0,71 | 0,44 (0,52) | 0,72 (0,77) | 4,1 s* |
 
@@ -108,7 +108,12 @@ Trois règles :
   a été remplacé par un vocabulaire tiré des textes validés et une proportion
   de mots fautifs. L'appariement des nombres acceptait 311,42 pour 312,42 et
   « -7^7 » pour « 7^7 » : corrigé (tolérance d'une unité, appariement un pour
-  un). Chaque correction a été vérifiée sur le contrôle (100 %).
+  un). Plus tard dans la journée, deux faux négatifs relevés pendant la
+  collecte : une même valeur écrite sous deux formes (« 67,14 (ou 470/7) »)
+  était exigée deux fois, et le barème de « 11,5 sur 20 » exigé comme un
+  résultat. Corrigés ; un seul item change (Qwen3.5-4B, résolution
+  0,78 → 0,79). Chaque correction a été vérifiée sur le contrôle (100 %) et
+  sur les 150 réponses fausses fabriquées (0 écart).
 - `pkill -f "banc.py interroger"` a tué le shell qui le lançait — le piège
   est déjà décrit dans CLAUDE.md, et il a été payé une seconde fois.
 

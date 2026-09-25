@@ -40,7 +40,10 @@ case "$travail" in
     cp "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/" ;;
   entrainement)
     cp "$racine/recherche/donnees/sft/train.jsonl" "$racine/recherche/donnees/sft/validation.jsonl" \
-       "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/" ;;
+       "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
+    # Modèle de base et mode, lus par le noyau (REPETIA_BASE, REPETIA_ESSAI=1).
+    printf '{"base": "%s", "essai": %s}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
+      "$([ "${REPETIA_ESSAI:-0}" = 1 ] && echo true || echo false)" > "$etape/donnees/config.json" ;;
   *)
     echo "travail inconnu : $travail" >&2; exit 1 ;;
 esac

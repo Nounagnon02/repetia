@@ -455,9 +455,18 @@ def resolution_juste(solution_modele: str, solution_ref: str, enonce: str = "") 
     None si la référence ne contient aucun nombre : la justesse ne se mesure
     alors pas automatiquement, et l'item est compté à part.
     """
-    refs = valeurs(solution_ref, garder_composantes=False)
+    # « 11,5 sur 20 » : le barème n'est pas un résultat à retrouver.
+    refs = valeurs(re.sub(r"\bsur\s+\d+\b", " ", solution_ref), garder_composantes=False)
     if not refs:
         return None
+    # « 67,14 (ou 470/7) » : une même valeur écrite SOUS DEUX FORMES n'est
+    # exigée qu'une fois — on garde la moins précise, la plus tolérante. Deux
+    # écritures identiques (« 7^7 ») restent deux valeurs à retrouver.
+    uniques: list[tuple[float, int]] = []
+    for r, d in sorted(refs, key=lambda x: x[1]):
+        if not any(d != du and meme_valeur(r, u, du) for u, du in uniques):
+            uniques.append((r, d))
+    refs = uniques
     donnees = [v for v, _ in valeurs(enonce, garder_composantes=True)]
     calculees = [(r, d) for r, d in refs if not any(math.isclose(r, v, abs_tol=1e-9) for v in donnees)]
     refs = calculees or refs
