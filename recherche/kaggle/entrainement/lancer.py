@@ -26,6 +26,9 @@ if not LOCAL:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-U", "transformers>=4.57", "accelerate",
                     "peft", "bitsandbytes"], check=False)
 
+# Limite la fragmentation de la mémoire GPU (le T4 n'a que 15 Go).
+os.environ.setdefault("PYTORCH_ALLOC_CONF", "expandable_segments:True")
+
 import torch  # noqa: E402
 import transformers  # noqa: E402
 import peft  # noqa: E402
@@ -143,11 +146,15 @@ journal["parametres_entrainables"] = entrainables
 journal["lora"] = {"r": 16, "alpha": 32, "dropout": 0.05}
 
 # transformers 5 a retiré `warmup_ratio` : on calcule le nombre de pas.
-PAS_PAR_EPOQUE = max(1, len(train) // (2 * 8))
+# Une séquence par lot, seize lots accumulés : même lot effectif (16) qu'à
+# 2 × 8, mais les logits d'un vocabulaire de 248 000 entrées (Qwen3.5) pour
+# deux séquences dépassaient la mémoire du T4 au calcul de la perte.
+PAR_LOT, ACCUMULATION = 1, 16
+PAS_PAR_EPOQUE = max(1, len(train) // (PAR_LOT * ACCUMULATION))
 PAS_TOTAL = 30 if ESSAI else 2 * PAS_PAR_EPOQUE
 arguments = TrainingArguments(
-    output_dir=f"{SORTIE}/points", num_train_epochs=2, max_steps=30 if ESSAI else -1, per_device_train_batch_size=2,
-    per_device_eval_batch_size=2, gradient_accumulation_steps=8, learning_rate=2e-4,
+    output_dir=f"{SORTIE}/points", num_train_epochs=2, max_steps=30 if ESSAI else -1, per_device_train_batch_size=PAR_LOT,
+    per_device_eval_batch_size=PAR_LOT, gradient_accumulation_steps=ACCUMULATION, learning_rate=2e-4,
     lr_scheduler_type="cosine", warmup_steps=max(1, round(0.03 * PAS_TOTAL)), logging_steps=5 if ESSAI else 10, eval_strategy="steps",
     eval_steps=15 if ESSAI else 50, save_strategy="no", fp16=GPU, gradient_checkpointing=True,
     report_to=[], seed=GRAINE, remove_unused_columns=False,
