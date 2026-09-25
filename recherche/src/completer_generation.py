@@ -52,7 +52,9 @@ SORTIE = pathlib.Path(os.environ.get("COMPLEMENT_SORTIE",
 JOURNAL = SORTIE.with_name(SORTIE.stem + "_journal.jsonl")
 SFT = RACINE / "recherche/donnees/sft"
 CIBLE_PAR_THEME = 20  # exemples de génération visés par thème non réservé
-MODELES = ["gemini-3.5-flash", "gemini-flash-lite-latest"]
+# gemini-3.5-flash n'a que 20 requêtes par JOUR sur le palier gratuit
+# (mesuré le 2026-09-25) : il est épuisé avant le premier lot.
+MODELES = ["gemini-flash-lite-latest", "gemini-3.5-flash-lite"]
 NUMERIQUES = re.compile(r"math|physique|chimie|technolog", re.I)
 
 
