@@ -83,6 +83,8 @@ Trois règles :
 - Compteurs de tests corrigés dans `README.md`, `CLAUDE.md`, `AGENTS.md`,
   `PASSATION.md` (ils annonçaient 139 ou 140 tests).
 - Bandeau en tête de `PASSATION.md` : T1 → T6 traitées, renvoi au plan.
+- Décision du porteur consignée au §3.4 du plan : les données produites par
+  Gemini peuvent entrer dans l'entraînement.
 
 **Échecs / non fait**
 - Suppression de `backend/src/services/vision.service.ts` et

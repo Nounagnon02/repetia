@@ -125,6 +125,11 @@ vérifie que deux explications fabriquées ne sont jamais identiques mot pour mo
 
 ### 3.4 Point juridique à trancher par le porteur du projet
 
+> **Décision du porteur du projet (2026-09-25) : les données produites par
+> Gemini peuvent servir à l'entraînement.** Elles entrent donc dans le jeu
+> SFT de la phase 2, avec leur provenance conservée (`modele`, `source`) pour
+> pouvoir les retirer d'un réentraînement si la décision changeait.
+
 Une partie des données (banque générée, corpus) a été **produite par Gemini**.
 Les conditions de l'API Gemini encadrent l'usage de ses sorties pour
 développer des modèles concurrents. **Ce n'est pas à un agent de trancher** :
