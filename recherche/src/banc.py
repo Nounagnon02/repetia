@@ -401,8 +401,11 @@ def semble_anglais(texte: str) -> bool:
 
 # --- Nombres, pour la justesse des résolutions -----------------------------
 
-_FRACTION = re.compile(r"(-?\d+(?:[.,]\d+)?)\s*/\s*(\d+(?:[.,]\d+)?)")
-_NOMBRE = re.compile(r"-?\d{1,3}(?:[   ]\d{3})+(?:[.,]\d+)?(?!\d)|-?\d+(?:[.,]\d+)?")
+# Un chiffre collé à une lettre ou à un « _ » fait partie d'un NOM de
+# grandeur (I2, R1, U_2), pas d'une valeur : « I2 = 0,25 A » n'exige pas 2.
+_PAS_APRES_LETTRE = r"(?<![A-Za-zÀ-ÿ_\d.,])"
+_FRACTION = re.compile(_PAS_APRES_LETTRE + r"(-?\d+(?:[.,]\d+)?)\s*/\s*(\d+(?:[.,]\d+)?)")
+_NOMBRE = re.compile(_PAS_APRES_LETTRE + r"(?:-?\d{1,3}(?:[   ]\d{3})+(?:[.,]\d+)?(?!\d)|-?\d+(?:[.,]\d+)?)")
 
 
 def _lire(n: str) -> float:

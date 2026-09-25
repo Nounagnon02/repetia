@@ -1,114 +1,118 @@
 {
-  "candidats": 6872,
-  "retenus": 6107,
-  "train": 5814,
-  "validation": 293,
+  "candidats": 10180,
+  "retenus": 9298,
+  "train": 8826,
+  "validation": 472,
   "par_tache": {
-    "generation": 1982,
-    "resolution": 729,
-    "correction": 3396
+    "generation": 2916,
+    "resolution": 1269,
+    "correction": 5113
   },
   "criteres_phase_2": {
     "generation": {
       "seuil": 3000,
-      "obtenu": 1982,
+      "obtenu": 2916,
       "atteint": false
     },
     "correction": {
       "seuil": 3000,
-      "obtenu": 3396,
+      "obtenu": 5113,
       "atteint": true
     }
   },
   "rejets": {
-    "correction — doublon": 158,
-    "correction — français désaccentué ou sans apostrophes": 14,
+    "correction — doublon": 270,
+    "correction — français désaccentué ou sans apostrophes": 17,
     "generation — doublon": 4,
     "generation — français désaccentué ou sans apostrophes": 9,
-    "resolution — doublon": 580
+    "resolution — doublon": 580,
+    "resolution — français désaccentué ou sans apostrophes": 2
   },
   "par_tache_et_niveau": {
-    "correction | 4ème": 349,
-    "correction | 5ème": 333,
-    "correction | 6ème": 364,
-    "correction | BAC": 930,
-    "correction | BEPC": 1420,
-    "generation | 4ème": 150,
-    "generation | 5ème": 183,
-    "generation | 6ème": 217,
-    "generation | BAC": 536,
-    "generation | BEPC": 896,
-    "resolution | 4ème": 150,
-    "resolution | 5ème": 67,
-    "resolution | 6ème": 146,
-    "resolution | BAC": 156,
-    "resolution | BEPC": 210
+    "correction | 4ème": 476,
+    "correction | 5ème": 496,
+    "correction | 6ème": 485,
+    "correction | BAC": 1787,
+    "correction | BEPC": 1869,
+    "generation | 4ème": 221,
+    "generation | 5ème": 275,
+    "generation | 6ème": 286,
+    "generation | BAC": 983,
+    "generation | BEPC": 1151,
+    "resolution | 4ème": 221,
+    "resolution | 5ème": 159,
+    "resolution | 6ème": 215,
+    "resolution | BAC": 351,
+    "resolution | BEPC": 323
   },
   "par_tache_et_source": {
     "correction | banque_generee": 2392,
+    "correction | complement_gemini": 1717,
     "correction | generateur": 1004,
     "generation | banque_generee": 1196,
     "generation | banque_manuelle": 21,
     "generation | collecte_gemini-3.5-flash": 32,
     "generation | collecte_gemini-flash-lite-latest": 49,
+    "generation | complement_gemini": 934,
     "generation | generateur": 684,
+    "resolution | complement_gemini": 540,
     "resolution | generateur": 729
   },
   "par_tache_et_matiere": {
-    "correction | Allemand": 146,
-    "correction | Anglais": 300,
-    "correction | Communication écrite": 182,
-    "correction | Espagnol": 180,
-    "correction | Français": 112,
-    "correction | Histoire-Géographie": 328,
-    "correction | Lecture": 172,
-    "correction | Mathématiques": 450,
-    "correction | Philosophie": 128,
-    "correction | Physique-Chimie-Technologie": 554,
-    "correction | Sciences de la Vie et de la Terre": 844,
-    "generation | Allemand": 77,
-    "generation | Anglais": 159,
-    "generation | Communication écrite": 99,
-    "generation | Espagnol": 98,
-    "generation | Français": 56,
-    "generation | Histoire-Géographie": 177,
-    "generation | Lecture": 89,
-    "generation | Mathématiques": 419,
-    "generation | Philosophie": 64,
-    "generation | Physique-Chimie-Technologie": 310,
-    "generation | Sciences de la Vie et de la Terre": 434,
-    "resolution | Mathématiques": 325,
-    "resolution | Physique-Chimie-Technologie": 404
+    "correction | Allemand": 200,
+    "correction | Anglais": 442,
+    "correction | Communication écrite": 191,
+    "correction | Espagnol": 189,
+    "correction | Français": 218,
+    "correction | Histoire-Géographie": 454,
+    "correction | Lecture": 208,
+    "correction | Mathématiques": 952,
+    "correction | Philosophie": 236,
+    "correction | Physique-Chimie-Technologie": 1021,
+    "correction | Sciences de la Vie et de la Terre": 1002,
+    "generation | Allemand": 104,
+    "generation | Anglais": 230,
+    "generation | Communication écrite": 108,
+    "generation | Espagnol": 107,
+    "generation | Français": 109,
+    "generation | Histoire-Géographie": 249,
+    "generation | Lecture": 107,
+    "generation | Mathématiques": 699,
+    "generation | Philosophie": 118,
+    "generation | Physique-Chimie-Technologie": 572,
+    "generation | Sciences de la Vie et de la Terre": 513,
+    "resolution | Mathématiques": 604,
+    "resolution | Physique-Chimie-Technologie": 665
   },
   "diversite": {
     "correction": {
-      "exemples": 3396,
-      "enonces_distincts": 1878,
-      "gabarits_distincts": 1284,
-      "part_du_gabarit_le_plus_frequent": 0.0203,
-      "part_des_5_gabarits_les_plus_frequents": 0.0816,
-      "quadrigrammes_distincts_sur_total": 0.2949
+      "exemples": 5113,
+      "enonces_distincts": 2811,
+      "gabarits_distincts": 2217,
+      "part_du_gabarit_le_plus_frequent": 0.0135,
+      "part_des_5_gabarits_les_plus_frequents": 0.0542,
+      "quadrigrammes_distincts_sur_total": 0.3302
     },
     "generation": {
-      "exemples": 1982,
-      "enonces_distincts": 1709,
-      "gabarits_distincts": 1351,
-      "part_du_gabarit_le_plus_frequent": 0.0505,
-      "part_des_5_gabarits_les_plus_frequents": 0.115,
-      "quadrigrammes_distincts_sur_total": 0.6633
+      "exemples": 2916,
+      "enonces_distincts": 2643,
+      "gabarits_distincts": 2285,
+      "part_du_gabarit_le_plus_frequent": 0.0343,
+      "part_des_5_gabarits_les_plus_frequents": 0.0782,
+      "quadrigrammes_distincts_sur_total": 0.7205
     },
     "resolution": {
-      "exemples": 729,
-      "enonces_distincts": 729,
-      "gabarits_distincts": 88,
-      "part_du_gabarit_le_plus_frequent": 0.0823,
-      "part_des_5_gabarits_les_plus_frequents": 0.2716,
-      "quadrigrammes_distincts_sur_total": 0.2331
+      "exemples": 1269,
+      "enonces_distincts": 1269,
+      "gabarits_distincts": 628,
+      "part_du_gabarit_le_plus_frequent": 0.0473,
+      "part_des_5_gabarits_les_plus_frequents": 0.156,
+      "quadrigrammes_distincts_sur_total": 0.5031
     }
   },
   "fuite_jeu_de_test": 0,
   "empreintes_sha256": {
-    "train": "90ebbc1ad482bb53735e6c66c482b8f657a577e9adaea0bd8f10b93ffaaaf143",
-    "validation": "50c6c2890da269be983dc979f894b5bc36de93abe843dff9e8a74cf3b3f39d0a"
+    "train": "38aec0cbc251d5f5500a9af44055ce5cc34086d7163fe4f62f8785f22a1d4b40",
+    "validation": "e867e236c628c844c218f6b32b167bfef6e561a34ebc89762357cc5973668409"
   }
 }

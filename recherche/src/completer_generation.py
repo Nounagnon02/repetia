@@ -151,6 +151,19 @@ def defaut(e, matiere: str) -> str | None:
     return None
 
 
+MOT = re.compile(r"[a-zà-ÿ]{4,}")
+
+
+def accord_textuel(solution: str, verification: str) -> bool:
+    """Pour une solution SANS nombre (« (D) est la médiatrice de [MM'] ») :
+    au moins la moitié de ses mots significatifs se retrouvent dans la
+    résolution indépendante. Plus faible qu'une vérification numérique, et
+    signalé comme tel dans l'exercice gardé."""
+    ref = {banc.sans_accents(m) for m in MOT.findall(solution.lower())}
+    ver = {banc.sans_accents(m) for m in MOT.findall(verification.lower())}
+    return len(ref) >= 2 and len(ref & ver) >= 0.5 * len(ref)
+
+
 def prompt_verification(enonces: list[str]) -> str:
     liste = "\n".join(f"{i + 1}. {e}" for i, e in enumerate(enonces))
     return (
@@ -236,12 +249,17 @@ def collecter(limite: int, pause: float) -> None:
                     sol_v = verification.get(i)
                     verifie = (banc.resolution_juste(str(sol_v), e["solution"], e["enonce"])
                                if sol_v else None)
-                    if verifie is not True:
+                    if verifie is None and sol_v and accord_textuel(e["solution"], str(sol_v)):
+                        verifie = "accord_textuel"
+                    if verifie not in (True, "accord_textuel"):
                         motifs["non confirmé par la résolution indépendante" if verifie is False
                                else "non vérifiable (pas de nombre ou pas de vérification)"] += 1
+                        # L'exercice entier est gardé au journal : un rejet dû au
+                        # vérificateur (et non à l'exercice) peut être réexaminé.
                         j.write(json.dumps({"rejete": True, "niveau": niveau, "matiere": matiere,
-                                            "theme": theme, "enonce": e["enonce"], "solution": e["solution"],
-                                            "verification": sol_v}, ensure_ascii=False) + "\n")
+                                            "theme": theme, "difficulte": e["difficulte"], "enonce": e["enonce"],
+                                            "solution": e["solution"], "explication": e["explication"],
+                                            "modele": modele, "verification": sol_v}, ensure_ascii=False) + "\n")
                         continue
                 enreg = {"niveau": niveau, "matiere": matiere, "theme": theme, "difficulte": e["difficulte"],
                          "enonce": e["enonce"].strip(), "solution": e["solution"].strip(),
