@@ -63,3 +63,7 @@ recherche/donnees/privees/
 # Montage vidéo : rushes, voix off et rendus sont trop lourds pour le dépôt.
 # Les cartons se régénèrent avec tools/cartons-video.sh.
 montage/
+
+# Jeu d’entraînement : reproductible (exporter_sft.js + construire_sft.py) et
+# volumineux ; seul rapport_sft.json est versionné, avec les empreintes.
+recherche/donnees/sft/*.jsonl

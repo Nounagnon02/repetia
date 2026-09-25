@@ -21,7 +21,14 @@
  */
 const fs = require('fs');
 const path = require('path');
-const crypto = require('crypto');
+const {
+  mulberry32,
+  tirages,
+  empreinte,
+  consigneResolution,
+  reponseFausseNumerique,
+  reponseJusteNumerique,
+} = require('./banc_commun');
 
 const racine = path.resolve(__dirname, '../..');
 const dist = path.join(racine, 'backend/dist/src');
@@ -43,82 +50,11 @@ const EFFECTIFS = {
 };
 
 // ---------------------------------------------------------------------------
-// Hasard reproductible
+// Hasard reproductible et réponses d'élève fabriquées (banc_commun.js)
 // ---------------------------------------------------------------------------
 
-function mulberry32(graine) {
-  let a = graine >>> 0;
-  return () => {
-    a = (a + 0x6d2b79f5) >>> 0;
-    let t = a;
-    t = Math.imul(t ^ (t >>> 15), t | 1);
-    t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-}
-const hasard = mulberry32(GRAINE);
-const entier = (n) => Math.floor(hasard() * n);
-const choisir = (tab) => tab[entier(tab.length)];
-function melanger(tab) {
-  const t = [...tab];
-  for (let i = t.length - 1; i > 0; i--) {
-    const j = entier(i + 1);
-    [t[i], t[j]] = [t[j], t[i]];
-  }
-  return t;
-}
-
-const empreinte = (texte) => crypto.createHash('sha1').update(texte).digest('hex').slice(0, 12);
-
-// ---------------------------------------------------------------------------
-// Consigne de résolution — la seule qui n'existe pas en production.
-// Elle reprend la forme des deux autres pour que le modèle soit jugé sur le
-// fond, pas sur un format inédit.
-// ---------------------------------------------------------------------------
-
-function consigneResolution(enonce) {
-  return `Résous cet exercice : ${enonce} Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"solution":"...","explication":"..."}. solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
-}
-
-// ---------------------------------------------------------------------------
-// Réponses d'élève fabriquées
-// ---------------------------------------------------------------------------
-
-/** Nombre écrit à la française : « 150 000 », « -2,5 », « 3 ». */
-const NOMBRE_FR = /-?\d{1,3}(?:[  ]\d{3})+(?:,\d+)?|-?\d+(?:,\d+)?/;
-
-function lireNombre(texte) {
-  return Number(texte.replace(/[  ]/g, '').replace(',', '.'));
-}
-
-function ecrireNombre(n) {
-  const arrondi = Math.round(n * 1e6) / 1e6;
-  const [ent, dec] = String(arrondi).split('.');
-  const milliers = ent.replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  return dec ? `${milliers},${dec}` : milliers;
-}
-
-/**
- * Fausse le premier nombre de la solution : l'erreur d'un élève qui a mené
- * la bonne démarche mais s'est trompé dans un calcul ou un signe.
- */
-function reponseFausseNumerique(solution) {
-  const m = solution.match(NOMBRE_FR);
-  if (!m) return null;
-  const n = lireNombre(m[0]);
-  const candidats = [n + 1, n - 1, n * 2, -n, n + 10].filter((v) => v !== n && Number.isFinite(v));
-  const faux = ecrireNombre(choisir(candidats));
-  return solution.slice(0, m.index) + faux + solution.slice(m.index + m[0].length);
-}
-
-/**
- * Réponse juste, parfois dépouillée du « x = » initial : un élève écrit
- * volontiers « -1 » là où la solution dit « x = -1 ».
- */
-function reponseJusteNumerique(solution) {
-  const simple = solution.match(/^\s*[A-Za-z]\w*\s*=\s*([^;=]+)$/);
-  return simple && hasard() < 0.5 ? simple[1].trim() : solution;
-}
+const outils = tirages(mulberry32(GRAINE));
+const { entier, choisir, melanger } = outils;
 
 // ---------------------------------------------------------------------------
 // Construction
@@ -220,7 +156,9 @@ const estReserve = (niveau, matiere, theme) =>
         // Alternance sur l'ensemble des cellules, pas dans la cellule : cinq
         // items par cellule donneraient sinon 2 justes pour 3 fausses partout.
         const juste = alternance++ % 2 === 0;
-        const reponse = juste ? reponseJusteNumerique(ex.solution) : reponseFausseNumerique(ex.solution);
+        const reponse = juste
+          ? reponseJusteNumerique(ex.solution, outils)
+          : reponseFausseNumerique(ex.solution, outils)?.reponse ?? null;
         if (reponse === null) return;
         ajouter({
           tache: 'correction',
