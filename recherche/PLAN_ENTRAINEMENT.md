@@ -225,7 +225,7 @@ suivante « en attendant ». Les phases 1 à 5 se déroulent **une fois par vagu
 Retirer ce qui reste de la tentative du 2026-09-02 et remettre les compteurs
 d'accord. Aucun entraînement avant que le dépôt dise vrai.
 
-### Phase 1 — Banc d'évaluation, **avant** tout entraînement
+### Phase 1 — Banc d'évaluation, **avant** tout entraînement ✅ (2026-09-25, notebook 05)
 
 C'est l'étape qui manquait en septembre, et la plus importante.
 

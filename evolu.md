@@ -66,6 +66,62 @@ Trois règles :
 
 ---
 
+## 2026-09-25 — [Phase 1] Banc d'évaluation : modèles candidats mesurés avant entraînement
+
+**Auteur** Claude Code · **Commits** `cff11d0` → ce commit
+
+**Fait**
+- Jeu de test figé (`exporter_banc.js`, graine fixe) : 750 items —
+  300 générations, 150 résolutions d'exercices calculés, 300 corrections de
+  réponses fabriquées (150 justes / 150 fausses) — avec les prompts exacts de
+  production (désormais exportés de `llm.service.ts`). 19 thèmes réservés.
+- `banc.py` : interrogation (Gemini par l'API, modèles ouverts par
+  `transformers`) et notation séparées ; un contrôle (réponses de référence)
+  obtient 100 %, autotest du scoreur.
+- Modèles ouverts exécutés sur Kaggle (2 × T4, `recherche/kaggle/banc/`),
+  réponses rapatriées ; notebook 05 généré depuis son script et exécuté.
+
+**Mesures** (part « utilisable », jeu complet ; Gemini sur 30 items par tâche)
+
+| Modèle | Génération | Résolution (juste) | Correction (verdict) | Latence méd. |
+|---|---|---|---|---|
+| Plancher (application sans LLM) | 0,99 | 0,00 | 0,50 | — |
+| Gemini flash-lite (n = 90) | 0,87 | 0,87 (0,96) | 1,00 (1,00) | 1,6 s |
+| Qwen3-4B | 0,97 | 0,55 (0,63) | 0,88 (0,98) | 3,0 s* |
+| Qwen3.5-4B | 0,62 | 0,78 (0,79) | 0,99 (0,99) | 5,7 s* |
+| Qwen3-1.7B | 0,88 | 0,47 (0,51) | 0,54 (0,60) | 1,4 s* |
+| SmolLM3-3B | 0,71 | 0,44 (0,52) | 0,72 (0,77) | 4,1 s* |
+
+\* débit par item d'un lot de 16 sur T4, pas un temps de réponse unitaire.
+- Rappel sur les réponses d'élève fausses : Qwen3.5-4B 0,99 · Qwen3-4B 0,96 ·
+  SmolLM3 0,52 · Qwen3-1.7B 0,16.
+- Qwen3-4B en résolution au BAC : 0,30.
+
+**Échecs / non fait — et pièges du scoreur corrigés en route**
+- `gemini-3.5-flash` (modèle principal de production) : 503 « high demand »
+  toute la journée, **non mesuré**. La référence est `gemini-flash-lite-latest`
+  (modèle de secours de production).
+- Qwen3.5-4B : 78 générations sur 300 coupées par la limite de 1 024 jetons du
+  banc — son score de génération mesure autant sa verbosité que sa compétence.
+- Le premier filtre d'accents (taux < 1,5 %, repris de `generer_banque.py`)
+  rejetait des explications de référence justes (textes mathématiques) : il
+  a été remplacé par un vocabulaire tiré des textes validés et une proportion
+  de mots fautifs. L'appariement des nombres acceptait 311,42 pour 312,42 et
+  « -7^7 » pour « 7^7 » : corrigé (tolérance d'une unité, appariement un pour
+  un). Chaque correction a été vérifiée sur le contrôle (100 %).
+- `pkill -f "banc.py interroger"` a tué le shell qui le lançait — le piège
+  est déjà décrit dans CLAUDE.md, et il a été payé une seconde fois.
+
+**Décision proposée (en attente du porteur)** : partir de **Qwen3.5-4B** — le
+format s'apprend, le raisonnement beaucoup moins — après un essai court de
+QLoRA sur T4 pour vérifier que son architecture hybride s'y prête ; à défaut,
+Qwen3-4B.
+
+**Vérifications**
+- Autotest du scoreur : ✅ 100 % · notebook 05 régénéré et exécuté : ✅
+
+---
+
 ## 2026-09-25 — [Phase 2] Premier jet du jeu d'entraînement ; phase 3 préparée
 
 **Auteur** Claude Code · **Commits** `c727bb6`, `32fade1`, `73bee73`

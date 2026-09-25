@@ -222,6 +222,19 @@ for modele, m in r["modeles"].items():
         lignes.append(ligne)
 pd.DataFrame(lignes).set_index(["tâche", "modèle"]).sort_index()"""))
 
+c.append(md("""### 6 bis. Réponses coupées par la limite de jetons du banc"""))
+
+c.append(code("""lignes = []
+for modele, rep in reponses.items():
+    if not modele.startswith("hf:"):
+        continue
+    par_tache = {}
+    for id_, e in rep.items():
+        tache = next(i["tache"] for i in jeu if i["id"] == id_)
+        par_tache.setdefault(tache, []).append(e.get("jetons_sortie", 0) >= 1024)
+    lignes.append({"modèle": modele, **{t: f"{sum(v)} / {len(v)}" for t, v in sorted(par_tache.items())}})
+pd.DataFrame(lignes).set_index("modèle")"""))
+
 c.append(md("""---
 ## 7. Thèmes réservés
 
@@ -239,6 +252,32 @@ for modele, m in r["modeles"].items():
     lignes.append({"modèle": modele, "thèmes réservés": g["themes_reserves"]["taux"],
                    "n réservés": g["themes_reserves"]["n"], "tous thèmes": g["utilisable"]["taux"]})
 pd.DataFrame(lignes).set_index("modèle")"""))
+
+c.append(md("""---
+## Lecture des résultats (collecte du 2026-09-25)
+
+**Deux profils opposés parmi les 4 B.** Qwen3-4B soigne la forme : c'est le
+meilleur en génération, mais il ne résout juste qu'environ six exercices
+calculés sur dix, et moins d'un tiers au BAC. Qwen3.5-4B raisonne mieux —
+résolution et correction au niveau de Gemini flash-lite sur les items
+communs, compte tenu des intervalles — mais sa génération est plombée par sa
+verbosité : une réponse sur quatre dépasse la limite de 1 024 jetons du banc.
+
+**Ce qui départage : ce que l'affinage sait corriger.** Un format (JSON
+compact, pas de gras dans une valeur, explication plus courte) s'apprend en
+quelques milliers d'exemples ; c'est précisément ce que contient le jeu de la
+phase 2. Une compétence de raisonnement mathématique, beaucoup moins. D'où la
+recommandation de la phase 1 : **partir de Qwen3.5-4B**, sous réserve qu'un
+essai court sur Kaggle confirme que son architecture (attention hybride) se
+laisse affiner en QLoRA sur un T4 — sinon Qwen3-4B.
+
+**Les petits modèles sont écartés.** Qwen3-1.7B laisse passer 84 % des
+réponses fausses d'élève en correction ; SmolLM3-3B est en dessous des Qwen
+sur les trois tâches.
+
+**Rien n'est encore gagné.** Aucun modèle ouvert n'atteint, sans
+entraînement, les seuils de la phase 4. C'est le point de départ que le
+modèle affiné devra dépasser, sur ce même banc."""))
 
 c.append(md("""---
 ## 8. Limites
@@ -268,6 +307,11 @@ c.append(md("""---
   qui exigent un accent, élisions sans apostrophe, mots-outils anglais). Ils
   sont validés par l'autotest de la section 1 et par un contrôle manuel sur
   le plancher, pas par une annotation humaine systématique.
+- **Les modèles ouverts sont bridés à 1 024 jetons de réponse** (Gemini :
+  8 192 en production). Une réponse coupée est un JSON incomplet, donc non
+  conforme. Qwen3.5-4B, le plus bavard, en perd 78 en génération : son score
+  de génération mesure autant sa verbosité que sa compétence. La section 6
+  bis compte ces troncatures modèle par modèle.
 - **Gemini n'est mesuré que sur un sous-échantillon**, et sa disponibilité
   varie : `gemini-3.5-flash` renvoyait des erreurs 503 (« high demand ») le
   jour de la collecte. Le modèle mesuré est indiqué dans chaque ligne."""))
