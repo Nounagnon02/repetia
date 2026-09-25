@@ -1,0 +1,62 @@
+{
+  "_note": "Thème du catalogue illustré par chaque modèle d'énoncé des générateurs (backend/src/data/generateurs.ts), par niveau. null : aucun thème du catalogue de ce niveau ne correspond sans ambiguïté — l'exercice sert alors à la résolution et à la correction, jamais à apprendre « générer sur tel thème ». Établi le 2026-09-25 en lisant un énoncé de chaque modèle ; construire_sft.py vérifie que chaque thème cité existe au catalogue.",
+  "6ème|Mathématiques": {
+    "additionDecimaux": "Nombres entiers et décimaux",
+    "proportionnalitePrix": "Proportionnalité et pourcentages",
+    "perimetreAire": "Périmètres et aires"
+  },
+  "6ème|Physique-Chimie-Technologie": {
+    "conversionUnites": null,
+    "ecartTemperature": null,
+    "volumeDeplacement": "Mesures de masse et volume"
+  },
+  "5ème|Mathématiques": {
+    "sommeRelatifs": "Nombres relatifs",
+    "additionDecimaux": null,
+    "additionFractions": "Fractions et opérations",
+    "pourcentageRemise": null
+  },
+  "5ème|Physique-Chimie-Technologie": {
+    "masseVolumique": null,
+    "conversionUnites": null,
+    "circuitSerie": "Circuit électrique en série et dérivation",
+    "vitesseMoyenne": null
+  },
+  "4ème|Mathématiques": {
+    "produitPuissances": null,
+    "sommeRelatifs": null,
+    "developpement": "Calcul littéral et équations simples",
+    "pythagore": "Théorème de Pythagore (initiation)"
+  },
+  "4ème|Physique-Chimie-Technologie": {
+    "loiOhm": null,
+    "moleculeAtomes": "Transformations chimiques et atomes",
+    "poidsMasse": null,
+    "vitesseMoyenne": null
+  },
+  "BEPC|Mathématiques": {
+    "equationDeuxMembres": "Équations du 1er degré",
+    "produitPuissances": "Fractions et puissances",
+    "identitesRemarquables": "Calcul littéral (développer / factoriser)",
+    "thales": "Théorème de Thalès",
+    "pythagore": "Théorème de Pythagore"
+  },
+  "BEPC|Physique-Chimie-Technologie": {
+    "circuitSerie": "Circuits électriques",
+    "loiOhm": "Loi d’Ohm et résistances",
+    "puissanceElectrique": null,
+    "poidsMasse": "Forces et équilibre"
+  },
+  "BAC|Mathématiques": {
+    "derivee": "Dérivation et étude de fonctions",
+    "equationDeuxMembres": null,
+    "secondDegre": "Équations et inéquations (2nd degré)",
+    "suiteArithmetique": "Suites numériques"
+  },
+  "BAC|Physique-Chimie-Technologie": {
+    "concentrationMolaire": null,
+    "vitesseMoyenne": "Mécanique du point (cinématique et dynamique)",
+    "energieCinetique": "Travail, énergie et puissance",
+    "puissanceElectrique": null
+  }
+}

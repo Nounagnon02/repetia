@@ -22,6 +22,13 @@ export type Difficulte = 'facile' | 'moyen' | 'examen';
 
 /** Un modèle d'énoncé, décliné en `variantes` exercices distincts. */
 interface Modele {
+  /**
+   * Identifiant stable (le nom de la constante). Le jeu d'entraînement de
+   * `recherche/` s'en sert pour rattacher chaque exercice calculé au thème
+   * du catalogue qu'il illustre — le générateur, lui, est choisi par
+   * (niveau, matière) et ignore le thème.
+   */
+  nom: string;
   variantes: number;
   produire: (i: number) => ExerciceBanque;
 }
@@ -72,6 +79,7 @@ const PRENOMS = [
 
 /** Addition de décimaux — 6ème. */
 const additionDecimaux: Modele = {
+  nom: 'additionDecimaux',
   variantes: 24,
   produire(i) {
     const a = 12 + i * 7;
@@ -100,6 +108,7 @@ const additionDecimaux: Modele = {
 
 /** Périmètre et aire d'un rectangle — 6ème. */
 const perimetreAire: Modele = {
+  nom: 'perimetreAire',
   variantes: 30,
   produire(i) {
     const L = 8 + (i % 10);
@@ -125,6 +134,7 @@ const perimetreAire: Modele = {
 
 /** Proportionnalité et prix — 6ème. */
 const proportionnalitePrix: Modele = {
+  nom: 'proportionnalitePrix',
   variantes: 28,
   produire(i) {
     const unite = 50 * (3 + (i % 8));
@@ -152,6 +162,7 @@ const proportionnalitePrix: Modele = {
 
 /** Somme de deux nombres relatifs — 5ème. */
 const sommeRelatifs: Modele = {
+  nom: 'sommeRelatifs',
   variantes: 32,
   produire(i) {
     const a = -(3 + (i % 12));
@@ -178,6 +189,7 @@ const sommeRelatifs: Modele = {
 
 /** Addition de deux fractions — 5ème. */
 const additionFractions: Modele = {
+  nom: 'additionFractions',
   variantes: 24,
   produire(i) {
     const paires = [
@@ -214,6 +226,7 @@ const additionFractions: Modele = {
 
 /** Pourcentage et remise — 5ème. */
 const pourcentageRemise: Modele = {
+  nom: 'pourcentageRemise',
   variantes: 72,
   produire(i) {
     // Les deux paramètres doivent défiler à des rythmes différents, sinon
@@ -241,6 +254,7 @@ const pourcentageRemise: Modele = {
 
 /** Produit de puissances de même base — 4ème. */
 const produitPuissances: Modele = {
+  nom: 'produitPuissances',
   variantes: 100,
   produire(i) {
     const base = cycle([2, 3, 5, 10, 7], i);
@@ -264,6 +278,7 @@ const produitPuissances: Modele = {
 
 /** Développement et réduction — 4ème. */
 const developpement: Modele = {
+  nom: 'developpement',
   variantes: 140,
   produire(i) {
     // Chaque paramètre consomme sa propre tranche de l'index : sans cela les
@@ -297,6 +312,7 @@ const developpement: Modele = {
 
 /** Théorème de Pythagore sur un triplet entier — 4ème et 3ème. */
 const pythagore: Modele = {
+  nom: 'pythagore',
   variantes: 24,
   produire(i) {
     // Uniquement des triplets PRIMITIFS : (6,8,10) est le double de (3,4,5),
@@ -327,6 +343,7 @@ const pythagore: Modele = {
 
 /** Équation du premier degré à coefficients des deux côtés — 3ème. */
 const equationDeuxMembres: Modele = {
+  nom: 'equationDeuxMembres',
   variantes: 40,
   produire(i) {
     const a = 3 + (i % 6);
@@ -357,6 +374,7 @@ const equationDeuxMembres: Modele = {
 
 /** Identités remarquables — 3ème. */
 const identitesRemarquables: Modele = {
+  nom: 'identitesRemarquables',
   variantes: 26,
   produire(i) {
     const a = 1 + (i % 9);
@@ -379,6 +397,7 @@ const identitesRemarquables: Modele = {
 
 /** Théorème de Thalès — 3ème. */
 const thales: Modele = {
+  nom: 'thales',
   variantes: 24,
   produire(i) {
     const k = 2 + (i % 4);
@@ -406,6 +425,7 @@ const thales: Modele = {
 
 /** Équation du second degré — Terminale. */
 const secondDegre: Modele = {
+  nom: 'secondDegre',
   variantes: 30,
   produire(i) {
     const r1 = -5 + (i % 8);
@@ -437,6 +457,7 @@ const secondDegre: Modele = {
 
 /** Dérivée d'un polynôme — Terminale. */
 const derivee: Modele = {
+  nom: 'derivee',
   variantes: 32,
   produire(i) {
     const a = 1 + (i % 5);
@@ -465,6 +486,7 @@ const derivee: Modele = {
 
 /** Suite arithmétique — Terminale. */
 const suiteArithmetique: Modele = {
+  nom: 'suiteArithmetique',
   variantes: 28,
   produire(i) {
     const u0 = 2 + (i % 10);
@@ -495,6 +517,7 @@ const suiteArithmetique: Modele = {
 
 /** Volume par déplacement d'eau — 6ème. */
 const volumeDeplacement: Modele = {
+  nom: 'volumeDeplacement',
   variantes: 26,
   produire(i) {
     const v1 = 20 + 5 * (i % 12);
@@ -520,6 +543,7 @@ const volumeDeplacement: Modele = {
 
 /** Masse volumique — 5ème. */
 const masseVolumique: Modele = {
+  nom: 'masseVolumique',
   variantes: 24,
   produire(i) {
     const matieres = [
@@ -548,6 +572,7 @@ const masseVolumique: Modele = {
 
 /** Loi d'Ohm — 4ème et 3ème. */
 const loiOhm: Modele = {
+  nom: 'loiOhm',
   variantes: 72,
   produire(i) {
     const r = 10 * (1 + (i % 12));
@@ -573,6 +598,7 @@ const loiOhm: Modele = {
 
 /** Poids et masse — 4ème. */
 const poidsMasse: Modele = {
+  nom: 'poidsMasse',
   variantes: 22,
   produire(i) {
     const m = 5 * (1 + (i % 15));
@@ -601,6 +627,7 @@ const poidsMasse: Modele = {
 
 /** Puissance et énergie électriques — 3ème. */
 const puissanceElectrique: Modele = {
+  nom: 'puissanceElectrique',
   variantes: 128,
   produire(i) {
     const p = 25 * (1 + (i % 16));
@@ -630,6 +657,7 @@ const puissanceElectrique: Modele = {
 
 /** Concentration molaire — Terminale. */
 const concentrationMolaire: Modele = {
+  nom: 'concentrationMolaire',
   variantes: 24,
   produire(i) {
     const especes = [
@@ -662,6 +690,7 @@ const concentrationMolaire: Modele = {
 
 /** Conversions d'unités — 6ème. */
 const conversionUnites: Modele = {
+  nom: 'conversionUnites',
   variantes: 60,
   produire(i) {
     const familles = [
@@ -691,6 +720,7 @@ const conversionUnites: Modele = {
 
 /** Écart de température — 6ème. */
 const ecartTemperature: Modele = {
+  nom: 'ecartTemperature',
   variantes: 56,
   produire(i) {
     const matin = 18 + (i % 8);
@@ -715,6 +745,7 @@ const ecartTemperature: Modele = {
 
 /** Résistances en série — 5ème et 3ème. */
 const circuitSerie: Modele = {
+  nom: 'circuitSerie',
   variantes: 64,
   produire(i) {
     const r1 = 10 * (1 + (i % 8));
@@ -741,6 +772,7 @@ const circuitSerie: Modele = {
 
 /** Vitesse moyenne — 5ème, 4ème et Terminale. */
 const vitesseMoyenne: Modele = {
+  nom: 'vitesseMoyenne',
   variantes: 30,
   produire(i) {
     const trajets = [
@@ -770,6 +802,7 @@ const vitesseMoyenne: Modele = {
 
 /** Composition d'une molécule — 4ème. */
 const moleculeAtomes: Modele = {
+  nom: 'moleculeAtomes',
   variantes: 54,
   produire(i) {
     const molecules = [
@@ -807,6 +840,7 @@ const moleculeAtomes: Modele = {
 
 /** Énergie cinétique — Terminale. */
 const energieCinetique: Modele = {
+  nom: 'energieCinetique',
   variantes: 56,
   produire(i) {
     const m = 500 * (1 + (i % 8));
@@ -946,6 +980,29 @@ export function nombreDeVariantes(matiere: string, theme: string, niveau: string
   const g = trouver(matiere, theme, niveau);
   if (!g) return 0;
   return g.modeles[difficulte].reduce((total, m) => total + m.variantes, 0);
+}
+
+/**
+ * Nom du modèle d'énoncé qui produit l'exercice d'indice `index` (même
+ * parcours que `exerciceGenere`), ou `null` si la matière n'est pas couverte.
+ */
+export function modeleDeLExercice(
+  matiere: string,
+  theme: string,
+  niveau: string,
+  difficulte: Difficulte,
+  index: number,
+): string | null {
+  const g = trouver(matiere, theme, niveau);
+  if (!g || !g.modeles[difficulte].length) return null;
+  const modeles = g.modeles[difficulte];
+  const total = modeles.reduce((t, m) => t + m.variantes, 0);
+  let reste = ((index % total) + total) % total;
+  for (const modele of modeles) {
+    if (reste < modele.variantes) return modele.nom;
+    reste -= modele.variantes;
+  }
+  return modeles[0].nom;
 }
 
 /**
