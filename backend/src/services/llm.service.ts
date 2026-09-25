@@ -34,8 +34,12 @@ N'utilise JAMAIS de LaTeX. Pas de $, pas de \\sqrt, pas de \\frac, pas de \\time
 
 /**
  * Persona du répétiteur, adaptée à la matière et enrichie par le RAG du programme officiel.
+ *
+ * Exportée, comme les deux consignes ci-dessous, pour que le banc d'évaluation
+ * et le jeu d'entraînement de `recherche/` interrogent un modèle avec les
+ * prompts EXACTS de production (`recherche/src/exporter_banc.js`).
  */
-function promptSysteme(matiere: string, niveau: string = 'BEPC', theme?: string): string {
+export function promptSysteme(matiere: string, niveau: string = 'BEPC', theme?: string): string {
   const { examen, public: public_ } = niveauPar(niveau);
   const base = `Tu es RépétIA, un répétiteur particulier bienveillant pour des ${public_} béninois qui préparent ${examen}. Tu enseignes ${matiere} du programme béninois. Tu expliques toujours PAS À PAS, en français simple et clair, avec encouragements. Tu ne donnes jamais seulement la réponse : tu fais comprendre la démarche. Quand c'est utile, tu prends des exemples proches du quotidien au Bénin.
 
@@ -45,6 +49,17 @@ de séparation.`;
 
   const promptComplet = MATIERES_SCIENTIFIQUES.test(matiere) ? base + REGLE_MATHS : base;
   return RagService.enrichirPromptSysteme(promptComplet, matiere, theme, niveau);
+}
+
+/** Consigne de génération d'un exercice, telle qu'envoyée au modèle. */
+export function consigneGeneration(theme: string, difficulte: string, matiere: string, niveau: string): string {
+  const niveauTexte = niveauPar(niveau).programme;
+  return `Génère UN exercice de ${matiere} de niveau ${niveauTexte} sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
+}
+
+/** Consigne de correction d'une réponse d'élève, telle qu'envoyée au modèle. */
+export function consigneCorrection(enonce: string, solution: string, reponseEleve: string): string {
+  return `Voici un exercice, la solution attendue et la réponse d'un élève. Exercice : ${enonce}. Solution attendue : ${solution}. Réponse de l'élève : ${reponseEleve}. L'élève a-t-il juste (accepte les formes mathématiquement équivalentes, par exemple 0,5 et 1/2) ? Réponds UNIQUEMENT en JSON valide, sans Markdown : {"correct":true/false,"verdict":"phrase courte et encourageante","explication":"la bonne démarche pas à pas, en français simple et en texte brut"}.`;
 }
 
 /** Matière par défaut quand l'appelant n'en fournit pas (chat libre). */
@@ -185,8 +200,7 @@ export class LlmService {
     matiere: string = MATIERE_GENERIQUE,
     niveau: string = 'BEPC',
   ): Promise<ExerciceGenere> {
-    const niveauTexte = niveauPar(niveau).programme;
-    const prompt = `Génère UN exercice de ${matiere} de niveau ${niveauTexte} sur le thème "${theme}". Difficulté : ${difficulte}. Réponds UNIQUEMENT avec un objet JSON valide, sans texte autour ni balises Markdown : {"enonce":"...","solution":"...","explication":"..."}. enonce = énoncé clair et court, en texte brut ; solution = réponse finale concise ; explication = résolution détaillée, étape par étape, en texte brut.`;
+    const prompt = consigneGeneration(theme, difficulte, matiere, niveau);
 
     const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere, niveau, theme));
 
@@ -213,7 +227,7 @@ export class LlmService {
     matiere: string = MATIERE_GENERIQUE,
     niveau: string = 'BEPC',
   ): Promise<Correction> {
-    const prompt = `Voici un exercice, la solution attendue et la réponse d'un élève. Exercice : ${enonce}. Solution attendue : ${solution}. Réponse de l'élève : ${reponseEleve}. L'élève a-t-il juste (accepte les formes mathématiquement équivalentes, par exemple 0,5 et 1/2) ? Réponds UNIQUEMENT en JSON valide, sans Markdown : {"correct":true/false,"verdict":"phrase courte et encourageante","explication":"la bonne démarche pas à pas, en français simple et en texte brut"}.`;
+    const prompt = consigneCorrection(enonce, solution, reponseEleve);
 
     const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1, promptSysteme(matiere, niveau));
     if (resultat) {

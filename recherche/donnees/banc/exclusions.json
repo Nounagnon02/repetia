@@ -1,0 +1,3701 @@
+{
+  "themes_reserves": [
+    {
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "theme": "Théorème de Pythagore"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "theme": "Forces et équilibre"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "theme": "Hygiène et maladies"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "theme": "Lecture d’image et de document"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "theme": "Lettre et écrits fonctionnels"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "theme": "Present and past tenses"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "theme": "Pronombres y preposiciones"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "theme": "Wortschatz des Alltags"
+    },
+    {
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "theme": "Environnement et risques naturels"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "theme": "Nombres complexes"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "theme": "Ondes lumineuses et optique"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "theme": "Communication nerveuse"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "theme": "L’État, le droit et la justice"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Français",
+      "theme": "Le théâtre (texte et représentation)"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "theme": "Reading comprehension (advanced)"
+    },
+    {
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "theme": "Population, urbanisation et migration"
+    },
+    {
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "theme": "Statistiques et tableaux"
+    },
+    {
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "theme": "Nombres relatifs"
+    },
+    {
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "theme": "Calcul littéral et équations simples"
+    }
+  ],
+  "exercices": [
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 1,
+      "empreinte_enonce": "80d6ceb07c07"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 102,
+      "empreinte_enonce": "6f294a43c3c0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 48,
+      "empreinte_enonce": "a3f508c79603"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 113,
+      "empreinte_enonce": "ad1b5a359eb6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 111,
+      "empreinte_enonce": "ec066aef960c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 55,
+      "empreinte_enonce": "f5adeb8df9db"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 47,
+      "empreinte_enonce": "e90ec379ab3c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 40,
+      "empreinte_enonce": "90a3af07ad43"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 56,
+      "empreinte_enonce": "8ac8cc223946"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 5,
+      "empreinte_enonce": "d82291907e61"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 37,
+      "empreinte_enonce": "a16c810d6884"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 11,
+      "empreinte_enonce": "34789ba2113b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 2,
+      "empreinte_enonce": "23256c9312e6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 7,
+      "empreinte_enonce": "4922fa2a2a5b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 62,
+      "empreinte_enonce": "ab801dc94b09"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 3,
+      "empreinte_enonce": "22c71f1eb132"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 36,
+      "empreinte_enonce": "adbc95be19fd"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 16,
+      "empreinte_enonce": "413ee10ec6c7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 46,
+      "empreinte_enonce": "d542aeaf6479"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 57,
+      "empreinte_enonce": "b14b39413d67"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 16,
+      "empreinte_enonce": "206b18e0d087"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 52,
+      "empreinte_enonce": "3eeee76168b2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 27,
+      "empreinte_enonce": "71c356799122"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 65,
+      "empreinte_enonce": "b243ab8ce2d1"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 10,
+      "empreinte_enonce": "810f145c6164"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 8,
+      "empreinte_enonce": "1b794d1b7b0c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 69,
+      "empreinte_enonce": "e0dca80917d5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 58,
+      "empreinte_enonce": "f7dd749370e0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 20,
+      "empreinte_enonce": "0ab414919da2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 30,
+      "empreinte_enonce": "964fcb048c7c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 24,
+      "empreinte_enonce": "60dbc8ed9a38"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 77,
+      "empreinte_enonce": "283350b5c806"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 47,
+      "empreinte_enonce": "eb3917676f6a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 52,
+      "empreinte_enonce": "c0baf0c0ac7a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 118,
+      "empreinte_enonce": "2bf73b050df9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 23,
+      "empreinte_enonce": "6f82e1ad9e2c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 103,
+      "empreinte_enonce": "3c75135bdd76"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 134,
+      "empreinte_enonce": "d36c802a39c8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 21,
+      "empreinte_enonce": "5e68bc3a9ce3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 6,
+      "empreinte_enonce": "49b680d6d852"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 136,
+      "empreinte_enonce": "deb5b20da266"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 83,
+      "empreinte_enonce": "f443f47c67e3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 165,
+      "empreinte_enonce": "a2b2de48019b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 169,
+      "empreinte_enonce": "e9588484c253"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 23,
+      "empreinte_enonce": "3aa6eaf532c3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 150,
+      "empreinte_enonce": "0017ba33f9b3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 46,
+      "empreinte_enonce": "f38836e265fc"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 21,
+      "empreinte_enonce": "db5a218b279f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 105,
+      "empreinte_enonce": "b900e0ac3d26"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 29,
+      "empreinte_enonce": "0ed284968522"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 26,
+      "empreinte_enonce": "dadd93152533"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 73,
+      "empreinte_enonce": "336ea0c6ff72"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 28,
+      "empreinte_enonce": "6941f7533e50"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 58,
+      "empreinte_enonce": "15106ac81f90"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 100,
+      "empreinte_enonce": "1a36f041222f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 130,
+      "empreinte_enonce": "34852efb786d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 21,
+      "empreinte_enonce": "85bc0d512889"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 20,
+      "empreinte_enonce": "655609069d84"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 99,
+      "empreinte_enonce": "21848e431689"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BEPC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 83,
+      "empreinte_enonce": "3b18d0d03e4c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 5,
+      "empreinte_enonce": "28dfd3562eb0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 50,
+      "empreinte_enonce": "38c3b20ef2ed"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 34,
+      "empreinte_enonce": "034886670da7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 28,
+      "empreinte_enonce": "2a194748b54b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 27,
+      "empreinte_enonce": "20dcb5c4fe46"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 67,
+      "empreinte_enonce": "e356d96f8e93"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 22,
+      "empreinte_enonce": "0115ac526a27"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 66,
+      "empreinte_enonce": "1987ebc7a533"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 39,
+      "empreinte_enonce": "d99ce9abaf81"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 65,
+      "empreinte_enonce": "459ab5fc0e8c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 24,
+      "empreinte_enonce": "708157454efe"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 49,
+      "empreinte_enonce": "4154b0bfa89a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 29,
+      "empreinte_enonce": "ec5ecb2239c5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 54,
+      "empreinte_enonce": "cc47b36ae8ee"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 22,
+      "empreinte_enonce": "03c302c5c40a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 19,
+      "empreinte_enonce": "5484089de4a5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 44,
+      "empreinte_enonce": "a2c48e32d7be"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 46,
+      "empreinte_enonce": "972de2812a8e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 1,
+      "empreinte_enonce": "f1b4490b1873"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 45,
+      "empreinte_enonce": "b8bf340ec634"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 19,
+      "empreinte_enonce": "9a57eaa16bb3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 39,
+      "empreinte_enonce": "c885ecc58dde"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 8,
+      "empreinte_enonce": "d454eb6869f4"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 13,
+      "empreinte_enonce": "56e2666880fb"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 44,
+      "empreinte_enonce": "5037c6e6791c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 53,
+      "empreinte_enonce": "ded7c0080b53"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 28,
+      "empreinte_enonce": "88c845e3f8fe"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 6,
+      "empreinte_enonce": "c0fc2edeba1d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 37,
+      "empreinte_enonce": "58d16807ea1d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 41,
+      "empreinte_enonce": "11782f021c4d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 25,
+      "empreinte_enonce": "1e3c36363b2b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 45,
+      "empreinte_enonce": "ec1fa8437c10"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 24,
+      "empreinte_enonce": "d797e2fa6fc8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 8,
+      "empreinte_enonce": "5393eb16404e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 20,
+      "empreinte_enonce": "5e77660d7ee8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 53,
+      "empreinte_enonce": "2b9934be4384"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 50,
+      "empreinte_enonce": "32d01b8d7381"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 34,
+      "empreinte_enonce": "68c59e539dd8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 11,
+      "empreinte_enonce": "e43d87e894b9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 6,
+      "empreinte_enonce": "06f9cf6977bc"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 3,
+      "empreinte_enonce": "e222dc0f18aa"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 28,
+      "empreinte_enonce": "3cb61e5a2003"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 60,
+      "empreinte_enonce": "b9a01f6fbf67"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 49,
+      "empreinte_enonce": "0e90ddbeafc2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 23,
+      "empreinte_enonce": "b65ffa94eb3a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 17,
+      "empreinte_enonce": "58164e9aede4"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 4,
+      "empreinte_enonce": "ab59180e606a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 20,
+      "empreinte_enonce": "66ffeb75cadb"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 46,
+      "empreinte_enonce": "cc3e2aad2ec7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 69,
+      "empreinte_enonce": "fecbc482956e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 42,
+      "empreinte_enonce": "9c0951c9dc09"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 94,
+      "empreinte_enonce": "75a1a9d71cb8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 151,
+      "empreinte_enonce": "79f7cfff5a10"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 199,
+      "empreinte_enonce": "08f2a175de40"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 196,
+      "empreinte_enonce": "e252949be9fb"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 93,
+      "empreinte_enonce": "ca80306085b1"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 141,
+      "empreinte_enonce": "d74b40227c5c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 148,
+      "empreinte_enonce": "714992e8a4a8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 139,
+      "empreinte_enonce": "156aa0556b9b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "BAC",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 106,
+      "empreinte_enonce": "d9c17d4168a8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 30,
+      "empreinte_enonce": "946ec34f4ca6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 44,
+      "empreinte_enonce": "78695a6dbdc5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 36,
+      "empreinte_enonce": "348777d0acf3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 21,
+      "empreinte_enonce": "b349ca63c87d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 22,
+      "empreinte_enonce": "f4c1c37dc141"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 13,
+      "empreinte_enonce": "00cd97cc9bc8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 40,
+      "empreinte_enonce": "e637b00d3766"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 45,
+      "empreinte_enonce": "d0669d93fe41"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 51,
+      "empreinte_enonce": "88818c36a51b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 43,
+      "empreinte_enonce": "3db8656303e2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 25,
+      "empreinte_enonce": "f64e687bc19a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 23,
+      "empreinte_enonce": "3ac86ab7f168"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 26,
+      "empreinte_enonce": "19758190fb6e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 47,
+      "empreinte_enonce": "c67736f7c2de"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 9,
+      "empreinte_enonce": "cb7eabad87a6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 12,
+      "empreinte_enonce": "135a6185db8c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 33,
+      "empreinte_enonce": "dd9868a3713f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 53,
+      "empreinte_enonce": "13e992cf4611"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 10,
+      "empreinte_enonce": "d997e8c8e351"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 45,
+      "empreinte_enonce": "7dda262cc00f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 15,
+      "empreinte_enonce": "c465d58b5245"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 36,
+      "empreinte_enonce": "44f5b975c9b8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 57,
+      "empreinte_enonce": "5075da5458b2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 50,
+      "empreinte_enonce": "491342ae2902"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 29,
+      "empreinte_enonce": "9d9d47801975"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 34,
+      "empreinte_enonce": "c0483dac03df"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 9,
+      "empreinte_enonce": "7d98f6c13b33"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 32,
+      "empreinte_enonce": "98dffcee9606"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 10,
+      "empreinte_enonce": "98fd1e4ef44c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 45,
+      "empreinte_enonce": "1259328e7f64"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 1,
+      "empreinte_enonce": "58d61f6bf0de"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 0,
+      "empreinte_enonce": "5872f9ddc508"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 48,
+      "empreinte_enonce": "abcbb59c2ce7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 70,
+      "empreinte_enonce": "101c757d5a0f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 26,
+      "empreinte_enonce": "1b9af9ef187a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 46,
+      "empreinte_enonce": "0756e3f4fd97"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 21,
+      "empreinte_enonce": "0a30f2eb6108"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 51,
+      "empreinte_enonce": "8a669b5c1723"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 71,
+      "empreinte_enonce": "4fb62e2da2b5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 23,
+      "empreinte_enonce": "c42f0dfcbbc5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 36,
+      "empreinte_enonce": "76638ce50f17"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 59,
+      "empreinte_enonce": "3a23310a9a56"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 4,
+      "empreinte_enonce": "a45e69d65e19"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 32,
+      "empreinte_enonce": "92cba68b9ca6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 11,
+      "empreinte_enonce": "332eb131fe38"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 14,
+      "empreinte_enonce": "54e782bc852e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 34,
+      "empreinte_enonce": "f7e4c98cce52"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 2,
+      "empreinte_enonce": "8d10a2a6bff0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 13,
+      "empreinte_enonce": "5cab9fb3ce5e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 78,
+      "empreinte_enonce": "67fffa442ec1"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 49,
+      "empreinte_enonce": "33d720fb18fc"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 23,
+      "empreinte_enonce": "39f5d5f1410f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 52,
+      "empreinte_enonce": "9c4ea34d3317"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 63,
+      "empreinte_enonce": "24c8cd32410d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 68,
+      "empreinte_enonce": "48270da875b1"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 18,
+      "empreinte_enonce": "15410c563d38"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 6,
+      "empreinte_enonce": "9af4dba06add"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 64,
+      "empreinte_enonce": "a4f80e4298ba"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 26,
+      "empreinte_enonce": "5ae37af5035a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "6ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 12,
+      "empreinte_enonce": "d1d826b981b8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 7,
+      "empreinte_enonce": "bac868d30086"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 12,
+      "empreinte_enonce": "ade4ff98c431"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 30,
+      "empreinte_enonce": "d91a7640e20c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 40,
+      "empreinte_enonce": "1c911ce06f8a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 51,
+      "empreinte_enonce": "60da436c95c9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 41,
+      "empreinte_enonce": "3fef014ccdaf"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 16,
+      "empreinte_enonce": "19ed1501a43c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 48,
+      "empreinte_enonce": "b93b2521d0c8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 31,
+      "empreinte_enonce": "2f61c6cce1c5"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 25,
+      "empreinte_enonce": "a748fd454e3e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 48,
+      "empreinte_enonce": "21d974f3da55"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 35,
+      "empreinte_enonce": "197c2d3c7985"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 4,
+      "empreinte_enonce": "13498a9db70e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 16,
+      "empreinte_enonce": "2b24baa5950b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 37,
+      "empreinte_enonce": "2fa202d91573"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 14,
+      "empreinte_enonce": "3ab0a77b6e67"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 11,
+      "empreinte_enonce": "179b11c9c368"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 18,
+      "empreinte_enonce": "e79bf095297c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 30,
+      "empreinte_enonce": "4d9a23ae8af7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 9,
+      "empreinte_enonce": "44b959cd2ea0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 39,
+      "empreinte_enonce": "1403cf8ffc67"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 23,
+      "empreinte_enonce": "48592a787320"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 61,
+      "empreinte_enonce": "5609aa3b1061"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 66,
+      "empreinte_enonce": "7c57232c767a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 57,
+      "empreinte_enonce": "2592f08f51ab"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 25,
+      "empreinte_enonce": "2e1f91b4bb25"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 20,
+      "empreinte_enonce": "d1c9798989df"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 32,
+      "empreinte_enonce": "edbf804bcac6"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 12,
+      "empreinte_enonce": "7bdb92900bea"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 8,
+      "empreinte_enonce": "8051eddadc7a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 64,
+      "empreinte_enonce": "d12cdbc57755"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 5,
+      "empreinte_enonce": "7e244a6321df"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 6,
+      "empreinte_enonce": "cd380d85eea1"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 39,
+      "empreinte_enonce": "7e03d0f4adb2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 11,
+      "empreinte_enonce": "b77cab77136e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 1,
+      "empreinte_enonce": "5e27f94cf603"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 20,
+      "empreinte_enonce": "8a7b2e7133f9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 43,
+      "empreinte_enonce": "9345e686dfca"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 17,
+      "empreinte_enonce": "b52bf251de6b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 60,
+      "empreinte_enonce": "2338d991571b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 12,
+      "empreinte_enonce": "d60e07c49bd2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 43,
+      "empreinte_enonce": "85deddf1db76"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 74,
+      "empreinte_enonce": "88a92f16f41c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 7,
+      "empreinte_enonce": "745d7fd3cb62"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 0,
+      "empreinte_enonce": "4f056101451b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 49,
+      "empreinte_enonce": "6ec69fce9c32"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 85,
+      "empreinte_enonce": "3587be8417d9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 5,
+      "empreinte_enonce": "5c43cd97f024"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 26,
+      "empreinte_enonce": "d30b1ecb9e7f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 56,
+      "empreinte_enonce": "cbab7337e33d"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 59,
+      "empreinte_enonce": "16ef97ba0bf2"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 24,
+      "empreinte_enonce": "efa8eed8b416"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 70,
+      "empreinte_enonce": "7569e4094281"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 78,
+      "empreinte_enonce": "10f78afe1661"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 85,
+      "empreinte_enonce": "e62e5feb6dec"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 83,
+      "empreinte_enonce": "0580d583b295"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 81,
+      "empreinte_enonce": "3c6907bdbd1e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 5,
+      "empreinte_enonce": "243b9af1d2f8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 46,
+      "empreinte_enonce": "2613a73428d7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "5ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 55,
+      "empreinte_enonce": "1bf9ea3aa0ed"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 101,
+      "empreinte_enonce": "85b74356ac3a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 55,
+      "empreinte_enonce": "9e26e7974b70"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 9,
+      "empreinte_enonce": "2c238c7383bf"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 72,
+      "empreinte_enonce": "1b73f5a15f1e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 103,
+      "empreinte_enonce": "9e07feeb059b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 87,
+      "empreinte_enonce": "c8d84cbc98e9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 47,
+      "empreinte_enonce": "3e421e98e227"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 56,
+      "empreinte_enonce": "1c0b60d6ce83"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 120,
+      "empreinte_enonce": "186bf69f7824"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "facile",
+      "index": 76,
+      "empreinte_enonce": "70afadfe400c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 98,
+      "empreinte_enonce": "490c4876c347"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 25,
+      "empreinte_enonce": "c9e651cc16bb"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 87,
+      "empreinte_enonce": "99fee6c09d7c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 181,
+      "empreinte_enonce": "0fd78ad7a411"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 77,
+      "empreinte_enonce": "0e9005e783c3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 218,
+      "empreinte_enonce": "75bf810a28eb"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 122,
+      "empreinte_enonce": "ce87930c5dd3"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 194,
+      "empreinte_enonce": "19f48d90da88"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 138,
+      "empreinte_enonce": "1b8adafc608f"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "moyen",
+      "index": 176,
+      "empreinte_enonce": "40aff9654b51"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 35,
+      "empreinte_enonce": "3ab471e95536"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 86,
+      "empreinte_enonce": "e226996d95e7"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 71,
+      "empreinte_enonce": "3f30a6fd34b0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 141,
+      "empreinte_enonce": "60cc3d63a370"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 134,
+      "empreinte_enonce": "5d9607b1ff5b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 121,
+      "empreinte_enonce": "82b9de02748c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 93,
+      "empreinte_enonce": "910d490651f9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 92,
+      "empreinte_enonce": "4fd11696fefe"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 74,
+      "empreinte_enonce": "d3473cd40d32"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Mathématiques",
+      "difficulte": "examen",
+      "index": 128,
+      "empreinte_enonce": "8c570d4bc6e9"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 17,
+      "empreinte_enonce": "fb444a2af03c"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 64,
+      "empreinte_enonce": "c3abe034500a"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 42,
+      "empreinte_enonce": "1231cd63aebd"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 46,
+      "empreinte_enonce": "2288c6766ebf"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 62,
+      "empreinte_enonce": "ecac5e910fdd"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 74,
+      "empreinte_enonce": "42f0b200da55"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 117,
+      "empreinte_enonce": "da0b3d7d4d32"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 121,
+      "empreinte_enonce": "f5dd6c28f117"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 115,
+      "empreinte_enonce": "aa007d7d1191"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "facile",
+      "index": 68,
+      "empreinte_enonce": "16d30a1ba794"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 11,
+      "empreinte_enonce": "f47c06e034a4"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 80,
+      "empreinte_enonce": "60e2926e5530"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 83,
+      "empreinte_enonce": "294a881ba8a0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 56,
+      "empreinte_enonce": "dd6d44b76500"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 19,
+      "empreinte_enonce": "d774c4d35e23"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 16,
+      "empreinte_enonce": "0a2b780ebb94"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 91,
+      "empreinte_enonce": "2e01ca69bc33"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 32,
+      "empreinte_enonce": "ddb36ebfe630"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 27,
+      "empreinte_enonce": "8a661f88e201"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "moyen",
+      "index": 72,
+      "empreinte_enonce": "8cc4a712ca41"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 49,
+      "empreinte_enonce": "443284623da8"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 13,
+      "empreinte_enonce": "56bfa2922f73"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 2,
+      "empreinte_enonce": "9f53a47df67e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 25,
+      "empreinte_enonce": "750151876234"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 33,
+      "empreinte_enonce": "0d203045e832"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 0,
+      "empreinte_enonce": "ddeb3939f48e"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 5,
+      "empreinte_enonce": "58d2ebbd722b"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 16,
+      "empreinte_enonce": "7b5bad5c7ba0"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 39,
+      "empreinte_enonce": "673440815c76"
+    },
+    {
+      "type": "generateur",
+      "niveau": "4ème",
+      "matiere": "Physique-Chimie-Technologie",
+      "difficulte": "examen",
+      "index": 6,
+      "empreinte_enonce": "b23202b6ccc6"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Reproduction humaine",
+      "empreinte_enonce": "d9c8eabc41dc"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Organisation des plantes à fleurs",
+      "empreinte_enonce": "d3c6303277d9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "Indépendances africaines",
+      "empreinte_enonce": "76fbf197ac29"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Géologie (tectonique des plaques)",
+      "empreinte_enonce": "091d9f769c26"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "facile",
+      "theme": "Traite négrière et colonisation",
+      "empreinte_enonce": "b79173002e2f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "examen",
+      "theme": "Compréhension d’un texte argumentatif",
+      "empreinte_enonce": "7b57cf3bc06e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "examen",
+      "theme": "La vérité et la raison",
+      "empreinte_enonce": "92c9dc83006a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Translation (version and thème)",
+      "empreinte_enonce": "787ef90c2192"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "moyen",
+      "theme": "Ser y estar",
+      "empreinte_enonce": "8ce260f2554c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Respiration et circulation",
+      "empreinte_enonce": "b7ae14afd6e9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "moyen",
+      "theme": "Textverständnis",
+      "empreinte_enonce": "a777d0435898"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Indépendances africaines",
+      "empreinte_enonce": "edde6a76ea61"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "facile",
+      "theme": "Pretérito indefinido e imperfecto",
+      "empreinte_enonce": "2a0d04466458"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "moyen",
+      "theme": "Le roman et ses personnages",
+      "empreinte_enonce": "9d6190b19c7a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "moyen",
+      "theme": "Poésie et versification",
+      "empreinte_enonce": "7905d4fceed6"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "L’Afrique dans les relations internationales",
+      "empreinte_enonce": "e9ed828b0f6f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "facile",
+      "theme": "Le travail et la technique",
+      "empreinte_enonce": "71d72e1d40c6"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Reading comprehension",
+      "empreinte_enonce": "43edb7a7d946"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "facile",
+      "theme": "Le théâtre (texte et représentation)",
+      "empreinte_enonce": "9aa6655d2a2d"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "moyen",
+      "theme": "Presente de indicativo",
+      "empreinte_enonce": "3f4d784eb76a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Mondialisation et développement",
+      "empreinte_enonce": "bf9ffa2fb043"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "facile",
+      "theme": "Figures de style",
+      "empreinte_enonce": "afdfad52180a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Grandes puissances et conflits mondiaux",
+      "empreinte_enonce": "e04a272f9290"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "facile",
+      "theme": "Repérage des idées et de la structure",
+      "empreinte_enonce": "c1aa84c6650f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Prepositions and articles",
+      "empreinte_enonce": "8ab83a3808fa"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "facile",
+      "theme": "Relief, climat et végétation du Bénin",
+      "empreinte_enonce": "1d02d3c7d1f0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Grammar review (tenses, modals, passive)",
+      "empreinte_enonce": "194f373b81fd"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Respiration et circulation",
+      "empreinte_enonce": "df9f2104834b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "examen",
+      "theme": "Ser y estar",
+      "empreinte_enonce": "2275e485f17c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Traite négrière et colonisation",
+      "empreinte_enonce": "c7dd7368955f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "moyen",
+      "theme": "Le théâtre (texte et représentation)",
+      "empreinte_enonce": "2e4a41d7ad76"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Communication nerveuse",
+      "empreinte_enonce": "bcb44da7b664"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "Traite négrière et colonisation",
+      "empreinte_enonce": "38d452179581"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Prepositions and articles",
+      "empreinte_enonce": "b918a645ea2b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Direct and reported speech",
+      "empreinte_enonce": "64f05378fc00"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "examen",
+      "theme": "Orthographe et accords",
+      "empreinte_enonce": "5dee663d7d21"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "moyen",
+      "theme": "Le roman et ses personnages",
+      "empreinte_enonce": "38ab284a47f5"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Future and conditionals",
+      "empreinte_enonce": "325c3f7211e9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Schriftlicher Ausdruck",
+      "empreinte_enonce": "50115c894dbd"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Le Bénin de 1960 à nos jours",
+      "empreinte_enonce": "176253fbe10b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Immunologie",
+      "empreinte_enonce": "ef5680e9b828"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "facile",
+      "theme": "Rédaction argumentative",
+      "empreinte_enonce": "f86574af1b4b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Nutrition et digestion",
+      "empreinte_enonce": "fa78e0f2e09a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Schriftlicher Ausdruck",
+      "empreinte_enonce": "7e5f5bc0fc8b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Circulation sanguine chez l’Homme",
+      "empreinte_enonce": "c9def240532e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Vocabulary and idiomatic expressions",
+      "empreinte_enonce": "22591523b5da"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Translation (version and thème)",
+      "empreinte_enonce": "67468802c519"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "moyen",
+      "theme": "Conjugaison et temps verbaux",
+      "empreinte_enonce": "f6a9c2d11ed2"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "9f5035dda4d5"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "examen",
+      "theme": "L’État, le droit et la justice",
+      "empreinte_enonce": "6fde984685c1"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Direct and reported speech",
+      "empreinte_enonce": "7eabf94a4132"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "moyen",
+      "theme": "Presente de indicativo",
+      "empreinte_enonce": "373d23644d61"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Écosystèmes tropicaux",
+      "empreinte_enonce": "1c30e0be7e1b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "Le Bénin contemporain",
+      "empreinte_enonce": "c38207e8d92e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "moyen",
+      "theme": "Comprensión de texto",
+      "empreinte_enonce": "ad7fbbfacae3"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Circulation sanguine chez l’Homme",
+      "empreinte_enonce": "2ff7a7304b2c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "examen",
+      "theme": "Pretérito indefinido e imperfecto",
+      "empreinte_enonce": "e3b66631315d"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "facile",
+      "theme": "Figures de style",
+      "empreinte_enonce": "2f4ddc811cf2"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Grammar review (tenses, modals, passive)",
+      "empreinte_enonce": "fa32f7728d13"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Régimes alimentaires des animaux",
+      "empreinte_enonce": "33d977e6480e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "facile",
+      "theme": "Contraction de texte et essai",
+      "empreinte_enonce": "a78e1cea6e0c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Sols et végétation au Bénin",
+      "empreinte_enonce": "ccf83e73b911"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "facile",
+      "theme": "Le Bénin contemporain",
+      "empreinte_enonce": "393822adf99f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Respiration et circulation",
+      "empreinte_enonce": "8515ef605811"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Devenir des aliments chez l’Homme",
+      "empreinte_enonce": "b26912670eed"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Écosystèmes tropicaux",
+      "empreinte_enonce": "0e213e9390cb"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "moyen",
+      "theme": "La liberté et le déterminisme",
+      "empreinte_enonce": "2e5645d982e0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Textverständnis",
+      "empreinte_enonce": "46c7966386e6"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "moyen",
+      "theme": "Repérage des idées et de la structure",
+      "empreinte_enonce": "7269ae41ba31"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "facile",
+      "theme": "Deklination und Fälle",
+      "empreinte_enonce": "facb40a1f7dd"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "e75da702660f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Nutrition et digestion",
+      "empreinte_enonce": "92d8bdbece83"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "moyen",
+      "theme": "Vocabulario de la vida diaria",
+      "empreinte_enonce": "490253fb0b40"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Translation (version and thème)",
+      "empreinte_enonce": "971db0544c4b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Régimes alimentaires des animaux",
+      "empreinte_enonce": "84877e0bd976"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "e8931ae3c9e3"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Vocabulary and idiomatic expressions",
+      "empreinte_enonce": "153e7b970c63"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "L’Afrique dans les relations internationales",
+      "empreinte_enonce": "be1801a1a3c4"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Summary and text analysis",
+      "empreinte_enonce": "fde2bbbd67da"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "90096455bb10"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Sols et végétation au Bénin",
+      "empreinte_enonce": "10ad5e29bd2b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "facile",
+      "theme": "Perfekt und Präteritum",
+      "empreinte_enonce": "e221a63cf2b9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Régimes alimentaires des animaux",
+      "empreinte_enonce": "87c08a5a5723"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "examen",
+      "theme": "Orthographe et accords",
+      "empreinte_enonce": "5bbe2828d476"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Sols et végétation au Bénin",
+      "empreinte_enonce": "fc3e7fef9428"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "facile",
+      "theme": "La conscience et l’inconscient",
+      "empreinte_enonce": "1f35c0d6412c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "L’Afrique dans les relations internationales",
+      "empreinte_enonce": "7fd5ef5cf283"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Indépendances africaines",
+      "empreinte_enonce": "de610cd0eb94"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Le Bénin contemporain",
+      "empreinte_enonce": "1a8b861189c4"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Direct and reported speech",
+      "empreinte_enonce": "a5b9f4f04263"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Reproduction humaine",
+      "empreinte_enonce": "aba9bfade4d8"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Génétique et hérédité",
+      "empreinte_enonce": "a3e1ed828f6b"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Direct and reported speech",
+      "empreinte_enonce": "ecb86552a4a4"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "examen",
+      "theme": "Poésie et versification",
+      "empreinte_enonce": "2679a8f1f844"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Reproduction humaine",
+      "empreinte_enonce": "38c01bf4d5e2"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Reproduction humaine",
+      "empreinte_enonce": "8e53ffb8f5d1"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Reading comprehension",
+      "empreinte_enonce": "cdf371ca69dd"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Vocabulary and word building",
+      "empreinte_enonce": "5ddbfcfec4ba"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Régimes alimentaires des animaux",
+      "empreinte_enonce": "9688f5d9bef0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Vocabulary and idiomatic expressions",
+      "empreinte_enonce": "b419a1aa749f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Organisation des plantes à fleurs",
+      "empreinte_enonce": "2975d7bf02d6"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Écosystèmes et chaînes alimentaires",
+      "empreinte_enonce": "4c92e62e4aa7"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "moyen",
+      "theme": "Commentaire composé",
+      "empreinte_enonce": "49174971d427"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Évolution et biodiversité",
+      "empreinte_enonce": "fec11daf2fb1"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "facile",
+      "theme": "La vérité et la raison",
+      "empreinte_enonce": "9f0c800d34fb"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "examen",
+      "theme": "Population et urbanisation",
+      "empreinte_enonce": "5787be9522f7"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Wortschatz des Alltags",
+      "empreinte_enonce": "1054c5277270"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Le Bénin contemporain",
+      "empreinte_enonce": "5434e2b989ba"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Reproduction humaine",
+      "empreinte_enonce": "550d4a141575"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Communication hormonale",
+      "empreinte_enonce": "532c1988c1f9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "1b83b66b64ea"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Sols et roches",
+      "empreinte_enonce": "7b26e2a196f7"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "examen",
+      "theme": "Repérage des idées et de la structure",
+      "empreinte_enonce": "4d9b049089a0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Espagnol",
+      "difficulte": "facile",
+      "theme": "Ser y estar",
+      "empreinte_enonce": "b868c86a3576"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Reproduction des animaux et végétaux",
+      "empreinte_enonce": "0758aee28489"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "moyen",
+      "theme": "La vérité et la raison",
+      "empreinte_enonce": "41191f465cf0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "facile",
+      "theme": "Le travail et la technique",
+      "empreinte_enonce": "87ec43bbb082"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Translation (version and thème)",
+      "empreinte_enonce": "40241035a61e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "facile",
+      "theme": "Le devoir et la morale",
+      "empreinte_enonce": "cafeab124ef0"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "examen",
+      "theme": "Rédaction argumentative",
+      "empreinte_enonce": "cf4dc57bd874"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "5ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Respiration des êtres vivants",
+      "empreinte_enonce": "1e6e73d46943"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "examen",
+      "theme": "Compréhension d’un texte argumentatif",
+      "empreinte_enonce": "0a05e09abaf1"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "4ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Reproduction des animaux et végétaux",
+      "empreinte_enonce": "44ace03d5a12"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "facile",
+      "theme": "Population et urbanisation",
+      "empreinte_enonce": "ccad5b439c3f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "examen",
+      "theme": "Figures de style",
+      "empreinte_enonce": "bac7c06e456d"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Communication nerveuse",
+      "empreinte_enonce": "34de8a89b597"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Monde vivant et environnement",
+      "empreinte_enonce": "bab4d26d9c36"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "facile",
+      "theme": "Poésie et versification",
+      "empreinte_enonce": "47629b62881a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Génétique et hérédité",
+      "empreinte_enonce": "dc5da87c1602"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "facile",
+      "theme": "Dissertation littéraire",
+      "empreinte_enonce": "acf790631d5e"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "Grandes puissances et conflits mondiaux",
+      "empreinte_enonce": "85b2782b6d14"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Translation (version and thème)",
+      "empreinte_enonce": "b08c0afc539f"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Philosophie",
+      "difficulte": "examen",
+      "theme": "La conscience et l’inconscient",
+      "empreinte_enonce": "4b63fe45c2de"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "moyen",
+      "theme": "La décolonisation et le Tiers-Monde",
+      "empreinte_enonce": "37004915a441"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "examen",
+      "theme": "Direct and reported speech",
+      "empreinte_enonce": "a454868149d9"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "moyen",
+      "theme": "Régimes alimentaires des animaux",
+      "empreinte_enonce": "fd286323c341"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Anglais",
+      "difficulte": "facile",
+      "theme": "Vocabulary and idiomatic expressions",
+      "empreinte_enonce": "fa7b32e1b807"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "examen",
+      "theme": "Le roman et ses personnages",
+      "empreinte_enonce": "f7aa8f304c0d"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Textverständnis",
+      "empreinte_enonce": "86bb3995d473"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Anglais",
+      "difficulte": "moyen",
+      "theme": "Reading comprehension",
+      "empreinte_enonce": "0764d751d046"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Communication écrite",
+      "difficulte": "facile",
+      "theme": "Conjugaison et temps verbaux",
+      "empreinte_enonce": "9af5b2b76297"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Histoire-Géographie",
+      "difficulte": "facile",
+      "theme": "Traite négrière et colonisation",
+      "empreinte_enonce": "481829f2cf8c"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "facile",
+      "theme": "Génétique et hérédité",
+      "empreinte_enonce": "523b26e808b5"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Français",
+      "difficulte": "facile",
+      "theme": "Commentaire composé",
+      "empreinte_enonce": "3e3354754136"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "6ème",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Devenir des aliments chez l’Homme",
+      "empreinte_enonce": "bfc4c46884d3"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Allemand",
+      "difficulte": "examen",
+      "theme": "Deklination und Fälle",
+      "empreinte_enonce": "43f6f427f339"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Évolution et biodiversité",
+      "empreinte_enonce": "643108787af4"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "facile",
+      "theme": "Compréhension d’un texte narratif",
+      "empreinte_enonce": "b80330ee459a"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BAC",
+      "matiere": "Sciences de la Vie et de la Terre",
+      "difficulte": "examen",
+      "theme": "Génétique et hérédité",
+      "empreinte_enonce": "f5f8264d12d1"
+    },
+    {
+      "type": "banque_generee",
+      "niveau": "BEPC",
+      "matiere": "Lecture",
+      "difficulte": "moyen",
+      "theme": "Figures de style",
+      "empreinte_enonce": "e16b15f89b30"
+    }
+  ]
+}

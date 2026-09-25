@@ -99,6 +99,8 @@ on n'y touche que pour y intégrer les résultats de la recherche.
 |---|---|
 | `recherche/notebooks/01-*.ipynb` | `recherche/src/construire_notebook_01.py` |
 | `recherche/notebooks/02-*.ipynb` | `recherche/src/construire_notebook_02.py` |
+| `recherche/notebooks/05-*.ipynb` | `recherche/src/construire_notebook_05.py` |
+| `recherche/donnees/banc/jeu_de_test.jsonl`, `exclusions.json` | `recherche/src/exporter_banc.js` (graine fixe) |
 | `mobile/src/components/LogoMark.tsx` | `mobile/scripts/generer-assets.js` |
 | `frontend/src/components/LogoMark.tsx` | `mobile/scripts/generer-assets.js` |
 | `mobile/assets/images/*.png` | `mobile/scripts/generer-assets.js` |
