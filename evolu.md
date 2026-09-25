@@ -66,6 +66,57 @@ Trois règles :
 
 ---
 
+## 2026-09-25 — [Phase 2] Premier jet du jeu d'entraînement ; phase 3 préparée
+
+**Auteur** Claude Code · **Commits** `c727bb6`, `32fade1`, `73bee73`
+
+**Fait**
+- Générateurs : chaque modèle d'énoncé porte un nom (`generateurs.ts`,
+  `modeleDeLExercice()`), sans effet sur l'application ; test ajouté.
+  `recherche/donnees/brutes/themes_generateurs.json` rattache 23 modèles à un
+  thème du catalogue ; 16 restent sans thème faute de correspondance sûre.
+- `recherche/src/exporter_sft.js` rassemble les exemples avec les prompts de
+  production ; `recherche/src/construire_sft.py` filtre (mêmes détecteurs que
+  le banc), dédoublonne, vérifie l'absence de fuite du jeu de test, découpe
+  par énoncé. Outils communs extraits dans `banc_commun.js` ; jeu de test
+  vérifié inchangé octet pour octet (md5).
+- `recherche/kaggle/entrainement/lancer.py` : QLoRA 4 bits, LoRA r=16, perte
+  sur la réponse seule, banc rejoué en fin d'entraînement. **Non lancé.**
+
+**Mesures** (`recherche/donnees/sft/rapport_sft.json`)
+- 6 872 candidats → 6 107 retenus (5 814 entraînement, 293 validation).
+- Génération 1 982 · correction 3 396 · résolution 729.
+- Critère de la phase 2 : correction ≥ 3 000 **atteint** ; génération ≥ 3 000
+  **non atteint**.
+- Diversité : résolution très gabaritée (88 gabarits distincts, 27 % des
+  exemples dans les 5 plus fréquents) — nature des générateurs.
+- Rejets : 23 exemples désaccentués ou privés d'apostrophes, 742 doublons
+  (surtout des énoncés de générateurs identiques d'un niveau à l'autre).
+- Longueur en jetons (tokenizer Qwen3-4B) : médiane 792, max 1 621, aucun
+  exemple au-delà de 2 048 ; ≈ 4,6 M jetons par époque.
+
+**Échecs / non fait**
+- 32 thèmes non réservés n'ont aucun exemple de génération (surtout maths et
+  physique-chimie hors BEPC, où les générateurs n'ont pas de modèle, et
+  quelques thèmes du BAC). Les combler demande une collecte Gemini ; pour les
+  matières numériques, la justesse des solutions produites ne serait pas
+  vérifiable automatiquement — décision à prendre avec le porteur.
+
+**Observé, non traité**
+- Le repli de production sert un exercice de générateur choisi par (niveau,
+  matière) sans tenir compte du thème : un élève qui révise « Thalès » peut
+  recevoir une équation. `modeleDeLExercice()` et `themes_generateurs.json`
+  permettraient de corriger cela.
+- 8 exercices de la banque servie en production (7 en philosophie BAC,
+  1 en anglais) ont perdu leurs apostrophes (« s appuie », « l adhésion ») ;
+  le filtre d'accents de `generer_banque.py` ne les voyait pas. Écartés du
+  jeu d'entraînement, toujours présents dans `banque-generee.json`.
+
+**Vérifications**
+- `npm test --prefix backend` : ✅ 115 · typecheck backend : ✅
+
+---
+
 ## 2026-09-25 — [Phase 0] Retirer les services vision et audio orphelins
 
 **Auteur** Claude Code · **Commit** voir ci-dessous
