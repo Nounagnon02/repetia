@@ -25,6 +25,14 @@ LOCAL = "REPETIA_SORTIE" in os.environ
 if not LOCAL:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-U", "transformers>=4.57", "accelerate",
                     "peft", "bitsandbytes"], check=False)
+    # Noyaux rapides de l'attention linéaire de Qwen3.5. Sans eux, transformers
+    # retombe sur une implémentation PyTorch « correcte mais beaucoup plus
+    # lente » : 98 s par pas au premier essai, soit ~20 h pour l'entraînement.
+    # Leur compatibilité avec le T4 n'est pas garantie : le journal dit
+    # lesquels se chargent.
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "flash-linear-attention"], check=False)
+    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-build-isolation", "causal-conv1d"],
+                   check=False)
 
 # Limite la fragmentation de la mémoire GPU (le T4 n'a que 15 Go).
 os.environ.setdefault("PYTORCH_ALLOC_CONF", "expandable_segments:True")
@@ -60,7 +68,16 @@ sys.path.insert(0, SORTIE)
 import banc  # noqa: E402
 
 transformers.set_seed(GRAINE)
-journal = {"base": BASE, "essai": ESSAI, "config": CONFIG, "debut": time.strftime("%Y-%m-%d %H:%M:%S"), "torch": torch.__version__,
+def disponible(module):
+    try:
+        __import__(module)
+        return True
+    except Exception as e:  # noqa: BLE001
+        return repr(e)[:200]
+
+
+journal = {"noyaux_rapides": {"fla": disponible("fla"), "causal_conv1d": disponible("causal_conv1d")},
+           "base": BASE, "essai": ESSAI, "config": CONFIG, "debut": time.strftime("%Y-%m-%d %H:%M:%S"), "torch": torch.__version__,
            "transformers": transformers.__version__, "peft": peft.__version__,
            "gpu": [torch.cuda.get_device_name(i) for i in range(torch.cuda.device_count())]}
 
