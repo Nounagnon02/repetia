@@ -73,3 +73,6 @@ recherche/donnees/entrainement/*/adaptateur/
 recherche/donnees/entrainement/*/points/
 recherche/donnees/entrainement/*/__pycache__/
 recherche/donnees/entrainement/*/banc.py
+recherche/donnees/*/kaggle/banc.py
+recherche/donnees/*/kaggle/reponses/
+recherche/donnees/*/kaggle/__pycache__/
