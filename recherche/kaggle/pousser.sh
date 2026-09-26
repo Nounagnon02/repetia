@@ -16,7 +16,7 @@ kaggle="$racine/recherche/.venv/bin/kaggle"
 export KAGGLE_API_TOKEN="${KAGGLE_API_TOKEN:-${KAGGLE_KEY:?KAGGLE_KEY absente}}"
 : "${KAGGLE_USERNAME:?KAGGLE_USERNAME absent}"
 
-jeu="$KAGGLE_USERNAME/repetia-$travail"
+jeu="$KAGGLE_USERNAME/repetia-${travail//_/-}"
 # Kaggle remplace « _ » par « - » dans les identifiants de noyau.
 noyau="$KAGGLE_USERNAME/repetia-${travail//_/-}-execution"
 etape="$(mktemp -d)"

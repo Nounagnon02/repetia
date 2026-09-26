@@ -21,7 +21,10 @@ subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-U", "transformer
 # du premier entraînement. On ne s'en sert pas : on le retire.
 subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"], check=False)
 
-source = os.path.dirname(glob.glob("/kaggle/input/**/adapter_config.json", recursive=True)[0])
+trouves = glob.glob("/kaggle/input/**/adapter_config.json", recursive=True)
+if not trouves:
+    sys.exit(f"Adaptateur introuvable ; entrées montées : {glob.glob('/kaggle/input/**', recursive=True)[:20]}")
+source = os.path.dirname(trouves[0])
 os.environ["BANC_DOSSIER"] = source
 os.environ["BANC_REPONSES"] = "/kaggle/working/reponses"
 shutil.copy(os.path.join(source, "banc.py"), "/kaggle/working/banc.py")
