@@ -51,6 +51,21 @@ de séparation.`;
   return RagService.enrichirPromptSysteme(promptComplet, matiere, theme, niveau);
 }
 
+/**
+ * Persona COURTE, destinée au modèle affiné RépétIA (phase 3 du plan
+ * d'entraînement, `recherche/PLAN_ENTRAINEMENT.md`).
+ *
+ * Le modèle affiné apprend le ton, le niveau et les règles d'écriture de ses
+ * données d'entraînement : les lui répéter à chaque appel — bloc du programme
+ * officiel compris — représentait la moitié des jetons traités, et rendait
+ * l'entraînement trop long pour un GPU gratuit. Ne pas l'utiliser avec
+ * Gemini, qui n'a pas appris ces règles : lui garde `promptSysteme`.
+ */
+export function promptSystemeCourt(matiere: string, niveau: string = 'BEPC'): string {
+  const { examen, public: public_ } = niveauPar(niveau);
+  return `Tu es RépétIA, répétiteur bienveillant pour des ${public_} béninois qui préparent ${examen}. Matière : ${matiere}. Explique pas à pas, en français simple, sans LaTeX ni titre Markdown.`;
+}
+
 /** Consigne de génération d'un exercice, telle qu'envoyée au modèle. */
 export function consigneGeneration(theme: string, difficulte: string, matiere: string, niveau: string): string {
   const niveauTexte = niveauPar(niveau).programme;

@@ -30,9 +30,12 @@ if not LOCAL:
     # lente » : 98 s par pas au premier essai, soit ~20 h pour l'entraînement.
     # Leur compatibilité avec le T4 n'est pas garantie : le journal dit
     # lesquels se chargent.
-    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "flash-linear-attention"], check=False)
-    subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-build-isolation", "causal-conv1d"],
-                   check=False)
+    # Essai 2 (2026-09-25) : chargés, ils RALENTISSENT le T4 (122 s par pas contre
+    # 98 s) ; ils ne sont donc installés que sur demande (config « noyaux_rapides »).
+    if json.load(open(glob.glob("/kaggle/input/**/config.json", recursive=True)[0])).get("noyaux_rapides"):
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "flash-linear-attention"], check=False)
+        subprocess.run([sys.executable, "-m", "pip", "install", "-q", "--no-build-isolation", "causal-conv1d"],
+                       check=False)
 
 # Limite la fragmentation de la mémoire GPU (le T4 n'a que 15 Go).
 os.environ.setdefault("PYTORCH_ALLOC_CONF", "expandable_segments:True")
@@ -61,6 +64,11 @@ BASE = CONFIG["base"]
 DEPOT_TOKENIZER = CONFIG.get("tokenizer", BASE)
 GPU = torch.cuda.is_available()
 ESSAI = bool(CONFIG.get("essai"))
+EPOQUES = CONFIG.get("epoques", 2)
+# Arrêt anticipé : une session Kaggle est coupée à 12 h. On garde de quoi
+# sauvegarder l'adaptateur et rejouer le banc (≈ 1 h 30).
+HEURES_MAX_ENTRAINEMENT = CONFIG.get("heures_max_entrainement", 9.5)
+VALIDATION_MAX = 150  # exemples évalués à chaque point de contrôle
 os.environ["BANC_DOSSIER"] = source
 os.environ["BANC_REPONSES"] = f"{SORTIE}/reponses"
 shutil.copy(os.path.join(source, "banc.py"), f"{SORTIE}/banc.py")
@@ -124,6 +132,9 @@ def charger(nom):
 train, validation = charger("train"), charger("validation")
 if ESSAI:
     train, validation = train[:200], validation[:40]
+else:
+    # Évaluer 472 exemples un par un tous les 50 pas coûtait ~2 h au total.
+    validation = validation[:VALIDATION_MAX]
 ecrire_journal()
 
 
@@ -168,12 +179,13 @@ journal["lora"] = {"r": 16, "alpha": 32, "dropout": 0.05}
 # deux séquences dépassaient la mémoire du T4 au calcul de la perte.
 PAR_LOT, ACCUMULATION = 1, 16
 PAS_PAR_EPOQUE = max(1, len(train) // (PAR_LOT * ACCUMULATION))
-PAS_TOTAL = 30 if ESSAI else 2 * PAS_PAR_EPOQUE
+PAS_TOTAL = 30 if ESSAI else EPOQUES * PAS_PAR_EPOQUE
 arguments = TrainingArguments(
-    output_dir=f"{SORTIE}/points", num_train_epochs=2, max_steps=30 if ESSAI else -1, per_device_train_batch_size=PAR_LOT,
+    output_dir=f"{SORTIE}/points", num_train_epochs=EPOQUES, max_steps=30 if ESSAI else -1, per_device_train_batch_size=PAR_LOT,
     per_device_eval_batch_size=PAR_LOT, gradient_accumulation_steps=ACCUMULATION, learning_rate=2e-4,
     lr_scheduler_type="cosine", warmup_steps=max(1, round(0.03 * PAS_TOTAL)), logging_steps=5 if ESSAI else 10, eval_strategy="steps",
-    eval_steps=15 if ESSAI else 50, save_strategy="no", fp16=GPU, gradient_checkpointing=True,
+    eval_steps=15 if ESSAI else 100, save_strategy="no" if ESSAI else "steps", save_steps=100,
+    save_total_limit=1, fp16=GPU, gradient_checkpointing=True,
     report_to=[], seed=GRAINE, remove_unused_columns=False,
 )
 journal["hyperparametres"] = {k: getattr(arguments, k) for k in (
@@ -181,8 +193,24 @@ journal["hyperparametres"] = {k: getattr(arguments, k) for k in (
     "lr_scheduler_type", "warmup_steps")}
 ecrire_journal()
 
+from transformers import TrainerCallback  # noqa: E402
+
+
+class Chronometre(TrainerCallback):
+    """Arrête proprement l'entraînement avant la coupure de la session."""
+
+    def __init__(self):
+        self.depart = time.time()
+
+    def on_step_end(self, args, state, control, **kwargs):
+        if (time.time() - self.depart) / 3600 > HEURES_MAX_ENTRAINEMENT:
+            journal["arret_anticipe"] = {"pas": state.global_step, "pas_prevus": state.max_steps}
+            control.should_training_stop = True
+        return control
+
+
 entraineur = Trainer(model=modele, args=arguments, train_dataset=train, eval_dataset=validation,
-                     data_collator=assembler)
+                     data_collator=assembler, callbacks=[Chronometre()])
 depart = time.time()
 entraineur.train()
 journal["duree_entrainement_s"] = round(time.time() - depart)
@@ -192,7 +220,7 @@ journal["modules_lora"] = sorted({n.split(".lora_")[0].split("layers.")[-1].spli
 pertes = [h["loss"] for h in entraineur.state.log_history if "loss" in h]
 journal["perte_finie"] = all(p == p and p != float("inf") for p in pertes)
 journal["secondes_par_pas"] = round(journal["duree_entrainement_s"] / max(1, entraineur.state.global_step), 2)
-journal["pas_total_prevu_run_complet"] = int(2 * 5814 / 16)
+journal["pas_total_prevu_run_complet"] = EPOQUES * journal["train_exemples"] // (PAR_LOT * ACCUMULATION)
 journal["heures_estimees_run_complet"] = round(journal["secondes_par_pas"] * journal["pas_total_prevu_run_complet"] / 3600, 2)
 ecrire_journal()
 if ESSAI:
@@ -210,7 +238,8 @@ torch.cuda.empty_cache()
 
 depart = time.time()
 banc.interroger_hf(BASE, banc.charger_jeu(), limite=None, lot=16, max_jetons=1024,
-                   adaptateur=f"{SORTIE}/adaptateur", nom=f"affine:{BASE}+repetia-v1")
+                   adaptateur=f"{SORTIE}/adaptateur", nom=f"affine:{BASE}+repetia-v1",
+                   champ_systeme="systeme_court")
 journal["duree_banc_s"] = round(time.time() - depart)
 journal["fin"] = time.strftime("%Y-%m-%d %H:%M:%S")
 ecrire_journal()

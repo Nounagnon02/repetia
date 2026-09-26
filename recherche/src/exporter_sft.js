@@ -28,7 +28,10 @@ const dist = path.join(racine, 'backend/dist/src');
 const { CATALOGUE } = require(path.join(dist, 'data/catalogue.js'));
 const { nombreDeVariantes, exerciceGenere, modeleDeLExercice } = require(path.join(dist, 'data/generateurs.js'));
 const { BANQUE } = require(path.join(dist, 'data/banque.js'));
-const { promptSysteme, consigneGeneration, consigneCorrection } = require(path.join(dist, 'services/llm.service.js'));
+const { promptSystemeCourt, consigneGeneration, consigneCorrection } = require(path.join(dist, 'services/llm.service.js'));
+// Le modèle affiné reçoit la persona COURTE (voir promptSystemeCourt) : le thème
+// est déjà dans la consigne, et le reste s'apprend des exemples.
+const promptSysteme = (matiere, niveau) => promptSystemeCourt(matiere, niveau);
 const banqueGeneree = require(path.join(racine, 'backend/src/data/banque-generee.json'));
 const themesGenerateurs = require(path.join(racine, 'recherche/donnees/brutes/themes_generateurs.json'));
 const exclusions = require(path.join(racine, 'recherche/donnees/banc/exclusions.json'));

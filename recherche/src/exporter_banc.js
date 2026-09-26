@@ -34,7 +34,7 @@ const racine = path.resolve(__dirname, '../..');
 const dist = path.join(racine, 'backend/dist/src');
 const { CATALOGUE } = require(path.join(dist, 'data/catalogue.js'));
 const { nombreDeVariantes, exerciceGenere } = require(path.join(dist, 'data/generateurs.js'));
-const { promptSysteme, consigneGeneration, consigneCorrection } = require(path.join(dist, 'services/llm.service.js'));
+const { promptSysteme, promptSystemeCourt, consigneGeneration, consigneCorrection } = require(path.join(dist, 'services/llm.service.js'));
 const { exerciceDeSecours } = require(path.join(dist, 'data/banque.js'));
 const banqueGeneree = require(path.join(racine, 'backend/src/data/banque-generee.json'));
 
@@ -268,6 +268,11 @@ function reponsesSansLlm() {
 // ---------------------------------------------------------------------------
 // Écriture
 // ---------------------------------------------------------------------------
+
+// Persona courte du modèle affiné, rangée à part : les modèles non affinés
+// restent interrogés avec la persona complète (`systeme`), le modèle affiné
+// avec celle qu'il servira en production (`systeme_court`).
+for (const it of items) it.systeme_court = promptSystemeCourt(it.matiere, it.niveau);
 
 const ids = new Set(items.map((i) => i.id));
 if (ids.size !== items.length) throw new Error(`Identifiants en double : ${items.length - ids.size}`);

@@ -184,9 +184,10 @@ def interroger_gemini(modele: str, items: list[dict], limite: int | None, pause:
 
 
 def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, max_jetons: int,
-                  adaptateur: str | None = None, nom: str | None = None) -> None:
+                  adaptateur: str | None = None, nom: str | None = None, champ_systeme: str = "systeme") -> None:
     """Interroge un modèle ouvert ; `adaptateur` : dossier d'un adaptateur LoRA à
-    fusionner au modèle de base (modèle affiné de la phase 3)."""
+    fusionner au modèle de base (modèle affiné de la phase 3) ; `champ_systeme` :
+    persona complète (`systeme`) ou courte (`systeme_court`, celle du modèle affiné)."""
     import torch
     from transformers import AutoModelForCausalLM, AutoTokenizer
 
@@ -220,7 +221,7 @@ def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, m
     torch.manual_seed(0)
 
     def rendu(it: dict) -> str:
-        messages = [{"role": "system", "content": it["systeme"]}, {"role": "user", "content": it["consigne"]}]
+        messages = [{"role": "system", "content": it[champ_systeme]}, {"role": "user", "content": it["consigne"]}]
         try:
             # Qwen3 : pas de trace de réflexion, la production attend du JSON direct.
             return tok.apply_chat_template(messages, tokenize=False, add_generation_prompt=True,
