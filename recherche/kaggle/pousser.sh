@@ -38,6 +38,13 @@ mkdir -p "$etape/donnees"
 case "$travail" in
   banc)
     cp "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/" ;;
+  banc_affine)
+    # Fichiers à plat : Kaggle ignore les sous-dossiers d'un jeu de données.
+    : "${REPETIA_ADAPTATEUR:?dossier de l adaptateur manquant}"
+    cp "$REPETIA_ADAPTATEUR"/adapter_config.json "$REPETIA_ADAPTATEUR"/adapter_model.safetensors \
+       "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
+    printf '{"base": "%s", "nom": "%s"}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
+      "${REPETIA_NOM:-affine:Qwen/Qwen3.5-4B+repetia-v1}" > "$etape/donnees/config.json" ;;
   entrainement)
     cp "$racine/recherche/donnees/sft/train.jsonl" "$racine/recherche/donnees/sft/validation.jsonl" \
        "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
