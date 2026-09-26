@@ -17,7 +17,8 @@ export KAGGLE_API_TOKEN="${KAGGLE_API_TOKEN:-${KAGGLE_KEY:?KAGGLE_KEY absente}}"
 : "${KAGGLE_USERNAME:?KAGGLE_USERNAME absent}"
 
 jeu="$KAGGLE_USERNAME/repetia-$travail"
-noyau="$KAGGLE_USERNAME/repetia-$travail-execution"
+# Kaggle remplace « _ » par « - » dans les identifiants de noyau.
+noyau="$KAGGLE_USERNAME/repetia-${travail//_/-}-execution"
 etape="$(mktemp -d)"
 trap 'rm -rf "$etape"' EXIT
 
