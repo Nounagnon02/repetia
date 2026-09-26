@@ -268,7 +268,7 @@ banc s'exécute de bout en bout et distingue nettement le plancher de Gemini.
 **Critère** : au moins 3 000 exemples de génération et 3 000 de correction
 après déduplication, aucune fuite des annales, diversité publiée.
 
-### Phase 3 — Premier affinage (LoRA / QLoRA)
+### Phase 3 — Premier affinage (LoRA / QLoRA) ✅ (2026-09-26, Qwen3.5-4B, adaptateur v1)
 
 - **Où** : Kaggle Notebooks (GPU T4 ×2 ou P100, ~30 h/semaine gratuites) ou
   Google Colab gratuit. Pas besoin de matériel.
@@ -285,7 +285,7 @@ après déduplication, aucune fuite des annales, diversité publiée.
 **Critère** : la perte de validation baisse puis se stabilise (pas de
 sur-apprentissage manifeste), et le banc de la phase 1 est **rejoué**.
 
-### Phase 4 — Évaluer et décider
+### Phase 4 — Évaluer et décider ⏳ (seuils automatiques atteints ; relecture humaine à faire)
 
 Rejouer exactement le banc de la phase 1 sur le modèle affiné — **toutes les
 vagues déjà couvertes**, pas seulement la dernière. La décision se prend **par

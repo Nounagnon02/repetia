@@ -280,6 +280,36 @@ entraînement, les seuils de la phase 4. C'est le point de départ que le
 modèle affiné devra dépasser, sur ce même banc."""))
 
 c.append(md("""---
+## Après affinage : le modèle RépétIA v1 (2026-09-26)
+
+`affine:Qwen/Qwen3.5-4B+repetia-v1` : Qwen3.5-4B affiné en QLoRA, une passe
+sur les 8 826 exemples du jeu v1 (4 h 51 sur un T4 de Kaggle), interrogé avec
+la **persona courte** qu'il servira (`systeme_court`) — les autres modèles
+gardent la persona complète. Ses lignes figurent dans les tableaux ci-dessus.
+
+**Ce que le banc montre.** Tous les seuils AUTOMATIQUES de la phase 4 sont
+atteints : génération conforme à 98,7 %, résolutions justes à 92 %, verdict
+de correction juste à 100 % (150 réponses fausses sur 150 détectées), aucune
+fuite (LaTeX, français désaccentué, anglais). À items égaux, il fait au moins
+aussi bien que Gemini flash-lite — sur 30 items par tâche, intervalles larges.
+
+**Ce qui a été vérifié contre l'illusion.** Les thèmes réservés (jamais vus à
+l'entraînement) sont utilisables à 36 sur 36 ; la résolution est aussi juste
+sur les gabarits de générateur jamais vus (0,92, n = 24) que sur les autres
+(0,92, n = 126) ; 7 générations sur 296 recopient mot pour mot un énoncé
+d'entraînement.
+
+**Ce que le banc ne voit pas, et qu'une lecture a montré.** Sur cinq
+exercices générés lus un par un : une erreur historique (« en 1961, l'URSS
+lance le premier satellite, Spoutnik » — c'était en 1957), un énoncé de 6ème
+sans question, un exercice de physique qui reprend un gabarit de générateur.
+Et la correction est mesurée sur des réponses fabriquées DE LA MÊME FAÇON que
+celles de l'entraînement : son 100 % dit que le format et la tâche sont
+appris, pas qu'il jugera juste une vraie copie d'élève. **La phase 4 n'est
+donc pas franchie** : il lui manque la relecture par des enseignants, que ce
+banc ne remplace pas."""))
+
+c.append(md("""---
 ## 8. Limites
 
 - **La justesse d'un exercice généré n'est pas mesurée.** Pour la tâche

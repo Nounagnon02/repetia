@@ -66,6 +66,63 @@ Trois règles :
 
 ---
 
+## 2026-09-26 — [Phases 3-4] Premier modèle RépétIA affiné (Qwen3.5-4B, v1) et son banc
+
+**Auteur** Claude Code · **Commits** `0bc90b4` → ce commit
+
+**Fait**
+- Trois essais courts (30 pas) avant l'entraînement complet :
+  Qwen3.5-4B sans noyaux rapides 98 s/pas, avec `flash-linear-attention` et
+  `causal-conv1d` 122 s/pas (chargés, mais plus lents sur T4), Qwen3-4B
+  72 s/pas — aucun ne tenait en 12 h avec la persona complète.
+- La moitié des jetons venait de la consigne système (bloc du programme
+  officiel) : `promptSystemeCourt()` (llm.service.ts) pour le modèle affiné,
+  médiane 792 → 423 jetons par exemple. Décision du porteur : Qwen3.5-4B,
+  une passe.
+- Entraînement complet sur Kaggle : 8 826 exemples (jeu v1), 4 h 51, perte de
+  validation 0,237 → 0,208. Adaptateur publié en privé :
+  `Nounagnon02/repetia-qwen3.5-4b-lora-v1`.
+- Collecte v2 (30 appels, limitée pour laisser le quota à l'application) :
+  jeu v2 à 9 836 exemples, génération 3 080 — seuil de la phase 2 atteint.
+  Pas encore utilisé pour entraîner.
+
+**Mesures** (banc v1, jeu complet ; persona courte pour le modèle affiné)
+
+| | Génération | Résolution juste | Correction (verdict) | Rappel « faux » |
+|---|---|---|---|---|
+| Qwen3.5-4B de base | 0,62 | 0,80 | 0,99 | 0,99 |
+| **Qwen3.5-4B affiné v1** | **0,99** | **0,92** | **1,00** | **1,00** |
+| Gemini flash-lite (n = 90) | 0,87 | 0,96 | 1,00 | 1,00 |
+
+- Thèmes réservés : 36/36 utilisables. Résolution sur gabarits jamais vus :
+  0,92 (n = 24), comme sur les gabarits vus. Recopie mot pour mot d'un énoncé
+  d'entraînement : 7/296. Aucune fuite (LaTeX, désaccentué, anglais).
+- Plus faible : résolution au BAC (0,80) ; génération en 4ème (0,93).
+
+**Échecs / non fait**
+- Le banc rejoué en fin d'entraînement a échoué (torchao 0.10 de l'image
+  Kaggle refusé par PEFT) ; puis le noyau dédié n'a pas trouvé ses entrées
+  (Kaggle remplace « _ » par « - » dans les identifiants). Corrigés.
+- **Phase 4 non franchie** : seuils automatiques atteints, mais la relecture
+  par des enseignants manque. Une lecture de cinq exercices générés montre
+  une erreur historique (Spoutnik daté de 1961 au lieu de 1957), un énoncé
+  sans question, un gabarit de générateur recopié. La correction est mesurée
+  sur des réponses fabriquées comme à l'entraînement : son 100 % ne vaut pas
+  pour de vraies copies d'élèves.
+
+**Observé, non traité**
+- La clé Gemini de la session est peut-être celle de la production : la
+  collecte du 2026-09-25 a épuisé tout le quota flash-lite (repli sur la
+  banque pour les élèves ce jour-là, si c'est la même clé).
+- `gemini-3.5-flash`, modèle principal de production, n'a que 20 requêtes par
+  jour sur le palier gratuit.
+
+**Vérifications**
+- Autotest du scoreur : ✅ 100 % · 0 écart sur les réponses fabriquées ·
+  notebook 05 régénéré et exécuté · `npm test --prefix backend` : ✅ 115
+
+---
+
 ## 2026-09-25 — [Phase 1] Banc d'évaluation : modèles candidats mesurés avant entraînement
 
 **Auteur** Claude Code · **Commits** `cff11d0` → ce commit
