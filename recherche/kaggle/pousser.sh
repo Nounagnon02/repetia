@@ -74,6 +74,10 @@ cat > "$etape/noyau/kernel-metadata.json" <<JSON
   "dataset_sources": ["$jeu"]
 }
 JSON
-# Le jeu de données met quelques instants à être prêt après sa création.
-sleep 30
+# Le noyau lit la version du jeu de données disponible À SON DÉMARRAGE : on
+# attend qu'elle soit prête, sinon il tournerait sur la précédente.
+for _ in $(seq 1 40); do
+  sleep 15
+  "$kaggle" datasets status "$jeu" 2>/dev/null | grep -qi "ready" && break
+done
 "$kaggle" kernels push -p "$etape/noyau" --accelerator NvidiaTeslaT4
