@@ -25,6 +25,9 @@ LOCAL = "REPETIA_SORTIE" in os.environ
 if not LOCAL:
     subprocess.run([sys.executable, "-m", "pip", "install", "-q", "-U", "transformers>=4.57", "accelerate",
                     "peft", "bitsandbytes"], check=False)
+    # PEFT refuse de recharger un adaptateur si le torchao 0.10 de l'image Kaggle
+    # est présent : c'est ce qui a fait échouer le banc à la fin de la v1.
+    subprocess.run([sys.executable, "-m", "pip", "uninstall", "-y", "-q", "torchao"], check=False)
     # Noyaux rapides de l'attention linéaire de Qwen3.5. Sans eux, transformers
     # retombe sur une implémentation PyTorch « correcte mais beaucoup plus
     # lente » : 98 s par pas au premier essai, soit ~20 h pour l'entraînement.
@@ -65,6 +68,7 @@ DEPOT_TOKENIZER = CONFIG.get("tokenizer", BASE)
 GPU = torch.cuda.is_available()
 ESSAI = bool(CONFIG.get("essai"))
 EPOQUES = CONFIG.get("epoques", 2)
+VERSION = CONFIG.get("version", "v1")
 # Arrêt anticipé : une session Kaggle est coupée à 12 h. On garde de quoi
 # sauvegarder l'adaptateur et rejouer le banc (≈ 1 h 30).
 HEURES_MAX_ENTRAINEMENT = CONFIG.get("heures_max_entrainement", 9.5)
@@ -238,7 +242,7 @@ torch.cuda.empty_cache()
 
 depart = time.time()
 banc.interroger_hf(BASE, banc.charger_jeu(), limite=None, lot=16, max_jetons=1024,
-                   adaptateur=f"{SORTIE}/adaptateur", nom=f"affine:{BASE}+repetia-v1",
+                   adaptateur=f"{SORTIE}/adaptateur", nom=f"affine:{BASE}+repetia-{VERSION}",
                    champ_systeme="systeme_court")
 journal["duree_banc_s"] = round(time.time() - depart)
 journal["fin"] = time.strftime("%Y-%m-%d %H:%M:%S")

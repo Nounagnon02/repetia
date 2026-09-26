@@ -51,8 +51,8 @@ case "$travail" in
        "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
     # Modèle de base et mode, lus par le noyau (REPETIA_BASE, REPETIA_ESSAI=1).
     # REPETIA_EPOQUES : passes sur les données (1 par défaut, décision du 2026-09-26).
-    printf '{"base": "%s", "essai": %s, "epoques": %s}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
-      "$([ "${REPETIA_ESSAI:-0}" = 1 ] && echo true || echo false)" "${REPETIA_EPOQUES:-1}" \
+    printf '{"base": "%s", "essai": %s, "epoques": %s, "version": "%s"}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
+      "$([ "${REPETIA_ESSAI:-0}" = 1 ] && echo true || echo false)" "${REPETIA_EPOQUES:-1}" "${REPETIA_VERSION:-v1}" \
       > "$etape/donnees/config.json" ;;
   *)
     echo "travail inconnu : $travail" >&2; exit 1 ;;
