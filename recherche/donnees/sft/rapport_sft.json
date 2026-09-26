@@ -1,27 +1,27 @@
 {
-  "candidats": 10180,
-  "retenus": 9298,
-  "train": 8826,
-  "validation": 472,
+  "candidats": 10725,
+  "retenus": 9836,
+  "train": 9350,
+  "validation": 486,
   "par_tache": {
-    "generation": 2916,
-    "resolution": 1269,
-    "correction": 5113
+    "generation": 3080,
+    "resolution": 1322,
+    "correction": 5434
   },
   "criteres_phase_2": {
     "generation": {
       "seuil": 3000,
-      "obtenu": 2916,
-      "atteint": false
+      "obtenu": 3080,
+      "atteint": true
     },
     "correction": {
       "seuil": 3000,
-      "obtenu": 5113,
+      "obtenu": 5434,
       "atteint": true
     }
   },
   "rejets": {
-    "correction — doublon": 270,
+    "correction — doublon": 277,
     "correction — français désaccentué ou sans apostrophes": 17,
     "generation — doublon": 4,
     "generation — français désaccentué ou sans apostrophes": 9,
@@ -29,90 +29,90 @@
     "resolution — français désaccentué ou sans apostrophes": 2
   },
   "par_tache_et_niveau": {
-    "correction | 4ème": 476,
-    "correction | 5ème": 496,
-    "correction | 6ème": 485,
-    "correction | BAC": 1787,
-    "correction | BEPC": 1869,
-    "generation | 4ème": 221,
-    "generation | 5ème": 275,
-    "generation | 6ème": 286,
-    "generation | BAC": 983,
-    "generation | BEPC": 1151,
-    "resolution | 4ème": 221,
-    "resolution | 5ème": 159,
-    "resolution | 6ème": 215,
-    "resolution | BAC": 351,
-    "resolution | BEPC": 323
+    "correction | 4ème": 493,
+    "correction | 5ème": 522,
+    "correction | 6ème": 512,
+    "correction | BAC": 1954,
+    "correction | BEPC": 1953,
+    "generation | 4ème": 230,
+    "generation | 5ème": 288,
+    "generation | 6ème": 300,
+    "generation | BAC": 1068,
+    "generation | BEPC": 1194,
+    "resolution | 4ème": 230,
+    "resolution | 5ème": 163,
+    "resolution | 6ème": 218,
+    "resolution | BAC": 373,
+    "resolution | BEPC": 338
   },
   "par_tache_et_source": {
     "correction | banque_generee": 2392,
-    "correction | complement_gemini": 1717,
+    "correction | complement_gemini": 2038,
     "correction | generateur": 1004,
     "generation | banque_generee": 1196,
     "generation | banque_manuelle": 21,
     "generation | collecte_gemini-3.5-flash": 32,
     "generation | collecte_gemini-flash-lite-latest": 49,
-    "generation | complement_gemini": 934,
+    "generation | complement_gemini": 1098,
     "generation | generateur": 684,
-    "resolution | complement_gemini": 540,
+    "resolution | complement_gemini": 593,
     "resolution | generateur": 729
   },
   "par_tache_et_matiere": {
-    "correction | Allemand": 200,
-    "correction | Anglais": 442,
+    "correction | Allemand": 236,
+    "correction | Anglais": 460,
     "correction | Communication écrite": 191,
     "correction | Espagnol": 189,
-    "correction | Français": 218,
-    "correction | Histoire-Géographie": 454,
+    "correction | Français": 236,
+    "correction | Histoire-Géographie": 472,
     "correction | Lecture": 208,
-    "correction | Mathématiques": 952,
-    "correction | Philosophie": 236,
-    "correction | Physique-Chimie-Technologie": 1021,
-    "correction | Sciences de la Vie et de la Terre": 1002,
-    "generation | Allemand": 104,
-    "generation | Anglais": 230,
+    "correction | Mathématiques": 982,
+    "correction | Philosophie": 286,
+    "correction | Physique-Chimie-Technologie": 1136,
+    "correction | Sciences de la Vie et de la Terre": 1038,
+    "generation | Allemand": 122,
+    "generation | Anglais": 239,
     "generation | Communication écrite": 108,
     "generation | Espagnol": 107,
-    "generation | Français": 109,
-    "generation | Histoire-Géographie": 249,
+    "generation | Français": 118,
+    "generation | Histoire-Géographie": 258,
     "generation | Lecture": 107,
-    "generation | Mathématiques": 699,
-    "generation | Philosophie": 118,
-    "generation | Physique-Chimie-Technologie": 572,
-    "generation | Sciences de la Vie et de la Terre": 513,
-    "resolution | Mathématiques": 604,
-    "resolution | Physique-Chimie-Technologie": 665
+    "generation | Mathématiques": 715,
+    "generation | Philosophie": 143,
+    "generation | Physique-Chimie-Technologie": 632,
+    "generation | Sciences de la Vie et de la Terre": 531,
+    "resolution | Mathématiques": 618,
+    "resolution | Physique-Chimie-Technologie": 704
   },
   "diversite": {
     "correction": {
-      "exemples": 5113,
-      "enonces_distincts": 2811,
-      "gabarits_distincts": 2217,
-      "part_du_gabarit_le_plus_frequent": 0.0135,
-      "part_des_5_gabarits_les_plus_frequents": 0.0542,
-      "quadrigrammes_distincts_sur_total": 0.3302
+      "exemples": 5434,
+      "enonces_distincts": 2975,
+      "gabarits_distincts": 2381,
+      "part_du_gabarit_le_plus_frequent": 0.0127,
+      "part_des_5_gabarits_les_plus_frequents": 0.051,
+      "quadrigrammes_distincts_sur_total": 0.3314
     },
     "generation": {
-      "exemples": 2916,
-      "enonces_distincts": 2643,
-      "gabarits_distincts": 2285,
-      "part_du_gabarit_le_plus_frequent": 0.0343,
-      "part_des_5_gabarits_les_plus_frequents": 0.0782,
-      "quadrigrammes_distincts_sur_total": 0.7205
+      "exemples": 3080,
+      "enonces_distincts": 2807,
+      "gabarits_distincts": 2449,
+      "part_du_gabarit_le_plus_frequent": 0.0325,
+      "part_des_5_gabarits_les_plus_frequents": 0.074,
+      "quadrigrammes_distincts_sur_total": 0.7243
     },
     "resolution": {
-      "exemples": 1269,
-      "enonces_distincts": 1269,
-      "gabarits_distincts": 628,
-      "part_du_gabarit_le_plus_frequent": 0.0473,
-      "part_des_5_gabarits_les_plus_frequents": 0.156,
-      "quadrigrammes_distincts_sur_total": 0.5031
+      "exemples": 1322,
+      "enonces_distincts": 1322,
+      "gabarits_distincts": 681,
+      "part_du_gabarit_le_plus_frequent": 0.0454,
+      "part_des_5_gabarits_les_plus_frequents": 0.1498,
+      "quadrigrammes_distincts_sur_total": 0.5128
     }
   },
   "fuite_jeu_de_test": 0,
   "empreintes_sha256": {
-    "train": "230dd81dd148513b027201dfba6900c1e4ddd03aad51675281b5cbad21788f54",
-    "validation": "612a4b1488f5cf87d532aef152b017f5485a3b5353370f6b0db3f744081ed02f"
+    "train": "6c39645859c75e6f3bf882e856819e4b3b92a2e247221eae8393a86374f91b83",
+    "validation": "3dff2fe0e40de43cc76dd50127287270b6699bd299bfbb7c241b2833f27ccf88"
   }
 }
