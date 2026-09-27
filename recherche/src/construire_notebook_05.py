@@ -310,6 +310,25 @@ donc pas franchie** : il lui manque la relecture par des enseignants, que ce
 banc ne remplace pas."""))
 
 c.append(md("""---
+## Second entraînement : RépétIA v2 (2026-09-27)
+
+`affine:Qwen/Qwen3.5-4B+repetia-v2` : même recette que la v1 (une passe,
+persona courte), sur le jeu v2 — 9 350 exemples dont 3 080 de génération,
+après une seconde collecte ciblant les thèmes pauvres. 5 h 18 d'entraînement.
+
+Sur ce banc, la v2 fait un peu mieux que la v1 : génération 0,987 → 0,993,
+résolution 0,92 → 0,94 (BAC 0,80 → 0,87), correction 1,000 → 0,997 (une
+réponse non conforme). **Ces écarts restent dans le bruit** : en résolution,
+deux points font trois items sur 150. La perte de validation (0,81 contre
+0,21) ne se compare pas : le jeu de validation a changé avec les données.
+
+Relus un par un, les cinq exercices tirés pour la v1 ne montrent plus
+d'erreur de fond (la date de Spoutnik, l'énoncé sans question ont disparu),
+mais un défaut hérité des données d'entraînement persiste : « Un(e) car de
+transport », tel que l'écrit le générateur `energieCinetique` de
+l'application."""))
+
+c.append(md("""---
 ## 8. Limites
 
 - **La justesse d'un exercice généré n'est pas mesurée.** Pour la tâche

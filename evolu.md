@@ -66,6 +66,42 @@ Trois règles :
 
 ---
 
+## 2026-09-27 — [Phase 4] Grille de relecture ; second entraînement (v2)
+
+**Auteur** Claude Code · **Commits** `c1bc0bd` → ce commit
+
+**Fait**
+- Grille de relecture à l'aveugle (`recherche/relecture/`, `relecture.py`) :
+  60 exercices + 60 corrections, dont 20 témoins Gemini mêlés sans être
+  signalés, 24 lignes par niveau. Script d'analyse testé sur deux grilles
+  fictives (levée de l'anonymat, accord entre relecteurs). La clé reste
+  dans le dépôt, seul le `.xlsx` s'envoie.
+- Second entraînement sur le jeu v2 (9 350 exemples), même recette que la v1 :
+  5 h 18 ; banc rejoué en fin de noyau (torchao retiré). Adaptateur publié en
+  privé : `Nounagnon02/repetia-qwen3.5-4b-lora-v2`.
+
+**Mesures** (banc v1, jeu complet)
+- v1 → v2 : génération 0,987 → 0,993 ; résolution 0,92 → 0,94 (BAC
+  0,80 → 0,87) ; correction 1,000 → 0,997 ; thèmes réservés 1,00 → 1,00.
+  Écarts dans le bruit (trois items sur 150 en résolution).
+
+**Échecs / non fait**
+- LibreOffice ne démarre pas dans l'environnement : la grille n'a pas pu
+  être recalculée par `recalc.py`. Les 7 formules de la synthèse ont été
+  vérifiées avec un évaluateur indépendant (`formulas`) sur une grille
+  remplie de valeurs connues ; Excel les recalcule à l'ouverture.
+- La grille porte sur la v1 (préparée avant la v2).
+- `pgrep -f soffice` a tué le shell qui le lançait : même piège que
+  `pkill -f`, déjà décrit dans CLAUDE.md.
+
+**Observé, non traité**
+- `generateurs.ts:852` écrit « Un(e) camion / car… » : le modèle affiné l'a
+  appris, et la banque servie aux élèves le contient déjà.
+- Sur 2 T4, le `Trainer` répartit les lots sur les deux cartes : le lot
+  effectif est de 32 et non de 16 (276 pas pour la v1, 293 pour la v2).
+
+---
+
 ## 2026-09-26 — [Phases 3-4] Premier modèle RépétIA affiné (Qwen3.5-4B, v1) et son banc
 
 **Auteur** Claude Code · **Commits** `0bc90b4` → ce commit
