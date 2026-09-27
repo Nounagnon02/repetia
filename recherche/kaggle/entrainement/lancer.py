@@ -213,29 +213,47 @@ class Chronometre(TrainerCallback):
         return control
 
 
-class EntraineurReponseSeule(Trainer):
-    """Ne calcule les logits QUE sur la réponse.
+def perte_par_tranches(modele, input_ids, attention_mask, labels, tranche=256):
+    """Somme des entropies croisées sur la RÉPONSE, calculée tranche par tranche.
 
-    Les logits d'un vocabulaire de 248 000 entrées (Qwen3.5) sur toute la
-    séquence dépassaient la mémoire du T4 dès que les exemples s'allongeaient
-    (Exo7, jusqu'à 1 900 jetons). Or seule la réponse, en fin de séquence,
-    compte dans la perte : `logits_to_keep` borne le calcul à ces positions.
-    Même perte, mémoire divisée d'autant. (Un seul exemple par lot : la
-    réponse occupe toujours la fin de la séquence.)
+    Les logits d'un vocabulaire de 248 000 entrées (Qwen3.5), même bornés à la
+    réponse, dépassaient la mémoire du T4 pour une longue correction d'Exo7
+    (≈ 1 500 jetons : 3 Go d'un bloc). Ici, la couche de sortie est appliquée
+    par tranches de `tranche` positions, chacune recalculée à la
+    rétropropagation (checkpoint) : le pic mémoire ne dépend plus de la
+    longueur de la réponse. Perte et gradients identiques au calcul complet.
+    Renvoie (somme des pertes, nombre de jetons comptés).
     """
+    base = modele.get_base_model() if hasattr(modele, "get_base_model") else modele
+    garde = int((labels != -100).sum(dim=1).max().item()) + 1
+    cachees = base.model(input_ids=input_ids, attention_mask=attention_mask).last_hidden_state[:, -garde:-1, :]
+    cibles = labels[:, -garde + 1:]
+    tete = base.lm_head
+
+    def morceau(h, y):
+        return torch.nn.functional.cross_entropy(tete(h).float().reshape(-1, tete.out_features), y.reshape(-1),
+                                                 ignore_index=-100, reduction="sum")
+
+    total = cachees.new_zeros((), dtype=torch.float32)
+    for debut in range(0, cachees.size(1), tranche):
+        h, y = cachees[:, debut:debut + tranche, :], cibles[:, debut:debut + tranche]
+        if (y != -100).any():
+            total = total + torch.utils.checkpoint.checkpoint(morceau, h, y, use_reentrant=False)
+    return total, (cibles != -100).sum()
+
+
+class EntraineurReponseSeule(Trainer):
+    """Perte sur la réponse seule, calculée par tranches (voir perte_par_tranches)."""
 
     def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
-        labels = inputs["labels"]
-        garde = int((labels != -100).sum(dim=1).max().item()) + 1
-        sorties = model(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
-                        logits_to_keep=garde)
-        logits = sorties.logits[:, :-1, :].float()
-        cibles = labels[:, -garde + 1:]
-        perte = torch.nn.functional.cross_entropy(logits.reshape(-1, logits.size(-1)), cibles.reshape(-1),
-                                                  ignore_index=-100, reduction="sum")
-        n = (cibles != -100).sum()
-        perte = perte / (num_items_in_batch if num_items_in_batch is not None else n.clamp(min=1))
-        return (perte, sorties) if return_outputs else perte
+        somme, n = perte_par_tranches(model, inputs["input_ids"], inputs["attention_mask"], inputs["labels"])
+        perte = somme / (num_items_in_batch if num_items_in_batch is not None else n.clamp(min=1))
+        return (perte, None) if return_outputs else perte
+
+    def prediction_step(self, model, inputs, prediction_loss_only, ignore_keys=None):
+        with torch.no_grad():
+            somme, n = perte_par_tranches(model, inputs["input_ids"], inputs["attention_mask"], inputs["labels"])
+        return (somme / n.clamp(min=1)).detach(), None, None
 
 
 entraineur = EntraineurReponseSeule(model=modele, args=arguments, train_dataset=train, eval_dataset=validation,
