@@ -213,8 +213,33 @@ class Chronometre(TrainerCallback):
         return control
 
 
-entraineur = Trainer(model=modele, args=arguments, train_dataset=train, eval_dataset=validation,
-                     data_collator=assembler, callbacks=[Chronometre()])
+class EntraineurReponseSeule(Trainer):
+    """Ne calcule les logits QUE sur la réponse.
+
+    Les logits d'un vocabulaire de 248 000 entrées (Qwen3.5) sur toute la
+    séquence dépassaient la mémoire du T4 dès que les exemples s'allongeaient
+    (Exo7, jusqu'à 1 900 jetons). Or seule la réponse, en fin de séquence,
+    compte dans la perte : `logits_to_keep` borne le calcul à ces positions.
+    Même perte, mémoire divisée d'autant. (Un seul exemple par lot : la
+    réponse occupe toujours la fin de la séquence.)
+    """
+
+    def compute_loss(self, model, inputs, return_outputs=False, num_items_in_batch=None):
+        labels = inputs["labels"]
+        garde = int((labels != -100).sum(dim=1).max().item()) + 1
+        sorties = model(input_ids=inputs["input_ids"], attention_mask=inputs["attention_mask"],
+                        logits_to_keep=garde)
+        logits = sorties.logits[:, :-1, :].float()
+        cibles = labels[:, -garde + 1:]
+        perte = torch.nn.functional.cross_entropy(logits.reshape(-1, logits.size(-1)), cibles.reshape(-1),
+                                                  ignore_index=-100, reduction="sum")
+        n = (cibles != -100).sum()
+        perte = perte / (num_items_in_batch if num_items_in_batch is not None else n.clamp(min=1))
+        return (perte, sorties) if return_outputs else perte
+
+
+entraineur = EntraineurReponseSeule(model=modele, args=arguments, train_dataset=train, eval_dataset=validation,
+                                    data_collator=assembler, callbacks=[Chronometre()])
 depart = time.time()
 entraineur.train()
 journal["duree_entrainement_s"] = round(time.time() - depart)
