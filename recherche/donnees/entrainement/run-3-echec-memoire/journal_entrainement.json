@@ -1,0 +1,41 @@
+{
+  "noyaux_rapides": {
+    "fla": "ModuleNotFoundError(\"No module named 'fla'\")",
+    "causal_conv1d": "ModuleNotFoundError(\"No module named 'causal_conv1d'\")"
+  },
+  "base": "Qwen/Qwen3.5-4B",
+  "essai": false,
+  "config": {
+    "base": "Qwen/Qwen3.5-4B",
+    "essai": false,
+    "epoques": 1,
+    "version": "v3"
+  },
+  "debut": "2026-09-27 16:48:57",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.17.0",
+  "peft": "0.21.0",
+  "gpu": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "train_exemples": 13558,
+  "train_ecartes_trop_longs": 0,
+  "validation_exemples": 708,
+  "validation_ecartes_trop_longs": 0,
+  "classe_modele": "Qwen3_5ForCausalLM",
+  "parametres_entrainables": 30474240,
+  "lora": {
+    "r": 16,
+    "alpha": 32,
+    "dropout": 0.05
+  },
+  "hyperparametres": {
+    "num_train_epochs": 1,
+    "per_device_train_batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "learning_rate": 0.0002,
+    "lr_scheduler_type": "cosine",
+    "warmup_steps": 25
+  }
+}
