@@ -67,6 +67,26 @@ export const NIVEAUX: Niveau[] = [
     programme: 'BAC (Terminale, programme béninois)',
     rang: 5,
   },
+  // Supérieur (vague 5 du plan d'entraînement). Absents du catalogue pour
+  // l'instant : l'application ne les propose pas encore, mais le jeu
+  // d'entraînement en a besoin — sans eux, un exercice de licence recevrait
+  // la consigne « collégiens de 3ème » du niveau par défaut.
+  {
+    code: 'L1',
+    classe: 'Licence 1',
+    examen: 'leurs examens de première année de licence',
+    public: "étudiants de première année d'université",
+    programme: "Licence 1 (première année d'université, tronc commun scientifique)",
+    rang: 6,
+  },
+  {
+    code: 'L2',
+    classe: 'Licence 2',
+    examen: 'leurs examens de deuxième année de licence',
+    public: "étudiants de deuxième année d'université",
+    programme: "Licence 2 (deuxième année d'université, sciences)",
+    rang: 7,
+  },
 ];
 
 /** Niveau servi quand l'appelant n'en fournit pas, ou en fournit un inconnu. */

@@ -94,6 +94,36 @@
       "niveau": "4ème",
       "matiere": "Mathématiques",
       "theme": "Calcul littéral et équations simples"
+    },
+    {
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "theme": "Série à termes positifs"
+    },
+    {
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "theme": "Fonctions circulaires inverses"
+    },
+    {
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "theme": "Longueur, aire, volume"
+    },
+    {
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "theme": "Variable aléatoire discrète"
+    },
+    {
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "theme": "Torseurs"
+    },
+    {
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "theme": "Intégrale multiple"
     }
   ],
   "exercices": [
@@ -3696,6 +3726,1049 @@
       "difficulte": "moyen",
       "theme": "Figures de style",
       "empreinte_enonce": "e16b15f89b30"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006010",
+      "empreinte_enonce": "8436d267e63e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000746",
+      "empreinte_enonce": "b5e10ca13be5"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004396",
+      "empreinte_enonce": "d51ac9047c8a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005315",
+      "empreinte_enonce": "7afdcaaa6e8a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005144",
+      "empreinte_enonce": "33a0627c3009"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005698",
+      "empreinte_enonce": "a51ebd24214b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005704",
+      "empreinte_enonce": "fc965175f7db"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004947",
+      "empreinte_enonce": "26082e2182d6"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-002099",
+      "empreinte_enonce": "8f2bb127d156"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000981",
+      "empreinte_enonce": "840c26ed8e6c"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-007209",
+      "empreinte_enonce": "3520a2716d45"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004848",
+      "empreinte_enonce": "17c55a8193ed"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-002617",
+      "empreinte_enonce": "5961ffbcbc5f"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-001386",
+      "empreinte_enonce": "dc5fc405b579"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007105",
+      "empreinte_enonce": "23e4ad8af2b0"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006026",
+      "empreinte_enonce": "941822dee03f"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001202",
+      "empreinte_enonce": "33f70326a12a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004086",
+      "empreinte_enonce": "44a00eb5230c"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005865",
+      "empreinte_enonce": "246d45c3f782"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005408",
+      "empreinte_enonce": "9a1dd008e456"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003010",
+      "empreinte_enonce": "55b8996aa54d"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000122",
+      "empreinte_enonce": "0f47d173c269"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000110",
+      "empreinte_enonce": "cbff6e0453e3"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004698",
+      "empreinte_enonce": "202b6a662893"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004826",
+      "empreinte_enonce": "6f63c5bcab0b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004188",
+      "empreinte_enonce": "b77343fecccd"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-006865",
+      "empreinte_enonce": "c9a4be5c1e05"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001015",
+      "empreinte_enonce": "2c6bb24fccf1"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004990",
+      "empreinte_enonce": "dc2279dfc2ec"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-007179",
+      "empreinte_enonce": "507f751acf44"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005334",
+      "empreinte_enonce": "0e0041277916"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004534",
+      "empreinte_enonce": "5c9ec1582c33"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005709",
+      "empreinte_enonce": "567d2fad4245"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005104",
+      "empreinte_enonce": "e58addca4068"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000677",
+      "empreinte_enonce": "b8bd0d1bf986"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003713",
+      "empreinte_enonce": "c1fd3b05bec2"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004068",
+      "empreinte_enonce": "dbd3f61c6d24"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005314",
+      "empreinte_enonce": "22d7213aed91"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005444",
+      "empreinte_enonce": "cfbcf59ecb57"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004928",
+      "empreinte_enonce": "377fe0b5d94a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-002940",
+      "empreinte_enonce": "701b7c7e6b27"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005459",
+      "empreinte_enonce": "e57cdb02dadb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004984",
+      "empreinte_enonce": "0542f1d23fd7"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-002087",
+      "empreinte_enonce": "896f46af4003"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-002630",
+      "empreinte_enonce": "bc2a7bee9cc4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003068",
+      "empreinte_enonce": "c8d02da6c618"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003711",
+      "empreinte_enonce": "025b7cf9e2bc"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005016",
+      "empreinte_enonce": "7e8bcaa9f6f0"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005997",
+      "empreinte_enonce": "e2f21d7f02f8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005582",
+      "empreinte_enonce": "bb5deaeb54dc"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004385",
+      "empreinte_enonce": "a977e4e6b0fa"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005988",
+      "empreinte_enonce": "0d5f9c0ff18b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000023",
+      "empreinte_enonce": "28a22b16d93c"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006002",
+      "empreinte_enonce": "d7fd80bd41aa"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005066",
+      "empreinte_enonce": "be0856fc26fc"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003013",
+      "empreinte_enonce": "5ee0bee4abc9"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005217",
+      "empreinte_enonce": "91d3feecde40"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000378",
+      "empreinte_enonce": "0b9a07756bfb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004193",
+      "empreinte_enonce": "f67634ad252d"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006934",
+      "empreinte_enonce": "cff9627635d8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005001",
+      "empreinte_enonce": "d5203da1d6b8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006916",
+      "empreinte_enonce": "cfc9c2f7162e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000672",
+      "empreinte_enonce": "7de34dc8ede8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004247",
+      "empreinte_enonce": "89919c82fe13"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003043",
+      "empreinte_enonce": "8e2c7b6f0d68"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005985",
+      "empreinte_enonce": "7ce059fe999e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004391",
+      "empreinte_enonce": "e67891124f38"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003988",
+      "empreinte_enonce": "0e5ecf42e6f7"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005341",
+      "empreinte_enonce": "61a765d1afa9"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005403",
+      "empreinte_enonce": "4e28e1c2d48b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005453",
+      "empreinte_enonce": "29da09d5f65f"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-001345",
+      "empreinte_enonce": "e539c6994b9e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003170",
+      "empreinte_enonce": "f826eb3c5506"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007096",
+      "empreinte_enonce": "8e16c44318ae"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004191",
+      "empreinte_enonce": "3160096471a1"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005859",
+      "empreinte_enonce": "f29f317730e4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004978",
+      "empreinte_enonce": "99d70ac39f02"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003869",
+      "empreinte_enonce": "e27b4f31db31"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004044",
+      "empreinte_enonce": "cf2abfcf6c3d"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005180",
+      "empreinte_enonce": "64b72e254458"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007103",
+      "empreinte_enonce": "797cd6ff6297"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000934",
+      "empreinte_enonce": "889c6b2dc374"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005045",
+      "empreinte_enonce": "c55dda4847e0"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000250",
+      "empreinte_enonce": "b3985ac7d7dc"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003979",
+      "empreinte_enonce": "4b78c7227979"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004899",
+      "empreinte_enonce": "c679d7a9f16e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000923",
+      "empreinte_enonce": "fd15d442b6b5"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000466",
+      "empreinte_enonce": "4f11b1d62e5f"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003822",
+      "empreinte_enonce": "0d289e523b96"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004853",
+      "empreinte_enonce": "6d4fde4447eb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001204",
+      "empreinte_enonce": "89f6ca10919a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004417",
+      "empreinte_enonce": "014086235eac"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003759",
+      "empreinte_enonce": "728bc53da7d5"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004115",
+      "empreinte_enonce": "3d45c0e92c7b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006900",
+      "empreinte_enonce": "8549491790c0"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004103",
+      "empreinte_enonce": "9710df0c813b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004444",
+      "empreinte_enonce": "3952248434d3"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007097",
+      "empreinte_enonce": "d4aa5802c57c"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006876",
+      "empreinte_enonce": "7062dbb8c1fb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000021",
+      "empreinte_enonce": "25f8b58faa7d"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003385",
+      "empreinte_enonce": "2de622818868"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004600",
+      "empreinte_enonce": "192324ab128e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005760",
+      "empreinte_enonce": "307031e5ed8a"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005801",
+      "empreinte_enonce": "a5c6fbdd89ad"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004650",
+      "empreinte_enonce": "99073adc9354"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005883",
+      "empreinte_enonce": "516b2b2da168"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000290",
+      "empreinte_enonce": "22486cee0e19"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000111",
+      "empreinte_enonce": "35caa0ba1b77"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004789",
+      "empreinte_enonce": "b4ac0ee0052e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006924",
+      "empreinte_enonce": "ed31fdc225c4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006997",
+      "empreinte_enonce": "b593ae6be59b"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003070",
+      "empreinte_enonce": "bbfd0d48a70e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004925",
+      "empreinte_enonce": "8778064ed5f4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004760",
+      "empreinte_enonce": "a8c234ee9599"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-007149",
+      "empreinte_enonce": "03957daccaf4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000109",
+      "empreinte_enonce": "5133b070a1ed"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004280",
+      "empreinte_enonce": "f811f67de3f5"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001280",
+      "empreinte_enonce": "147e98358fa8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-006881",
+      "empreinte_enonce": "618c862d2460"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001267",
+      "empreinte_enonce": "247a8cd00638"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005100",
+      "empreinte_enonce": "75cae477aec4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-000758",
+      "empreinte_enonce": "719739ff7273"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-002939",
+      "empreinte_enonce": "2bd8b05acc09"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004910",
+      "empreinte_enonce": "794223eb8dcb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-001311",
+      "empreinte_enonce": "6385891575f4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005485",
+      "empreinte_enonce": "7ee07b6b3fcf"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004464",
+      "empreinte_enonce": "8c987da3dfef"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003296",
+      "empreinte_enonce": "8362ca4a84db"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005337",
+      "empreinte_enonce": "a262e18fcc82"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005141",
+      "empreinte_enonce": "cc3dca7d34d4"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005017",
+      "empreinte_enonce": "36a54b74d811"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003617",
+      "empreinte_enonce": "34e2c12d0947"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004312",
+      "empreinte_enonce": "2ede325cb229"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-002631",
+      "empreinte_enonce": "83eed5cf72e8"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004281",
+      "empreinte_enonce": "a23efbe51bfe"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004410",
+      "empreinte_enonce": "b30af066fd83"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-003801",
+      "empreinte_enonce": "1992bf585fa5"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004545",
+      "empreinte_enonce": "ffea3019225d"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005254",
+      "empreinte_enonce": "bb2421a2265e"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007058",
+      "empreinte_enonce": "d3b367eb38db"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-007137",
+      "empreinte_enonce": "09de08643d20"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003921",
+      "empreinte_enonce": "b405d7ef0e31"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-004377",
+      "empreinte_enonce": "b98b8e228112"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L2",
+      "matiere": "Mathématiques",
+      "id": "exo7-005635",
+      "empreinte_enonce": "0d04d167fe25"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-003910",
+      "empreinte_enonce": "68ae1230fa31"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-006955",
+      "empreinte_enonce": "3a28d47ebcdb"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-001265",
+      "empreinte_enonce": "98ca6c479f85"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-005625",
+      "empreinte_enonce": "5f5f77439706"
+    },
+    {
+      "type": "exo7",
+      "niveau": "L1",
+      "matiere": "Mathématiques",
+      "id": "exo7-004461",
+      "empreinte_enonce": "4d99b049f190"
     }
   ]
 }

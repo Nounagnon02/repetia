@@ -1,32 +1,33 @@
 {
-  "candidats": 10725,
-  "retenus": 9836,
-  "train": 9350,
-  "validation": 486,
+  "candidats": 14391,
+  "retenus": 13369,
+  "train": 12691,
+  "validation": 678,
   "par_tache": {
-    "generation": 3080,
-    "resolution": 1322,
-    "correction": 5434
+    "generation": 4032,
+    "resolution": 2585,
+    "correction": 6752
   },
   "criteres_phase_2": {
     "generation": {
       "seuil": 3000,
-      "obtenu": 3080,
+      "obtenu": 4032,
       "atteint": true
     },
     "correction": {
       "seuil": 3000,
-      "obtenu": 5434,
+      "obtenu": 6752,
       "atteint": true
     }
   },
   "rejets": {
-    "correction — doublon": 277,
-    "correction — français désaccentué ou sans apostrophes": 17,
+    "correction — doublon": 279,
+    "correction — français désaccentué ou sans apostrophes": 29,
     "generation — doublon": 4,
-    "generation — français désaccentué ou sans apostrophes": 9,
-    "resolution — doublon": 580,
-    "resolution — français désaccentué ou sans apostrophes": 2
+    "generation — explication trop courte": 78,
+    "generation — français désaccentué ou sans apostrophes": 27,
+    "resolution — doublon": 582,
+    "resolution — français désaccentué ou sans apostrophes": 23
   },
   "par_tache_et_niveau": {
     "correction | 4ème": 493,
@@ -34,28 +35,37 @@
     "correction | 6ème": 512,
     "correction | BAC": 1954,
     "correction | BEPC": 1953,
+    "correction | L1": 645,
+    "correction | L2": 673,
     "generation | 4ème": 230,
     "generation | 5ème": 288,
     "generation | 6ème": 300,
     "generation | BAC": 1068,
     "generation | BEPC": 1194,
+    "generation | L1": 442,
+    "generation | L2": 510,
     "resolution | 4ème": 230,
     "resolution | 5ème": 163,
     "resolution | 6ème": 218,
     "resolution | BAC": 373,
-    "resolution | BEPC": 338
+    "resolution | BEPC": 338,
+    "resolution | L1": 631,
+    "resolution | L2": 632
   },
   "par_tache_et_source": {
     "correction | banque_generee": 2392,
     "correction | complement_gemini": 2038,
+    "correction | exo7": 1318,
     "correction | generateur": 1004,
     "generation | banque_generee": 1196,
     "generation | banque_manuelle": 21,
     "generation | collecte_gemini-3.5-flash": 32,
     "generation | collecte_gemini-flash-lite-latest": 49,
     "generation | complement_gemini": 1098,
+    "generation | exo7": 952,
     "generation | generateur": 684,
     "resolution | complement_gemini": 593,
+    "resolution | exo7": 1263,
     "resolution | generateur": 729
   },
   "par_tache_et_matiere": {
@@ -66,7 +76,7 @@
     "correction | Français": 236,
     "correction | Histoire-Géographie": 472,
     "correction | Lecture": 208,
-    "correction | Mathématiques": 982,
+    "correction | Mathématiques": 2300,
     "correction | Philosophie": 286,
     "correction | Physique-Chimie-Technologie": 1136,
     "correction | Sciences de la Vie et de la Terre": 1038,
@@ -77,42 +87,42 @@
     "generation | Français": 118,
     "generation | Histoire-Géographie": 258,
     "generation | Lecture": 107,
-    "generation | Mathématiques": 715,
+    "generation | Mathématiques": 1667,
     "generation | Philosophie": 143,
     "generation | Physique-Chimie-Technologie": 632,
     "generation | Sciences de la Vie et de la Terre": 531,
-    "resolution | Mathématiques": 618,
+    "resolution | Mathématiques": 1881,
     "resolution | Physique-Chimie-Technologie": 704
   },
   "diversite": {
     "correction": {
-      "exemples": 5434,
-      "enonces_distincts": 2975,
-      "gabarits_distincts": 2381,
-      "part_du_gabarit_le_plus_frequent": 0.0127,
-      "part_des_5_gabarits_les_plus_frequents": 0.051,
-      "quadrigrammes_distincts_sur_total": 0.3314
+      "exemples": 6752,
+      "enonces_distincts": 3634,
+      "gabarits_distincts": 3040,
+      "part_du_gabarit_le_plus_frequent": 0.0102,
+      "part_des_5_gabarits_les_plus_frequents": 0.041,
+      "quadrigrammes_distincts_sur_total": 0.3416
     },
     "generation": {
-      "exemples": 3080,
-      "enonces_distincts": 2807,
-      "gabarits_distincts": 2449,
-      "part_du_gabarit_le_plus_frequent": 0.0325,
-      "part_des_5_gabarits_les_plus_frequents": 0.074,
-      "quadrigrammes_distincts_sur_total": 0.7243
+      "exemples": 4032,
+      "enonces_distincts": 3757,
+      "gabarits_distincts": 3399,
+      "part_du_gabarit_le_plus_frequent": 0.0248,
+      "part_des_5_gabarits_les_plus_frequents": 0.0565,
+      "quadrigrammes_distincts_sur_total": 0.7326
     },
     "resolution": {
-      "exemples": 1322,
-      "enonces_distincts": 1322,
-      "gabarits_distincts": 681,
-      "part_du_gabarit_le_plus_frequent": 0.0454,
-      "part_des_5_gabarits_les_plus_frequents": 0.1498,
-      "quadrigrammes_distincts_sur_total": 0.5128
+      "exemples": 2585,
+      "enonces_distincts": 2585,
+      "gabarits_distincts": 1944,
+      "part_du_gabarit_le_plus_frequent": 0.0232,
+      "part_des_5_gabarits_les_plus_frequents": 0.0766,
+      "quadrigrammes_distincts_sur_total": 0.6454
     }
   },
   "fuite_jeu_de_test": 0,
   "empreintes_sha256": {
-    "train": "6c39645859c75e6f3bf882e856819e4b3b92a2e247221eae8393a86374f91b83",
-    "validation": "3dff2fe0e40de43cc76dd50127287270b6699bd299bfbb7c241b2833f27ccf88"
+    "train": "bbc114fc5c4d1222fd91ecf7235a422c77bc46f233542a5f9d680d5756b2dcc4",
+    "validation": "09e06d4c378a3a92bf50cecf229080fccc61801beda9087a9026f7cc69174fe6"
   }
 }

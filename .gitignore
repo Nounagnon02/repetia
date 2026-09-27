@@ -76,3 +76,6 @@ recherche/donnees/entrainement/*/banc.py
 recherche/donnees/*/kaggle/banc.py
 recherche/donnees/*/kaggle/reponses/
 recherche/donnees/*/kaggle/__pycache__/
+
+# Exo7 : source retéléchargeable (voir importer_exo7.py) ; seul l’extrait converti est versionné.
+recherche/donnees/brutes/exo7/ficall.tex

@@ -378,6 +378,57 @@ for (const r of lireCsv(fs.readFileSync(path.join(racine, 'recherche/donnees/tra
 }
 
 // ---------------------------------------------------------------------------
+// 6. Exo7 (CC BY-NC-SA, voir SOURCES.md) : exercices corrigés de licence.
+//    La correction d'origine sert d'explication. Une démonstration n'a pas de
+//    « réponse finale » : elle sert à la résolution et à la génération, pas à
+//    la correction (comparer une preuve d'élève à une preuve attendue n'est
+//    pas la tâche que le produit sait fabriquer).
+// ---------------------------------------------------------------------------
+
+{
+  const fichier = path.join(racine, 'recherche/donnees/brutes/exo7/exo7_exercices.jsonl');
+  const exo7 = fs.existsSync(fichier)
+    ? fs.readFileSync(fichier, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l))
+    : [];
+  const DEMO = /^C'est une démonstration/;
+  for (const ex of exo7) {
+    if (enoncesExclus.has(empreinte(ex.enonce))) {
+      compteurs.ecartes_banc++;
+      continue;
+    }
+    if (estReserve(ex.niveau, ex.matiere, ex.theme)) {
+      compteurs.ecartes_theme_reserve++;
+      continue;
+    }
+    const base = { niveau: ex.niveau, matiere: ex.matiere, difficulte: ex.difficulte, theme: ex.theme,
+      source: 'exo7', licence: 'CC BY-NC-SA 3.0 FR' };
+    if (ex.theme !== 'Exercices divers') {
+      ajouter({
+        ...base,
+        tache: 'generation',
+        systeme: promptSysteme(ex.matiere, ex.niveau, ex.theme),
+        consigne: consigneGeneration(ex.theme, ex.difficulte, ex.matiere, ex.niveau),
+        cible: { enonce: ex.enonce, solution: ex.solution, explication: ex.explication },
+        enonce: ex.enonce,
+      });
+    }
+    ajouter({
+      ...base,
+      tache: 'resolution',
+      systeme: promptSysteme(ex.matiere, ex.niveau),
+      consigne: consigneResolution(ex.enonce),
+      cible: { solution: ex.solution, explication: ex.explication },
+      enonce: ex.enonce,
+    });
+    if (!DEMO.test(ex.solution)) {
+      ajouterCorrection(base, ex, 'juste', ex.solution);
+      const autres = exo7.filter((o) => o.niveau === ex.niveau && o.theme !== ex.theme && !DEMO.test(o.solution));
+      if (autres.length) ajouterCorrection(base, ex, 'solution_autre_theme', choisir(autres).solution);
+    }
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Écriture
 // ---------------------------------------------------------------------------
 

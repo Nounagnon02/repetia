@@ -216,6 +216,90 @@ const estReserve = (niveau, matiere, theme) =>
 }
 
 // ---------------------------------------------------------------------------
+// Vague 5 — supérieur (L1, L2), tiré d'Exo7 (CC BY-NC-SA, voir SOURCES.md).
+//
+// Ajouté APRÈS les items des vagues précédentes, avec son propre tirage :
+// les 750 items de la v1 restent identiques octet pour octet, et les scores
+// déjà publiés restent comparables.
+// ---------------------------------------------------------------------------
+
+{
+  const fichier = path.join(racine, 'recherche/donnees/brutes/exo7/exo7_exercices.jsonl');
+  if (fs.existsSync(fichier)) {
+    const exo7 = fs.readFileSync(fichier, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l));
+    const t5 = tirages(mulberry32(GRAINE + 5));
+    const DEMO = /^C'est une démonstration/;
+    // Trois thèmes réservés par année : aucun de leurs exercices n'entrera
+    // dans l'entraînement.
+    for (const niveau of ['L1', 'L2']) {
+      const themes = [...new Set(exo7.filter((e) => e.niveau === niveau && e.theme !== 'Exercices divers').map((e) => e.theme))].sort();
+      for (const theme of t5.melanger(themes).slice(0, 3)) {
+        exclusions.themes_reserves.push({ niveau, matiere: 'Mathématiques', theme });
+      }
+    }
+    const reserve5 = (e) => estReserve(e.niveau, e.matiere, e.theme);
+    const melanges = t5.melanger(exo7);
+    const pris = new Set();
+    const prendre = (filtre, n) => {
+      const lot = melanges.filter((e) => !pris.has(e.id) && filtre(e)).slice(0, n);
+      lot.forEach((e) => pris.add(e.id));
+      return lot;
+    };
+    const exclure = (e) =>
+      exclusions.exercices.push({ type: 'exo7', niveau: e.niveau, matiere: e.matiere, id: e.id, empreinte_enonce: empreinte(e.enonce) });
+    const base = (e) => ({ matiere: e.matiere, niveau: e.niveau, difficulte: e.difficulte, vague: 5 });
+
+    // Génération : 20 demandes sur les thèmes réservés, 20 sur les autres.
+    // Une demande = (année, thème, difficulté) : deux exercices qui la
+    // partagent donneraient deux fois la même consigne.
+    const demandees = new Set();
+    const nouvelle = (e) => {
+      const cle = `${e.niveau}|${e.theme}|${e.difficulte}`;
+      if (demandees.has(cle)) return false;
+      demandees.add(cle);
+      return true;
+    };
+    const demandes = [
+      ...prendre((e) => reserve5(e) && nouvelle(e), 20),
+      ...prendre((e) => !reserve5(e) && e.theme !== 'Exercices divers' && nouvelle(e), 20),
+    ];
+    for (const e of demandes) {
+      exclure(e);
+      ajouter({
+        ...base(e), tache: 'generation', theme: e.theme, theme_reserve: reserve5(e),
+        systeme: promptSysteme(e.matiere, e.niveau, e.theme),
+        consigne: consigneGeneration(e.theme, e.difficulte, e.matiere, e.niveau),
+        attendu: {}, provenance: { type: 'exo7', id: e.id },
+      });
+    }
+    // Résolution : seulement si la solution a une valeur à retrouver.
+    for (const e of prendre((e) => !DEMO.test(e.solution) && /\d/.test(e.solution), 40)) {
+      exclure(e);
+      ajouter({
+        ...base(e), tache: 'resolution', theme: e.theme, theme_reserve: reserve5(e),
+        systeme: promptSysteme(e.matiere, e.niveau), consigne: consigneResolution(e.enonce),
+        attendu: { solution: e.solution, explication: e.explication, enonce: e.enonce },
+        provenance: { type: 'exo7', id: e.id },
+      });
+    }
+    // Correction : 40 justes (la solution), 40 hors sujet (la solution d'un
+    // exercice d'un autre thème de la même année).
+    prendre((e) => !DEMO.test(e.solution), 80).forEach((e, rang) => {
+      exclure(e);
+      const juste = rang % 2 === 0;
+      const autres = exo7.filter((o) => o.niveau === e.niveau && o.theme !== e.theme && !DEMO.test(o.solution));
+      const reponse = juste ? e.solution : t5.choisir(autres).solution;
+      ajouter({
+        ...base(e), tache: 'correction', theme: e.theme, theme_reserve: reserve5(e),
+        systeme: promptSysteme(e.matiere, e.niveau), consigne: consigneCorrection(e.enonce, e.solution, reponse),
+        attendu: { correct: juste, reponse_eleve: reponse },
+        provenance: { type: 'exo7', id: e.id, fabrication: juste ? 'solution' : 'solution_autre_theme' },
+      });
+    });
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Réponses sans LLM, au même format que celles d'un modèle
 //
 //   plancher  — ce que l'application sert AUJOURD'HUI quand aucun modèle ne
