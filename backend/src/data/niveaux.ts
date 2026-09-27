@@ -59,13 +59,32 @@ export const NIVEAUX: Niveau[] = [
     programme: 'BEPC (3ème, programme béninois)',
     rang: 4,
   },
+  // Lycée (vague 2 du plan d'entraînement) : absents du catalogue pour
+  // l'instant, présents pour que les exercices de 2nde et de 1ère du jeu
+  // d'entraînement reçoivent la bonne consigne.
+  {
+    code: '2nde',
+    classe: '2nde',
+    examen: 'le Baccalauréat, qu\'ils passeront en Terminale',
+    public: 'lycéens de 2nde',
+    programme: '2nde (lycée)',
+    rang: 5,
+  },
+  {
+    code: '1ère',
+    classe: '1ère',
+    examen: 'le Baccalauréat, qu\'ils passeront l\'an prochain',
+    public: 'lycéens de 1ère',
+    programme: '1ère (lycée)',
+    rang: 6,
+  },
   {
     code: 'BAC',
     classe: 'Terminale',
     examen: 'le Baccalauréat',
     public: 'lycéens (2nde–Terminale)',
     programme: 'BAC (Terminale, programme béninois)',
-    rang: 5,
+    rang: 7,
   },
   // Supérieur (vague 5 du plan d'entraînement). Absents du catalogue pour
   // l'instant : l'application ne les propose pas encore, mais le jeu
@@ -77,7 +96,7 @@ export const NIVEAUX: Niveau[] = [
     examen: 'leurs examens de première année de licence',
     public: "étudiants de première année d'université",
     programme: "Licence 1 (première année d'université, tronc commun scientifique)",
-    rang: 6,
+    rang: 8,
   },
   {
     code: 'L2',
@@ -85,7 +104,7 @@ export const NIVEAUX: Niveau[] = [
     examen: 'leurs examens de deuxième année de licence',
     public: "étudiants de deuxième année d'université",
     programme: "Licence 2 (deuxième année d'université, sciences)",
-    rang: 7,
+    rang: 9,
   },
 ];
 

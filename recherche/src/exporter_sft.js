@@ -429,6 +429,47 @@ for (const r of lireCsv(fs.readFileSync(path.join(racine, 'recherche/donnees/tra
 }
 
 // ---------------------------------------------------------------------------
+// 7. Sésamath (CC BY-SA, voir SOURCES.md) : énoncés du manuel de 2nde, avec une
+//    solution rédigée puis vérifiée (`rediger_solutions.py`) — contre la
+//    correction publiée par Sésamath quand elle existe, par deux résolutions
+//    indépendantes sinon.
+// ---------------------------------------------------------------------------
+
+{
+  const fichier = path.join(racine, 'recherche/donnees/brutes/sesamath/sesamath_2nde_solutions.jsonl');
+  const sesa = fs.existsSync(fichier)
+    ? fs.readFileSync(fichier, 'utf8').split('\n').filter(Boolean).map((l) => JSON.parse(l))
+    : [];
+  for (const ex of sesa) {
+    if (enoncesExclus.has(empreinte(ex.enonce))) {
+      compteurs.ecartes_banc++;
+      continue;
+    }
+    const base = { niveau: ex.niveau, matiere: ex.matiere, difficulte: ex.difficulte, theme: ex.theme,
+      source: 'sesamath', licence: 'CC BY-SA 2.0 FR' };
+    ajouter({
+      ...base,
+      tache: 'generation',
+      systeme: promptSysteme(ex.matiere, ex.niveau, ex.theme),
+      consigne: consigneGeneration(ex.theme, ex.difficulte, ex.matiere, ex.niveau),
+      cible: { enonce: ex.enonce, solution: ex.solution, explication: ex.explication },
+      enonce: ex.enonce,
+    });
+    ajouter({
+      ...base,
+      tache: 'resolution',
+      systeme: promptSysteme(ex.matiere, ex.niveau),
+      consigne: consigneResolution(ex.enonce),
+      cible: { solution: ex.solution, explication: ex.explication },
+      enonce: ex.enonce,
+    });
+    ajouterCorrection(base, ex, 'juste', ex.solution);
+    const faux = reponseFausseNumerique(ex.solution, outils);
+    if (faux) ajouterCorrection(base, ex, 'nombre_fausse', faux.reponse, faux);
+  }
+}
+
+// ---------------------------------------------------------------------------
 // Écriture
 // ---------------------------------------------------------------------------
 
