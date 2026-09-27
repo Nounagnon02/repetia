@@ -26,10 +26,13 @@ DRM, zone réservée). Ce qui n'est pas librement accessible n'est pas utilisé.
   (session 2026), mais **refuse la plupart des téléchargements (403)** ;
   4 PDF récupérés. Le refus est respecté — pas de changement d'identité, pas
   d'intermédiaire. Nouvel essai possible plus tard, à un rythme plus lent.
-- **Sésamath** : fichiers publics téléchargeables. Mais le texte extrait des
-  PDF perd des signes (« + » dessiné par un glyphe spécial), et les cahiers
-  sont surtout des exercices à trous (compléter, colorier, relier) qui ne
-  se transposent pas en texte. Piste : les sources ODT, à évaluer.
+- **Sésamath** : le texte des PDF perd des signes (« + » codé U+E083 dans
+  une police privée) et les cahiers 6ème → 3ème sont surtout des exercices à
+  trous ; leurs 213 sources ODT sont téléchargées, non exploitées. Le manuel
+  de **2nde 2014**, publié en sources LaTeX, l'est : 397 exercices extraits
+  (`importer_sesamath.py`), dont 83 avec leur correction publiée ; solution
+  rédigée par Gemini et vérifiée (`rediger_solutions.py`) : **240 gardés**,
+  157 rejetés (surtout deux résolutions indépendantes discordantes).
 
 ## Conséquence d'ensemble
 
