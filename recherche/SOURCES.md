@@ -18,6 +18,19 @@ DRM, zone réservée). Ce qui n'est pas librement accessible n'est pas utilisé.
 | Annales BEPC / BAC du Bénin (sites de diffusion gratuite) | Sujets d'examen et corrigés | **Aucune licence déclarée** ; auteur des corrigés non indiqué | Entraînement **décidé par le porteur du projet** (2026-09-27) + une part réservée au banc | Risque juridique si le modèle est publié : droits non établis. Textes gardés dans `donnees/privees/`, jamais versionnés |
 | Manuels béninois au programme (éditeurs) | — | Droits réservés, pas de version libre | **Non utilisés** | — |
 
+## État de la collecte (2026-09-27)
+
+- **Exo7** : 1 466 exercices corrigés L1-L2 extraits et convertis
+  (`importer_exo7.py`) ; intégrés au jeu v3 et au banc (149 items).
+- **Annales** : `epreuvesetcorriges.com` recense 49 documents BEPC et 38 BAC
+  (session 2026), mais **refuse la plupart des téléchargements (403)** ;
+  4 PDF récupérés. Le refus est respecté — pas de changement d'identité, pas
+  d'intermédiaire. Nouvel essai possible plus tard, à un rythme plus lent.
+- **Sésamath** : fichiers publics téléchargeables. Mais le texte extrait des
+  PDF perd des signes (« + » dessiné par un glyphe spécial), et les cahiers
+  sont surtout des exercices à trous (compléter, colorier, relier) qui ne
+  se transposent pas en texte. Piste : les sources ODT, à évaluer.
+
 ## Conséquence d'ensemble
 
 Tant que le modèle est entraîné sur Exo7, il **ne peut pas être exploité

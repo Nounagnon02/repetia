@@ -79,3 +79,5 @@ recherche/donnees/*/kaggle/__pycache__/
 
 # Exo7 : source retéléchargeable (voir importer_exo7.py) ; seul l’extrait converti est versionné.
 recherche/donnees/brutes/exo7/ficall.tex
+recherche/donnees/brutes/sesamath/*.pdf
+recherche/donnees/brutes/sesamath/*.odt
