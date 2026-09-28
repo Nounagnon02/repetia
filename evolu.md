@@ -66,6 +66,44 @@ Trois règles :
 
 ---
 
+## 2026-09-28 — [Données, vagues 2 et 5] Exo7, Sésamath ; entraînement v3
+
+**Auteur** Claude Code · **Commits** `2bf6218` → ce commit
+
+**Fait**
+- Recherche de sources (voir `recherche/SOURCES.md`) : **Exo7** (licence,
+  CC BY-NC-SA) et **Sésamath** (collège-lycée, CC BY-SA) intégrés. Annales :
+  le site refuse les téléchargements (403) — refus respecté, 4 PDF. Manuels
+  des éditeurs : non utilisés (droits réservés, aucune protection
+  contournée, malgré la demande du porteur).
+- `importer_exo7.py` : 1 466 exercices corrigés L1-L2, LaTeX converti en
+  Unicode. `importer_sesamath.py` : 397 exercices de 2nde (sources LaTeX) ;
+  `rediger_solutions.py` : solutions rédigées puis vérifiées, 240 gardés.
+- Niveaux 2nde, 1ère, L1, L2 ajoutés à `niveaux.ts` (hors catalogue).
+- Banc : 149 items de licence ajoutés après les 750, inchangés.
+- Jeu v3 : 14 266 exemples. Entraînement v3 : deux échecs de mémoire
+  (réponses Exo7 longues) puis perte calculée par tranches (perte et
+  gradients vérifiés identiques) ; arrêt anticipé à 9 h 30, pas 369/424.
+  Adaptateur privé : `Nounagnon02/repetia-qwen3.5-4b-lora-v3`.
+
+**Mesures**
+- 750 items d'origine : v3 = v2 (génération 0,987, résolution 0,94,
+  correction 1,000) — pas de régression.
+- 149 items de licence : génération 0,62, correction 0,93, **résolution
+  0,10**. Référence Exo7 partielle (dernière phrase de la correction), mais
+  vraies erreurs de fond aussi : le modèle n'est pas au niveau de la licence.
+
+**Échecs / non fait**
+- L'autotest du notebook 05 a détecté deux faux positifs du détecteur
+  d'élisions sur des textes de licence (« m et n », « n assez grand ») :
+  corrigé ; deux scores anciens gagnent un item chacun.
+- Aucun modèle de référence mesuré sur les items de licence ; pas d'items
+  de 2nde au banc.
+- Deux envois Kaggle simultanés lors du second lancement de la v3 (message
+  d'erreur trompeur de la CLI) : consommation GPU non vérifiable.
+
+---
+
 ## 2026-09-27 — [Phase 4] Grille de relecture ; second entraînement (v2)
 
 **Auteur** Claude Code · **Commits** `c1bc0bd` → ce commit

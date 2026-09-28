@@ -367,7 +367,11 @@ def mots_desaccentues(texte: str) -> list[str]:
 # Sensible à la casse : « le point M est » ou « N un entier » ne sont pas des
 # élisions perdues.
 ELISION_CORRECTE = re.compile(r"\b(?:[ldjmnst]|qu)['’](?=[aeiouyhéèêàâîôû])", re.I)
-ELISION_PERDUE = re.compile(r"\b(?:[ldjmnst]|qu) (?:[aeiouyhéèêà][a-zà-ÿ]+)\b")
+# « m et n », « n assez grand », « n impair » : en mathématiques, une lettre
+# isolée est souvent une VARIABLE, suivie de mots qui ne suivent jamais une
+# élision. Ils sont exclus.
+_APRES_VARIABLE = r"(?!(?:et|ou|assez|entier|entiers|impair|impairs|appartient|appartiennent|égal|égale|inférieur|inférieure|supérieur|supérieure|avec|étant|admet|associé|associée|exactement|au|aux|en)\b)"
+ELISION_PERDUE = re.compile(r"\b(?:[ldjmnst]|qu) " + _APRES_VARIABLE + r"(?:[aeiouyhéèêà][a-zà-ÿ]+)\b")
 
 
 _ACCENTUE = re.compile(r"(?<![\w])[a-zàâäéèêëîïôöùûüç]*[àâäéèêëîïôöùûüç][a-zàâäéèêëîïôöùûüç]*")

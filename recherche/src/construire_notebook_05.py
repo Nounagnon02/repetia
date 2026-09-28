@@ -329,6 +329,28 @@ transport », tel que l'écrit le générateur `energieCinetique` de
 l'application."""))
 
 c.append(md("""---
+## Troisième entraînement : RépétIA v3, et premier regard sur la licence (2026-09-28)
+
+`affine:Qwen/Qwen3.5-4B+repetia-v3` : jeu v3 (13 558 exemples) qui ajoute Exo7
+(exercices corrigés de licence, CC BY-NC-SA) et Sésamath (2nde, CC BY-SA).
+Deux lancements ont d'abord échoué faute de mémoire (corrections d'Exo7 trop
+longues) ; la perte est désormais calculée par tranches. L'entraînement s'est
+arrêté seul à 9 h 30, au pas 369 sur 424 : **87 % d'une passe**.
+
+**Sur les 750 items d'origine, pas de régression** : génération 0,987,
+résolution 0,94, correction 1,000 — comme la v2.
+
+**Sur les 149 items de licence (vague 5)** : génération 0,62, correction 0,93,
+**résolution 0,10**. Ce dernier chiffre est à lire avec deux réserves :
+la « solution attendue » d'un exercice Exo7 est extraite automatiquement de
+la dernière phrase conclusive de la correction, souvent partielle ; et aucun
+modèle de référence n'a encore été mesuré sur ces items. Mais la lecture des
+réponses montre aussi de vraies erreurs de fond (équation différentielle mal
+résolue). **Le modèle n'est pas au niveau de la licence** : il ne doit pas y
+être activé. Il faudrait bien davantage de données, un modèle plus grand, ou
+les deux."""))
+
+c.append(md("""---
 ## 8. Limites
 
 - **La justesse d'un exercice généré n'est pas mesurée.** Pour la tâche
