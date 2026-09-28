@@ -305,7 +305,16 @@ Si les seuils ne sont pas atteints : **on l'écrit**, on analyse par matière et
 par niveau, et on reboucle sur les données (phase 2) plutôt que sur les
 hyperparamètres. Un résultat négatif documenté vaut mieux qu'un succès supposé.
 
-### Phase 5 — Intégrer, sans rien casser
+### Phase 5 — Intégrer, sans rien casser 🔶 (2026-09-28 : mode ombre prêt, hébergement à choisir)
+
+> **État.** v2 fusionnée et quantifiée (Q4_K_M, 2,71 Go ; aucun écart avec
+> la v2 bf16 sur 60 items du banc) ; mode ombre branché et testé de bout en
+> bout (`modeleLocal.service.ts`, table `ComparaisonOmbre`,
+> `analyser_ombre.py`). Reste : héberger `llama-server`
+> (`recherche/service/`), activer `MODELE_LOCAL_MODE=ombre`, laisser tourner,
+> analyser. Le mode actif (`"modele_local"`) attend la relecture humaine de
+> la phase 4.
+
 
 - **Servir** : fusion de l'adaptateur, conversion GGUF, quantification Q4_K_M
   (~2,5 Go pour 4 B), servi par `llama.cpp` (`llama-server`, API compatible

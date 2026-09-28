@@ -66,6 +66,57 @@ Trois règles :
 
 ---
 
+## 2026-09-28 — [Phase 5] RépétIA v2 servi par llama.cpp, mode ombre branché
+
+**Auteur** Claude Code · **Commits** `377c6b9` → ce commit
+
+**Fait**
+- Décision du porteur : la **v2** part en production (v3 sans gain sur les
+  750 items, et entraînée sur Exo7, non commercial).
+- `recherche/src/preparer_gguf.py` : fusion de l'adaptateur v2 dans
+  Qwen3.5-4B (bf16, CPU), conversion GGUF, quantification **Q4_K_M
+  (2,71 Go)**. Déposé en privé : `Nounagnon02/repetia-qwen3.5-4b-v2-gguf`.
+- Backend : `modeleLocal.service.ts` + table `ComparaisonOmbre`. Chaque
+  génération et chaque correction (6ème → BAC) est doublée vers
+  `llama-server` ; la réponse est rangée à côté de celle servie, jamais
+  montrée. Désactivé par défaut (`MODELE_LOCAL_MODE=off`). 15 tests.
+- `recherche/src/analyser_ombre.py` : note les comparaisons avec les
+  détecteurs du banc ; `banc.py` interroge un serveur via `llama:<url>`.
+- `recherche/service/` : Dockerfile et README d'un Space Hugging Face
+  (image CPU officielle de llama.cpp). **Non déployé.**
+
+**Mesures**
+- Fidélité de la quantification, 60 items du banc (20 par tâche, hors
+  L1/L2), mêmes items que la v2 bf16 : utilisable **20/20 sur chaque tâche,
+  aucun écart** avec la v2 bf16 (IC95 [0,84 ; 1]). 60 items ne détectent
+  qu'une perte grossière.
+- CPU, 4 cœurs : 4 à 5 jetons/s ; médianes 38 s (génération), 33 s
+  (résolution), 35 s (correction).
+- Bout en bout, backend réel + Gemini réel + serveur local : 1 génération
+  et 1 correction doublées, toutes deux conformes ; la réponse servie à
+  l'élève est partie en 30 s, sans attendre le modèle local (44 s et 65 s).
+
+**Échecs / non fait**
+- Premier essai de fusion : adaptateur **non chargé** (classe multimodale
+  alors que l'entraînement utilisait la classe texte) ; PEFT n'émet qu'un
+  avertissement. Garde-fou ajouté : arrêt si toutes les matrices B sont nulles.
+- Deuxième essai : GGUF refusé par `llama-server` (couche MTP annoncée, poids
+  absents) → `--no-mtp`. Disque saturé une fois (poids de la base recopiés
+  par erreur à côté de la fusion) → filtre corrigé.
+- Hébergement non créé : un Space est une ressource publique nouvelle, à
+  valider par le porteur.
+
+**Observé, non traité**
+- Un Space gratuit (2 vCPU) ira environ deux fois moins vite : délai
+  conseillé 5 min (`MODELE_LOCAL_DELAI_MS=300000`). Avec une requête à la
+  fois, une partie du trafic ne sera pas doublée (comptée nulle part) :
+  l'échantillon réel est la table elle-même.
+
+**Vérifications**
+- `npm run typecheck` : OK · `npm test` : 131 back + 11 web + 61 mobile, OK.
+
+---
+
 ## 2026-09-28 — [Données, vagues 2 et 5] Exo7, Sésamath ; entraînement v3
 
 **Auteur** Claude Code · **Commits** `2bf6218` → ce commit
