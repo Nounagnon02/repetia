@@ -55,7 +55,7 @@ npm run dev         # backend (3000) + frontend web (5173)
 npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (186 tests : 114 back + 11 web + 61 mobile)
+npm test            # toute la suite (203 tests : 131 back + 11 web + 61 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 
@@ -87,6 +87,25 @@ server.ts
 - **`services/llm.service.ts`** : client Gemini créé **paresseusement**
   (`getClient()`), pour que l'import du module reste sans effet de bord quand
   aucune clé n'est configurée (tests, build, mode dégradé).
+
+### Modèle affiné RépétIA : mode ombre
+
+`services/modeleLocal.service.ts` double chaque génération et chaque
+correction vers le modèle affiné, servi par `llama-server` (llama.cpp, API
+OpenAI). Sa réponse est rangée dans la table `ComparaisonOmbre`, à côté de
+celle servie, et **n'atteint jamais l'élève**.
+
+- `ombre()` ne renvoie rien et ne lève jamais ; la requête de l'élève ne
+  l'attend pas. Délai, échantillonnage et plafond d'appels simultanés
+  (`MODELE_LOCAL_*`, voir `.env.example`) protègent d'un serveur lent.
+- Niveaux 6ème → BAC seulement : le banc a montré que le modèle ne tient pas
+  le supérieur.
+- Persona **courte** (`promptSystemeCourt`) et `enable_thinking: false` : les
+  conditions de l'entraînement. Aucun identifiant d'élève n'est stocké.
+- `llm.service.ts` reste le seul importeur de `@google/genai` ; le modèle
+  local passe par `fetch`.
+- Préparer le GGUF : `recherche/src/preparer_gguf.py` ; le servir :
+  `recherche/service/` ; analyser : `recherche/src/analyser_ombre.py`.
 
 ### Chaîne de robustesse du LLM
 
@@ -322,7 +341,8 @@ scripts/generer-assets.js  Produit les SVG, les PNG Expo et LogoMark.tsx
 
 ## Base de données
 
-Modèles : `User`, `Matiere`, `Theme`, `Exercice`, `Tentative`, `Progression`.
+Modèles : `User`, `Matiere`, `Theme`, `Exercice`, `Tentative`, `Progression`,
+`ComparaisonOmbre` (mode ombre, sans lien vers `User`).
 
 - `Theme` a `@@unique([matiereId, libelle])` — c'est ce qui rend le seed
   idempotent par `upsert`.
@@ -343,6 +363,7 @@ puis `npx prisma generate`.
 |---|---|
 | `backend/tests/api.test.ts` | Routes, authentification, validation, rate-limit, 404/400/503 |
 | `backend/tests/llm.service.test.ts` | Parsing, nouvel essai, banque de secours, chat |
+| `backend/tests/modeleLocal.service.test.ts` | Mode ombre : désactivation, niveaux, pannes, délai, concurrence |
 | `frontend/tests/App.test.tsx` | Parcours clé, erreurs + « Réessayer », progression |
 
 - Le backend mocke `../src/services/llm.service` mais **réutilise la vraie

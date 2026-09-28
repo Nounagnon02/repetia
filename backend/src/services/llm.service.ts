@@ -5,6 +5,7 @@ import { niveauPar } from '../data/niveaux';
 import { normaliserChamps, normaliserTexte } from './texte.service';
 import { RagService } from './rag.service';
 import { MathSolverService } from './math_solver.service';
+import { ModeleLocalService } from './modeleLocal.service';
 
 /**
  * Modèles essayés dans l'ordre.
@@ -158,6 +159,17 @@ export class LlmService {
     return JSON.parse(cleaned.substring(debut, fin + 1));
   }
 
+  /** Vrai si `texte` contient un JSON conforme à `schema` (mode ombre). */
+  private static conforme(schema: z.ZodTypeAny): (texte: string) => boolean {
+    return (texte) => {
+      try {
+        return schema.safeParse(this.parseJsonResponse(texte)).success;
+      } catch {
+        return false;
+      }
+    };
+  }
+
   /** Un appel au modèle, sans gestion d'erreur (la boucle d'essais s'en charge). */
   private static async appelModele(
     contents: any,
@@ -219,15 +231,32 @@ export class LlmService {
 
     const resultat = await this.demanderJson(prompt, ExerciceGenereSchema, 0.7, promptSysteme(matiere, niveau, theme));
 
+    let exercice: ExerciceGenere;
     if (resultat) {
       const propre = normaliserChamps(resultat, ['enonce', 'solution', 'explication']);
-      return { ...propre, source: 'ia_genere' };
+      exercice = { ...propre, source: 'ia_genere' };
+    } else {
+      console.warn(
+        `[LLM] Bascule sur la banque de secours (matière="${matiere}", thème="${theme}", difficulté="${difficulte}")`,
+      );
+      exercice = { ...exerciceDeSecours(theme, difficulte, matiere, niveau), source: 'banque' };
     }
 
-    console.warn(
-      `[LLM] Bascule sur la banque de secours (matière="${matiere}", thème="${theme}", difficulté="${difficulte}")`,
-    );
-    return { ...exerciceDeSecours(theme, difficulte, matiere, niveau), source: 'banque' };
+    ModeleLocalService.ombre({
+      tache: 'generation',
+      matiere,
+      niveau,
+      theme,
+      difficulte,
+      systeme: promptSystemeCourt(matiere, niveau),
+      consigne: prompt,
+      temperature: 0.7,
+      entree: {},
+      reference: { enonce: exercice.enonce, solution: exercice.solution, explication: exercice.explication },
+      referenceSource: exercice.source,
+      valider: this.conforme(ExerciceGenereSchema),
+    });
+    return exercice;
   }
 
   /**
@@ -245,6 +274,20 @@ export class LlmService {
     const prompt = consigneCorrection(enonce, solution, reponseEleve);
 
     const resultat = await this.demanderJson(prompt, CorrectionSchema, 0.1, promptSysteme(matiere, niveau));
+    const doubler = (reference: Correction, referenceSource: 'ia_genere' | 'repli') =>
+      ModeleLocalService.ombre({
+        tache: 'correction',
+        matiere,
+        niveau,
+        systeme: promptSystemeCourt(matiere, niveau),
+        consigne: prompt,
+        temperature: 0.1,
+        entree: { enonce, solution, reponseEleve },
+        reference,
+        referenceSource,
+        valider: this.conforme(CorrectionSchema),
+      });
+
     if (resultat) {
       const propre = normaliserChamps(resultat, ['verdict', 'explication']);
       // Validation croisée avec le solveur mathématique déterministe pour les matières scientifiques
@@ -258,15 +301,18 @@ export class LlmService {
           }
         }
       }
+      doubler(propre, 'ia_genere');
       return propre;
     }
 
     console.warn('[LLM] Correction de repli utilisée.');
-    return {
+    const repli: Correction = {
       correct: false,
       verdict: "Je n'ai pas pu vérifier ta réponse pour le moment, mais voici la démarche.",
       explication: `La solution attendue était : ${solution}.\n\nCompare-la avec ta réponse « ${reponseEleve} », puis reprends l'exercice étape par étape. Tu peux aussi me poser une question dans le chat.`,
     };
+    doubler(repli, 'repli');
+    return repli;
   }
 
   /**

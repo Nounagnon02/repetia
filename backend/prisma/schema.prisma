@@ -84,3 +84,24 @@ model Progression {
 
   @@unique([userId, themeId])
 }
+
+/// Mode ombre (phase 5 du plan d'entraînement) : réponse du modèle affiné
+/// RépétIA, obtenue en parallèle et JAMAIS montrée à l'élève, rangée à côté
+/// de celle servie. Aucun identifiant d'élève n'est conservé.
+model ComparaisonOmbre {
+  id              String   @id @default(uuid())
+  createdAt       DateTime @default(now())
+  tache           String // "generation", "correction"
+  matiere         String
+  niveau          String
+  theme           String?
+  difficulte      String?
+  entree          String // JSON : énoncé, solution, réponse de l'élève (correction)
+  reference       String // JSON de la réponse servie à l'élève
+  referenceSource String // "ia_genere", "banque", "repli"
+  candidat        String? // texte brut du modèle affiné
+  candidatValide  Boolean  @default(false) // JSON conforme au schéma de la tâche
+  dureeMs         Int
+  erreur          String?
+  modele          String
+}

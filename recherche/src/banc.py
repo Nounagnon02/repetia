@@ -179,6 +179,47 @@ def interroger_gemini(modele: str, items: list[dict], limite: int | None, pause:
 
 
 # ---------------------------------------------------------------------------
+# Interrogation — serveur llama.cpp (GGUF quantifié, API compatible OpenAI)
+# ---------------------------------------------------------------------------
+
+
+def interroger_llama(url: str, nom: str, items: list[dict], limite: int | None, max_jetons: int,
+                     champ_systeme: str = "systeme_court") -> None:
+    """Le modèle tel que le sert la production (phase 5), et non tel qu'il sort
+    de l'entraînement : mesure ce que coûtent la fusion et la quantification.
+
+    Mêmes paramètres que le backend (`modeleLocal.service.ts`) : persona
+    courte, pas de phase de réflexion, températures du banc.
+    """
+    nom = f"llama:{nom}"
+    faits = deja_repondu(nom)
+    a_faire = [it for it in items if it["id"] not in faits][: limite or None]
+    print(f"{nom} : {len(faits)} déjà faits, {len(a_faire)} à faire")
+    for n, it in enumerate(a_faire, 1):
+        enreg = {"id": it["id"], "modele": nom, "horodatage": time.time()}
+        corps = json.dumps({
+            "messages": [{"role": "system", "content": it[champ_systeme]},
+                         {"role": "user", "content": it["consigne"]}],
+            "temperature": TEMPERATURES[it["tache"]], "top_p": 0.95, "max_tokens": max_jetons,
+            "chat_template_kwargs": {"enable_thinking": False},
+        }).encode()
+        req = urllib.request.Request(f"{url.rstrip('/')}/v1/chat/completions", data=corps,
+                                     headers={"Content-Type": "application/json"})
+        depart = time.perf_counter()
+        try:
+            with urllib.request.urlopen(req, timeout=900) as r:
+                donnees = json.load(r)
+            enreg.update(texte=donnees["choices"][0]["message"]["content"] or "",
+                         latence_s=round(time.perf_counter() - depart, 3),
+                         jetons=donnees.get("usage", {}).get("completion_tokens"))
+        except Exception as e:  # noqa: BLE001 — on consigne et on continue
+            enreg.update(texte="", erreur=str(e)[:300])
+        enregistrer(nom, enreg)
+        print(f"  [{n}/{len(a_faire)}] {it['tache']:<10} {it['niveau']:<5} {enreg.get('latence_s', '—')} s"
+              + (f"  ERREUR {enreg['erreur'][:60]}" if enreg.get("erreur") else ""), flush=True)
+
+
+# ---------------------------------------------------------------------------
 # Interrogation — modèle ouvert (transformers)
 # ---------------------------------------------------------------------------
 
@@ -661,7 +702,9 @@ def main() -> None:
     p = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     sous = p.add_subparsers(dest="action", required=True)
     q = sous.add_parser("interroger")
-    q.add_argument("--modele", required=True, help="gemini:<nom> ou hf:<dépôt>")
+    q.add_argument("--modele", required=True, help="gemini:<nom>, hf:<dépôt> ou llama:<url du serveur>")
+    q.add_argument("--nom", help="llama : nom sous lequel ranger les réponses (ex. repetia-v2-Q4_K_M)")
+    q.add_argument("--exclure-niveaux", default="", help="ex. L1,L2 (le mode ombre ne double pas le supérieur)")
     q.add_argument("--echantillon", type=int, help="items par tâche (sous-échantillon reproductible)")
     q.add_argument("--taches", default=",".join(TACHES))
     q.add_argument("--limite", type=int, help="nombre maximal d'appels dans cette session")
@@ -686,14 +729,18 @@ def main() -> None:
         return
 
     taches = set(a.taches.split(","))
-    items = [it for it in echantillon(charger_jeu(), a.echantillon) if it["tache"] in taches]
+    exclus = set(filter(None, a.exclure_niveaux.split(",")))
+    items = [it for it in echantillon([it for it in charger_jeu() if it["niveau"] not in exclus], a.echantillon)
+             if it["tache"] in taches]
     genre, _, nom = a.modele.partition(":")
     if genre == "gemini":
         interroger_gemini(nom, items, a.limite, a.pause)
     elif genre == "hf":
         interroger_hf(nom, items, a.limite, a.lot, a.max_jetons)
+    elif genre == "llama":
+        interroger_llama(nom, a.nom or "local", items, a.limite, a.max_jetons)
     else:
-        sys.exit("--modele doit commencer par gemini: ou hf:")
+        sys.exit("--modele doit commencer par gemini:, hf: ou llama:")
 
 
 if __name__ == "__main__":
