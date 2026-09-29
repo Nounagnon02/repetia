@@ -4,6 +4,7 @@
 #   bash recherche/kaggle/pousser.sh banc         # jeu de données + noyau du banc
 #   bash recherche/kaggle/pousser.sh banc statut  # où en est l'exécution
 #   bash recherche/kaggle/pousser.sh banc rapatrier
+#   (travaux : banc, banc_affine, entrainement, ombre_differe)
 #
 # Identifiants lus dans l'environnement, jamais écrits dans le dépôt :
 #   KAGGLE_USERNAME, et KAGGLE_KEY (jeton « KGAT_… » ou clé historique).
@@ -46,6 +47,16 @@ case "$travail" in
        "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
     printf '{"base": "%s", "nom": "%s"}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
       "${REPETIA_NOM:-affine:Qwen/Qwen3.5-4B+repetia-v1}" > "$etape/donnees/config.json" ;;
+  ombre_differe)
+    # Demandes réelles d'élèves (anonymes) : jeu de données PRIVÉ, comme tous
+    # ceux que crée ce script (`kaggle datasets create` sans --public).
+    : "${REPETIA_ADAPTATEUR:?dossier de l adaptateur manquant}"
+    a_rejouer="$racine/recherche/donnees/ombre_differe/a_rejouer.jsonl"
+    [ -s "$a_rejouer" ] || { echo "rien à rejouer : lancer d'abord recherche/src/ombre_differe.py" >&2; exit 1; }
+    cp "$REPETIA_ADAPTATEUR"/adapter_config.json "$REPETIA_ADAPTATEUR"/adapter_model.safetensors \
+       "$a_rejouer" "$racine/recherche/src/banc.py" "$etape/donnees/"
+    printf '{"base": "%s", "nom": "%s"}\n' "${REPETIA_BASE:-Qwen/Qwen3.5-4B}" \
+      "${REPETIA_NOM:-affine:Qwen/Qwen3.5-4B+repetia-v2}" > "$etape/donnees/config.json" ;;
   entrainement)
     cp "$racine/recherche/donnees/sft/train.jsonl" "$racine/recherche/donnees/sft/validation.jsonl" \
        "$racine/recherche/donnees/banc/jeu_de_test.jsonl" "$racine/recherche/src/banc.py" "$etape/donnees/"
@@ -58,7 +69,7 @@ case "$travail" in
     echo "travail inconnu : $travail" >&2; exit 1 ;;
 esac
 cat > "$etape/donnees/dataset-metadata.json" <<JSON
-{"title": "repetia-$travail", "id": "$jeu", "licenses": [{"name": "CC-BY-4.0"}]}
+{"title": "repetia-$travail", "id": "$jeu", "licenses": [{"name": "$([ "$travail" = ombre_differe ] && echo unknown || echo CC-BY-4.0)"}]}
 JSON
 if "$kaggle" datasets status "$jeu" >/dev/null 2>&1; then
   "$kaggle" datasets version -p "$etape/donnees" -m "mise à jour depuis le dépôt" -q

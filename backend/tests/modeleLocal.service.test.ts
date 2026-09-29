@@ -230,3 +230,47 @@ describe('Mode ombre : pannes du modèle local', () => {
     expect(await comparaisons()).toHaveLength(1);
   });
 });
+
+describe('Mode journal (ombre différée)', () => {
+  beforeEach(() => {
+    process.env.MODELE_LOCAL_MODE = 'journal';
+    delete process.env.MODELE_LOCAL_URL;
+  });
+
+  it("range la demande à rejouer sans appeler aucun serveur ; l'élève reçoit Gemini", async () => {
+    mockGenerateContent.mockResolvedValueOnce({ text: JSON.stringify(EXERCICE) });
+    const servi = await LlmService.genererExercice('Équations', 'facile', 'Mathématiques', 'BEPC');
+    expect(servi).toEqual({ ...EXERCICE, source: 'ia_genere' });
+    expect(mockFetch).not.toHaveBeenCalled();
+
+    const [c] = await comparaisons();
+    expect(c).toMatchObject({
+      tache: 'generation',
+      candidat: null,
+      candidatValide: false,
+      erreur: null,
+      dureeMs: null,
+      temperature: 0.7,
+      systeme: promptSystemeCourt('Mathématiques', 'BEPC'),
+    });
+    expect(c.consigne).toContain('Équations');
+    expect(JSON.parse(c.reference)).toEqual(EXERCICE);
+  });
+
+  it("journalise toutes les demandes : pas de plafond de concurrence sans serveur", async () => {
+    mockGenerateContent.mockResolvedValue({ text: JSON.stringify(CORRECTION) });
+    await Promise.all([
+      LlmService.corrigerExercice('Résous 2x + 3 = 11.', 'x = 4', '4', 'Mathématiques', 'BEPC'),
+      LlmService.corrigerExercice('Résous 2x + 3 = 11.', 'x = 4', '5', 'Mathématiques', 'BEPC'),
+    ]);
+    const lignes = await comparaisons();
+    expect(lignes).toHaveLength(2);
+    expect(lignes.every((c) => c.temperature === 0.1 && c.consigne)).toBe(true);
+  });
+
+  it('ne journalise pas le supérieur', async () => {
+    mockGenerateContent.mockResolvedValueOnce({ text: JSON.stringify(EXERCICE) });
+    await LlmService.genererExercice('Analyse', 'facile', 'Mathématiques', 'L1');
+    expect(await comparaisons()).toHaveLength(0);
+  });
+});

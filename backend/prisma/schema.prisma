@@ -99,9 +99,13 @@ model ComparaisonOmbre {
   entree          String // JSON : énoncé, solution, réponse de l'élève (correction)
   reference       String // JSON de la réponse servie à l'élève
   referenceSource String // "ia_genere", "banque", "repli"
-  candidat        String? // texte brut du modèle affiné
+  // Demande exacte envoyée (ou à rejouer, en mode journal) au modèle affiné.
+  systeme         String?
+  consigne        String?
+  temperature     Float?
+  candidat        String? // texte brut du modèle affiné ; vide en mode journal
   candidatValide  Boolean  @default(false) // JSON conforme au schéma de la tâche
-  dureeMs         Int
+  dureeMs         Int? // vide en mode journal : la latence n'y est pas mesurée
   erreur          String?
   modele          String
 }

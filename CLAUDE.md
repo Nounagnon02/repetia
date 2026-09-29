@@ -55,7 +55,7 @@ npm run dev         # backend (3000) + frontend web (5173)
 npm run dev:mobile  # application Expo (Metro sur 8081)
 npm run typecheck   # tsc sur les deux projets
 npm run build       # backend puis frontend
-npm test            # toute la suite (203 tests : 131 back + 11 web + 61 mobile)
+npm test            # toute la suite (206 tests : 134 back + 11 web + 61 mobile)
 npm run seed        # recharge matière + 8 thèmes (idempotent)
 ```
 
@@ -104,6 +104,12 @@ celle servie, et **n'atteint jamais l'élève**.
   conditions de l'entraînement. Aucun identifiant d'élève n'est stocké.
 - `llm.service.ts` reste le seul importeur de `@google/genai` ; le modèle
   local passe par `fetch`.
+- **Mode `journal`** (ombre différée, le mode prévu faute d'hébergement
+  gratuit assez rapide) : aucun appel, la demande (persona, consigne,
+  température) est rangée avec `candidat` vide, puis rejouée en lot sur le
+  GPU de Kaggle — `recherche/src/ombre_differe.py`, noyau
+  `recherche/kaggle/ombre_differe/`. La latence n'y est pas mesurée
+  (`dureeMs` vide).
 - Préparer le GGUF : `recherche/src/preparer_gguf.py` ; le servir :
   `recherche/service/` ; analyser : `recherche/src/analyser_ombre.py`.
 

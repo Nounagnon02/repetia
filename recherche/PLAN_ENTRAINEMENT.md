@@ -314,6 +314,10 @@ hyperparamètres. Un résultat négatif documenté vaut mieux qu'un succès supp
 > (`recherche/service/`), activer `MODELE_LOCAL_MODE=ombre`, laisser tourner,
 > analyser. Le mode actif (`"modele_local"`) attend la relecture humaine de
 > la phase 4.
+>
+> **2026-09-29 : mode retenu = journal + rejeu sur Kaggle** (`ombre_differe.py`),
+> sans hébergement. Reste : `MODELE_LOCAL_MODE=journal` en production, puis
+> un cycle par semaine.
 
 
 - **Servir** : fusion de l'adaptateur, conversion GGUF, quantification Q4_K_M

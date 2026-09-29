@@ -257,7 +257,14 @@ def interroger_hf(depot: str, items: list[dict], limite: int | None, lot: int, m
         modele = AutoModelForImageTextToText.from_pretrained(depot, torch_dtype=torch.float16, device_map="auto")
     if adaptateur:
         from peft import PeftModel
-        modele = PeftModel.from_pretrained(modele, adaptateur).merge_and_unload()
+        modele = PeftModel.from_pretrained(modele, adaptateur)
+        # Classe du modèle et noms de l'adaptateur incompatibles : PEFT ne fait
+        # qu'avertir, les matrices B restent nulles et l'on mesurerait la base
+        # (piège rencontré en préparant le GGUF). On l'interdit.
+        b = [p for n, p in modele.named_parameters() if "lora_B" in n]
+        if not b or not any(bool(p.detach().abs().sum()) for p in b):
+            raise RuntimeError("Adaptateur non chargé (noms de modules incompatibles avec la classe du modèle)")
+        modele = modele.merge_and_unload()
     modele.eval()
     torch.manual_seed(0)
 

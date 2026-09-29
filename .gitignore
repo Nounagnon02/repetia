@@ -86,3 +86,5 @@ recherche/donnees/brutes/sesamath/ms2_2014/
 
 # Mode ombre : les désaccords contiennent des réponses d’élèves — jamais versionnés.
 recherche/donnees/ombre/desaccords_*.jsonl
+# Mode ombre différé : demandes et réponses rejouées, avec réponses d’élèves.
+recherche/donnees/ombre_differe/

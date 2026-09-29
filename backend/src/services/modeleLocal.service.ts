@@ -11,6 +11,13 @@ import { niveauPar } from '../data/niveaux';
  * montrée à l'élève. On mesure ainsi le modèle sur le trafic réel avant de
  * lui confier le moindre élève.
  *
+ * MODE JOURNAL (ombre différée) : aucun appel ; la demande (persona,
+ * consigne, température) est rangée avec la réponse servie, `candidat` vide.
+ * Les demandes sont rejouées plus tard en lot sur le GPU de Kaggle
+ * (`recherche/src/ombre_differe.py`) : pas de serveur à héberger, et toutes
+ * les demandes retenues reçoivent une réponse. Seule la latence réelle
+ * n'est pas mesurée.
+ *
  * Garanties, dans l'esprit de l'invariant « le service IA ne fait jamais
  * planter une requête » :
  *   • `ombre()` ne renvoie rien et ne lève jamais : l'appel part après que la
@@ -22,8 +29,8 @@ import { niveauPar } from '../data/niveaux';
  *   • aucun identifiant d'élève n'est conservé.
  *
  * Variables d'environnement (lues à chaque appel) :
- *   MODELE_LOCAL_MODE          off (défaut) | ombre
- *   MODELE_LOCAL_URL           ex. http://127.0.0.1:8080 (sans /v1)
+ *   MODELE_LOCAL_MODE          off (défaut) | ombre | journal
+ *   MODELE_LOCAL_URL           ex. http://127.0.0.1:8080 (sans /v1) ; inutile en journal
  *   MODELE_LOCAL_CLE           jeton Bearer, si le serveur en exige un
  *   MODELE_LOCAL_NOM           nom consigné avec chaque comparaison
  *   MODELE_LOCAL_DELAI_MS      délai maximal d'une réponse (défaut 120 000)
@@ -59,8 +66,10 @@ const MAX_JETONS = 1024;
 function configuration() {
   const url = (process.env.MODELE_LOCAL_URL || '').trim().replace(/\/+$/, '');
   const echantillon = Number(process.env.MODELE_LOCAL_ECHANTILLON ?? 1);
+  const mode = process.env.MODELE_LOCAL_MODE;
   return {
-    ombre: process.env.MODELE_LOCAL_MODE === 'ombre' && Boolean(url),
+    ombre: mode === 'ombre' && Boolean(url),
+    journal: mode === 'journal',
     url,
     cle: process.env.MODELE_LOCAL_CLE || '',
     nom: process.env.MODELE_LOCAL_NOM || 'repetia-v2',
@@ -81,12 +90,13 @@ export class ModeleLocalService {
   static ombre(demande: DemandeOmbre): void {
     try {
       const cfg = configuration();
-      if (!cfg.ombre) return;
+      if (!cfg.ombre && !cfg.journal) return;
       if (niveauPar(demande.niveau).rang > RANG_MAX) return;
-      if (enCours.size >= cfg.concurrence) return;
+      // Le plafond protège un serveur lent ; en journal, rien n'est appelé.
+      if (cfg.ombre && enCours.size >= cfg.concurrence) return;
       if (Math.random() >= cfg.echantillon) return;
 
-      const tache = this.comparer(demande, cfg);
+      const tache = cfg.journal ? this.enregistrer(demande, cfg, null) : this.comparer(demande, cfg);
       enCours.add(tache);
       void tache.finally(() => enCours.delete(tache));
     } catch (e: any) {
@@ -148,6 +158,15 @@ export class ModeleLocalService {
     } catch (e: any) {
       erreur = String(e?.name === 'TimeoutError' ? 'Délai dépassé' : e?.message || e).slice(0, 500);
     }
+    await this.enregistrer(d, cfg, { candidat, candidatValide, erreur, dureeMs: Date.now() - debut });
+  }
+
+  /** `resultat` nul : demande journalisée, en attente de rejeu. */
+  private static async enregistrer(
+    d: DemandeOmbre,
+    cfg: ReturnType<typeof configuration>,
+    resultat: { candidat: string | null; candidatValide: boolean; erreur: string | null; dureeMs: number } | null,
+  ): Promise<void> {
     try {
       await prisma.comparaisonOmbre.create({
         data: {
@@ -159,10 +178,13 @@ export class ModeleLocalService {
           entree: JSON.stringify(d.entree),
           reference: JSON.stringify(d.reference),
           referenceSource: d.referenceSource,
-          candidat,
-          candidatValide,
-          dureeMs: Date.now() - debut,
-          erreur,
+          systeme: d.systeme,
+          consigne: d.consigne,
+          temperature: d.temperature,
+          candidat: resultat?.candidat ?? null,
+          candidatValide: resultat?.candidatValide ?? false,
+          dureeMs: resultat?.dureeMs ?? null,
+          erreur: resultat?.erreur ?? null,
           modele: cfg.nom,
         },
       });

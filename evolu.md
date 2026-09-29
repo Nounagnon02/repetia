@@ -66,6 +66,41 @@ Trois règles :
 
 ---
 
+## 2026-09-29 — [Phase 5] Mode ombre différé : journal en production, rejeu sur Kaggle
+
+**Auteur** Claude Code · **Commit** ce commit
+
+**Fait**
+- Décision du porteur : pas d'hébergement du modèle pour l'instant ; les
+  demandes réelles sont rejouées en lot sur le GPU gratuit de Kaggle.
+- Backend : `MODELE_LOCAL_MODE=journal`. Aucun appel ; la demande exacte
+  (persona courte, consigne, température) est rangée dans
+  `ComparaisonOmbre` (colonnes `systeme`, `consigne`, `temperature` ;
+  `dureeMs` devient facultatif). 3 tests.
+- `recherche/src/ombre_differe.py` extrait les demandes en attente (hors
+  celles déjà rapatriées) ; noyau `recherche/kaggle/ombre_differe/` ;
+  `pousser.sh ombre_differe` (jeu de données privé) ;
+  `analyser_ombre.py --candidats` joint les réponses rejouées.
+- `banc.interroger_hf` s'arrête si l'adaptateur n'est pas chargé (piège de
+  la préparation du GGUF) ; `recherche/donnees/ombre_differe/` hors dépôt.
+
+**Mesures**
+- Cycle réel complet : backend en journal + Gemini réel, 3 générations et
+  2 corrections (BEPC) → 5 demandes → noyau Kaggle (T4), 166 s pour 5
+  demandes, chargement compris → 5 réponses conformes ; les 2 corrections
+  d'accord avec Gemini (une juste, une fausse). Relancer l'extraction
+  donne 0 demande : rien n'est rejoué deux fois. Trop peu pour juger le
+  modèle : ce cycle vérifie la chaîne, pas la qualité.
+
+**Échecs / non fait**
+- Latence de production non mesurée dans ce mode (par construction).
+- Récupérer la base de production reste manuel (SQLite du serveur).
+
+**Vérifications**
+- `npm run typecheck` : OK · `npm test` : 134 back + 11 web + 61 mobile, OK.
+
+---
+
 ## 2026-09-28 — [Phase 5] RépétIA v2 servi par llama.cpp, mode ombre branché
 
 **Auteur** Claude Code · **Commits** `377c6b9` → ce commit

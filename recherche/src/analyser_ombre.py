@@ -17,8 +17,11 @@ Ce que ce trafic réel mesure et ce qu'il ne mesure pas :
 Sources acceptées :
     python recherche/src/analyser_ombre.py --sqlite backend/prisma/dev.db
     python recherche/src/analyser_ombre.py --jsonl comparaisons.jsonl
-Export PostgreSQL (production), une ligne JSON par comparaison :
-    psql "$DATABASE_URL" -Atc 'select row_to_json(c) from "ComparaisonOmbre" c' > comparaisons.jsonl
+Mode journal (ombre différée) : les demandes n'ont pas de candidat en base ;
+les réponses rejouées sur Kaggle (`ombre_differe.py`) sont jointes par id :
+    python recherche/src/analyser_ombre.py --sqlite prod.db \
+        --candidats recherche/donnees/ombre_differe/kaggle/reponses/*.jsonl
+Les demandes encore sans réponse sont comptées « en attente », pas notées.
 """
 from __future__ import annotations
 
@@ -42,6 +45,21 @@ def charger(a) -> list[dict]:
         con.row_factory = sqlite3.Row
         return [dict(r) for r in con.execute('select * from "ComparaisonOmbre" order by createdAt')]
     return [json.loads(l) for l in pathlib.Path(a.jsonl).read_text(encoding="utf-8").splitlines() if l.strip()]
+
+
+def joindre(comparaisons: list[dict], fichiers: list[str]) -> None:
+    """Complète les demandes journalisées avec les réponses rejouées."""
+    rejouees = {}
+    for f in fichiers:
+        for l in pathlib.Path(f).read_text(encoding="utf-8").splitlines():
+            if l.strip():
+                r = json.loads(l)
+                if not r.get("erreur"):
+                    rejouees[r["id"]] = r
+    for c in comparaisons:
+        r = rejouees.get(c["id"])
+        if c["candidat"] is None and not c["erreur"] and r:
+            c["candidat"], c["modele"] = r["texte"], r.get("modele", c["modele"])
 
 
 def noter_paire(c: dict) -> dict:
@@ -73,11 +91,14 @@ def quantile(v: list[int], q: float) -> int | None:
 
 def resumer(lignes: list[dict]) -> dict:
     repondu = [l for l in lignes if l["candidat"] is not None]
+    # Latence : mesurée en direct seulement (mode ombre), jamais au rejeu.
+    durees = [l["duree_ms"] for l in repondu if l["duree_ms"] is not None]
     r = {
         "n": len(lignes),
+        "en_attente": sum(1 for l in lignes if l["candidat"] is None and not l["erreur"]),
         "erreurs": collections.Counter(l["erreur"] for l in lignes if l["erreur"]).most_common(),
-        "latence_ms": {"mediane": int(statistics.median([l["duree_ms"] for l in repondu])) if repondu else None,
-                       "p90": quantile([l["duree_ms"] for l in repondu], 0.9)},
+        "latence_ms": {"mediane": int(statistics.median(durees)) if durees else None,
+                       "p90": quantile(durees, 0.9)},
         "candidat_conforme": banc.proportion([{"conforme": l["candidat"]["conforme"]} for l in repondu],
                                              "conforme", sur_conformes=False),
     }
@@ -101,10 +122,12 @@ def main() -> None:
     source = p.add_mutually_exclusive_group(required=True)
     source.add_argument("--sqlite")
     source.add_argument("--jsonl")
+    p.add_argument("--candidats", nargs="*", default=[], help="réponses rejouées (mode journal)")
     p.add_argument("--sortie", type=pathlib.Path, default=SORTIE)
     a = p.parse_args()
 
     comparaisons = charger(a)
+    joindre(comparaisons, a.candidats)
     lignes = [noter_paire(c) for c in comparaisons]
     rapport = {"global": resumer(lignes), "par_tache": {}, "par_niveau": {}}
     for cle, champ in (("par_tache", "tache"), ("par_niveau", "niveau")):
@@ -124,7 +147,7 @@ def main() -> None:
                                    ensure_ascii=False) + "\n")
 
     g = rapport["global"]
-    print(f"{g['n']} comparaisons · latence médiane {g['latence_ms']['mediane']} ms (p90 {g['latence_ms']['p90']})")
+    print(f"{g['n']} comparaisons, dont {g['en_attente']} en attente de rejeu · latence médiane {g['latence_ms']['mediane']} ms (p90 {g['latence_ms']['p90']})")
     print(f"  réponse conforme : {g['candidat_conforme']['taux']} (n={g['candidat_conforme']['n']})")
     for tache, r in rapport["par_tache"].items():
         if "generation_utilisable" in r:
