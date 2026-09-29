@@ -66,6 +66,400 @@ Trois règles :
 
 ---
 
+## 2026-09-29 — [Phase 5] Mode ombre différé : journal en production, rejeu sur Kaggle
+
+**Auteur** Claude Code · **Commit** ce commit
+
+**Fait**
+- Décision du porteur : pas d'hébergement du modèle pour l'instant ; les
+  demandes réelles sont rejouées en lot sur le GPU gratuit de Kaggle.
+- Backend : `MODELE_LOCAL_MODE=journal`. Aucun appel ; la demande exacte
+  (persona courte, consigne, température) est rangée dans
+  `ComparaisonOmbre` (colonnes `systeme`, `consigne`, `temperature` ;
+  `dureeMs` devient facultatif). 3 tests.
+- `recherche/src/ombre_differe.py` extrait les demandes en attente (hors
+  celles déjà rapatriées) ; noyau `recherche/kaggle/ombre_differe/` ;
+  `pousser.sh ombre_differe` (jeu de données privé) ;
+  `analyser_ombre.py --candidats` joint les réponses rejouées.
+- `banc.interroger_hf` s'arrête si l'adaptateur n'est pas chargé (piège de
+  la préparation du GGUF) ; `recherche/donnees/ombre_differe/` hors dépôt.
+
+**Mesures**
+- Cycle réel complet : backend en journal + Gemini réel, 3 générations et
+  2 corrections (BEPC) → 5 demandes → noyau Kaggle (T4), 166 s pour 5
+  demandes, chargement compris → 5 réponses conformes ; les 2 corrections
+  d'accord avec Gemini (une juste, une fausse). Relancer l'extraction
+  donne 0 demande : rien n'est rejoué deux fois. Trop peu pour juger le
+  modèle : ce cycle vérifie la chaîne, pas la qualité.
+
+**Échecs / non fait**
+- Latence de production non mesurée dans ce mode (par construction).
+- Récupérer la base de production reste manuel (SQLite du serveur).
+
+**Vérifications**
+- `npm run typecheck` : OK · `npm test` : 134 back + 11 web + 61 mobile, OK.
+
+---
+
+## 2026-09-28 — [Phase 5] RépétIA v2 servi par llama.cpp, mode ombre branché
+
+**Auteur** Claude Code · **Commits** `377c6b9` → ce commit
+
+**Fait**
+- Décision du porteur : la **v2** part en production (v3 sans gain sur les
+  750 items, et entraînée sur Exo7, non commercial).
+- `recherche/src/preparer_gguf.py` : fusion de l'adaptateur v2 dans
+  Qwen3.5-4B (bf16, CPU), conversion GGUF, quantification **Q4_K_M
+  (2,71 Go)**. Déposé en privé : `Nounagnon02/repetia-qwen3.5-4b-v2-gguf`.
+- Backend : `modeleLocal.service.ts` + table `ComparaisonOmbre`. Chaque
+  génération et chaque correction (6ème → BAC) est doublée vers
+  `llama-server` ; la réponse est rangée à côté de celle servie, jamais
+  montrée. Désactivé par défaut (`MODELE_LOCAL_MODE=off`). 15 tests.
+- `recherche/src/analyser_ombre.py` : note les comparaisons avec les
+  détecteurs du banc ; `banc.py` interroge un serveur via `llama:<url>`.
+- `recherche/service/` : Dockerfile et README d'un Space Hugging Face
+  (image CPU officielle de llama.cpp). **Non déployé.**
+
+**Mesures**
+- Fidélité de la quantification, 60 items du banc (20 par tâche, hors
+  L1/L2), mêmes items que la v2 bf16 : utilisable **20/20 sur chaque tâche,
+  aucun écart** avec la v2 bf16 (IC95 [0,84 ; 1]). 60 items ne détectent
+  qu'une perte grossière.
+- CPU, 4 cœurs : 4 à 5 jetons/s ; médianes 38 s (génération), 33 s
+  (résolution), 35 s (correction).
+- Bout en bout, backend réel + Gemini réel + serveur local : 1 génération
+  et 1 correction doublées, toutes deux conformes ; la réponse servie à
+  l'élève est partie en 30 s, sans attendre le modèle local (44 s et 65 s).
+
+**Échecs / non fait**
+- Premier essai de fusion : adaptateur **non chargé** (classe multimodale
+  alors que l'entraînement utilisait la classe texte) ; PEFT n'émet qu'un
+  avertissement. Garde-fou ajouté : arrêt si toutes les matrices B sont nulles.
+- Deuxième essai : GGUF refusé par `llama-server` (couche MTP annoncée, poids
+  absents) → `--no-mtp`. Disque saturé une fois (poids de la base recopiés
+  par erreur à côté de la fusion) → filtre corrigé.
+- Hébergement non créé : un Space est une ressource publique nouvelle, à
+  valider par le porteur.
+
+**Observé, non traité**
+- Un Space gratuit (2 vCPU) ira environ deux fois moins vite : délai
+  conseillé 5 min (`MODELE_LOCAL_DELAI_MS=300000`). Avec une requête à la
+  fois, une partie du trafic ne sera pas doublée (comptée nulle part) :
+  l'échantillon réel est la table elle-même.
+
+**Vérifications**
+- `npm run typecheck` : OK · `npm test` : 131 back + 11 web + 61 mobile, OK.
+
+---
+
+## 2026-09-28 — [Données, vagues 2 et 5] Exo7, Sésamath ; entraînement v3
+
+**Auteur** Claude Code · **Commits** `2bf6218` → ce commit
+
+**Fait**
+- Recherche de sources (voir `recherche/SOURCES.md`) : **Exo7** (licence,
+  CC BY-NC-SA) et **Sésamath** (collège-lycée, CC BY-SA) intégrés. Annales :
+  le site refuse les téléchargements (403) — refus respecté, 4 PDF. Manuels
+  des éditeurs : non utilisés (droits réservés, aucune protection
+  contournée, malgré la demande du porteur).
+- `importer_exo7.py` : 1 466 exercices corrigés L1-L2, LaTeX converti en
+  Unicode. `importer_sesamath.py` : 397 exercices de 2nde (sources LaTeX) ;
+  `rediger_solutions.py` : solutions rédigées puis vérifiées, 240 gardés.
+- Niveaux 2nde, 1ère, L1, L2 ajoutés à `niveaux.ts` (hors catalogue).
+- Banc : 149 items de licence ajoutés après les 750, inchangés.
+- Jeu v3 : 14 266 exemples. Entraînement v3 : deux échecs de mémoire
+  (réponses Exo7 longues) puis perte calculée par tranches (perte et
+  gradients vérifiés identiques) ; arrêt anticipé à 9 h 30, pas 369/424.
+  Adaptateur privé : `Nounagnon02/repetia-qwen3.5-4b-lora-v3`.
+
+**Mesures**
+- 750 items d'origine : v3 = v2 (génération 0,987, résolution 0,94,
+  correction 1,000) — pas de régression.
+- 149 items de licence : génération 0,62, correction 0,93, **résolution
+  0,10**. Référence Exo7 partielle (dernière phrase de la correction), mais
+  vraies erreurs de fond aussi : le modèle n'est pas au niveau de la licence.
+
+**Échecs / non fait**
+- L'autotest du notebook 05 a détecté deux faux positifs du détecteur
+  d'élisions sur des textes de licence (« m et n », « n assez grand ») :
+  corrigé ; deux scores anciens gagnent un item chacun.
+- Aucun modèle de référence mesuré sur les items de licence ; pas d'items
+  de 2nde au banc.
+- Deux envois Kaggle simultanés lors du second lancement de la v3 (message
+  d'erreur trompeur de la CLI) : consommation GPU non vérifiable.
+
+---
+
+## 2026-09-27 — [Phase 4] Grille de relecture ; second entraînement (v2)
+
+**Auteur** Claude Code · **Commits** `c1bc0bd` → ce commit
+
+**Fait**
+- Grille de relecture à l'aveugle (`recherche/relecture/`, `relecture.py`) :
+  60 exercices + 60 corrections, dont 20 témoins Gemini mêlés sans être
+  signalés, 24 lignes par niveau. Script d'analyse testé sur deux grilles
+  fictives (levée de l'anonymat, accord entre relecteurs). La clé reste
+  dans le dépôt, seul le `.xlsx` s'envoie.
+- Second entraînement sur le jeu v2 (9 350 exemples), même recette que la v1 :
+  5 h 18 ; banc rejoué en fin de noyau (torchao retiré). Adaptateur publié en
+  privé : `Nounagnon02/repetia-qwen3.5-4b-lora-v2`.
+
+**Mesures** (banc v1, jeu complet)
+- v1 → v2 : génération 0,987 → 0,993 ; résolution 0,92 → 0,94 (BAC
+  0,80 → 0,87) ; correction 1,000 → 0,997 ; thèmes réservés 1,00 → 1,00.
+  Écarts dans le bruit (trois items sur 150 en résolution).
+
+**Échecs / non fait**
+- LibreOffice ne démarre pas dans l'environnement : la grille n'a pas pu
+  être recalculée par `recalc.py`. Les 7 formules de la synthèse ont été
+  vérifiées avec un évaluateur indépendant (`formulas`) sur une grille
+  remplie de valeurs connues ; Excel les recalcule à l'ouverture.
+- La grille porte sur la v1 (préparée avant la v2).
+- `pgrep -f soffice` a tué le shell qui le lançait : même piège que
+  `pkill -f`, déjà décrit dans CLAUDE.md.
+
+**Observé, non traité**
+- `generateurs.ts:852` écrit « Un(e) camion / car… » : le modèle affiné l'a
+  appris, et la banque servie aux élèves le contient déjà.
+- Sur 2 T4, le `Trainer` répartit les lots sur les deux cartes : le lot
+  effectif est de 32 et non de 16 (276 pas pour la v1, 293 pour la v2).
+
+---
+
+## 2026-09-26 — [Phases 3-4] Premier modèle RépétIA affiné (Qwen3.5-4B, v1) et son banc
+
+**Auteur** Claude Code · **Commits** `0bc90b4` → ce commit
+
+**Fait**
+- Trois essais courts (30 pas) avant l'entraînement complet :
+  Qwen3.5-4B sans noyaux rapides 98 s/pas, avec `flash-linear-attention` et
+  `causal-conv1d` 122 s/pas (chargés, mais plus lents sur T4), Qwen3-4B
+  72 s/pas — aucun ne tenait en 12 h avec la persona complète.
+- La moitié des jetons venait de la consigne système (bloc du programme
+  officiel) : `promptSystemeCourt()` (llm.service.ts) pour le modèle affiné,
+  médiane 792 → 423 jetons par exemple. Décision du porteur : Qwen3.5-4B,
+  une passe.
+- Entraînement complet sur Kaggle : 8 826 exemples (jeu v1), 4 h 51, perte de
+  validation 0,237 → 0,208. Adaptateur publié en privé :
+  `Nounagnon02/repetia-qwen3.5-4b-lora-v1`.
+- Collecte v2 (30 appels, limitée pour laisser le quota à l'application) :
+  jeu v2 à 9 836 exemples, génération 3 080 — seuil de la phase 2 atteint.
+  Pas encore utilisé pour entraîner.
+
+**Mesures** (banc v1, jeu complet ; persona courte pour le modèle affiné)
+
+| | Génération | Résolution juste | Correction (verdict) | Rappel « faux » |
+|---|---|---|---|---|
+| Qwen3.5-4B de base | 0,62 | 0,80 | 0,99 | 0,99 |
+| **Qwen3.5-4B affiné v1** | **0,99** | **0,92** | **1,00** | **1,00** |
+| Gemini flash-lite (n = 90) | 0,87 | 0,96 | 1,00 | 1,00 |
+
+- Thèmes réservés : 36/36 utilisables. Résolution sur gabarits jamais vus :
+  0,92 (n = 24), comme sur les gabarits vus. Recopie mot pour mot d'un énoncé
+  d'entraînement : 7/296. Aucune fuite (LaTeX, désaccentué, anglais).
+- Plus faible : résolution au BAC (0,80) ; génération en 4ème (0,93).
+
+**Échecs / non fait**
+- Le banc rejoué en fin d'entraînement a échoué (torchao 0.10 de l'image
+  Kaggle refusé par PEFT) ; puis le noyau dédié n'a pas trouvé ses entrées
+  (Kaggle remplace « _ » par « - » dans les identifiants). Corrigés.
+- **Phase 4 non franchie** : seuils automatiques atteints, mais la relecture
+  par des enseignants manque. Une lecture de cinq exercices générés montre
+  une erreur historique (Spoutnik daté de 1961 au lieu de 1957), un énoncé
+  sans question, un gabarit de générateur recopié. La correction est mesurée
+  sur des réponses fabriquées comme à l'entraînement : son 100 % ne vaut pas
+  pour de vraies copies d'élèves.
+
+**Observé, non traité**
+- La clé Gemini de la session est peut-être celle de la production : la
+  collecte du 2026-09-25 a épuisé tout le quota flash-lite (repli sur la
+  banque pour les élèves ce jour-là, si c'est la même clé).
+- `gemini-3.5-flash`, modèle principal de production, n'a que 20 requêtes par
+  jour sur le palier gratuit.
+
+**Vérifications**
+- Autotest du scoreur : ✅ 100 % · 0 écart sur les réponses fabriquées ·
+  notebook 05 régénéré et exécuté · `npm test --prefix backend` : ✅ 115
+
+---
+
+## 2026-09-25 — [Phase 1] Banc d'évaluation : modèles candidats mesurés avant entraînement
+
+**Auteur** Claude Code · **Commits** `cff11d0` → ce commit
+
+**Fait**
+- Jeu de test figé (`exporter_banc.js`, graine fixe) : 750 items —
+  300 générations, 150 résolutions d'exercices calculés, 300 corrections de
+  réponses fabriquées (150 justes / 150 fausses) — avec les prompts exacts de
+  production (désormais exportés de `llm.service.ts`). 19 thèmes réservés.
+- `banc.py` : interrogation (Gemini par l'API, modèles ouverts par
+  `transformers`) et notation séparées ; un contrôle (réponses de référence)
+  obtient 100 %, autotest du scoreur.
+- Modèles ouverts exécutés sur Kaggle (2 × T4, `recherche/kaggle/banc/`),
+  réponses rapatriées ; notebook 05 généré depuis son script et exécuté.
+
+**Mesures** (part « utilisable », jeu complet ; Gemini sur 30 items par tâche)
+
+| Modèle | Génération | Résolution (juste) | Correction (verdict) | Latence méd. |
+|---|---|---|---|---|
+| Plancher (application sans LLM) | 0,99 | 0,00 | 0,50 | — |
+| Gemini flash-lite (n = 90) | 0,87 | 0,87 (0,96) | 1,00 (1,00) | 1,6 s |
+| Qwen3-4B | 0,97 | 0,55 (0,63) | 0,88 (0,98) | 3,0 s* |
+| Qwen3.5-4B | 0,62 | 0,79 (0,80) | 0,99 (0,99) | 5,7 s* |
+| Qwen3-1.7B | 0,88 | 0,47 (0,51) | 0,54 (0,60) | 1,4 s* |
+| SmolLM3-3B | 0,71 | 0,44 (0,52) | 0,72 (0,77) | 4,1 s* |
+
+\* débit par item d'un lot de 16 sur T4, pas un temps de réponse unitaire.
+- Rappel sur les réponses d'élève fausses : Qwen3.5-4B 0,99 · Qwen3-4B 0,96 ·
+  SmolLM3 0,52 · Qwen3-1.7B 0,16.
+- Qwen3-4B en résolution au BAC : 0,30.
+
+**Échecs / non fait — et pièges du scoreur corrigés en route**
+- `gemini-3.5-flash` (modèle principal de production) : 503 « high demand »
+  toute la journée, **non mesuré**. La référence est `gemini-flash-lite-latest`
+  (modèle de secours de production).
+- Qwen3.5-4B : 78 générations sur 300 coupées par la limite de 1 024 jetons du
+  banc — son score de génération mesure autant sa verbosité que sa compétence.
+- Le premier filtre d'accents (taux < 1,5 %, repris de `generer_banque.py`)
+  rejetait des explications de référence justes (textes mathématiques) : il
+  a été remplacé par un vocabulaire tiré des textes validés et une proportion
+  de mots fautifs. L'appariement des nombres acceptait 311,42 pour 312,42 et
+  « -7^7 » pour « 7^7 » : corrigé (tolérance d'une unité, appariement un pour
+  un). Plus tard dans la journée, deux faux négatifs relevés pendant la
+  collecte : une même valeur écrite sous deux formes (« 67,14 (ou 470/7) »)
+  était exigée deux fois, et le barème de « 11,5 sur 20 » exigé comme un
+  résultat. Corrigés ; un seul item change (Qwen3.5-4B, résolution
+  0,78 → 0,79). Chaque correction a été vérifiée sur le contrôle (100 %) et
+  sur les 150 réponses fausses fabriquées (0 écart).
+- `pkill -f "banc.py interroger"` a tué le shell qui le lançait — le piège
+  est déjà décrit dans CLAUDE.md, et il a été payé une seconde fois.
+
+**Décision proposée (en attente du porteur)** : partir de **Qwen3.5-4B** — le
+format s'apprend, le raisonnement beaucoup moins — après un essai court de
+QLoRA sur T4 pour vérifier que son architecture hybride s'y prête ; à défaut,
+Qwen3-4B.
+
+**Vérifications**
+- Autotest du scoreur : ✅ 100 % · notebook 05 régénéré et exécuté : ✅
+
+---
+
+## 2026-09-25 — [Phase 2] Premier jet du jeu d'entraînement ; phase 3 préparée
+
+**Auteur** Claude Code · **Commits** `c727bb6`, `32fade1`, `73bee73`
+
+**Fait**
+- Générateurs : chaque modèle d'énoncé porte un nom (`generateurs.ts`,
+  `modeleDeLExercice()`), sans effet sur l'application ; test ajouté.
+  `recherche/donnees/brutes/themes_generateurs.json` rattache 23 modèles à un
+  thème du catalogue ; 16 restent sans thème faute de correspondance sûre.
+- `recherche/src/exporter_sft.js` rassemble les exemples avec les prompts de
+  production ; `recherche/src/construire_sft.py` filtre (mêmes détecteurs que
+  le banc), dédoublonne, vérifie l'absence de fuite du jeu de test, découpe
+  par énoncé. Outils communs extraits dans `banc_commun.js` ; jeu de test
+  vérifié inchangé octet pour octet (md5).
+- `recherche/kaggle/entrainement/lancer.py` : QLoRA 4 bits, LoRA r=16, perte
+  sur la réponse seule, banc rejoué en fin d'entraînement. **Non lancé.**
+
+**Mesures** (`recherche/donnees/sft/rapport_sft.json`)
+- 6 872 candidats → 6 107 retenus (5 814 entraînement, 293 validation).
+- Génération 1 982 · correction 3 396 · résolution 729.
+- Critère de la phase 2 : correction ≥ 3 000 **atteint** ; génération ≥ 3 000
+  **non atteint**.
+- Diversité : résolution très gabaritée (88 gabarits distincts, 27 % des
+  exemples dans les 5 plus fréquents) — nature des générateurs.
+- Rejets : 23 exemples désaccentués ou privés d'apostrophes, 742 doublons
+  (surtout des énoncés de générateurs identiques d'un niveau à l'autre).
+- Longueur en jetons (tokenizer Qwen3-4B) : médiane 792, max 1 621, aucun
+  exemple au-delà de 2 048 ; ≈ 4,6 M jetons par époque.
+
+**Échecs / non fait**
+- 32 thèmes non réservés n'ont aucun exemple de génération (surtout maths et
+  physique-chimie hors BEPC, où les générateurs n'ont pas de modèle, et
+  quelques thèmes du BAC). Les combler demande une collecte Gemini ; pour les
+  matières numériques, la justesse des solutions produites ne serait pas
+  vérifiable automatiquement — décision à prendre avec le porteur.
+
+**Observé, non traité**
+- Le repli de production sert un exercice de générateur choisi par (niveau,
+  matière) sans tenir compte du thème : un élève qui révise « Thalès » peut
+  recevoir une équation. `modeleDeLExercice()` et `themes_generateurs.json`
+  permettraient de corriger cela.
+- 8 exercices de la banque servie en production (7 en philosophie BAC,
+  1 en anglais) ont perdu leurs apostrophes (« s appuie », « l adhésion ») ;
+  le filtre d'accents de `generer_banque.py` ne les voyait pas. Écartés du
+  jeu d'entraînement, toujours présents dans `banque-generee.json`.
+
+**Vérifications**
+- `npm test --prefix backend` : ✅ 115 · typecheck backend : ✅
+
+---
+
+## 2026-09-25 — [Phase 0] Retirer les services vision et audio orphelins
+
+**Auteur** Claude Code · **Commit** voir ci-dessous
+
+**Fait**
+- Supprimé `backend/src/services/vision.service.ts` et `audio.service.ts`,
+  avec l'accord du porteur du projet. Aucun contrôleur ne les importait.
+  Le premier importait `@google/genai` hors de `llm.service.ts` (invariant
+  n° 1) ; le second renvoyait une transcription codée en dur (invariant n° 8).
+
+**Vérifications**
+- `npm run typecheck --prefix backend` : ✅ · `npm test --prefix backend` : ✅ 114
+
+---
+
+## 2026-09-25 — Plan d'entraînement du modèle RépétIA et remise à jour des compteurs
+
+**Auteur** Claude Code · **Commit** voir ci-dessous
+
+**Fait**
+- `recherche/PLAN_ENTRAINEMENT.md` : plan en six phases pour affiner un petit
+  modèle ouvert (départ proposé : Qwen2.5-1.5B-Instruct, QLoRA sur GPU gratuit
+  Kaggle/Colab) sur trois tâches — générer, corriger, expliquer. Le banc
+  d'évaluation passe **avant** tout entraînement ; chaque phase a un livrable
+  vérifiable et un critère de passage. Aucun entraînement n'a été lancé.
+- Inventaire réel des données d'entraînement : > 2 600 exercices calculés
+  (générateurs), 1 452 (banque générée), 48 (banque manuelle), 101 (corpus
+  de collecte), 3 réponses de chat. Aucune donnée de correction : le plan
+  prévoit de la fabriquer à partir des solutions connues.
+- Compteurs de tests corrigés dans `README.md`, `CLAUDE.md`, `AGENTS.md`,
+  `PASSATION.md` (ils annonçaient 139 ou 140 tests).
+- Bandeau en tête de `PASSATION.md` : T1 → T6 traitées, renvoi au plan.
+- Décision du porteur consignée au §3.4 du plan : les données produites par
+  Gemini peuvent entrer dans l'entraînement.
+
+**Échecs / non fait**
+- Suppression de `backend/src/services/vision.service.ts` et
+  `audio.service.ts` **non faite** (refusée par le garde-fou de la session,
+  en attente de l'accord du porteur). Ces deux fichiers ne sont importés par
+  aucun contrôleur. `vision.service.ts` importe `@google/genai` hors de
+  `llm.service.ts` (invariant n° 1) et crée son client dès le chargement ;
+  `audio.service.ts` renvoie une transcription codée en dur (invariant n° 8).
+  Ce sont des restes de la session du 2026-09-02.
+- Pas d'entrée dans ce journal pour les commits du 2026-09-03 postérieurs au
+  test A/B du RAG (niveaux centralisés, générateurs paramétrés, banque
+  produite hors ligne) : leur contenu est décrit dans `CLAUDE.md` et dans les
+  messages de commit `dfe4a5f` → `c2ac96f`, mais aucune mesure n'y a été
+  consignée ici.
+
+**Observé, non traité**
+- `NOTE_TECHNIQUE.md` annonce « 140 tests » ; non modifié, car c'est un
+  livrable figé du concours (avec ses versions `.pdf` et `.docx`).
+- `recherche/donnees/traitees/huggingface_datasets.json` contient un champ
+  `total_exemples_sft_unifies: 183` issu de la session du 2026-09-02, sans
+  script qui le produise encore.
+- Les données produites par Gemini posent une question de conditions
+  d'utilisation si elles servent à entraîner un modèle publié (§3.4 du plan).
+
+**Vérifications**
+- `npm test` : ✅ 186 tests (114 backend + 11 web + 61 mobile, 8 ignorés)
+- `npm run typecheck` : ✅ backend + frontend + mobile
+- notebook réexécuté : non (aucun changement de recherche exécutable)
+
+---
+
 ## 2026-09-03 — Trou de couverture du RAG, corpus élargi, et premier test A/B du RAG
 
 **Auteur** Claude Code · **Commit** voir ci-dessous

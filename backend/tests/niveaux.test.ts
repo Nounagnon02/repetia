@@ -29,6 +29,12 @@ describe('niveaux', () => {
     expect(niveauPar('6ème').rang).toBeLessThan(niveauPar('BAC').rang);
   });
 
+  it('connaît les deux premières années de licence, après le BAC', () => {
+    expect(niveauPar('L1').classe).toBe('Licence 1');
+    expect(niveauPar('l2').code).toBe('L2');
+    expect(niveauPar('L1').rang).toBeGreaterThan(niveauPar('BAC').rang);
+  });
+
   it('distingue le premier cycle du reste', () => {
     expect(estCollegeInferieur('6ème')).toBe(true);
     expect(estCollegeInferieur('4ème')).toBe(true);

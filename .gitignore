@@ -63,3 +63,28 @@ recherche/donnees/privees/
 # Montage vidéo : rushes, voix off et rendus sont trop lourds pour le dépôt.
 # Les cartons se régénèrent avec tools/cartons-video.sh.
 montage/
+
+# Jeu d’entraînement : reproductible (exporter_sft.js + construire_sft.py) et
+# volumineux ; seul rapport_sft.json est versionné, avec les empreintes.
+recherche/donnees/sft/*.jsonl
+
+# Sorties lourdes de l’entraînement (adaptateur publié sur Hugging Face).
+recherche/donnees/entrainement/*/adaptateur/
+recherche/donnees/entrainement/*/points/
+recherche/donnees/entrainement/*/__pycache__/
+recherche/donnees/entrainement/*/banc.py
+recherche/donnees/*/kaggle/banc.py
+recherche/donnees/*/kaggle/reponses/
+recherche/donnees/*/kaggle/__pycache__/
+
+# Exo7 : source retéléchargeable (voir importer_exo7.py) ; seul l’extrait converti est versionné.
+recherche/donnees/brutes/exo7/ficall.tex
+recherche/donnees/brutes/sesamath/*.pdf
+recherche/donnees/brutes/sesamath/*.odt
+recherche/donnees/brutes/sesamath/*.zip
+recherche/donnees/brutes/sesamath/ms2_2014/
+
+# Mode ombre : les désaccords contiennent des réponses d’élèves — jamais versionnés.
+recherche/donnees/ombre/desaccords_*.jsonl
+# Mode ombre différé : demandes et réponses rejouées, avec réponses d’élèves.
+recherche/donnees/ombre_differe/

@@ -24,6 +24,12 @@ une pause entre chaque — pour ne pas peser sur le serveur.
 
     python recherche/src/collecte_annales.py --lister
     python recherche/src/collecte_annales.py --limite 5
+    python recherche/src/collecte_annales.py --examen bac --lister   # Baccalauréat
+
+Depuis le 2026-09-27, les annales servent AUSSI à l'entraînement, par
+décision du porteur du projet (voir recherche/SOURCES.md) ; une part reste
+réservée à l'évaluation. Un refus du serveur (403) est respecté : la page
+est sautée, jamais contournée.
 """
 from __future__ import annotations
 
@@ -44,6 +50,8 @@ INDEX = PRIVE / "index_annales.json"
 
 SITE = "https://epreuvesetcorriges.com"
 CATEGORIE = f"{SITE}/categories/benin/examens/bepc"
+EXAMEN = "bepc"  # remplacé par --examen
+PAGES = 6
 
 ENTETES = {
     "User-Agent": (
@@ -64,6 +72,20 @@ MATIERES = {
     "espagnol": "Espagnol",
     "allemand": "Allemand",
     "histoire-geographie": "Histoire-Géographie",
+}
+
+# Épreuves du BAC retenues : celles du catalogue de l'application.
+MATIERES_BAC = {
+    "mathematiques": "Mathématiques",
+    "maths": "Mathématiques",
+    "pct": "Physique-Chimie-Technologie",
+    "physique-chimie": "Physique-Chimie-Technologie",
+    "svt": "Sciences de la Vie et de la Terre",
+    "philosophie": "Philosophie",
+    "francais": "Français",
+    "anglais": "Anglais",
+    "histoire-geographie": "Histoire-Géographie",
+    "histoire-et-geographie": "Histoire-Géographie",
 }
 
 
@@ -90,28 +112,33 @@ def identifier(chemin: str) -> dict | None:
 
     # « communication-ecrite » doit être testé avant « ecrite », d'où le tri
     # par longueur décroissante.
+    table = MATIERES_BAC if EXAMEN == "bac" else MATIERES
     matiere = None
-    for cle in sorted(MATIERES, key=len, reverse=True):
+    for cle in sorted(table, key=len, reverse=True):
         if cle in reste:
-            matiere = MATIERES[cle]
+            matiere = table[cle]
             break
     if matiere is None:
         return None
+    serie = re.search(r"series?-((?:[a-g]\d?-?)+)-benin", reste)
 
     return {
+        "examen": EXAMEN,
+        "serie": serie.group(1).strip("-").upper() if serie else None,
         "id": identifiant,
         "matiere": matiere,
         "annee": int(annee.group(1)) if annee else None,
         "nature": "corrige" if reste.startswith("corrige") else "epreuve",
         "url": f"{SITE}{chemin}",
-        "fichier": f"{identifiant}-{matiere.replace(' ', '_')}.pdf",
+        "fichier": f"{identifiant}-{EXAMEN}-{matiere.replace(' ', '_')}.pdf" if EXAMEN != "bepc"
+        else f"{identifiant}-{matiere.replace(' ', '_')}.pdf",
     }
 
 
 def lister() -> list[dict]:
     """Parcourt la catégorie BEPC Bénin et retient les documents identifiables."""
     documents: dict[str, dict] = {}
-    for depart in range(0, 240, 40):
+    for depart in range(0, 40 * PAGES, 40):
         url = CATEGORIE if depart == 0 else f"{CATEGORIE}?start={depart}"
         try:
             page = recuperer(url).decode("utf-8", errors="replace")
@@ -119,7 +146,7 @@ def lister() -> list[dict]:
             print(f"  page {depart} illisible : {str(e)[:80]}")
             continue
 
-        chemins = set(re.findall(r'href="(/categories/benin/examens/bepc/[^"]+)"', page))
+        chemins = set(re.findall(r'href="(/categories/benin/examens/' + EXAMEN + r'/[^"]+)"', page))
         nouveaux = 0
         for chemin in chemins:
             doc = identifier(chemin)
@@ -168,7 +195,14 @@ def main() -> None:
     p.add_argument("--lister", action="store_true", help="recense sans télécharger")
     p.add_argument("--limite", type=int, default=10, help="nombre de PDF à récupérer")
     p.add_argument("--pause", type=float, default=3.0, help="secondes entre deux fichiers")
+    p.add_argument("--examen", choices=("bepc", "bac"), default="bepc")
+    p.add_argument("--pages", type=int, default=6, help="pages de 40 documents à parcourir")
     args = p.parse_args()
+    global EXAMEN, CATEGORIE, INDEX, PAGES
+    EXAMEN, PAGES = args.examen, args.pages
+    CATEGORIE = f"{SITE}/categories/benin/examens/{EXAMEN}"
+    if EXAMEN != "bepc":
+        INDEX = PRIVE / f"index_annales_{EXAMEN}.json"
 
     PRIVE.mkdir(parents=True, exist_ok=True)
 

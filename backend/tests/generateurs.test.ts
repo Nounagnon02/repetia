@@ -1,4 +1,4 @@
-import { exerciceGenere, nombreDeVariantes, type Difficulte } from '../src/data/generateurs';
+import { exerciceGenere, modeleDeLExercice, nombreDeVariantes, type Difficulte } from '../src/data/generateurs';
 
 const NIVEAUX = ['6ème', '5ème', '4ème', 'BEPC', 'BAC'] as const;
 const MATIERES = ['Mathématiques', 'Physique-Chimie-Technologie'] as const;
@@ -76,6 +76,26 @@ describe('générateurs d\'exercices', () => {
           expect(vus.size).toBe(total);
         }
       }
+    }
+  });
+
+  it('nomme le modèle de chaque exercice, de façon cohérente avec la série', () => {
+    // Le jeu d'entraînement rattache chaque exercice calculé à un thème par
+    // ce nom : un exercice sans nom, ou deux modèles de même nom produisant
+    // des énoncés différents dans une même série, fausseraient ce rattachement.
+    const enoncesParNom = new Map<string, Set<string>>();
+    for (const e of exercices) {
+      const nom = modeleDeLExercice(e.matiere, '', e.niveau, e.difficulte, e.index);
+      expect(nom).toMatch(/^[a-z][A-Za-z]+$/);
+      const cle = `${e.niveau}|${e.matiere}|${e.difficulte}|${nom}`;
+      if (!enoncesParNom.has(cle)) enoncesParNom.set(cle, new Set());
+      enoncesParNom.get(cle)!.add(e.enonce);
+    }
+    expect(modeleDeLExercice('Anglais', '', 'BEPC', 'facile', 0)).toBeNull();
+    // Chaque (niveau, matière, difficulté) utilise au moins deux modèles.
+    const cellules = new Set([...enoncesParNom.keys()].map((k) => k.split('|').slice(0, 3).join('|')));
+    for (const c of cellules) {
+      expect([...enoncesParNom.keys()].filter((k) => k.startsWith(c + '|')).length).toBeGreaterThanOrEqual(2);
     }
   });
 
