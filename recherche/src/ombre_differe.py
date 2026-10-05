@@ -10,15 +10,19 @@ réponses et compare.
 
 Cycle, une fois par semaine par exemple :
 
-    # 1. Récupérer la base de production (SQLite) ou un export JSONL
-    python recherche/src/ombre_differe.py --sqlite prod.db
+    # 1. Exporter le journal de la production (Postgres, Render) en JSONL,
+    #    puis extraire les demandes en attente
+    bash recherche/src/exporter_ombre.sh
+    python recherche/src/ombre_differe.py \\
+        --jsonl recherche/donnees/ombre_differe/export_prod.jsonl
     # 2. Rejouer sur le GPU de Kaggle (jeu de données PRIVÉ)
     REPETIA_ADAPTATEUR=<dossier de l'adaptateur v2> \\
         bash recherche/kaggle/pousser.sh ombre_differe
     bash recherche/kaggle/pousser.sh ombre_differe statut
     bash recherche/kaggle/pousser.sh ombre_differe rapatrier
     # 3. Comparer
-    python recherche/src/analyser_ombre.py --sqlite prod.db \\
+    python recherche/src/analyser_ombre.py \\
+        --jsonl recherche/donnees/ombre_differe/export_prod.jsonl \\
         --candidats recherche/donnees/ombre_differe/kaggle/reponses/*.jsonl
 
 Les demandes déjà rapatriées sont exclues : chaque cycle ne rejoue que le
