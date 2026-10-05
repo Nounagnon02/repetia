@@ -1,0 +1,5 @@
+{
+  "base": "Qwen/Qwen3.5-4B",
+  "nom": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+  "duree_banc_s": 2384
+}

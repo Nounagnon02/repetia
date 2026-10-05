@@ -1,0 +1,842 @@
+{
+  "C001": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-0a1f4d2aeb04",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C002": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-30f7aa0840e2",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Espagnol"
+  },
+  "C003": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-1118d1b39353",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "C004": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-dead50f412d9",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "C005": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-e9567c19a025",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Histoire-Géographie"
+  },
+  "C006": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-f64feefbd303",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "C007": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-611410e538c5",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Allemand"
+  },
+  "C008": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-8ad0877f5248",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "C009": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-c3206f619fff",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "C010": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-506433dcec36",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C011": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-22de54203e8b",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C012": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-f5117cfd962a",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C013": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-0191c258bd74",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C014": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-8a6cde773832",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C015": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-e3ad9560b40c",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Communication écrite"
+  },
+  "C016": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-18e5d7b5fd6b",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "C017": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-b4939fc3a3a9",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Mathématiques"
+  },
+  "C018": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-04bf008fd546",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "C019": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-7f2d8f82f714",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C020": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-f38001d4567f",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C021": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-3d7a0a16b3dd",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "C022": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-bd026573b0c8",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "C023": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-c1b3fbba21bc",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C024": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-ab6e670da369",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "C025": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-067c18617faa",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C026": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-45aafc2880e1",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C027": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-67eeaf04330b",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "C028": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-cea2400efde4",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C029": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-3d1192eb6e7e",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "C030": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-d4c79f45d6e2",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Philosophie"
+  },
+  "C031": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-a34600b757aa",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Français"
+  },
+  "C032": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-44e2d3d2281b",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "C033": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-4fee8e1aa7c8",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C034": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-fba64e85aecd",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "C035": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-8114bdfcdacb",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Histoire-Géographie"
+  },
+  "C036": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-e940f28237f5",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Allemand"
+  },
+  "C037": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-cc596faf03de",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C038": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-66a8c9018490",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "C039": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-84148a9609ed",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Français"
+  },
+  "C040": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-36251ea54161",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C041": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-18bbf55bb57f",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C042": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-ee6c5c227e69",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C043": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-823f13c2385d",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C044": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-0ef702dd60fb",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "C045": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-5c1b60d241b3",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C046": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-b9b3c5310662",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Philosophie"
+  },
+  "C047": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-04119b0aada8",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C048": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-ba7cd93d4b3f",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Anglais"
+  },
+  "C049": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-a2716baa2773",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C050": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-c0eb8357083a",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "C051": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-66f5222e2f18",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Histoire-Géographie"
+  },
+  "C052": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-a8e88c22508c",
+    "tache": "correction",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C053": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-5594b59ee115",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C054": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-90038f9c1b9e",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C055": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-2231bd496e9a",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Lecture"
+  },
+  "C056": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-83772bbfc339",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Mathématiques"
+  },
+  "C057": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-de2356b69cc3",
+    "tache": "correction",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "C058": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-1ca4d1918b8f",
+    "tache": "correction",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "C059": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "correction-8e1810814dec",
+    "tache": "correction",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "C060": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "correction-6c43edfd7822",
+    "tache": "correction",
+    "niveau": "BEPC",
+    "matiere": "Espagnol"
+  },
+  "E001": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-ec72c5213465",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "E002": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-844f40e75d7a",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "E003": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-15bd33626ade",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E004": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-047462ea1964",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "E005": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-2e44038361e1",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "E006": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-e5a85e53e3ee",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E007": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-58fb631ab804",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "E008": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-a0ca38484493",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E009": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-8486047c9f5a",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E010": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-29748eec15bc",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E011": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-8fecea5370d0",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "E012": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-bc6bb5035191",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "E013": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-a15a9960070c",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E014": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-1032c49de038",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E015": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-7f8b5e91e422",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E016": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-968cb1359eb8",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E017": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-079df0a5f71c",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "E018": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-7291cb3f9158",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E019": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-85ee23a47502",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E020": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-5a90007d8c19",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "E021": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-2551a16af473",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Mathématiques"
+  },
+  "E022": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-c6bf62dbb04a",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Mathématiques"
+  },
+  "E023": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-c7911b55185c",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Histoire-Géographie"
+  },
+  "E024": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-ceac3b201f34",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E025": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-defb6c0ce07e",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Français"
+  },
+  "E026": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-6964a920d860",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E027": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-f0215912912f",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E028": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-57e904be9f4f",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "E029": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-62110e03d92b",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E030": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-0641c2500dff",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "E031": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-473d124ec3f2",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Allemand"
+  },
+  "E032": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-642ad49df819",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Allemand"
+  },
+  "E033": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-41a2b2568385",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E034": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-fe22f0068c42",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Histoire-Géographie"
+  },
+  "E035": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-3743fc0e4917",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "E036": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-4d5712163a12",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Histoire-Géographie"
+  },
+  "E037": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-8e2dd8b9b1a7",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Lecture"
+  },
+  "E038": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-a67f05e30154",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Mathématiques"
+  },
+  "E039": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-5ee003787176",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "E040": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-3a24f4941c4d",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "E041": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-05ac2c223eba",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Anglais"
+  },
+  "E042": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-de81117ddc69",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Philosophie"
+  },
+  "E043": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-1aef13c48ec4",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Français"
+  },
+  "E044": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-461d4819e356",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E045": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-19bb74f37e3f",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E046": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-630fe6107686",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Mathématiques"
+  },
+  "E047": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-ce2d1c57e1bd",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E048": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-adf1a8f2ae52",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Allemand"
+  },
+  "E049": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-bdaf2bf3792a",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E050": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-398fed978040",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Espagnol"
+  },
+  "E051": {
+    "source": "gemini:gemini-flash-lite-latest",
+    "id": "generation-ec99ac1f9916",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Communication écrite"
+  },
+  "E052": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-3896dc44d2b3",
+    "tache": "generation",
+    "niveau": "BAC",
+    "matiere": "Philosophie"
+  },
+  "E053": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-a4fa76ef1883",
+    "tache": "generation",
+    "niveau": "6ème",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E054": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-1edbff65d05a",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Sciences de la Vie et de la Terre"
+  },
+  "E055": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-962d009e95e6",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Communication écrite"
+  },
+  "E056": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-f2ab0ecaff49",
+    "tache": "generation",
+    "niveau": "BEPC",
+    "matiere": "Anglais"
+  },
+  "E057": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-0785fe73bc1d",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Mathématiques"
+  },
+  "E058": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-5fd9ee1891d7",
+    "tache": "generation",
+    "niveau": "4ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E059": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-38a8cc7f8dc2",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  },
+  "E060": {
+    "source": "affine:Qwen/Qwen3.5-4B+repetia-v1",
+    "id": "generation-1e0df301cf2b",
+    "tache": "generation",
+    "niveau": "5ème",
+    "matiere": "Physique-Chimie-Technologie"
+  }
+}

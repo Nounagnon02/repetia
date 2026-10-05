@@ -1,0 +1,28 @@
+{
+  "torch": "2.10.0+cu128",
+  "transformers": "5.17.0",
+  "gpu": [
+    "Tesla T4",
+    "Tesla T4"
+  ],
+  "debut": "2026-09-25 16:32:40",
+  "modeles": {
+    "Qwen/Qwen3-4B": {
+      "statut": "ok",
+      "duree_s": 3203
+    },
+    "Qwen/Qwen3.5-4B": {
+      "statut": "ok",
+      "duree_s": 4631
+    },
+    "Qwen/Qwen3-1.7B": {
+      "statut": "ok",
+      "duree_s": 1470
+    },
+    "HuggingFaceTB/SmolLM3-3B": {
+      "statut": "ok",
+      "duree_s": 3440
+    }
+  },
+  "fin": "2026-09-25 20:05:04"
+}
