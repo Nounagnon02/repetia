@@ -66,6 +66,84 @@ Trois règles :
 
 ---
 
+## 2026-10-05 — [Reprise] Travail de la session web récupéré ; production remise en service
+
+**Auteur** Claude Code · **Commits** `5d0712a` (fusion), `fe6b2e5`, `1ca17a3`, puis le commit de cette entrée
+
+**Fait**
+- L'abonnement de la session web a pris fin sans que ses échanges restent
+  accessibles. Seul le code poussé survit : la branche
+  `claude/cool-goodall-ishatq` (36 commits, 25 → 29 septembre) a été fusionnée
+  dans `develop`, sans conflit.
+- **Production remise en service.** La base Render `repetia-db` était suspendue
+  (gratuite, expirée le 2026-09-28). Nouvelle base **Supabase** (PostgreSQL 17,
+  Francfort, « Session pooler »). Schéma appliqué par `prisma db push`, puis
+  protection (RLS) activée sur les 7 tables : l'API publique de Supabase ne
+  voit rien, le rôle de Prisma contourne RLS.
+- Sur le service Render, par l'API : `DATABASE_URL` (avec
+  `?sslmode=require&connect_timeout=30`) et `MODELE_LOCAL_MODE=journal`.
+  `render.yaml` ne déclare plus la base ; README corrigé en conséquence.
+- `main` avancé en simple avance rapide jusqu'à `1ca17a3`, puis déploiement
+  lancé **par l'API** (voir plus bas), en ligne.
+- Environnement local de la recherche : `recherche/.env` (hors dépôt, mode
+  600) avec identifiants Kaggle, jeton Hugging Face, seconde clé Gemini et
+  adresse de la base de production ; `kaggle` et `huggingface_hub` installés
+  dans le venv. Clé d'API Render dans `~/.config/repetia/render.env`.
+- Adaptateur v2 téléchargé (122 Mo) dans
+  `recherche/donnees/entrainement/run-2/adaptateur` (ignoré par Git).
+- `recherche/src/exporter_ombre.sh` : exporte le journal de la production en
+  JSONL ; `ombre_differe.py` documenté pour l'utiliser.
+
+**Mesures**
+- Production, `/health` : avant « degraded, base indisponible », après
+  « ok, base ok ». Catalogue réinstallé seul : 25 matières, 156 thèmes.
+- Test réel de bout en bout en production : génération d'un exercice,
+  HTTP 200 en 15 s ; ni `solution` ni `explication` dans la réponse
+  (invariant n° 2) ; un utilisateur, un exercice et une ligne de journal
+  écrits malgré RLS, la ligne portant la consigne et aucun candidat.
+- Connexion Kaggle : noyaux `ombre_differe` et `entrainement` au statut
+  COMPLETE. `ombre_differe.py --jsonl` sur trois lignes fictives au format
+  Postgres : 2 demandes retenues, 1 déjà rejouée ignorée.
+- Gemini, vrai appel : la seconde clé répond (200) ; celle de `backend/.env`
+  a reçu un 503 transitoire, non concluant.
+
+**Échecs / non fait**
+- Un `git push` sur `main` n'a **déclenché aucun déploiement** en 9 minutes :
+  tous les déploiements passés de ce service sont manuels ou venus de l'API,
+  le webhook GitHub n'est vraisemblablement pas branché. Déploiement lancé par
+  `POST /v1/services/<id>/deploys`.
+- Prisma répondait « P1001 : serveur injoignable » vers Supabase alors que
+  `psql` se connectait ; réglé par `sslmode=require` et un délai de 30 s
+  (lequel des deux était décisif n'a pas été isolé).
+- **Trois lignes de test restent en production** : l'utilisateur
+  `d6766ac3-6674-4eaa-8bd6-ebb3ac218fd8`, son exercice et sa ligne de journal.
+  Leur suppression a été refusée par le contrôle d'accès de la session. Sans
+  conséquence ; à retirer avant le premier cycle de rejeu.
+- Les progressions d'élèves de l'ancienne base sont perdues.
+- `exporter_ombre.sh` n'a pas encore été exécuté contre la vraie base : la
+  seule ligne qu'elle contenait était la ligne de test. Le format JSONL a été
+  vérifié sur un fichier fictif.
+- Ce que le bac à sable cloud détenait hors dépôt (copies rapatriées de
+  Kaggle) n'est pas récupérable.
+
+**Observé, non traité**
+- Les projets gratuits Supabase se mettent en pause après une période
+  d'inactivité : durée à vérifier dans leurs conditions.
+- `db:push:prod` crée les nouvelles tables **sans RLS** : à réappliquer après
+  tout changement de schéma (voir README).
+- Le premier cycle de rejeu attend du trafic réel ; le mode journal est actif.
+- Relecture humaine de la phase 4 toujours à faire ; la grille porte sur la v1.
+- `CANDIDATURE_AI4YOUTH.md` porte une espace parasite non validée.
+- Les clés partagées pendant la session (Gemini, Hugging Face, Render, mot de
+  passe de la base) sont à régénérer.
+
+**Vérifications**
+- `npm run typecheck` : OK · `npm test` : 135 back + 11 web + 61 mobile, OK
+  (après la fusion) · `tsc -p tsconfig.build.json` : OK · notebook
+  réexécuté : non.
+
+---
+
 ## 2026-09-29 — [Phase 5] Mode ombre différé : journal en production, rejeu sur Kaggle
 
 **Auteur** Claude Code · **Commit** ce commit
