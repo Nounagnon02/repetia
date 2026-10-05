@@ -579,8 +579,10 @@ seed est idempotent (relançable sans créer de doublon).
 
 ### Backend — Render
 
-[`render.yaml`](render.yaml) provisionne l'API **et** sa base PostgreSQL. Sinon,
-manuellement :
+[`render.yaml`](render.yaml) décrit l'API. La base PostgreSQL est **hébergée
+chez Supabase**, pas chez Render : une base Render gratuite est suspendue
+30 jours après sa création, et la production a perdu la sienne le 2026-09-28.
+Sinon, manuellement :
 
 | Réglage | Valeur |
 |---|---|
@@ -594,8 +596,22 @@ manuellement :
 aucune commande à lancer après le déploiement, et une base repartie de zéro se
 remplit toute seule.
 
-Seule variable à saisir à la main dans le tableau de bord : **`LLM_API_KEY`**.
-Ajouter ensuite `CORS_ORIGIN=https://<votre-front>` pour verrouiller les origines.
+Variables à saisir à la main dans le tableau de bord : **`LLM_API_KEY`** et
+**`DATABASE_URL`**. Pour Supabase, prendre l'adresse du **Session pooler**
+(port 5432, compatible IPv4) et y ajouter `?sslmode=require&connect_timeout=30` :
+sans ces options, Prisma répond « P1001 : serveur injoignable » alors que `psql`
+se connecte. Le mode « Transaction » (port 6543) ne convient pas à
+`prisma db push`. Ajouter ensuite `CORS_ORIGIN=https://<votre-front>` pour
+verrouiller les origines.
+
+**Après chaque changement de schéma**, activer la protection des nouvelles
+tables : Prisma les crée dans le schéma public, que l'API REST de Supabase peut
+exposer avec sa clé anonyme. Sans politique, `alter table "X" enable row level
+security` suffit : le rôle de Prisma la contourne, l'application ne change pas.
+
+Un `git push` sur `main` **ne déclenche pas** de déploiement sur ce service
+(tous les déploiements passés sont manuels ou venus de l'API) : le lancer depuis
+le tableau de bord, ou par `POST /v1/services/<id>/deploys`.
 
 > Le plan gratuit de Render met le service en veille après 15 minutes
 > d'inactivité : la première requête suivante prend ~30 s. C'est sans gravité
