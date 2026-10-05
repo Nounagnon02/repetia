@@ -1,13 +1,14 @@
 # Déploiement du backend RépétIA sur Render (https://render.com)
 #
-# LLM_API_KEY se saisit dans le tableau de bord Render, jamais ici.
-# Le schéma est appliqué au build (`db:push:prod`) ; le catalogue — matière et
-# 8 thèmes — s'installe seul au démarrage du serveur.
-
-databases:
-  - name: repetia-db
-    databaseName: repetia
-    plan: free
+# LLM_API_KEY et DATABASE_URL se saisissent dans le tableau de bord Render,
+# jamais ici. Le schéma est appliqué au build (`db:push:prod`) ; le catalogue —
+# matière et 8 thèmes — s'installe seul au démarrage du serveur.
+#
+# La base est un Postgres hébergé chez Supabase, pas chez Render : une base
+# Render gratuite est suspendue 30 jours après sa création (repetia-db l'a été
+# le 2026-09-28, la production a perdu sa base). DATABASE_URL est l'adresse du
+# « Session pooler » de Supabase (port 5432, IPv4) ; le mode « Transaction »
+# (port 6543) ne convient pas à `prisma db push`.
 
 services:
   - type: web
@@ -21,10 +22,9 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      # À renseigner dans le tableau de bord Render (adresse Supabase).
       - key: DATABASE_URL
-        fromDatabase:
-          name: repetia-db
-          property: connectionString
+        sync: false
       # À renseigner dans le tableau de bord Render.
       - key: LLM_API_KEY
         sync: false
